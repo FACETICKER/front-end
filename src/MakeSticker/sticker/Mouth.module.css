@@ -1,0 +1,257 @@
+.hidden {
+  display: none;
+}
+
+/* face index별 입 style */
+.mouth11 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 165px;
+  left: 116px;
+}
+.mouth12 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 165px;
+  left: 116px;
+}
+.mouth13 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 165px;
+  left: 106px;
+}
+.mouth14 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 165px;
+  left: 116px;
+}
+.mouth15 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 165px;
+  left: 116px;
+}
+.mouth16 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 172px;
+  left: 116px;
+}
+.mouth21 {
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  top: 168px;
+  left: 127px;
+}
+.mouth22 {
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  top: 168px;
+  left: 127px;
+}
+.mouth23 {
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  top: 168px;
+  left: 122px;
+}
+.mouth24 {
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  top: 168px;
+  left: 127px;
+}
+.mouth25 {
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  top: 168px;
+  left: 130px;
+}
+.mouth26 {
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  top: 178px;
+  left: 132px;
+}
+.mouth31 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 160px;
+  left: 125px;
+}
+.mouth32 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 160px;
+  left: 125px;
+}
+.mouth33 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 167px;
+  left: 115px;
+}
+.mouth34 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 160px;
+  left: 125px;
+}
+.mouth35 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 160px;
+  left: 128px;
+}
+.mouth36 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 175px;
+  left: 125px;
+}
+.mouth41 {
+  position: absolute;
+  width: 70px;
+  height: 20px;
+  top: 160px;
+  left: 115px;
+}
+.mouth42 {
+  position: absolute;
+  width: 70px;
+  height: 20px;
+  top: 160px;
+  left: 115px;
+}
+.mouth43 {
+  position: absolute;
+  width: 70px;
+  height: 20px;
+  top: 170px;
+  left: 105px;
+}
+.mouth44 {
+  position: absolute;
+  width: 70px;
+  height: 20px;
+  top: 160px;
+  left: 115px;
+}
+.mouth45 {
+  position: absolute;
+  width: 70px;
+  height: 20px;
+  top: 160px;
+  left: 115px;
+}
+.mouth46 {
+  position: absolute;
+  width: 70px;
+  height: 20px;
+  top: 168px;
+  left: 120px;
+}
+.mouth51 {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  top: 165px;
+  left: 125px;
+}
+.mouth52 {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  top: 165px;
+  left: 125px;
+}
+.mouth53 {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  top: 165px;
+  left: 115px;
+}
+.mouth54 {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  top: 165px;
+  left: 125px;
+}
+.mouth55 {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  top: 165px;
+  left: 125px;
+}
+.mouth56 {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  top: 176px;
+  left: 130px;
+}
+.mouth61 {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  top: 175px;
+  left: 117px;
+}
+.mouth62 {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  top: 175px;
+  left: 117px;
+}
+.mouth63 {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  top: 175px;
+  left: 117px;
+}
+.mouth64 {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  top: 175px;
+  left: 117px;
+}
+.mouth65 {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  top: 175px;
+  left: 122px;
+}
+.mouth66 {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  top: 180px;
+  left: 127px;
+}
