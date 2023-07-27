@@ -1,12 +1,13 @@
 import message from "../img/MainpageVisit_img/ri_message-3-line.png";
 import shine from "../img/MainpageVisit_img/download-removebg-preview 1 (1).png";
-import Vector from "../img/MainpageVisit_img/Vector.svg";
+import Vector from "../img/MainpageVisit_img/Group 157 1.png";
 import threeboll from "../img/MainpageVisit_img/Group 77.svg";
 import user from "../img/MainpageVisit_img/user.png";
 import close from "../img/MainpageVisit_img/close-x.svg";
 import sticker from "../img/MainpageVisit_img/sticker.svg";
 import recordpage from "../img/MainpageVisit_img/3users.svg";
 import ellipse from "../img/MainpageVisit_img/Ellipse 201.png";
+import styled from "styled-components";
 import React, { useState } from "react";
 
 import "../style/MainpageVisit.css";
@@ -15,6 +16,17 @@ function MainpageVisit() {
   const [showFooter, setShowFooter] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
+  const BackgroundWrap = styled.div`
+  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  `;
+  const Background = styled.div`
+  height: calc(var(--vh, 1vh) * 100);
+  max-width: 37.5rem;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  `;
 
   const toggleFooter = () => {
     setShowFooter(!showFooter);
