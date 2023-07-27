@@ -145,7 +145,7 @@ function InitialSurvey() {
     Days: "1",
   });
   const optionGroups = {
-    Month: ["1", "2", "3", "4", "May", "6", "7", "8", "9", "10", "11", "12"],
+    Month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     Days: [
       "1",
       "2",
