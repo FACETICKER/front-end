@@ -193,7 +193,7 @@ function MainpageHost() {
       <div>
         <div id='PrtSc' style={{width:'338px'}}>
         <div name='inyellow' className='l2-2' style={{clear:'left'}}>
-        <div style={{ position: 'absolute', left: '370px', top: '222px' }} name='사진'>
+        <div style={{ position: 'absolute', left: '720px', top: '222px' }} name='사진'>
           <img src={Vector} alt='Vector' />
         </div>
         <div> 
