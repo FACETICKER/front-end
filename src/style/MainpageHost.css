@@ -29,6 +29,9 @@
   font-style: normal;
   font-weight: 700;
   line-height: 36px; /* 180% */
+  position: relative;
+  top: 140px;
+  left: -10px;
 }
 
 @font-face {
@@ -44,6 +47,9 @@
   font-style: normal;
   font-weight: 400;
   line-height: 36px; /* 75% */
+  position: relative;
+  top: 140px;
+  left: -35px;
 }
 
 .l6-2 {
@@ -56,6 +62,9 @@
   font-weight: 700;
   line-height: 22px; /* 68.75% */
   letter-spacing: -0.408px;
+  position: relative;
+  top: 0px;
+  left:120px;
 }
 
 .l7-2 {
@@ -170,6 +179,8 @@
   font-style: normal;
   font-weight: 700;
   line-height: 22px; /* 55% */
+  position: relative;
+  top: 10px;
 }
 
 .l14-2 {
