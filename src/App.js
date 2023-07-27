@@ -13,6 +13,7 @@ import QnApage from "./pages/QnApageMain";
 import StickerMainHost from "./pages/StickersHost";
 import PutPage from "./pages/PutPage";
 import StickerName from "./pages/StickerName";
+import NicknameTotal from "./Nickname/NicknameTotal";
 
 function App() {
   function setScreenSize() {
@@ -47,8 +48,8 @@ function App() {
           {/*스티커 붙이기 방문자 */}
           <Route path="host" element={<StickerMainHost />} />
           {/*스티커 호스트 */}
-          <Route path="stickername" element={<StickerName />} />
-          {/*스티커 호스트 */}
+          <Route path="stickername" element={<NicknameTotal />} />
+          {/* */}
         </Routes>
       </BrowserRouter>
     </Provider>

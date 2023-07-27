@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import "../font/font.css";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NicknamePageSlice } from "../Nickname/NicknamePageSlice";
+
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
 //현재 뷰포트 높이 가져와서 쓰기(App.js App함수 return 위에 꼭 함수 추가해주기)
@@ -120,6 +123,7 @@ const CheckIcon = styled.img`
   position: absolute;
   right: 7vw;
   top: calc(var(--vh, 1vh) * 26);
+  z-index: 1;
 `;
 const ImgWrap = styled.div`
   max-height: 50%;
@@ -132,8 +136,8 @@ const ImgWrap = styled.div`
 const InputWrap = styled.div`
   height: ${(props) => props.height};
   justify-content: center;
-  background-color: pink;
-  padding-top: 10px;
+
+  padding-top: 30px;
   display: flex;
   position: relative;
   display: flex;
@@ -142,18 +146,16 @@ const InputWrap = styled.div`
 const InputImg = styled.img`
   position: absolute;
   height: 150px;
-  width: 350px;
+  width: 80%;
   display: flex;
-  left: 18px;
 `;
 
 const Input = styled.input`
   display: flex;
   position: absolute;
-  left: 25px;
   width: 80%;
   height: 80%;
-  top: -2%;
+  top: ${(props) => props.top};
   text-align: center;
   background-color: transparent;
   border: none;
@@ -163,24 +165,68 @@ const Input = styled.input`
 //${(props) => props.height}
 
 export function StickerName() {
+  const dispatch = useDispatch();
   const [stickerSize, setStickerSize] = useState("200px");
   const [Margin, setMargin] = useState("0%");
   const [HostImgurl, setHostImg] = useState("");
   const [clickname, setClickname] = useState(false);
   const [inputheight, setInputheight] = useState("30%");
+  const [inputTop, setInputTop] = useState("-2%");
+  const [nicknameValue, setNicknameValue] = useState("");
+
+  //입력 누르면 변하는 것들
   const handleClickInput = () => {
     setStickerSize("50px");
     setMargin("50%");
     setClickname(true);
     setInputheight("80%");
+    setInputTop("-25%");
   };
 
+  //host 이미지 url 받아오기
   useEffect(() => {
     fetch("http://localhost:3020/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
           setHostImg(data.url);
+        }
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
+
+  //닉네임 저장
+  const saveNickname = (event) => {
+    setNicknameValue(event.target.value);
+    console.log(event.target.value);
+  };
+
+  //닉네임 입력하고 다음 아이콘 누르면 서버에 전송됨
+  const handleNicknameSubmit = () => {
+    fetch("http://localhost:3020/user/1", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nickname: nicknameValue }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("성공", data);
+      })
+      .catch((error) => {
+        console.error("실패", error);
+      });
+    dispatch(NicknamePageSlice.actions.letter()); //letter로 페이지 전환
+  };
+
+  //서버에서 닉네임 값 받아오기
+  useEffect(() => {
+    fetch("http://localhost:3020/user/1")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.nickname) {
+          setNicknameValue(data.nickname);
         }
       })
       .catch((error) => {
@@ -208,7 +254,12 @@ export function StickerName() {
             <Text2>스티커 네임을 작성해주세요.</Text2>
           </TextWrap>
         </Middle>
-        {clickname && <CheckIcon src="https://i.ibb.co/PrmpgLr/Group-74.png" />}
+        {clickname && (
+          <CheckIcon
+            onClick={handleNicknameSubmit}
+            src="https://i.ibb.co/PrmpgLr/Group-74.png"
+          />
+        )}
 
         <BottomWrap>
           <Bottom>
@@ -221,7 +272,11 @@ export function StickerName() {
                 height={inputheight}
                 src="https://i.ibb.co/B4Y5jgG/Group-69.png"
               />
-              <Input placeholder="스티커 네임 입력 (15자 이내)"></Input>
+              <Input
+                value={nicknameValue}
+                top={inputTop}
+                placeholder="스티커 네임 입력 (15자 이내)"
+              ></Input>
             </InputWrap>
           </Bottom>
         </BottomWrap>

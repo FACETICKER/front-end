@@ -10,7 +10,7 @@ import Picker from "react-mobile-picker-scroll";
 
 function InitialSurvey() {
   const [showSecondTextbox, setShowSecondTextbox] = useState(false);
-  const [showSecondChooseButton, setSecondChooseButton] = useState(false);
+  const [showSecondChooseButton, setSecondChooseButton] = useState(false);  
   const [showThirdTextbox, setShowThirdTextbox] = useState(false);
   const [showFourthTextbox, setShowFourthTextbox] = useState(false);
   const [showFifthTextbox, setShowFifthTextbox] = useState(false);
@@ -145,7 +145,7 @@ function InitialSurvey() {
     Days: "1",
   });
   const optionGroups = {
-    Month: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+    Month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     Days: [
       "1",
       "2",
@@ -246,17 +246,17 @@ function InitialSurvey() {
   return (
     <div className="App">
       <div>
-        <div className="l1"></div>
-        <div className="l2" id="gauge"></div>
+        <div className="l1-1"></div>
+        <div className="l2-1" id="gauge"></div>
       </div>
-      <div className="l3">
+      <div className="l3-1">
         FACETICKER에서 사용할 프로필 포스터 정보를 등록해주세요.
       </div>
 
       <div style={{ border: "1px", height: "670px", overflow: "scroll" }}>
         <div style={{ padding: "30px" }}>
           <input
-            className="l5"
+            className="l5-1"
             type="text"
             id="name"
             name="name"
@@ -271,7 +271,7 @@ function InitialSurvey() {
           <button
             id="season"
             name="season"
-            className="l5"
+            className="l5-1"
             onClick={() => handleShowSeasonButton()}
           >
             <p id="chooseSeason">
@@ -279,9 +279,9 @@ function InitialSurvey() {
             </p>
             <img src={check} id="check2" style={{ display: "none" }}></img>
           </button>
-          <div id="result1-1" style={{ display: "none" }} className="l7">
+          <div id="result1-1" style={{ display: "none" }} className="l7-1">
             <button
-              className="l8"
+              className="l8-1"
               id="spring"
               name="spring"
               onClick={() => handleSeasonButtonClick("봄")}
@@ -289,7 +289,7 @@ function InitialSurvey() {
               <p>봄</p>
             </button>
             <button
-              className="l8"
+              className="l8-1"
               id="summer"
               name="summer"
               onClick={() => handleSeasonButtonClick("여름")}
@@ -297,7 +297,7 @@ function InitialSurvey() {
               <p>여름</p>
             </button>
             <button
-              className="l8"
+              className="l8-1"
               id="autumn"
               name="autumn"
               onClick={() => handleSeasonButtonClick("가을")}
@@ -305,7 +305,7 @@ function InitialSurvey() {
               <p>가을</p>
             </button>
             <button
-              className="l8"
+              className="l8-1"
               id="winter"
               name="winter"
               onClick={() => handleSeasonButtonClick("겨울")}
@@ -318,13 +318,13 @@ function InitialSurvey() {
           <button
             id="number"
             name="number"
-            className="l5"
+            className="l5-1"
             onClick={handleShowFourNumber}
           >
             <p id="chooseNumber">{chooseNumber || "좋아하는 숫자는?"}</p>
             <img src={check} id="check3" style={{ display: "none" }}></img>
           </button>
-          <div id="result2-1" className="l7" style={{ display: "none" }}>
+          <div id="result2-1" className="l7-1" style={{ display: "none" }}>
             <input
               ref={button1Ref}
               value={input1}
@@ -394,7 +394,7 @@ function InitialSurvey() {
           <button
             id="day"
             name="day"
-            className="l5"
+            className="l5-1"
             onClick={handleShowTextbox}
           >
             <p id="chooseDay">{chooseDay || "본인에게 의미있는 날은?"}</p>
@@ -402,7 +402,7 @@ function InitialSurvey() {
           </button>
           <div
             id="result3-1"
-            className="l7"
+            className="l7-1"
             style={{ display: "none", overflow: "scroll", height: "200px" }}
           >
             <Picker
@@ -417,31 +417,31 @@ function InitialSurvey() {
           <button
             id="import"
             name="import"
-            className="l5"
+            className="l5-1"
             onClick={handleShowImport}
           >
             <p id="chooseImport">{chooseImport || "내게 더 중요한 것은?"}</p>
             <img src={check} id="check5" style={{ display: "none" }}></img>
           </button>
-          <div id="result4-1" style={{ display: "none" }} className="l7">
+          <div id="result4-1" style={{ display: "none" }} className="l7-1">
             <div>
               <button
                 id="love"
                 name="love"
-                className="l10"
+                className="l10-1"
                 onClick={() => handleImportButtonClick("사랑")}
               >
-                <p className="l11">{"사랑"}</p>
+                <p className="l11-1">{"사랑"}</p>
               </button>
             </div>
             <div>
               <button
                 id="friend"
                 name="friend"
-                className="l10"
+                className="l10-1"
                 onClick={() => handleImportButtonClick("우정")}
               >
-                <p className="l11">{"우정"}</p>
+                <p className="l11-1">{"우정"}</p>
               </button>
             </div>
           </div>
@@ -451,7 +451,7 @@ function InitialSurvey() {
         id="result5"
         style={{ display: showInputButton ? "block" : "none", padding: "30px" }}
       >
-        <button id="set_sticker" name="set_sticker" className="l6">
+        <button id="set_sticker" name="set_sticker" className="l6-1">
           스티커 만들기
         </button>
       </div>

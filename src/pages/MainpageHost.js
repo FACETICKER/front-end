@@ -4,6 +4,8 @@ import share from "../img/MainpageHost_img/share.svg";
 import download from "../img/MainpageHost_img/download.svg";
 import Vector from "../img/MainpageHost_img/Group 157 1.png";
 import threeboll from "../img/MainpageHost_img/Group 77.svg";
+import styled from "styled-components";
+import axios from "axios";
 import setting from "../img/MainpageHost_img/gear-settings.svg";
 import edit from "../img/MainpageHost_img/square-edit.svg";
 import recordpage from "../img/MainpageHost_img/3users.svg";
@@ -11,6 +13,8 @@ import close from "../img/MainpageHost_img/close-x.svg";
 import React, { useState } from "react";
 import html2canvas from "html2canvas";
 import "../style/MainpageHost.css";
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
+
 
 function MainpageHost() {
   const [showFooter, setShowFooter] = useState(false);
@@ -26,6 +30,18 @@ function MainpageHost() {
   const [Name, setName] = useState("");
   const [Number, setNumber] = useState("");
   const [Day, setDay] = useState("");
+  const BackgroundWrap = styled.div`
+  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  `;
+  const Background = styled.div`
+  height: calc(var(--vh, 1vh) * 100);
+  max-width: 37.5rem;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  `;
+
 
   const toggleFooter = () => {
     setShowFooter(!showFooter);
@@ -140,6 +156,8 @@ function MainpageHost() {
   };
 
   return (
+    <BackgroundWrap>
+    <Background>
     <div className="App">
       <div style={{ float: "down" }}>
         <div style={{ float: "left" }}>
@@ -147,20 +165,20 @@ function MainpageHost() {
             style={{ border: "none", backgroundColor: "transparent" }}
             onClick={toggleFooter}
           >
-            <img src={setting} className="l1" alt="setting" />
+            <img src={setting} className="l1-2" alt="setting" />
           </button>
         </div>
         <div style={{ float: "left" }}>
           <button style={{ border: "none", backgroundColor: "transparent" }}>
-            <p className="l12">FACETICKER</p>
+            <p className="l12-2">FACETICKER</p>
           </button>
         </div>
         <div style={{ float: "left" }}>
           <button style={{ border: "none", backgroundColor: "transparent" }}>
-            <img src={message} className="l1" alt="message" />
+            <img src={message} className="l1-2" alt="message" />
           </button>
-          <div id="countMessageDiv" className="l14" style={{ display: "none" }}>
-            <p id="countMessage" className="l15">
+          <div id="countMessageDiv" className="l14-2" style={{ display: "none" }}>
+            <p id="countMessage" className="l15-2">
               {chattingNumber || "0"}
             </p>
           </div>
@@ -181,7 +199,7 @@ function MainpageHost() {
 
       <div>
         <div id="PrtSc" style={{ width: "338px" }}>
-          <div name="inyellow" className="l2" style={{ clear: "left" }}>
+          <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
             <div
               style={{ position: "absolute", left: "25px", top: "150px" }}
               name="사진"
@@ -189,28 +207,28 @@ function MainpageHost() {
               <img src={Vector} alt="Vector" />
             </div>
             <div>
-              <p className="l13">{Season || "WIN 겨울 TER"}</p>
+              <p className="l13-2">{Season || "WIN 겨울 TER"}</p>
             </div>
-            <div id="ment" className="l22">
-              <div className="l23">
-                <p id="" className="l3">
+            <div id="ment" className="l22-2">
+              <div className="l23-2">
+                <p id="" className="l3-2">
                   어서옵쇼 다들 스티커 붙여주세요..!
                 </p>
               </div>
             </div>
             <div style={{ width: "390px", height: "100px" }}>
               <div style={{ float: "left" }} name="이름">
-                <p id="" className="l4">
+                <p id="" className="l4-2">
                   {Name || "수민님"}
                 </p>
               </div>
               <div style={{ float: "left" }} name="숫자">
-                <p id="" className="l5">
+                <p id="" className="l5-2">
                   {Number || "#128"}
                 </p>
               </div>
               <div style={{ float: "left" }} name="날짜">
-                <p id="" className="l6">
+                <p id="" className="l6-2">
                   {Day || "JUNE, 28"}
                 </p>
               </div>
@@ -223,17 +241,17 @@ function MainpageHost() {
           >
             <div name="사자성어">
               <img src={threeboll} style={{ float: "left" }}></img>
-              <p id="" className="l7">
+              <p id="" className="l7-2">
                 {Korean || "오매불망"}
               </p>
             </div>
             <div name="한자">
-              <p id="" className="l8">
+              <p id="" className="l8-2">
                 {Chinese || "寤寐不忘"}
               </p>
             </div>
             <div name="뜻">
-              <p id="" className="l9">
+              <p id="" className="l9-2">
                 {Mean || "자나깨나 잊지 못함"}
               </p>
             </div>
@@ -252,13 +270,13 @@ function MainpageHost() {
               <img src={threeboll} style={{ float: "left" }}></img>
             </div>
             <div name="프로필 생성 제안">
-              <p id="" className="ll6">
+              <p id="" className="ll6-2">
                 프로필이 아직 없다면
               </p>
             </div>
             <div name="링크">
-              <p id="" className="l17">
-                <a onClick={toggleModal3} className="l18">
+              <p id="" className="l17-2">
+                <a onClick={toggleModal3} className="l18-2">
                   여기
                 </a>
                 를 클릭하세요
@@ -268,15 +286,15 @@ function MainpageHost() {
         </div>
         <div>
           <div style={{ float: "left" }}>
-            <button className="l10">
+            <button className="l10-2">
               <img src={recordpage} alt="recordpage" />
             </button>
             <div
               id="countRecordDiv"
-              className="l14"
+              className="l14-2"
               style={{ display: "none" }}
             >
-              <p id="countRecord" className="l15">
+              <p id="countRecord" className="l15-2">
                 {recordNumber || "0"}
               </p>
             </div>
@@ -294,12 +312,12 @@ function MainpageHost() {
             </button>
           </div>
           <div style={{ float: "left" }}>
-            <button className="l10" onClick={handleLinkDownload}>
-              <img src={share} alt="share" />
+            <button className="l10-2" onClick={handleLinkDownload}>
+              <img src={share} alt="share"/>
             </button>
           </div>
           <div>
-            <button className="l10" onClick={handleDownload}>
+            <button className="l10-2" onClick={handleDownload}>
               <img src={download} alt="download" />
             </button>
           </div>
@@ -318,7 +336,7 @@ function MainpageHost() {
       {showFooter && (
         <footer className="FixedFooter">
           <div>
-            <button id="" name="cancel" className="l11" onClick={toggleFooter}>
+            <button id="" name="cancel" className="l11-2" onClick={toggleFooter}>
               <p>취소</p>
             </button>
           </div>
@@ -326,7 +344,7 @@ function MainpageHost() {
             <button
               id=""
               name="resetting"
-              className="l11"
+              className="l11-2"
               onClick={toggleModal1}
             >
               <p>프로필 재설정</p>
@@ -401,9 +419,9 @@ function MainpageHost() {
               </button>
             </div>
             <div style={{ clear: "left" }}>
-              <p className="l20">프로필을 입력하시겠어요?</p>
-              <p className="l21">프로필 정보 입력 페이지로 이동됩니다.</p>
-              <button className="l19">
+              <p className="l20-2">프로필을 입력하시겠어요?</p>
+              <p className="l21-2">프로필 정보 입력 페이지로 이동됩니다.</p>
+              <button className="l19-2">
                 <p style={{ color: "white", fontSize: "16px" }}>확인</p>
               </button>
             </div>
@@ -411,6 +429,8 @@ function MainpageHost() {
         </div>
       )}
     </div>
+    </Background>
+    </BackgroundWrap>
   );
 }
 
