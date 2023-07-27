@@ -1,12 +1,12 @@
-import message from "./img/ri_message-3-line.png";
-import shine from "./img/download-removebg-preview 1 (1).png";
-import Vector from "./img/Vector.svg";
-import threeboll from "./img/Group 77.svg";
-import user from "./img/user.png";
-import close from "./img/close-x.svg";
-import sticker from "./img/sticker.svg";
-import recordpage from "./img/3users.svg";
-import ellipse from "./img/Ellipse 201.png";
+import message from "../img/MainpageVisit_img/ri_message-3-line.png";
+import shine from "../img/MainpageVisit_img/download-removebg-preview 1 (1).png";
+import Vector from "../img/MainpageVisit_img/Vector.svg";
+import threeboll from "../img/MainpageVisit_img/Group 77.svg";
+import user from "../img/MainpageVisit_img/user.png";
+import close from "../img/MainpageVisit_img/close-x.svg";
+import sticker from "../img/MainpageVisit_img/sticker.svg";
+import recordpage from "../img/MainpageVisit_img/3users.svg";
+import ellipse from "../img/MainpageVisit_img/Ellipse 201.png";
 import React, { useState } from "react";
 
 import "../style/MainpageVisit.css";

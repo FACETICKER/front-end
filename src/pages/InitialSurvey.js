@@ -1,9 +1,9 @@
-import check from "./img/icon _check circled outline_ (2).svg";
+import check from "../img/InitialSurvey_img/icon _check circled outline_ (2).svg";
 import React, { useState, useRef, useEffect } from "react";
-import logo from "./logo.svg";
+import logo from "../img/InitialSurvey_img/icon _check circled outline_ (2).svg";
 import styled from "styled-components";
 import axios from "axios";
-import "./InitialSurvey.css";
+import "../style/InitialSurvey.css";
 import ReactDOM from "react-dom";
 import Picker from "react-mobile-picker-scroll";
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "../src/font/font.css";
+import "../font/font.css";
 import styled from "styled-components";
 import { useState } from "react";
 

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 import { useEffect, useState } from "react";
-import Back from "./image/Back.png";
-import Button from "./image/Button.png";
+import Back from "../img/Stickers_img/Back.png";
+import Button from "../img/Stickers_img/Button.png";
 
 const BackContainer = styled.img`
   position: absolute;

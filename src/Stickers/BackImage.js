@@ -1,5 +1,5 @@
-import Back from "./image/Back.png";
-import Button from "./image/Button.png";
+import Back from "../img/Stickers_img/Back.png";
+import Button from "../img/Stickers_img/Button.png";
 import styled from "styled-components";
 
 const BackContainer = styled.img`

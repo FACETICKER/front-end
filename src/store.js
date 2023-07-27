@@ -1,22 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
-import questionSlice from "./Slice/questionSlice";
-import IDSlice from "./Slice/IDSlice";
-import AnswerSlice from "./Slice/AnswerSlice";
-import ID_answerSlice from "./Slice/ID_AnswerSlice";
-import Buttons_idSlice from "./Slice/Buttons_idSlice";
-import ChoiceSlice from "./Slice/ChoiceSlice";
-import Choice_answer_Slice from "./Slice/Choice_answer_Slice";
-import AnsEditSlice from "./Slice/AnsEditSlice";
-import Switchquestion_Slice from "./Slice/Switchquestion_Slice";
-import OpencheckSlice from "./Slice/OpencheckSlice";
-import ModalpositionSlice from "./Slice/ModalpositionSlice";
-import FirstSlice from "./Slice/FirstSlice";
-import PageSlice from "./Slice/PageSlice";
-import Basic_questionSlice from "./Slice/Basic_questionSlice";
-import PopupSlice from "./Slice/PopupSlice";
-import appReducer from "../Stickers/reducers";
-import StickerSlice from "../MakeSticker/StickerSlice";
-import PopupSlice from "../MakeSticker/PopupSliceSlice";
+import questionSlice from "./QnA/Slice/questionSlice";
+import IDSlice from "./QnA/Slice/IDSlice";
+import AnswerSlice from "./QnA//Slice/AnswerSlice";
+import ID_answerSlice from "./QnA/Slice/ID_AnswerSlice";
+import Buttons_idSlice from "./QnA/Slice/Buttons_idSlice";
+import ChoiceSlice from "./QnA/Slice/ChoiceSlice";
+import Choice_answer_Slice from "./QnA/Slice/Choice_answer_Slice";
+import AnsEditSlice from "./QnA/Slice/AnsEditSlice";
+import Switchquestion_Slice from "./QnA/Slice/Switchquestion_Slice";
+import OpencheckSlice from "./QnA/Slice/OpencheckSlice";
+import ModalpositionSlice from "./QnA/Slice/ModalpositionSlice";
+import FirstSlice from "./QnA/Slice/FirstSlice";
+import PageSlice from "./QnA/Slice/PageSlice";
+import Basic_questionSlice from "./QnA/Slice/Basic_questionSlice";
+import PopupSlice from "./QnA/Slice/PopupSlice";
+import appReducer from "./Stickers/reducers";
+import StickerSlice from "./MakeSticker/StickerSlice";
+import MS_PopupSlice from "./MakeSticker/PopupSlice";
 
 const store = configureStore({
   reducer: {
@@ -39,7 +39,7 @@ const store = configureStore({
     app: appReducer, //Stickers(수진)
 
     sticker: StickerSlice.reducer, //  총 저장소
-    popup: PopupSlice.reducer, // 팝업창 onoff 저장소
+    popup: MS_PopupSlice.reducer, // 팝업창 onoff 저장소
   },
 });
 export default store;

@@ -1,0 +1,19 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+
+  "profile": {
+    "input1": "1",
+    "input2": "2",
+    "input3": "2",
+    "input4": "2"
+  },
+  "board": {
+    "board": "hhh"
+  }
+}

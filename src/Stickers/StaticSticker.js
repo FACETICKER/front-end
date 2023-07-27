@@ -2,9 +2,9 @@ import styled from "styled-components";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsImageFixed } from "./reducers";
-import { useDrag } from "react-use-gesture";
+
 import { useEffect, useState } from "react";
-import { useGesture } from "react-use-gesture";
+
 //방문자 기록 컴포넌트
 
 const HostImg = styled.img`
