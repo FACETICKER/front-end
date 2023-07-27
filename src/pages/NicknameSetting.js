@@ -83,21 +83,17 @@ const ModalText = styled.p`
 `;
 
 const BackgroundWrap = styled.div`
-  background-color: #5d31ff;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
 `;
-
+//Background : 모바일로 보이는 영역
 const Background = styled.div`
-  background-color: #5d31ff;
+  max-width: 680px;
+  height: calc(var(--vh, 1vh) * 100);
+  margin: 0px auto;
   display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+  flex-direction: column;
+  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
 `;
 
 const Upper = styled.div`

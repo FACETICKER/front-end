@@ -15,5 +15,36 @@
   },
   "board": {
     "board": "hhh"
-  }
+  },
+  "user": [
+    {
+      "id": 1,
+      "nickname": "수진",
+      "url": "https://i.ibb.co/GtLnztn/Group-174-1.png"
+    },
+    {
+      "id": 2,
+      "imgposition": {
+        "x": 128,
+        "y": 78
+      },
+      "url": "https://i.ibb.co/3Rcv3F9/Group-154-6-1.png"
+    },
+    {
+      "id": 3,
+      "imgposition": {
+        "x": 57,
+        "y": 136
+      },
+      "url": "https://i.ibb.co/G0dTPYr/sticker-41.png"
+    },
+    {
+      "id": 4,
+      "imgposition": {
+        "x": 500,
+        "y": 330
+      },
+      "url": "https://i.ibb.co/T1t1YCr/sticker-43.png"
+    }
+  ]
 }

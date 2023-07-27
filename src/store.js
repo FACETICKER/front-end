@@ -17,6 +17,7 @@ import PopupSlice from "./QnA/Slice/PopupSlice";
 import appReducer from "./Stickers/reducers";
 import StickerSlice from "./MakeSticker/StickerSlice";
 import MS_PopupSlice from "./MakeSticker/PopupSlice";
+import NicknamePage from "./Nickname/NicknamePageSlice";
 
 const store = configureStore({
   reducer: {
@@ -37,6 +38,7 @@ const store = configureStore({
     popup: PopupSlice.reducer, // 기본 질문 팝업창 관리
 
     app: appReducer, //Stickers(수진)
+    nicknamepage: NicknamePage.reducer,
 
     sticker: StickerSlice.reducer, //  총 저장소
     popup: MS_PopupSlice.reducer, // 팝업창 onoff 저장소

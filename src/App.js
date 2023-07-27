@@ -10,8 +10,10 @@ import MainpageVisit from "./pages/MainpageVisit";
 import MakeSticker from "./pages/MakeSticker";
 import MainpageHost from "./pages/MainpageHost";
 import QnApage from "./pages/QnApageMain";
-import SitkcerMainHost from "./pages/StickersHost";
+import StickerMainHost from "./pages/StickersHost";
 import PutPage from "./pages/PutPage";
+import StickerName from "./pages/StickerName";
+import NicknameTotal from "./Nickname/NicknameTotal";
 
 function App() {
   function setScreenSize() {
@@ -44,8 +46,10 @@ function App() {
           {/*질문답변 */}
           <Route path="put" element={<PutPage />} />
           {/*스티커 붙이기 방문자 */}
-          <Route path="host" element={<SitkcerMainHost />} />
+          <Route path="host" element={<StickerMainHost />} />
           {/*스티커 호스트 */}
+          <Route path="stickername" element={<NicknameTotal />} />
+          {/* */}
         </Routes>
       </BrowserRouter>
     </Provider>
