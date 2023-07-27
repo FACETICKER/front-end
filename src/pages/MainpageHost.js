@@ -4,6 +4,8 @@ import share from "../img/MainpageHost_img/share.svg";
 import download from "../img/MainpageHost_img/download.svg";
 import Vector from "../img/MainpageHost_img/Group 157 1.png";
 import threeboll from "../img/MainpageHost_img/Group 77.svg";
+import styled from "styled-components";
+import axios from "axios";
 import setting from "../img/MainpageHost_img/gear-settings.svg";
 import edit from "../img/MainpageHost_img/square-edit.svg";
 import recordpage from "../img/MainpageHost_img/3users.svg";
@@ -11,6 +13,8 @@ import close from "../img/MainpageHost_img/close-x.svg";
 import React, { useState } from "react";
 import html2canvas from "html2canvas";
 import "../style/MainpageHost.css";
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
+
 
 function MainpageHost() {
   const [showFooter, setShowFooter] = useState(false);
@@ -26,6 +30,18 @@ function MainpageHost() {
   const [Name, setName] = useState("");
   const [Number, setNumber] = useState("");
   const [Day, setDay] = useState("");
+  const BackgroundWrap = styled.div`
+  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  `;
+  const Background = styled.div`
+  height: calc(var(--vh, 1vh) * 100);
+  max-width: 37.5rem;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  `;
+
 
   const toggleFooter = () => {
     setShowFooter(!showFooter);
@@ -140,6 +156,8 @@ function MainpageHost() {
   };
 
   return (
+    <BackgroundWrap>
+    <Background>
     <div className="App">
       <div style={{ float: "down" }}>
         <div style={{ float: "left" }}>
@@ -295,7 +313,7 @@ function MainpageHost() {
           </div>
           <div style={{ float: "left" }}>
             <button className="l10" onClick={handleLinkDownload}>
-              <img src={share} alt="share" />
+              <img src={share} alt="share"/>
             </button>
           </div>
           <div>
@@ -411,6 +429,8 @@ function MainpageHost() {
         </div>
       )}
     </div>
+    </Background>
+    </BackgroundWrap>
   );
 }
 
