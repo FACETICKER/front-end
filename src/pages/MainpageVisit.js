@@ -174,14 +174,14 @@ function MainpageVisit() {
       {showModal2 && (
         <div className="Modal">
           <div>
+            <button id="close" className="l18" onClick={toggleModal2}>
+              <img src={close}></img>
+            </button>
             <div>
               <img src={ellipse}></img>
               <p>내 플로필로 가시겠습니까?</p>
               <p>계정이 없는 유저는 로그인 페이지로 이동됩니다.</p>
             </div>
-            <button id="close" onClick={toggleModal2}>
-              <img src={close}></img>
-            </button>
             <button id="OK" className="l16">
               YES
             </button>
