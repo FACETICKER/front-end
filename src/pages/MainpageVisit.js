@@ -59,20 +59,20 @@ function MainpageVisit() {
   return (
     <BackgroundWrap><Background>
     <div className="App">
-      <div>
-        <button onClick={toggleModal2}>
+      <header>
+        <button onClick={toggleModal2} style={{border:'none', backgroundColor:'transparent'}}>
           <img src={user} className="l1" alt="user" />
         </button>
-        <button>
+        <button style={{border:'none', backgroundColor:'transparent'}}>
           <p className="l12">FACETICKER</p>
         </button>
-        <button onClick={toggleModal}>
+        <button onClick={toggleModal} style={{border:'none', backgroundColor:'transparent'}}>
           <img src={message} className="l1" alt="message" />
         </button>
-      </div>
+      </header>
       <div id="PrtSc" className="l2">
         <div
-          style={{ position: "absolute", left: "725px", top: "220px" }}
+          style={{ position: "absolute", left: "525px", top: "220px" }}
           name="사진"
         >
           <img src={Vector} alt="Vector" />
@@ -88,7 +88,7 @@ function MainpageVisit() {
         <div style={{ width: "390px", height: "100px" }}>
           <div style={{ float: "left" }} name="이름">
             <p id="" className="l4">
-              홍길동
+              수진님
             </p>
           </div>
           <div style={{ float: "left" }} name="숫자">
@@ -104,7 +104,7 @@ function MainpageVisit() {
         </div>
         <div style={{ position: "relative" }}>
           <div name="사자성어">
-            <img src={threeboll}></img>
+            <img src={threeboll} style={{position:'relative',top:'220px',left:'-180px'}}></img>
             <p id="" className="l7">
               오매불망
             </p>
@@ -143,7 +143,13 @@ function MainpageVisit() {
         <div className="Modal">
           <div>
             <div>
-              <p className="l13">앗!</p>
+              <div className="l17">
+                !
+              </div>
+              <button className="l18" name='close' onClick={toggleModal}>
+                <img src={close}></img>
+              </button>
+              <p className="l13" style={{clear:'left'}}>앗!</p>
               <p>‘호스트명’님 공간에 흔적을 남기기 전, 로그인 하시겠어요?</p>
             </div>
             <button
