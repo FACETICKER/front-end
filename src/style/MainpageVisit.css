@@ -16,65 +16,87 @@
 }
 
 .l3{
-  color: #FFF;
+  color: var(--unnamed, #f26b79);
+  transform: rotate(7deg);
   text-align: center;
-  font-family: ABeeZee;
-  font-size: 15px;
-  font-style: italic;
-  font-weight: 400;
-  line-height: 24px;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 171.429% */
 }
 
-.l4{
+.l4 {
   transform: rotate(-90deg);
-  color: #FFF;
-  font-family: ABeeZee;
-  font-size: 25px;
-  font-style: italic;
-  font-weight: 400;
-  line-height: 36px;
+  color: #3f3f3f;
+  font-family: JHaebaragi;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px; /* 180% */
+  position: relative;
+  top: 140px;
+  left: -10px;
 }
 
-.l5{
+@font-face {
+  font-family: "Cafe24Shiningstar"; /* 폰트 이름 지정 (임의의 이름으로 설정 가능) */
+  src: url("../font/Cafe24Shiningstar-v2.0/webfont/Cafe24Shiningstar-v2.0.woff")
+    format("woff"); /* 폰트 파일 경로 지정 */
+}
+.l5 {
   transform: rotate(-90deg);
-  color: #FFF;
-  font-family: ABeeZee;
-  font-size: 25px;
-  font-style: italic;
+  color: #191919;
+  font-family: Cafe24Shiningstar;
+  font-size: 48px;
+  font-style: normal;
   font-weight: 400;
-  line-height: 36px;
+  line-height: 36px; /* 75% */
+  position: relative;
+  top: 140px;
+  left: -35px;
 }
 
-.l6{
+.l6 {
   transform: rotate(90deg);
-  color: #FFF;
-  font-family: ABeeZee;
-  font-size: 25px;
-  font-style: italic;
-  font-weight: 400;
-  line-height: 36px; /* 144% */
+  color: #191919;
+  text-align: center;
+  font-family: LINE Seed Sans;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px; /* 68.75% */
+  letter-spacing: -0.408px;
+  position: relative;
+  top: 0px;
+  left:120px;
 }
 
-.l7{
-  color: rgba(51, 51, 51, 0.80);
+.l7 {
+  color: rgba(51, 51, 51, 0.8);
   text-align: center;
   font-family: KIMM_Light;
   font-size: 16px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+  position: relative;
+  left: 100px;
 }
 
-.l8{
+.l8 {
   color: #767676;
   font-family: TmonMonsori;
   font-size: 70px;
   font-style: normal;
   font-weight: 900;
   line-height: 36px; /* 51.429% */
+  position: relative;
+  top: -40px;
+  left: 20px;
 }
 
-.l9{
+.l9 {
   color: rgba(0, 0, 0, 0.25);
   text-align: center;
   font-family: Pretendard;
@@ -82,11 +104,20 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  position: relative;
+  top: -90px;
+  left:-50px;
 }
 
+
 .l10{
-  fill: #FFF;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  fill: var(--unnamed, #12151c);
+  background-color: #12151c;
   filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+  border-radius: 50%;
 }
 
 
@@ -189,3 +220,23 @@
   border: 2px solid var(--unnamed, #12151C);
   background: var(--unnamed, #F26B79);
 }
+
+.l22 {
+  width: 287.721px;
+  height: 63.218px;
+  border-radius: 50%;
+  border: 2px solid #f26b79;
+  position: relative;
+  left: 20px;
+}
+
+.l23 {
+  width: 261.845px;
+  height: 70.503px;
+  border-radius: 50%;
+  border: 2px solid #f26b79;
+  transform: rotate(-7deg);
+}
+
+
+

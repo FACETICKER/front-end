@@ -1,5 +1,4 @@
 import message from "../img/MainpageVisit_img/ri_message-3-line.png";
-import shine from "../img/MainpageVisit_img/download-removebg-preview 1 (1).png";
 import Vector from "../img/MainpageVisit_img/Group 157 1.png";
 import threeboll from "../img/MainpageVisit_img/Group 77.svg";
 import user from "../img/MainpageVisit_img/user.png";
@@ -58,6 +57,7 @@ function MainpageVisit() {
   };
 
   return (
+    <BackgroundWrap><Background>
     <div className="App">
       <div>
         <button onClick={toggleModal2}>
@@ -72,7 +72,7 @@ function MainpageVisit() {
       </div>
       <div id="PrtSc" className="l2">
         <div
-          style={{ position: "absolute", left: "25px", top: "150px" }}
+          style={{ position: "absolute", left: "725px", top: "220px" }}
           name="사진"
         >
           <img src={Vector} alt="Vector" />
@@ -80,11 +80,10 @@ function MainpageVisit() {
         <div>
           <p className="l13">WIN 겨울 TER</p>
         </div>
-        <div style={{ position: "relative" }}>
-          <img src={shine} alt="shine" />
-          <p id="" className="l3">
-            어서옵쇼 다들 스티커 붙여주세요..!
-          </p>
+        <div id='ment' className='l22'>
+          <div className='l23'>
+            <p id='' className='l3'>어서옵쇼 다들 스티커 붙여주세요..!</p>
+          </div>
         </div>
         <div style={{ width: "390px", height: "100px" }}>
           <div style={{ float: "left" }} name="이름">
@@ -184,6 +183,7 @@ function MainpageVisit() {
         </div>
       )}
     </div>
+    </Background></BackgroundWrap>
   );
 }
 
