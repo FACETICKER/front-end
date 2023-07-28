@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import store from "./store";
 import { Provider } from "react-redux";
-import { NicknameSetting } from "./pages/NicknameSetting";
 import { GuestBook } from "./pages/GuestBook";
 import StatusMessage from "./pages/StatusMessage";
 import InitialSurvey from "./pages/InitialSurvey";
@@ -12,8 +11,7 @@ import MainpageHost from "./pages/MainpageHost";
 import QnApage from "./pages/QnApageMain";
 import StickerMainHost from "./pages/StickersHost";
 import PutPage from "./pages/PutPage";
-import StickerName from "./pages/StickerName";
-import NicknameTotal from "./Nickname/NicknameTotal";
+import NicknameTotal from "./pages/NicknameTotal";
 
 function App() {
   function setScreenSize() {
@@ -28,8 +26,8 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/nickname" element={<NicknameSetting />} />
-          {/* 닉네임 설정 페이지 */}
+          <Route path="stickername" element={<NicknameTotal />} />
+          {/*스티커 네임 + 방명록 설정 */}
           <Route path="/guest" element={<GuestBook />} />
           {/* 방명록 작성 페이지 */}
           <Route path="/status" element={<StatusMessage />} />
@@ -48,8 +46,6 @@ function App() {
           {/*스티커 붙이기 방문자 */}
           <Route path="host" element={<StickerMainHost />} />
           {/*스티커 호스트 */}
-          <Route path="stickername" element={<NicknameTotal />} />
-          {/* */}
         </Routes>
       </BrowserRouter>
     </Provider>
