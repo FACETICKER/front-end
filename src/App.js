@@ -12,6 +12,7 @@ import QnApage from "./pages/QnApageMain";
 import StickerMainHost from "./pages/StickersHost";
 import PutPage from "./pages/PutPage";
 import NicknameTotal from "./pages/NicknameTotal";
+import NewUserFloat from "./pages/NewUserFloat.js";
 
 function App() {
   function setScreenSize() {
@@ -46,6 +47,8 @@ function App() {
           {/*스티커 붙이기 방문자 */}
           <Route path="host" element={<StickerMainHost />} />
           {/*스티커 호스트 */}
+          <Route path="/newuserfloat" element={<NewUserFloat />} />
+          {/*신규 가입자 플로우 */}
         </Routes>
       </BrowserRouter>
     </Provider>
