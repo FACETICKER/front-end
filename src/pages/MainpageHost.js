@@ -28,6 +28,12 @@ function MainpageHost() {
   const [Day, setDay] = useState('');
   const [condition1, setCondition1] = useState(false);
   const [condition2, setCondition2] = useState(false);
+  const [condition3, setCondition3] = useState(false);
+  const [condition4, setCondition4] = useState(false);
+  const [condition5, setCondition5] = useState(false);
+  const [condition6, setCondition6] = useState(false);
+
+
   const BackgroundWrap = styled.div`
   background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
   `;
@@ -57,6 +63,38 @@ function MainpageHost() {
     resultDiv2.style.display='block'
     resultDiv3.style.display='none'
   }, [condition2])
+  useEffect(() => {
+    const resultDiv1 = document.getElementById('countMessageDiv');
+    if (chattingNumber == 0){
+      return
+    }else{
+      resultDiv1.style.display = 'block'
+    }
+  }, [condition3])
+  useEffect(() => {
+    const resultDiv1 = document.getElementById('countMessageDiv');
+    if (chattingNumber < 1){
+      resultDiv1.style.display = 'none'
+    } else{
+      resultDiv1.style.display = 'block'
+    }
+  }, [condition4])
+  useEffect(() => {
+    const resultDiv1 = document.getElementById('countRecordDiv');
+    if (recordNumber == 0){
+      return
+    }else{
+      resultDiv1.style.display = 'block'
+    }
+  }, [condition5])
+  useEffect(() => {
+    const resultDiv1 = document.getElementById('countRecordDiv');
+    if (recordNumber < 1){
+      resultDiv1.style.display = 'none'
+    } else{
+      resultDiv1.style.display = 'block'
+    }
+  }, [condition6])
 
 
   const toggleFooter = () => {
@@ -102,35 +140,29 @@ function MainpageHost() {
   };
 
   const handlePlusMessage = () => {
-    const resultDiv1 = document.getElementById('countMessageDiv');
-    resultDiv1.style.display = 'block'
     setChattingNumber((prevNumber1) => prevNumber1 + 1);
+    setCondition3((prev) => !prev);
   };
   const handleMinusMessage = () => {
-    const resultDiv1 = document.getElementById('countMessageDiv');
-    if (chattingNumber<='1') {
+    if (chattingNumber <='1') {
       setChattingNumber(0)
-      resultDiv1.style.display = 'none'
     } else{
-      resultDiv1.style.display = 'block'
       setChattingNumber((prevNumber1) => prevNumber1 - 1);
     }
+    setCondition4((prev) => !prev);
   };
 
   const handlePlusRecord = () => {
-    const resultDiv1 = document.getElementById('countRecordDiv');
-    resultDiv1.style.display = 'block'
-    setRecordNumber((prevNumber) => prevNumber + 1);
+    setRecordNumber((prevNumber1) => prevNumber1 + 1);
+    setCondition5((prev) => !prev);
   };
   const handleMinusRecord = () => {
-    const resultDiv1 = document.getElementById('countRecordDiv');
-    if (recordNumber<='1') {
+    if (recordNumber <='1') {
       setRecordNumber(0)
-      resultDiv1.style.display = 'none'
     } else{
-      resultDiv1.style.display = 'block'
-      setRecordNumber((prevNumber) => prevNumber - 1);
+      setRecordNumber((prevNumber1) => prevNumber1 - 1);
     }
+    setCondition6((prev) => !prev);
   };
 
   const handleSpring = () => {
@@ -164,10 +196,10 @@ function MainpageHost() {
 
   return (
     <BackgroundWrap><Background>
-    <div className="App">
-      <div style={{float:'down'}}>
+    <div className="App" >
+      <header style={{float:'down'}}>
         <div style={{float:'left'}}>
-          <button style={{border:'none', backgroundColor:'transparent'}} onClick={toggleFooter}>
+          <button style={{border:'none', backgroundColor:'transparent'}} onClick={toggleModal1}>
             <img src={setting} className='l1-2' alt='setting' />
           </button>
         </div>
@@ -180,7 +212,7 @@ function MainpageHost() {
           <button style={{border:'none', backgroundColor:'transparent'}}>
             <img src={message} className='l1-2' alt='message' />
           </button>
-          <div id='countMessageDiv' className='l14-2' style={{display:'none'}}>
+          <div id='countMessageDiv' className='l14-2' style={{display:'none',top:'-50px',left:'20px'}}>
             <p id='countMessage' className='l15-2'>
               {chattingNumber || '0'}
             </p>
@@ -188,12 +220,12 @@ function MainpageHost() {
           <button style={{width:'20px',height:'20px'}} onClick={handlePlusMessage}>+1</button>
           <button style={{width:'20px',height:'20px'}} onClick={handleMinusMessage}>-1</button>
         </div>
-      </div>
+      </header>
       
       <div>
         <div id='PrtSc' style={{width:'338px'}}>
         <div name='inyellow' className='l2-2' style={{clear:'left'}}>
-        <div style={{ position: 'absolute', left: '720px', top: '222px' }} name='사진'>
+        <div style={{ position: 'absolute', left: '34%', top: '222px' }} name='사진'>
           <img src={Vector} alt='Vector' />
         </div>
         <div> 
@@ -263,7 +295,7 @@ function MainpageHost() {
             <button className='l10-2'>
               <img src={recordpage} alt='recordpage'/>
             </button>
-            <div id='countRecordDiv' className='l14-2' style={{display:'none'}}>
+            <div id='countRecordDiv' className='l14-2' style={{display:'none',top:'-80px',left:'40px'}}>
               <p id='countRecord'className='l15-2'>
                 {recordNumber || '0'}
               </p>
@@ -311,13 +343,13 @@ function MainpageHost() {
         <div className="Modal">
           <div>
             <img src={edit}></img>
-            <button style={{border:'none', backgroundColor:'transparent'}} name='close' onClick={toggleModal1}>
+            <button style={{border:'none', backgroundColor:'transparent', position:'relative', top:'-30px',left:'80px'}} name='close' onClick={toggleModal1}>
               <img src={close}></img>
             </button>
             <div>
-              <button>포스터 정보 수정</button>
-              <button>스티커 수정</button>
-              <button>상태메시지 수정</button>
+              <button className="l24-2">포스터 정보 수정</button>
+              <button className="l24-2">스티커 수정</button>
+              <button className="l24-2">상태메시지 수정</button>
             </div>
             
           </div>

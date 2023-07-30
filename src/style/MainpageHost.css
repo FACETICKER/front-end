@@ -146,8 +146,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 318px;
-  height: 280px;
+  width: 294px;
+  height: 322px;
   flex-shrink: 0;
   background-color: white;
   padding: 20px;
@@ -196,6 +196,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
+  position: relative;
 }
 
 .l15-2 {
@@ -281,4 +282,17 @@
   border-radius: 50%;
   border: 2px solid #f26b79;
   transform: rotate(-7deg);
+}
+
+.l24-2{
+  display: flex;
+  width: 246px;
+  padding: 14px 46px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--unnamed, #12151C);
+  background: #F1F1F5;
+  margin: 16px;
 }
