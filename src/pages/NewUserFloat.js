@@ -22,6 +22,9 @@ function NewUserFloat() {
     flex-direction: column;
     background: #FEFAEF;
     `;
+    const handleButtonClick = () => {
+        window.location.href = 'http://localhost:3000/initial';
+    };
 
   
     return (
@@ -43,7 +46,7 @@ function NewUserFloat() {
             <div className="l6-4">
         </div>
         <div>
-            <button className="l5-4">
+            <button className="l5-4" onClick={handleButtonClick}>
                 <p>시작하기</p>
             </button>
         </div>
