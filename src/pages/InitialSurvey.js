@@ -262,6 +262,15 @@ function InitialSurvey() {
     }
   };
 
+  const handleOverMouse = (id) => {
+    const resultDiv = document.getElementById(id);
+    resultDiv.className = "l11-1";
+  }
+  const handleLeaveMouse = (id) => {
+    const resultDiv = document.getElementById(id);
+    resultDiv.className = "l10-1";
+  }
+
 
 
 
@@ -355,6 +364,7 @@ function InitialSurvey() {
             <input
               ref={button1Ref}
               value={input1}
+              className="l18-1"
               onChange={handleInput1Change}
               onInput={(e) => {
                 if (e.target.value.length > e.target.maxLength)
@@ -370,6 +380,7 @@ function InitialSurvey() {
             <input
               ref={button2Ref}
               value={input2}
+              className="l18-1"
               onChange={handleInput2Change}
               onInput={(e) => {
                 if (e.target.value.length > e.target.maxLength)
@@ -384,6 +395,7 @@ function InitialSurvey() {
             <input
               ref={button3Ref}
               value={input3}
+              className="l18-1"
               onChange={handleInput3Change}
               onInput={(e) => {
                 if (e.target.value.length > e.target.maxLength)
@@ -398,6 +410,7 @@ function InitialSurvey() {
             <input
               ref={button4Ref}
               value={input4}
+              className="l18-1"
               onChange={handleInput4Change}
               onInput={(e) => {
                 if (e.target.value.length > e.target.maxLength)
@@ -457,8 +470,10 @@ function InitialSurvey() {
                 name="love"
                 className="l10-1"
                 onClick={() => handleImportButtonClick("사랑")}
+                onMouseOver={() => handleOverMouse("love")}
+                onMouseLeave={() => handleLeaveMouse("love")}
               >
-                <p className="l11-1">{"사랑"}</p>
+                <p>{"사랑"}</p>
               </button>
             </div>
             <div>
@@ -467,8 +482,10 @@ function InitialSurvey() {
                 name="friend"
                 className="l10-1"
                 onClick={() => handleImportButtonClick("우정")}
+                onMouseOver={() => handleOverMouse("friend")}
+                onMouseLeave={() => handleLeaveMouse("friend")}
               >
-                <p className="l11-1">{"우정"}</p>
+                <p>{"우정"}</p>
               </button>
             </div>
           </div>
@@ -476,11 +493,14 @@ function InitialSurvey() {
       </div>
       <div
         id="result5"
-        style={{ display: showInputButton ? "block" : "none", padding: "30px" }}
+        style={{ display: showInputButton ? "block" : "none", padding: "30px", margin:'0 0 0 20px'}}
       >
-        <button id="set_sticker" name="set_sticker" className="l6-1">
-          스티커 만들기
-        </button>
+        <div className="l19-1" />
+        <div> 
+            <button id='set_sticker' className="l6-1">
+                <p>스티커 만들기</p>
+            </button>
+        </div>
       </div>
       </div>
     </div>
