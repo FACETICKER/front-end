@@ -11,6 +11,9 @@
   border-radius: 100px;
   background: var(--unnamed, #F26B79);
   width: 57px;
+  position: relative;
+  top:-6px;
+  white-space: pre-line;
 }
 .l3-1{
   width: 266px;
@@ -116,4 +119,47 @@ input::-webkit-inner-spin-button {
   border: 1px solid var(--unnamed, #d9d9d9);
   background: #fff;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.BackgroundWrap{
+  background: #F8F8FA;
+}
+.Background{
+  height: calc(var(--vh, 1vh) * 100);
+  max-width: 37.5rem;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  background: #F8F8FA;
+}
+
+.l15-1{
+  display: none;
+  position: relative;
+  top:-25px;
+  left: 300px;
+}
+
+.l16-1{
+  border: 1px;
+  height: 450px;
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE 및 Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    /* Chrome, Safari, Opera */
+    display: none;
+  }
+  position: relative;
+  left:25px;
+}
+
+.l17-1{
+  width: 390px;
+  height: 150px;
+  flex-shrink: 0;
+  background: #FFF;
+  /* 프로필 상단 */
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.10);
+  border-radius: 5px;
 }

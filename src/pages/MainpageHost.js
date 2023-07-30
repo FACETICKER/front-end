@@ -44,6 +44,8 @@ function MainpageHost() {
   display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  position:relative;
+  left:100px;
   `;
 
 
@@ -225,7 +227,7 @@ function MainpageHost() {
       <div>
         <div id='PrtSc' style={{width:'338px'}}>
         <div name='inyellow' className='l2-2' style={{clear:'left'}}>
-        <div style={{ position: 'absolute', left: '34%', top: '222px' }} name='사진'>
+        <div style={{ position: 'absolute', left: '10%', top: '222px' }} name='사진'>
           <img src={Vector} alt='Vector' />
         </div>
         <div> 

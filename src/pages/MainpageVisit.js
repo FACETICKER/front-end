@@ -25,6 +25,8 @@ function MainpageVisit() {
   display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  position:relative;
+  left:100px;
   `;
 
   const toggleFooter = () => {
@@ -72,7 +74,7 @@ function MainpageVisit() {
       </header>
       <div id="PrtSc" className="l2">
         <div
-          style={{ position: "absolute", left: "525px", top: "220px" }}
+          style={{ position: "absolute", left: "10%", top: "220px" }}
           name="사진"
         >
           <img src={Vector} alt="Vector" />

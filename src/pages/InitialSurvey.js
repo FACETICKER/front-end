@@ -22,13 +22,34 @@ function InitialSurvey() {
   const [chooseDay, setChooseDay] = useState("");
   const [showSeasonButtons, setShowSeasonButtons] = useState(true); // 계절 버튼 선택 창을 표시하는 상태
   const [chooseNumber, setChooseNumber] = useState(""); // 선택한 숫자를 저장하는 상
+  const [condition1, setCondition1] = useState(false);
+  const [condition2, setCondition2] = useState(false);
+  const [condition3, setCondition3] = useState(false);
+  const [condition4, setCondition4] = useState(false);
+  const [condition5, setCondition5] = useState(false);
+  const [condition6, setCondition6] = useState(false);
+  const [name, setName] = useState(false);
+  const BackgroundWrap = styled.div`
+  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  `;
+  const Background = styled.div`
+  height: calc(var(--vh, 1vh) * 100);
+  max-width: 37.5rem;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  position:relative;
+  left:100px;
+  `;
+
+  
 
   const handleNameInput = (event) => {
     const nameInput = document.getElementById("name");
     const resultDiv1 = document.getElementById("result1");
     const resultDiv2 = document.getElementById("gauge");
     const resultDiv3 = document.getElementById("check1");
-
     if (nameInput.value.trim() !== "") {
       resultDiv1.style.display = "block";
       resultDiv3.style.display = "block";
@@ -43,9 +64,7 @@ function InitialSurvey() {
     const resultDiv2 = document.getElementById("gauge");
     const resultDiv3 = document.getElementById("result1-1");
     const resultDiv4 = document.getElementById("check2");
-
     setChooseSeason(season); // 선택한 계절을 상태에 저장
-    setShowThirdTextbox(true);
     resultDiv1.style.display = "block";
     if (resultDiv2.style.width < "171px") {
       resultDiv2.style.width = "171px";
@@ -243,8 +262,14 @@ function InitialSurvey() {
     }
   };
 
+
+
+
+  
   return (
+    <div className="BackgroundWrap"><div className="Background">
     <div className="App">
+      <div className="l17-1">
       <div>
         <div className="l1-1"></div>
         <div className="l2-1" id="gauge"></div>
@@ -252,9 +277,10 @@ function InitialSurvey() {
       <div className="l3-1">
         FACETICKER에서 사용할 프로필 포스터 정보를 등록해주세요.
       </div>
-
-      <div style={{ border: "1px", height: "670px", overflow: "scroll" }}>
-        <div style={{ padding: "30px" }}>
+      </div>
+      <div style={{width:'342px'}}>
+      <div className="l16-1">
+        <div style={{padding: "10px 0 30px 0"}}>
           <input
             className="l5-1"
             type="text"
@@ -263,11 +289,12 @@ function InitialSurvey() {
             minLength="2"
             maxLength="15"
             placeholder="닉네임 (최대 15자)"
+            style={{width:'335px'}}
             onInput={handleNameInput}
           />
-          <img src={check} id="check1" style={{ display: "none" }}></img>
+          <img src={check} id="check1" className="l15-1" style={{left:'308px',top:'-50px'}}></img>
         </div>
-        <div id="result1" style={{ display: "none", padding: "30px" }}>
+        <div id="result1" style={{ display: "none",padding: "0 0 30px 0"}}>
           <button
             id="season"
             name="season"
@@ -277,7 +304,7 @@ function InitialSurvey() {
             <p id="chooseSeason">
               {chooseSeason || "좋아하는 계절을 선택하세요"}
             </p>
-            <img src={check} id="check2" style={{ display: "none" }}></img>
+            <img src={check} id="check2" className="l15-1"></img>
           </button>
           <div id="result1-1" style={{ display: "none" }} className="l7-1">
             <button
@@ -314,7 +341,7 @@ function InitialSurvey() {
             </button>
           </div>
         </div>
-        <div id="result2" style={{ display: "none", padding: "30px" }}>
+        <div id="result2" style={{ display: "none", padding: "0 0 30px 0"}}>
           <button
             id="number"
             name="number"
@@ -322,7 +349,7 @@ function InitialSurvey() {
             onClick={handleShowFourNumber}
           >
             <p id="chooseNumber">{chooseNumber || "좋아하는 숫자는?"}</p>
-            <img src={check} id="check3" style={{ display: "none" }}></img>
+            <img src={check} id="check3" className="l15-1" ></img>
           </button>
           <div id="result2-1" className="l7-1" style={{ display: "none" }}>
             <input
@@ -388,7 +415,7 @@ function InitialSurvey() {
           id="result3"
           style={{
             display: showFifthTextbox ? "block" : "none",
-            padding: "30px",
+            padding: "0 0 30px 0",
           }}
         >
           <button
@@ -398,7 +425,7 @@ function InitialSurvey() {
             onClick={handleShowTextbox}
           >
             <p id="chooseDay">{chooseDay || "본인에게 의미있는 날은?"}</p>
-            <img src={check} id="check4" style={{ display: "none" }}></img>
+            <img src={check} id="check4" className="l15-1" ></img>
           </button>
           <div
             id="result3-1"
@@ -413,7 +440,7 @@ function InitialSurvey() {
             />
           </div>
         </div>
-        <div id="result4" style={{ display: "none", padding: "30px" }}>
+        <div id="result4" style={{ display: "none", padding: "0 0 30px 0"}}>
           <button
             id="import"
             name="import"
@@ -421,7 +448,7 @@ function InitialSurvey() {
             onClick={handleShowImport}
           >
             <p id="chooseImport">{chooseImport || "내게 더 중요한 것은?"}</p>
-            <img src={check} id="check5" style={{ display: "none" }}></img>
+            <img src={check} id="check5" className="l15-1" ></img>
           </button>
           <div id="result4-1" style={{ display: "none" }} className="l7-1">
             <div>
@@ -455,7 +482,9 @@ function InitialSurvey() {
           스티커 만들기
         </button>
       </div>
+      </div>
     </div>
+    </div></div>
   );
 }
 

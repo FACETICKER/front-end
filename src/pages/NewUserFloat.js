@@ -21,7 +21,12 @@ function NewUserFloat() {
     display: flex;
     flex-direction: column;
     background: #FEFAEF;
+    position:relative;
+    left:100px;
     `;
+
+
+    
     const handleButtonClick = () => {
         window.location.href = 'http://localhost:3000/initial';
     };
