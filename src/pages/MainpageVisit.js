@@ -61,7 +61,7 @@ function MainpageVisit() {
   return (
     <div className="BackgroundWarp"><div className="Background">
     <div className="App">
-      <header>
+      <header style={{position:'relative', left:'-10px'}}>
         <button onClick={toggleModal2} style={{border:'none', backgroundColor:'transparent'}}>
           <img src={user} className="l1" alt="user" />
         </button>
@@ -74,11 +74,12 @@ function MainpageVisit() {
       </header>
       <div id="PrtSc" className="l2">
         <div
-          style={{ position: "absolute", left: '38%', top: '27%' }}
+          style={{ position: "relative", left: '5px', top: '150px' }}
           name="사진"
         >
           <img src={Vector} alt="Vector" />
         </div>
+        <div style={{position:'relative',top:'-300px'}}>
         <div>
           <p className="l13">WIN 겨울 TER</p>
         </div>
@@ -129,6 +130,7 @@ function MainpageVisit() {
           <button className="l10">
             <img src={sticker} alt="sticker" onClick={toggleModal} />
           </button>
+        </div>
         </div>
       </div>
       {showFooter && (
