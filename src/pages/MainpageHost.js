@@ -266,7 +266,7 @@ function MainpageHost() {
             </button>
           </div>
         </div>
-        <div style={{width:'200px',height:'200px',position:'relative'}}>
+        <div style={{width:'200px',height:'100px',position:'relative'}}>
           <button>사랑선택</button>
           <button>우정선택</button>
           <button onClick={handleSpring}>봄선택</button>
@@ -299,6 +299,7 @@ function MainpageHost() {
               <img src={close}></img>
             </button>
             <div>
+            <div className="l25-2"></div><div className="l25-2"></div><div className="l25-2"></div>
               <button className="l24-2">포스터 정보 수정</button>
               <button className="l24-2">스티커 수정</button>
               <button className="l24-2">상태메시지 수정</button>
