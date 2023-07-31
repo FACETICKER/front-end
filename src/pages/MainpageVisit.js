@@ -72,7 +72,7 @@ function MainpageVisit() {
           <img src={message} className="l1" alt="message" />
         </button>
       </header>
-      <div id="PrtSc" className="l2">
+      <body id="PrtSc" className="l2">
         <div
           style={{ position: "relative", left: '5px', top: '150px' }}
           name="사진"
@@ -132,7 +132,7 @@ function MainpageVisit() {
           </button>
         </div>
         </div>
-      </div>
+      </body>
       {showFooter && (
         <footer className="FixedFooter">
           <div>
