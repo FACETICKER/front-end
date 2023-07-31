@@ -35,7 +35,6 @@ function MainpageHost() {
 
 
   const BackgroundWrap = styled.div`
-  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
   `;
   const Background = styled.div`
   height: calc(var(--vh, 1vh) * 100);
@@ -43,9 +42,6 @@ function MainpageHost() {
   margin: 0px auto;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
-  position:relative;
-  left:100px;
   `;
 
 
@@ -115,9 +111,8 @@ function MainpageHost() {
     setShowModal3(!showModal3);
   };
 
-
   const handleLinkDownload = () =>{
-    const address = 'http://localhost:3000/';
+    const address = 'http://localhost:3000/mainhost';
     navigator.clipboard.writeText(address)
       .then(() => {
         alert('주소가 클립보드에 복사되었습니다.');
@@ -195,11 +190,10 @@ function MainpageHost() {
     setCondition2((prev) => !prev);
   };
 
-
   return (
     <BackgroundWrap><Background>
-    <div className="App" >
-      <header style={{float:'down'}}>
+    <div className="App" style={{width:'400px', margin:'50px'}}>
+      <header style={{float:'down',height:'30px', position:'relative',top:'-30px'}}>
         <div style={{float:'left'}}>
           <button style={{border:'none', backgroundColor:'transparent'}} onClick={toggleModal1}>
             <img src={setting} className='l1-2' alt='setting' />
@@ -224,10 +218,10 @@ function MainpageHost() {
         </div>
       </header>
       
-      <div>
+      <div style={{position:'relative',top:'-50px'}}>
         <div id='PrtSc' style={{width:'338px'}}>
         <div name='inyellow' className='l2-2' style={{clear:'left'}}>
-        <div style={{ position: 'absolute', left: '10%', top: '222px' }} name='사진'>
+        <div style={{ position: 'absolute', left: '15%', top: '28%' }} name='사진'>
           <img src={Vector} alt='Vector' />
         </div>
         <div> 
