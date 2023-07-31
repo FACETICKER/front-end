@@ -444,7 +444,7 @@ function InitialSurvey() {
           <div
             id="result3-1"
             className="l7-1"
-            style={{ display: "none", overflow: "scroll", height: "200px" }}
+            style={{ display: "none", height: "200px" }}
           >
             <Picker
               ref={pickerRef}
