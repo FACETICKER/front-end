@@ -180,13 +180,15 @@
 }
 
 .l13{
-  color: #000;
+  color: #333;
   text-align: center;
-  font-family: Pretendard;
-  font-size: 20px;
+  font-family: Cafe24 Ohsquare;
+  font-size: 40px;
   font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+  font-weight: 700;
+  line-height: 22px; /* 55% */
+  position: relative;
+  top: 10px;
 }
 
 .l14{
@@ -223,6 +225,9 @@
   border-radius: 10px;
   border: 2px solid var(--unnamed, #12151C);
   background: var(--unnamed, #F26B79);
+  position: relative;
+  left: 20px;
+  top:50px;
 }
 
 .l17{
@@ -235,7 +240,7 @@
   font-size:32px;
   color:white;
   position: relative;
-  left:130px;
+  left:120px;
 }
 
 .l18{
@@ -262,5 +267,15 @@
   transform: rotate(-7deg);
 }
 
+.BackgroundWrap{
+  background: #F8F8FA;
+}
 
+.Background{
+  height: calc(var(--vh, 1vh) * 100);
+  max-width: 37.5rem;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+}
 

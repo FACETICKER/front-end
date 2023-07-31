@@ -59,7 +59,7 @@ function MainpageVisit() {
   };
 
   return (
-    <BackgroundWrap><Background>
+    <div className="BackgroundWarp"><div className="Background">
     <div className="App">
       <header>
         <button onClick={toggleModal2} style={{border:'none', backgroundColor:'transparent'}}>
@@ -74,7 +74,7 @@ function MainpageVisit() {
       </header>
       <div id="PrtSc" className="l2">
         <div
-          style={{ position: "absolute", left: "10%", top: "220px" }}
+          style={{ position: "absolute", left: '38%', top: '27%' }}
           name="사진"
         >
           <img src={Vector} alt="Vector" />
@@ -152,13 +152,15 @@ function MainpageVisit() {
                 <img src={close}></img>
               </button>
               <p className="l13" style={{clear:'left'}}>앗!</p>
-              <p>‘호스트명’님 공간에 흔적을 남기기 전, 로그인 하시겠어요?</p>
+              <p style={{position:'relative',top:'20px'}}>‘호스트명’님 공간에 흔적을 남기기 전, 로그인 하시겠어요?</p>
             </div>
+            <div style={{position:'relative',left:'14px',top:'50px'}}>
             <button
               id="No"
               className="l14"
               onMouseOver={handleDragBtnNo}
               onMouseLeave={handleOutBtnNo}
+              style={{float:'left'}}
             >
               NO
             </button>
@@ -170,18 +172,21 @@ function MainpageVisit() {
             >
               YES
             </button>
+            </div>
           </div>
         </div>
       )}
       {showModal2 && (
         <div className="Modal">
           <div>
+            <div className="l17">
+              !
+            </div>
             <button id="close" className="l18" onClick={toggleModal2}>
               <img src={close}></img>
             </button>
-            <div>
-              <img src={ellipse}></img>
-              <p>내 플로필로 가시겠습니까?</p>
+            <div style={{position:'relative',top:'50px'}}>  
+              <p style={{position:'relative',left:'-20px'}}>내 플로필로 가시겠습니까?</p>
               <p>계정이 없는 유저는 로그인 페이지로 이동됩니다.</p>
             </div>
             <button id="OK" className="l16">
@@ -191,7 +196,7 @@ function MainpageVisit() {
         </div>
       )}
     </div>
-    </Background></BackgroundWrap>
+    </div></div>
   );
 }
 
