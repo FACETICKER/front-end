@@ -26,73 +26,13 @@ function MainpageHost() {
   const [Name, setName] = useState('');
   const [Number, setNumber] = useState('');
   const [Day, setDay] = useState('');
-  const [condition1, setCondition1] = useState(false);
-  const [condition2, setCondition2] = useState(false);
-  const [condition3, setCondition3] = useState(false);
-  const [condition4, setCondition4] = useState(false);
-  const [condition5, setCondition5] = useState(false);
-  const [condition6, setCondition6] = useState(false);
 
 
-  const BackgroundWrap = styled.div`
-  `;
-  const Background = styled.div`
-  height: calc(var(--vh, 1vh) * 100);
-  max-width: 37.5rem;
-  margin: 0px auto;
-  display: flex;
-  flex-direction: column;
-  `;
 
+  
 
-  useEffect(() => {
-    const resultDiv1 = document.getElementById('ment');
-    const resultDiv2 = document.getElementById('outyellow1');
-    const resultDiv3 = document.getElementById('outyellow2');
-    resultDiv1.style.display = 'none';
-    resultDiv3.style.display = 'block';
-    resultDiv2.style.display = 'none';
-  }, [condition1]);
-  useEffect(() => {
-    const resultDiv1 = document.getElementById('ment');
-    const resultDiv2 = document.getElementById('outyellow1');
-    const resultDiv3 = document.getElementById('outyellow2');
-    resultDiv1.style.display='block'
-    resultDiv2.style.display='block'
-    resultDiv3.style.display='none'
-  }, [condition2])
-  useEffect(() => {
-    const resultDiv1 = document.getElementById('countMessageDiv');
-    if (chattingNumber == 0){
-      return
-    }else{
-      resultDiv1.style.display = 'block'
-    }
-  }, [condition3])
-  useEffect(() => {
-    const resultDiv1 = document.getElementById('countMessageDiv');
-    if (chattingNumber < 1){
-      resultDiv1.style.display = 'none'
-    } else{
-      resultDiv1.style.display = 'block'
-    }
-  }, [condition4])
-  useEffect(() => {
-    const resultDiv1 = document.getElementById('countRecordDiv');
-    if (recordNumber == 0){
-      return
-    }else{
-      resultDiv1.style.display = 'block'
-    }
-  }, [condition5])
-  useEffect(() => {
-    const resultDiv1 = document.getElementById('countRecordDiv');
-    if (recordNumber < 1){
-      resultDiv1.style.display = 'none'
-    } else{
-      resultDiv1.style.display = 'block'
-    }
-  }, [condition6])
+  
+  
 
 
   const toggleFooter = () => {
@@ -138,28 +78,34 @@ function MainpageHost() {
 
   const handlePlusMessage = () => {
     setChattingNumber((prevNumber1) => prevNumber1 + 1);
-    setCondition3((prev) => !prev);
+    const resultDiv1 = document.getElementById('countMessageDiv');
+    resultDiv1.style.display = 'block'
   };
   const handleMinusMessage = () => {
-    if (chattingNumber <='1') {
+    const resultDiv1 = document.getElementById('countMessageDiv');
+    if (chattingNumber <= 1){
       setChattingNumber(0)
+      resultDiv1.style.display = 'none'
     } else{
+      resultDiv1.style.display = 'block'
       setChattingNumber((prevNumber1) => prevNumber1 - 1);
     }
-    setCondition4((prev) => !prev);
   };
 
   const handlePlusRecord = () => {
     setRecordNumber((prevNumber1) => prevNumber1 + 1);
-    setCondition5((prev) => !prev);
+    const resultDiv1 = document.getElementById('countRecordDiv');
+    resultDiv1.style.display = 'block'
   };
   const handleMinusRecord = () => {
+    const resultDiv1 = document.getElementById('countRecordDiv');
     if (recordNumber <='1') {
       setRecordNumber(0)
+      resultDiv1.style.display = 'none'
     } else{
       setRecordNumber((prevNumber1) => prevNumber1 - 1);
+      resultDiv1.style.display = 'block'
     }
-    setCondition6((prev) => !prev);
   };
 
   const handleSpring = () => {
@@ -176,25 +122,35 @@ function MainpageHost() {
   };
 
   const handleNoneProfile = () => {
+    const resultDiv1 = document.getElementById('ment');
+    const resultDiv2 = document.getElementById('outyellow1');
+    const resultDiv3 = document.getElementById('outyellow2');
+    resultDiv1.style.display = 'none';
+    resultDiv3.style.display = 'block';
+    resultDiv2.style.display = 'none';
     setSeason(' '); // 계절 초기화
     setName(' '); // 이름 초기화
     setNumber(' '); // 숫자 초기화
     setDay(' '); // 날짜 초기화
-    setCondition1((prev) => !prev);
   };
   const handleHaveProfile = () => {
+    const resultDiv1 = document.getElementById('ment');
+    const resultDiv2 = document.getElementById('outyellow1');
+    const resultDiv3 = document.getElementById('outyellow2');
+    resultDiv1.style.display='block'
+    resultDiv2.style.display='block'
+    resultDiv3.style.display='none'
     setSeason('WIN 겨울 TER')
     setName('홍길동')
     setNumber('#128')
     setDay('JUNE, 28')
-    setCondition2((prev) => !prev);
   };
 
   return (
-    <BackgroundWrap><Background>
-    <div className="App" style={{width:'400px', margin:'50px'}}>
-      <header style={{float:'down',height:'30px', position:'relative',top:'-30px'}}>
-        <div style={{float:'left'}}>
+    <div className="BackgroundWarp"><div className="Background">
+    <div className="App" style={{width:'400px', height:'700px'}}>
+      <header style={{float:'down',height:'70px', position:'relative',top:'0px'}}>
+        <div style={{float:'left', position:'relative',top:'30px'}}>
           <button style={{border:'none', backgroundColor:'transparent'}} onClick={toggleModal1}>
             <img src={setting} className='l1-2' alt='setting' />
           </button>
@@ -204,7 +160,7 @@ function MainpageHost() {
             <p className='l12-2'>FACETICKER</p>
           </button>
         </div>
-        <div style={{float:'left'}}>
+        <div style={{float:'left', position:'relative' ,top:'30px'}}>
           <button style={{border:'none', backgroundColor:'transparent'}}>
             <img src={message} className='l1-2' alt='message' />
           </button>
@@ -213,15 +169,15 @@ function MainpageHost() {
               {chattingNumber || '0'}
             </p>
           </div>
-          <button style={{width:'20px',height:'20px'}} onClick={handlePlusMessage}>+1</button>
-          <button style={{width:'20px',height:'20px'}} onClick={handleMinusMessage}>-1</button>
+          <button style={{width:'20px',height:'20px',position:'relative',left:'330px'}} onClick={handlePlusMessage}>+1</button>
+          <button style={{width:'20px',height:'20px',position:'relative',left:'330px'}} onClick={handleMinusMessage}>-1</button>
         </div>
       </header>
       
       <div style={{position:'relative',top:'-50px'}}>
         <div id='PrtSc' style={{width:'338px'}}>
         <div name='inyellow' className='l2-2' style={{clear:'left'}}>
-        <div style={{ position: 'absolute', left: '15%', top: '28%' }} name='사진'>
+        <div style={{ position: 'absolute', left: '15%', top: '18%' }} name='사진'>
           <img src={Vector} alt='Vector' />
         </div>
         <div> 
@@ -296,8 +252,8 @@ function MainpageHost() {
                 {recordNumber || '0'}
               </p>
             </div>
-            <button style={{width:'20px',height:'20px'}} onClick={handlePlusRecord}>+1</button>
-            <button style={{width:'20px',height:'20px'}} onClick={handleMinusRecord}>-1</button>
+            <button style={{width:'20px',height:'20px',position:'relative',top:'130px'}} onClick={handlePlusRecord}>+1</button>
+            <button style={{width:'20px',height:'20px',position:'relative',top:'130px'}} onClick={handleMinusRecord}>-1</button>
           </div>
           <div style={{float:'left'}}>
             <button className='l10-2' onClick={handleLinkDownload}>
@@ -310,7 +266,7 @@ function MainpageHost() {
             </button>
           </div>
         </div>
-        <div>
+        <div style={{width:'200px',height:'200px',position:'relative'}}>
           <button>사랑선택</button>
           <button>우정선택</button>
           <button onClick={handleSpring}>봄선택</button>
@@ -386,7 +342,7 @@ function MainpageHost() {
         </div>
       )}
     </div>
-    </Background></BackgroundWrap>
+    </div></div>
   );
 };
 

@@ -296,3 +296,16 @@
   background: #F1F1F5;
   margin: 16px;
 }
+
+.BackgroundWrap{
+  background: #F8F8FA;
+}
+
+.Background{
+  height: calc(var(--vh, 1vh) * 100);
+  max-width: 37.5rem;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  
+}

@@ -52,6 +52,7 @@ function InitialSurvey() {
     const resultDiv3 = document.getElementById("check1");
     if (nameInput.value.trim() !== "") {
       resultDiv1.style.display = "block";
+      setName("name")
       resultDiv3.style.display = "block";
       resultDiv2.style.width = "114px";
     } else {
