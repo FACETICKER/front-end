@@ -13,7 +13,8 @@ import ModalpositionSlice from "./QnA/Slice/ModalpositionSlice";
 import FirstSlice from "./QnA/Slice/FirstSlice";
 import PageSlice from "./QnA/Slice/PageSlice";
 import Basic_questionSlice from "./QnA/Slice/Basic_questionSlice";
-import PopupSlice from "./QnA/Slice/PopupSlice";
+import Popup_QnA_Slice from "./QnA/Slice/Popup_QnA_Slice";
+import ShareOrNotSlice from "./QnA/Slice/ShareOrNotSlice";
 import appReducer from "./Stickers/reducers";
 import StickerSlice from "./MakeSticker/StickerSlice";
 import MS_PopupSlice from "./MakeSticker/PopupSlice";
@@ -35,7 +36,8 @@ const store = configureStore({
     first: FirstSlice.reducer, // 첫 렌더링의 경우 스크롤 맨 밑으로 내리게 하는 변수
     page: PageSlice.reducer, // page 전환용 컨트롤러
     basic_question: Basic_questionSlice.reducer, // 기본 질문 저장소
-    popup: PopupSlice.reducer, // 기본 질문 팝업창 관리
+    popup_QnA: Popup_QnA_Slice.reducer, // 기본 질문 팝업창 관리
+    share:ShareOrNotSlice.reducer, // 질문 비공개 공개 설정
 
     app: appReducer, //Stickers(수진)
     nicknamepage: NicknamePage.reducer,

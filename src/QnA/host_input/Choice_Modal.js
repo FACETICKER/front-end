@@ -9,6 +9,10 @@ import AnsEditSlice from '../Slice/AnsEditSlice';
 import Modal from 'react-modal';
 import OpencheckSlice from '../Slice/OpencheckSlice';
 import Basic_questionSlice from '../Slice/Basic_questionSlice';
+import Switchquestion_Slice from '../Slice/Switchquestion_Slice';
+import ShareOrNotSlice from '../Slice/ShareOrNotSlice';
+import Edit from '../../img/QnA_img/edit.png';
+import Delete from '../../img/QnA_img/trash-delete.png';
 
 
 function Choice_Modal(props) {
@@ -19,18 +23,26 @@ function Choice_Modal(props) {
         if (props.edit) {
             dispatch(AnsEditSlice.actions.edit());
             dispatch(ChoiceSlice.actions.change());
-            {open ? dispatch(OpencheckSlice.actions.open()) : dispatch(OpencheckSlice.actions.close())} // 답변 수정
             setview(false);
+            dispatch(ShareOrNotSlice.actions.reset());
+            {!ques_open && dispatch(ShareOrNotSlice.actions.ques_false())}
+            {!ans_open && dispatch(ShareOrNotSlice.actions.ans_false())}  // 수정
         } else {
             dispatch(AnsEditSlice.actions.new());
             dispatch(ChoiceSlice.actions.change());
-            dispatch(OpencheckSlice.actions.open()); // 질문에 대한 답변이 하나도 없을 때 신규 작성
             setview(false);
+            dispatch(ShareOrNotSlice.actions.reset());  // 신규 질문
         }
+        dispatch(Switchquestion_Slice.actions.all());
+        dispatch(OpencheckSlice.actions.close()); // 비공개 설정 창 일단 꺼놓기
     }
 
     const ques = useSelector(state=>{
         return state.question;
+    });
+
+    const ans = useSelector(state=>{
+        return state.answer;
     });
 
     const position = useSelector(state=>{
@@ -41,7 +53,9 @@ function Choice_Modal(props) {
 
     const ID = ques.filter(obj => obj.clicked === true).map(obj => obj.id)[0];
 
-    const open = ques.filter(obj => obj.clicked === true).map(obj => obj.open)[0];
+    const ques_open = ques.filter(obj => obj.clicked === true).map(obj => obj.open)[0];
+
+    const ans_open = ans.filter(obj => obj.id === ID).map(obj => obj.open)[0];
 
     const del = () => {
         dispatch(AnswerSlice.actions.remove(ID));
@@ -95,11 +109,11 @@ function Choice_Modal(props) {
             <div className={styles3.choiceBackground}>
                 <div className={styles3.ctn} onClick={onclick}>
                     <p className={styles3.pencil_p}>답장하기</p>
-                    <span className={styles3.pencil}></span>
+                    <img src={Edit} className={styles3.pencil} ></img>
                 </div>
                 <div className={styles3.ctn} onClick={del}>
                     <p className={styles3.trash_p}>삭제하기</p>
-                    <span className={styles3.trash}></span>
+                    <img src={Delete} className={styles3.trash}></img>
                 </div>
             </div>
         </Modal>

@@ -12,7 +12,10 @@ const PageSlice = createSlice({
         },
         basic: (state, action) => {
             return 'basic';
-        }
+        },
+        del: (state, action) => {
+            return 'del';
+        },
     }
 });
 export default PageSlice;
