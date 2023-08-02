@@ -1,6 +1,5 @@
 import check from "../img/InitialSurvey_img/icon _check circled outline_ (2).svg";
 import React, { useState, useRef, useEffect } from "react";
-import logo from "../img/InitialSurvey_img/icon _check circled outline_ (2).svg";
 import styled from "styled-components";
 import axios from "axios";
 import "../style/InitialSurvey.css";

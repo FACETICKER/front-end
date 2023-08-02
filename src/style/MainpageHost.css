@@ -242,6 +242,9 @@
   border-radius: 10px;
   border: 2px solid var(--unnamed, #12151c);
   background: var(--unnamed, #f26b79);
+  position: relative;
+  top:30px;
+  left:20px
 }
 
 .l20-2 {
@@ -255,6 +258,8 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  position: relative;
+  top:20px;
 }
 
 .l21-2 {
@@ -265,6 +270,9 @@
   font-style: normal;
   font-weight: 600;
   line-height: 20px; /* 142.857% */
+  position: relative;
+  top:20px;
+  left:40px;
 }
 
 .l22-2 {
@@ -323,4 +331,33 @@
   position: relative;
   margin: 16px 0 0 16px;
   top:50px;
+}
+
+.l26-2{
+  border-radius:50%;
+  background-color:gray;
+  width:60px;
+  height:60px;
+  float:left;
+  text-align:center;
+  font-size:32px;
+  color:white;
+  position: relative;
+  left:120px;
+}
+
+.l27-2{
+  border:none;
+  background-color:transparent;
+  position: relative;
+  left:100px;
+}
+
+.l28-2{
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #767676;
+  float: left;
+  margin:6px;
 }

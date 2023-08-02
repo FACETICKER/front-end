@@ -210,7 +210,11 @@ function MainpageHost() {
         </div>
         <div id='outyellow1' style={{ position: 'relative' , width:'338px', height:'140px'}}>
           <div name='사자성어' >
-            <img src={threeboll} style={{float:'left'}}></img>
+            <div>
+              <div className="l28-2" style={{backgroundColor:'#FF6D00'}}></div>
+              <div className="l28-2" style={{backgroundColor:'#FFE14F'}}></div>
+              <div className="l28-2" style={{backgroundColor:'#FEFAEF'}}></div>
+            </div>
             <p id='' className='l7-2'>
               {Korean || '오매불망'}
             </p>
@@ -227,8 +231,8 @@ function MainpageHost() {
           </div>
         </div>
         <div id='outyellow2'  style={{ position: 'relative' , width:'338px', height:'140px', display:'none'}}>
-          <div>
-            <img src={threeboll} style={{float:'left'}}></img>
+          <div name='threeboll'>
+            <div className="l28-2"></div>
           </div>
           <div name='프로필 생성 제안'>
             <p id='' className='ll6-2'>
@@ -304,7 +308,6 @@ function MainpageHost() {
               <button className="l24-2">스티커 수정</button>
               <button className="l24-2">상태메시지 수정</button>
             </div>
-            
           </div>
         </div>
       )}
@@ -325,10 +328,10 @@ function MainpageHost() {
         <div className="Modal">
           <div>
             <div>
-            <div style={{borderRadius:'50%',backgroundColor:'gray',width:'60px',height:'60px',float:'left'}}>
-              <p style={{color:'white', textAlign:'center',fontSize:'32px'}}>!</p>
+            <div className='l26-2'>
+              <p style={{position:'relative',top:'-25px'}}>!</p>
             </div>
-            <button style={{border:'none', backgroundColor:'transparent'}} name='close' onClick={toggleModal3}>
+            <button className="l27-2" name='close' onClick={toggleModal3}>
               <img src={close}></img>
             </button>
             </div>

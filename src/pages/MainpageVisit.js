@@ -5,7 +5,6 @@ import user from "../img/MainpageVisit_img/user.png";
 import close from "../img/MainpageVisit_img/close-x.svg";
 import sticker from "../img/MainpageVisit_img/sticker.svg";
 import recordpage from "../img/MainpageVisit_img/3users.svg";
-import ellipse from "../img/MainpageVisit_img/Ellipse 201.png";
 import styled from "styled-components";
 import React, { useState } from "react";
 
@@ -107,7 +106,11 @@ function MainpageVisit() {
         </div>
         <div style={{ position: "relative" }}>
           <div name="사자성어">
-            <img src={threeboll} style={{position:'relative',top:'220px',left:'-180px'}}></img>
+            <div name='threeboll' style={{position:'relative',left:'-100px',top:'150px'}}>
+              <div className="l24" style={{backgroundColor:'#FF6D00'}}></div>
+              <div className="l24" style={{backgroundColor:'#FFE14F'}}></div>
+              <div className="l24" style={{backgroundColor:'#FEFAEF'}}></div>
+            </div>
             <p id="" className="l7">
               오매불망
             </p>

@@ -81,7 +81,7 @@
   font-weight: 300;
   line-height: normal;
   position: relative;
-  left: 130px;
+  left: 30px;
   top: 170px;
 }
 
@@ -280,3 +280,11 @@
   flex-direction: column;
 }
 
+.l24{
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #767676;
+  float: left;
+  margin:6px;
+}
