@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import FirstSlice from './Slice/FirstSlice';
 import PageSlice from './Slice/PageSlice';
 import Basic_Choice from './Basic_Choice';
+import Del_page from './delete_page/Del_page';
 
 const QnApage = () => {
 
@@ -26,6 +27,7 @@ const QnApage = () => {
             {page === 'host' && (<QnApage_host />)}
             {page === 'guest' && (<QnApage_guest />)}
             {page === 'basic' && (<Basic_Choice />)}
+            {page === 'del' && (<Del_page />)}
         </div>
     );
 };

@@ -19,6 +19,11 @@ const questionSlice = createSlice({
                 obj.clicked = false;  // 모든 질문 상태 clicked = false로 바꾸기
             });
         },
+        on: (state, action) => {
+            state.forEach(obj => {
+                obj.clicked = true;  // 모든 질문 상태 clicked = true로 바꾸기
+            });
+        },
         remove: (state, action) => {
             const idToRemove = action.payload;
             return state.filter(obj => obj.id !== idToRemove); // 해당 id를 가진 질문 지우기

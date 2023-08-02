@@ -1,60 +1,38 @@
-import styles2 from "./Quesinput.module.css";
-import React from "react";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import AnswerSlice from "../Slice/AnswerSlice";
-import questionSlice from "../Slice/questionSlice";
-import ChoiceSlice from "../Slice/ChoiceSlice";
-import Checkbox from "../../img/QnA_img//Checkbox.png";
-import Checked from "../../img/QnA_img//Checked.png";
-import OpencheckSlice from "../Slice/OpencheckSlice";
-import IDSlice from "../Slice/IDSlice";
+import styles2 from './Quesinput.module.css';
+import React from 'react';
+import { useState } from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import questionSlice from '../Slice/questionSlice';
+import IDSlice from '../Slice/IDSlice';
 
 function Quesinput() {
-  const dispatch = useDispatch();
 
-  const ID = useSelector((state) => {
-    return state.idcounter.value;
-  });
+    const dispatch = useDispatch();
+    
+    const ID = useSelector(state=>{
+        return state.idcounter.value;
+    });
 
-  const ques = useSelector((state) => {
-    return state.question;
-  });
-
-  const onsubmit = (event) => {
-    event.preventDefault();
-    if (question === "") {
-      return;
+    const onsubmit = (event) => {
+        event.preventDefault();
+        if (question === "") {
+            return;
+        }
+        dispatch(IDSlice.actions.up(1));
+        dispatch(questionSlice.actions.up({text: question, id: ID, type: "question", open: true, clicked: false}));
+        setquestion("");
     }
-    dispatch(IDSlice.actions.up(1));
-    dispatch(
-      questionSlice.actions.up({
-        text: question,
-        id: ID,
-        type: "question",
-        open: true,
-        clicked: false,
-      })
+    
+    const [question, setquestion] = useState("");
+
+    const inputing = (event) => setquestion(event.target.value);
+
+    return (
+        <form onSubmit={onsubmit} className={styles2.chat}>
+            <input value={question} onChange={inputing} placeholder='여기에 질문하세요' type='text' maxLength={100} className={styles2.answer_input}></input>
+            <button className={styles2.answer_button}></button>
+        </form>
     );
-    setquestion("");
-  };
-
-  const [question, setquestion] = useState("");
-
-  const inputing = (event) => setquestion(event.target.value);
-
-  return (
-    <form onSubmit={onsubmit} className={styles2.chat}>
-      <input
-        value={question}
-        onChange={inputing}
-        placeholder="여기에 질문하세요"
-        type="text"
-        className={styles2.answer_input}
-      ></input>
-      <button className={styles2.answer_button}></button>
-    </form>
-  );
-}
+};
 
 export default Quesinput;

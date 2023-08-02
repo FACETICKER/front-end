@@ -23,6 +23,11 @@ const AnswerSlice = createSlice({
                 obj.clicked = false;  // 모든 질문 상태 clicked = false로 바꾸기
             });
         },
+        on: (state, action) => {
+            state.forEach(obj => {
+                obj.clicked = true;  // 모든 질문 상태 clicked = true로 바꾸기
+            });
+        },
         openswitch: (state, action) => {
             const idTochange = action.payload[0];
             const openTochange = action.payload[1];

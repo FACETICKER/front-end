@@ -2,35 +2,35 @@ import React, { useState, useEffect } from 'react'
 import styles2 from '../style/QnApage_2.module.css';
 import styles3 from '../guest_input/Guest_Btn.module.css';
 import AnswerSlice from '../Slice/AnswerSlice';
-import Choice_answer_Slice from '../Slice/Choice_answer_Slice';
-import Choice_ans from './Choice_ans';
+import ChoiceSlice from '../Slice/ChoiceSlice';
 import {useDispatch, useSelector} from "react-redux";
+import EditAns_Modal from './EditAns_Modal';
 
 function Answer_button(props) {
 
     const dispatch = useDispatch();
 
-    const onclick = (e) => {
-        dispatch(AnswerSlice.actions.edit(e.target.id)); // Answer 버튼의 clicked가 on/off 바뀌게 설정
-        dispatch(Choice_answer_Slice.actions.reset()); // choice를 off
+    const onclick = () => {
+        dispatch(AnswerSlice.actions.edit(props.id)); // Answer 버튼의 clicked가 on/off 바뀌게 설정
+        dispatch(ChoiceSlice.actions.reset()); // choice를 off
     }
 
     const choice = useSelector(state=>{
-        return state.choice_answer;
+        return state.choice;
     });
 
-    const ques = useSelector(state=>{
-        return state.question;
+    const ans = useSelector(state=>{
+        return state.answer;
     });
 
-    const open = ques.filter(obj => obj.id === props.id).map(obj => obj.open)[0];
+    const open = ans.filter(obj => obj.id === props.id).map(obj => obj.open)[0];
 
     const page = useSelector(state=>{
         return state.page;
     });
 
     return (
-        <div className={styles2.answerbackground}>
+        <div className={`${page === 'host' && styles2.answerbackground} ${page === 'guest' && styles3.answerbackground}`}>
             <button key={props.id} className={`${page === 'host' && styles2.button_answer} ${page === 'guest' && styles3.button_answer} ${page === 'guest' && !open && styles3.lock_ans}`} id={props.id} type={props.type} data-open={props.open} onClick={onclick}>
                 <span className={styles2.answertext}>
                     {page === 'host' && (props.text)}
@@ -38,7 +38,7 @@ function Answer_button(props) {
                 </span>
             </button>
             {props.clicked && !choice && (
-                <Choice_ans/>
+                <EditAns_Modal />
             )}
         </div>
     );
