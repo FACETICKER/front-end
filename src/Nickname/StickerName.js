@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import "../font/font.css";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NicknamePageSlice } from "./NicknamePageSlice";
-import { Navigate, useNavigate } from "react-router-dom";
 
+import { NicknamePageSlice } from "./NicknamePageSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
 //현재 뷰포트 높이 가져와서 쓰기(App.js App함수 return 위에 꼭 함수 추가해주기)
@@ -160,6 +160,13 @@ const Input = styled.input`
   text-align: center;
   background-color: transparent;
   border: none;
+  color: #191919;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px; /* 140% */
   outline: none;
 `;
 
@@ -199,7 +206,7 @@ export function StickerName() {
 
   //host 이미지 url 받아오기
   useEffect(() => {
-    fetch("http://localhost:3020/user/1")
+    fetch("http://localhost:3021/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
@@ -219,10 +226,10 @@ export function StickerName() {
 
   //닉네임 입력하고 다음 아이콘 누르면 서버에 전송됨
   const handleNicknameSubmit = () => {
-    fetch("http://localhost:3020/user/1", {
+    fetch("https://faceticker.site/app/:1/sticker/name?type=visitor", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nickname: nicknameValue }),
+      body: JSON.stringify({ nicknameValue }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -241,11 +248,11 @@ export function StickerName() {
 
   //서버에서 닉네임 값 받아오기
   useEffect(() => {
-    fetch("http://localhost:3020/user/1")
+    fetch("https://faceticker.site/app/:1/sticker/name?type=visitor")
       .then((response) => response.json())
       .then((data) => {
-        if (data.nickname) {
-          setNicknameValue(data.nickname);
+        if (data) {
+          setNicknameValue(data);
         }
       })
       .catch((error) => {

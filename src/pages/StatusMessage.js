@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import "../font/font.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
 //현재 뷰포트 높이 가져와서 쓰기(App.js App함수 return 위에 꼭 함수 추가해주기)
@@ -57,8 +60,6 @@ const style = {
 
 const Middle = styled.div`
   height: 20%;
-  justify-content: center;
-  align-item: center;
   display: flex;
   background-color: #ffd25e;
   border: 0px;
@@ -66,22 +67,23 @@ const Middle = styled.div`
 const TextWrap = styled.div`
   flex-direction: column;
   display: flex;
-  border-bottom-right-radius: 50px;
-  background-color: white;
   justify-content: center;
   align-item: center;
+  border-bottom-right-radius: 50px;
+  background-color: white;
   height: 100%;
   width: 100%;
   padding-left: 8%;
 `;
 
-const Text = styled.div`
+const Text1 = styled.div`
+  text-align: left;
   color: #191919;
   font-family: Pretendard;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
-  line-height: 36px; /* 150% */
+  line-height: 36px;
 `;
 
 const BottomWrap = styled.div`
@@ -95,7 +97,7 @@ const BottomWrap = styled.div`
 
 const Bottom = styled.div`
   background-color: #ffd25e;
-
+  position: relative;
   display: flex;
   height: 100%;
   width: 100%;
@@ -104,11 +106,11 @@ const Bottom = styled.div`
 `;
 
 const CheckIcon = styled.img`
-  height: 20vw;
-  width: 20vw;
+  max-height: 60px;
   position: absolute;
-  right: 7vw;
-  top: calc(var(--vh, 1vh) * 26);
+  top: -30px;
+  right: 20px;
+  z-index: 1;
 `;
 const ImgWrap = styled.div`
   height: 60%;
@@ -120,29 +122,89 @@ const ImgWrap = styled.div`
 const InputWrap = styled.div`
   height: 20%;
   justify-content: center;
-  margin-top:  ${(props) => props.margin}
+  margin-top: 20px;
   display: flex;
-
+  position: relative;
+`;
+const InputImgWrap = styled.div`
+  justify-content: center;
+  align-item: center;
+  display: flex;
 `;
 
-const Input = styled.input`
+const Input = styled.textarea`
   display: flex;
   position: absolute;
-  width: 60%;
-  height: 13%;
+  width: 50%;
+  height: 50%;
   text-align: center;
+  color: #191919;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px; /* 140% */
   background-color: transparent;
+  left: 25%;
+  top: 20%;
   border: none;
   outline: none;
 `;
 
 export function StatusMessage() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [hideImg, setHideImg] = useState(true);
   const [Margin, setMargin] = useState("0%");
+  const [statusValue, setStatusValue] = useState("");
+
+  //입력값 저장
+  const saveStatus = (event) => {
+    setStatusValue(event.target.value);
+  };
+
+  //하고 싶은 말 입력하고 체크 아이콘 누르면 서버에 전송됨
+  const handleStatusSubmit = () => {
+    fetch("http://localhost:3021/user/1", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: statusValue }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("성공", data);
+      })
+      .catch((error) => {
+        console.error("실패", error);
+      });
+    navigate("/mainhost"); //호스트 메인페이지로 이동
+  };
+
+  //서버에서 값 받아오기
+  useEffect(() => {
+    fetch("http://localhost:3021/user/1")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status) {
+          setStatusValue(data.status);
+        }
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
 
   const handleClickInput = () => {
     setHideImg(false);
     setMargin("10%");
+  };
+  const handleSecondBack = () => {
+    setHideImg(true);
+    setMargin("0%");
+  };
+  const handleFirstBack = () => {
+    navigate("/makesticker");
   };
 
   return (
@@ -151,24 +213,40 @@ export function StatusMessage() {
         <HeaderWrap>
           <Header>
             <HeaderIcon>
-              <img
-                style={style}
-                src="https://i.ibb.co/rdqkHHs/arrow-left.png"
-                alt="setting-icon"
-              />
+              {hideImg && (
+                <img
+                  onClick={handleFirstBack}
+                  style={style}
+                  src="https://i.ibb.co/rdqkHHs/arrow-left.png"
+                  alt="setting-icon"
+                />
+              )}
+              {!hideImg && (
+                <img
+                  onClick={handleSecondBack}
+                  style={style}
+                  src="https://i.ibb.co/rdqkHHs/arrow-left.png"
+                  alt="setting-icon"
+                />
+              )}
             </HeaderIcon>
           </Header>
         </HeaderWrap>
         <Middle>
           <TextWrap>
-            <Text>방문자들에게</Text>
-            <Text>하고 싶은 말을 남겨보세요!</Text>
+            <Text1>방문자들에게</Text1>
+            <Text1>하고 싶은 말을 남겨보세요!</Text1>
           </TextWrap>
         </Middle>
-        {!hideImg && <CheckIcon src="https://i.ibb.co/PrmpgLr/Group-74.png" />}
 
         <BottomWrap>
           <Bottom>
+            {!hideImg && (
+              <CheckIcon
+                onClick={handleStatusSubmit}
+                src="https://i.ibb.co/PrmpgLr/Group-74.png"
+              />
+            )}
             {hideImg && (
               <ImgWrap>
                 <img
@@ -179,8 +257,16 @@ export function StatusMessage() {
             )}
 
             <InputWrap margin={Margin} onClick={handleClickInput}>
-              <img src="https://i.ibb.co/B4Y5jgG/Group-69.png" />
-              <Input placeholder="30자 이내로 작성"></Input>
+              <InputImgWrap>
+                <img src="https://i.ibb.co/B4Y5jgG/Group-69.png" />
+              </InputImgWrap>
+
+              <Input
+                onChange={saveStatus}
+                value={statusValue}
+                placeholder="30자 이내로 작성"
+                maxLength={"30"}
+              ></Input>
             </InputWrap>
           </Bottom>
         </BottomWrap>

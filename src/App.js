@@ -13,6 +13,8 @@ import StickerMainHost from "./pages/StickersHost";
 import PutPage from "./pages/PutPage";
 import NicknameTotal from "./pages/NicknameTotal";
 import NewUserFloat from "./pages/NewUserFloat.js";
+import Loginpage from "./login/Loginpage";
+import ClickSticker from "./Stickers/ClickSticker";
 
 function App() {
   function setScreenSize() {
@@ -27,6 +29,8 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Loginpage />} />
+          {/*로그인 페이지 */}
           <Route path="stickername" element={<NicknameTotal />} />
           {/*스티커 네임 + 방명록 설정 */}
           <Route path="/guest" element={<GuestBook />} />
@@ -46,6 +50,8 @@ function App() {
           <Route path="put" element={<PutPage />} />
           {/*스티커 붙이기 방문자 */}
           <Route path="host" element={<StickerMainHost />} />
+          {/*스티커 호스트 */}
+          <Route path="clicksticker" element={<ClickSticker />} />
           {/*스티커 호스트 */}
           <Route path="/newuserfloat" element={<NewUserFloat />} />
           {/*신규 가입자 플로우 */}

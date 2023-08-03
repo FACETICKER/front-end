@@ -183,6 +183,13 @@ const Input = styled.textarea`
   outline: none;
   z-index: 1;
   display: flex;
+  color: #191919;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 166.667% */
   vertical-align: middle;
 `;
 
@@ -226,7 +233,7 @@ export function StickerLetter() {
 
   //host 이미지 url 받아오기
   useEffect(() => {
-    fetch("http://localhost:3020/user/1")
+    fetch("http://localhost:3021/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
@@ -245,7 +252,7 @@ export function StickerLetter() {
 
   //방문록 입력하고 체크 아이콘 누르면 서버에 전송됨
   const handleLetterSubmit = () => {
-    fetch("http://localhost:3020/user/1", {
+    fetch("https://faceticker.site/app/:1/sticker/message?type=visitor", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ letter: letterValue }),
@@ -262,7 +269,7 @@ export function StickerLetter() {
 
   //서버에서 방문록 받아오기
   useEffect(() => {
-    fetch("http://localhost:3020/user/1")
+    fetch("https://faceticker.site/app/:1/sticker/message?type=visitor")
       .then((response) => response.json())
       .then((data) => {
         if (data.letter) {
