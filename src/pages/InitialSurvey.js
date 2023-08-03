@@ -1,5 +1,6 @@
 import check from "../img/InitialSurvey_img/icon _check circled outline_ (2).svg";
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import "../style/InitialSurvey.css";
@@ -8,8 +9,9 @@ import Picker from "react-mobile-picker-scroll";
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
 
 function InitialSurvey() {
+  const navigate = useNavigate();
   const [showSecondTextbox, setShowSecondTextbox] = useState(false);
-  const [showSecondChooseButton, setSecondChooseButton] = useState(false);  
+  const [showSecondChooseButton, setSecondChooseButton] = useState(false);
   const [showThirdTextbox, setShowThirdTextbox] = useState(false);
   const [showFourthTextbox, setShowFourthTextbox] = useState(false);
   const [showFifthTextbox, setShowFifthTextbox] = useState(false);
@@ -29,20 +31,18 @@ function InitialSurvey() {
   const [condition6, setCondition6] = useState(false);
   const [name, setName] = useState(false);
   const BackgroundWrap = styled.div`
-  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+    background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
   `;
   const Background = styled.div`
-  height: calc(var(--vh, 1vh) * 100);
-  max-width: 37.5rem;
-  margin: 0px auto;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
-  position:relative;
-  left:100px;
+    height: calc(var(--vh, 1vh) * 100);
+    max-width: 37.5rem;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+    position: relative;
+    left: 100px;
   `;
-
-  
 
   const handleNameInput = (event) => {
     const nameInput = document.getElementById("name");
@@ -51,7 +51,7 @@ function InitialSurvey() {
     const resultDiv3 = document.getElementById("check1");
     if (nameInput.value.trim() !== "") {
       resultDiv1.style.display = "block";
-      setName("name")
+      setName("name");
       resultDiv3.style.display = "block";
       resultDiv2.style.width = "114px";
     } else {
@@ -164,7 +164,20 @@ function InitialSurvey() {
     Days: "1",
   });
   const optionGroups = {
-    Month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    Month: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
     Days: [
       "1",
       "2",
@@ -265,246 +278,296 @@ function InitialSurvey() {
   const handleOverMouse = (id) => {
     const resultDiv = document.getElementById(id);
     resultDiv.className = "l11-1";
-  }
+  };
   const handleLeaveMouse = (id) => {
     const resultDiv = document.getElementById(id);
     resultDiv.className = "l10-1";
-  }
+  };
 
+  const handleStickerClick = () => {
+    navigate("/makesticker");
+  };
 
-
-
-  
   return (
-    <div className="BackgroundWrap"><div className="Background">
-    <div className="App">
-      <div className="l17-1">
-      <div>
-        <div className="l1-1"></div>
-        <div className="l2-1" id="gauge"></div>
-      </div>
-      <div className="l3-1">
-        FACETICKER에서 사용할 프로필 포스터 정보를 등록해주세요.
-      </div>
-      </div>
-      <div style={{width:'342px'}}>
-      <div className="l16-1">
-        <div style={{padding: "10px 0 30px 0"}}>
-          <input
-            className="l5-1"
-            type="text"
-            id="name"
-            name="name"
-            minLength="2"
-            maxLength="15"
-            placeholder="닉네임 (최대 15자)"
-            style={{width:'335px'}}
-            onInput={handleNameInput}
-          />
-          <img src={check} id="check1" className="l15-1" style={{left:'308px',top:'-50px'}}></img>
-        </div>
-        <div id="result1" style={{ display: "none",padding: "0 0 30px 0"}}>
-          <button
-            id="season"
-            name="season"
-            className="l5-1"
-            onClick={() => handleShowSeasonButton()}
-          >
-            <p id="chooseSeason">
-              {chooseSeason || "좋아하는 계절을 선택하세요"}
-            </p>
-            <img src={check} id="check2" className="l15-1"></img>
-          </button>
-          <div id="result1-1" style={{ display: "none" }} className="l7-1">
-            <button
-              className="l8-1"
-              id="spring"
-              name="spring"
-              onClick={() => handleSeasonButtonClick("봄")}
-            >
-              <p>봄</p>
-            </button>
-            <button
-              className="l8-1"
-              id="summer"
-              name="summer"
-              onClick={() => handleSeasonButtonClick("여름")}
-            >
-              <p>여름</p>
-            </button>
-            <button
-              className="l8-1"
-              id="autumn"
-              name="autumn"
-              onClick={() => handleSeasonButtonClick("가을")}
-            >
-              <p>가을</p>
-            </button>
-            <button
-              className="l8-1"
-              id="winter"
-              name="winter"
-              onClick={() => handleSeasonButtonClick("겨울")}
-            >
-              <p>겨울</p>
-            </button>
+    <div className="BackgroundWrap">
+      <div className="Background">
+        <div className="App">
+          <div className="l17-1">
+            <div>
+              <div className="l1-1"></div>
+              <div className="l2-1" id="gauge"></div>
+            </div>
+            <div className="l3-1">
+              FACETICKER에서 사용할 프로필 포스터 정보를 등록해주세요.
+            </div>
           </div>
-        </div>
-        <div id="result2" style={{ display: "none", padding: "0 0 30px 0"}}>
-          <button
-            id="number"
-            name="number"
-            className="l5-1"
-            onClick={handleShowFourNumber}
-          >
-            <p id="chooseNumber">{chooseNumber || "좋아하는 숫자는?"}</p>
-            <img src={check} id="check3" className="l15-1" ></img>
-          </button>
-          <div id="result2-1" className="l7-1" style={{ display: "none" }}>
-            <input
-              ref={button1Ref}
-              value={input1}
-              className="l18-1"
-              onChange={handleInput1Change}
-              onInput={(e) => {
-                if (e.target.value.length > e.target.maxLength)
-                  e.target.value = e.target.value.slice(0, e.target.maxLength);
-              }}
-              type="number"
-              inputmode="decimal"
-              min="0"
-              max="9"
-              maxLength={1}
-            ></input>
+          <div style={{ width: "342px" }}>
+            <div className="l16-1">
+              <div style={{ padding: "10px 0 30px 0" }}>
+                <input
+                  className="l5-1"
+                  type="text"
+                  id="name"
+                  name="name"
+                  minLength="2"
+                  maxLength="15"
+                  placeholder="닉네임 (최대 15자)"
+                  style={{ width: "335px" }}
+                  onInput={handleNameInput}
+                />
+                <img
+                  src={check}
+                  id="check1"
+                  className="l15-1"
+                  style={{ left: "308px", top: "-50px" }}
+                ></img>
+              </div>
+              <div
+                id="result1"
+                style={{ display: "none", padding: "0 0 30px 0" }}
+              >
+                <button
+                  id="season"
+                  name="season"
+                  className="l5-1"
+                  onClick={() => handleShowSeasonButton()}
+                >
+                  <p id="chooseSeason">
+                    {chooseSeason || "좋아하는 계절을 선택하세요"}
+                  </p>
+                  <img src={check} id="check2" className="l15-1"></img>
+                </button>
+                <div
+                  id="result1-1"
+                  style={{ display: "none" }}
+                  className="l7-1"
+                >
+                  <button
+                    className="l8-1"
+                    id="spring"
+                    name="spring"
+                    onClick={() => handleSeasonButtonClick("봄")}
+                  >
+                    <p>봄</p>
+                  </button>
+                  <button
+                    className="l8-1"
+                    id="summer"
+                    name="summer"
+                    onClick={() => handleSeasonButtonClick("여름")}
+                  >
+                    <p>여름</p>
+                  </button>
+                  <button
+                    className="l8-1"
+                    id="autumn"
+                    name="autumn"
+                    onClick={() => handleSeasonButtonClick("가을")}
+                  >
+                    <p>가을</p>
+                  </button>
+                  <button
+                    className="l8-1"
+                    id="winter"
+                    name="winter"
+                    onClick={() => handleSeasonButtonClick("겨울")}
+                  >
+                    <p>겨울</p>
+                  </button>
+                </div>
+              </div>
+              <div
+                id="result2"
+                style={{ display: "none", padding: "0 0 30px 0" }}
+              >
+                <button
+                  id="number"
+                  name="number"
+                  className="l5-1"
+                  onClick={handleShowFourNumber}
+                >
+                  <p id="chooseNumber">{chooseNumber || "좋아하는 숫자는?"}</p>
+                  <img src={check} id="check3" className="l15-1"></img>
+                </button>
+                <div
+                  id="result2-1"
+                  className="l7-1"
+                  style={{ display: "none" }}
+                >
+                  <input
+                    ref={button1Ref}
+                    value={input1}
+                    className="l18-1"
+                    onChange={handleInput1Change}
+                    onInput={(e) => {
+                      if (e.target.value.length > e.target.maxLength)
+                        e.target.value = e.target.value.slice(
+                          0,
+                          e.target.maxLength
+                        );
+                    }}
+                    type="number"
+                    inputmode="decimal"
+                    min="0"
+                    max="9"
+                    maxLength={1}
+                  ></input>
 
-            <input
-              ref={button2Ref}
-              value={input2}
-              className="l18-1"
-              onChange={handleInput2Change}
-              onInput={(e) => {
-                if (e.target.value.length > e.target.maxLength)
-                  e.target.value = e.target.value.slice(0, e.target.maxLength);
-              }}
-              type="number"
-              inputmode="decimal"
-              min="0"
-              max="9"
-              maxLength={1}
-            ></input>
-            <input
-              ref={button3Ref}
-              value={input3}
-              className="l18-1"
-              onChange={handleInput3Change}
-              onInput={(e) => {
-                if (e.target.value.length > e.target.maxLength)
-                  e.target.value = e.target.value.slice(0, e.target.maxLength);
-              }}
-              type="number"
-              inputmode="decimal"
-              min="0"
-              max="9"
-              maxLength={1}
-            ></input>
-            <input
-              ref={button4Ref}
-              value={input4}
-              className="l18-1"
-              onChange={handleInput4Change}
-              onInput={(e) => {
-                if (e.target.value.length > e.target.maxLength)
-                  e.target.value = e.target.value.slice(0, e.target.maxLength);
-              }}
-              type="number"
-              inputmode="decimal"
-              min="0"
-              max="9"
-              maxLength={1}
-            ></input>
-          </div>
-        </div>
-        <div
-          id="result3"
-          style={{
-            display: showFifthTextbox ? "block" : "none",
-            padding: "0 0 30px 0",
-          }}
-        >
-          <button
-            id="day"
-            name="day"
-            className="l5-1"
-            onClick={handleShowTextbox}
-          >
-            <p id="chooseDay">{chooseDay || "본인에게 의미있는 날은?"}</p>
-            <img src={check} id="check4" className="l15-1" ></img>
-          </button>
-          <div
-            id="result3-1"
-            className="l7-1"
-            style={{ display: "none", height: "200px" }}
-          >
-            <Picker
-              ref={pickerRef}
-              optionGroups={optionGroups}
-              valueGroups={valueGroups}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-        <div id="result4" style={{ display: "none", padding: "0 0 30px 0"}}>
-          <button
-            id="import"
-            name="import"
-            className="l5-1"
-            onClick={handleShowImport}
-          >
-            <p id="chooseImport">{chooseImport || "내게 더 중요한 것은?"}</p>
-            <img src={check} id="check5" className="l15-1" ></img>
-          </button>
-          <div id="result4-1" style={{ display: "none" }} className="l7-1">
-            <div>
-              <button
-                id="love"
-                name="love"
-                className="l10-1"
-                onClick={() => handleImportButtonClick("사랑")}
-                onMouseOver={() => handleOverMouse("love")}
-                onMouseLeave={() => handleLeaveMouse("love")}
+                  <input
+                    ref={button2Ref}
+                    value={input2}
+                    className="l18-1"
+                    onChange={handleInput2Change}
+                    onInput={(e) => {
+                      if (e.target.value.length > e.target.maxLength)
+                        e.target.value = e.target.value.slice(
+                          0,
+                          e.target.maxLength
+                        );
+                    }}
+                    type="number"
+                    inputmode="decimal"
+                    min="0"
+                    max="9"
+                    maxLength={1}
+                  ></input>
+                  <input
+                    ref={button3Ref}
+                    value={input3}
+                    className="l18-1"
+                    onChange={handleInput3Change}
+                    onInput={(e) => {
+                      if (e.target.value.length > e.target.maxLength)
+                        e.target.value = e.target.value.slice(
+                          0,
+                          e.target.maxLength
+                        );
+                    }}
+                    type="number"
+                    inputmode="decimal"
+                    min="0"
+                    max="9"
+                    maxLength={1}
+                  ></input>
+                  <input
+                    ref={button4Ref}
+                    value={input4}
+                    className="l18-1"
+                    onChange={handleInput4Change}
+                    onInput={(e) => {
+                      if (e.target.value.length > e.target.maxLength)
+                        e.target.value = e.target.value.slice(
+                          0,
+                          e.target.maxLength
+                        );
+                    }}
+                    type="number"
+                    inputmode="decimal"
+                    min="0"
+                    max="9"
+                    maxLength={1}
+                  ></input>
+                </div>
+              </div>
+              <div
+                id="result3"
+                style={{
+                  display: showFifthTextbox ? "block" : "none",
+                  padding: "0 0 30px 0",
+                }}
               >
-                <p>{"사랑"}</p>
-              </button>
-            </div>
-            <div>
-              <button
-                id="friend"
-                name="friend"
-                className="l10-1"
-                onClick={() => handleImportButtonClick("우정")}
-                onMouseOver={() => handleOverMouse("friend")}
-                onMouseLeave={() => handleLeaveMouse("friend")}
+                <button
+                  id="day"
+                  name="day"
+                  className="l5-1"
+                  onClick={handleShowTextbox}
+                >
+                  <p id="chooseDay">{chooseDay || "본인에게 의미있는 날은?"}</p>
+                  <img src={check} id="check4" className="l15-1"></img>
+                </button>
+                <div
+                  id="result3-1"
+                  className="l7-1"
+                  style={{ display: "none", height: "200px" }}
+                >
+                  <Picker
+                    ref={pickerRef}
+                    optionGroups={optionGroups}
+                    valueGroups={valueGroups}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              <div
+                id="result4"
+                style={{ display: "none", padding: "0 0 30px 0" }}
               >
-                <p>{"우정"}</p>
-              </button>
+                <button
+                  id="import"
+                  name="import"
+                  className="l5-1"
+                  onClick={handleShowImport}
+                >
+                  <p id="chooseImport">
+                    {chooseImport || "내게 더 중요한 것은?"}
+                  </p>
+                  <img src={check} id="check5" className="l15-1"></img>
+                </button>
+                <div
+                  id="result4-1"
+                  style={{ display: "none" }}
+                  className="l7-1"
+                >
+                  <div>
+                    <button
+                      id="love"
+                      name="love"
+                      className="l10-1"
+                      onClick={() => handleImportButtonClick("사랑")}
+                      onMouseOver={() => handleOverMouse("love")}
+                      onMouseLeave={() => handleLeaveMouse("love")}
+                    >
+                      <p>{"사랑"}</p>
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      id="friend"
+                      name="friend"
+                      className="l10-1"
+                      onClick={() => handleImportButtonClick("우정")}
+                      onMouseOver={() => handleOverMouse("friend")}
+                      onMouseLeave={() => handleLeaveMouse("friend")}
+                    >
+                      <p>{"우정"}</p>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              id="result5"
+              style={{
+                display: showInputButton ? "block" : "none",
+                padding: "30px",
+                margin: "0 0 0 20px",
+              }}
+            >
+              <div className="l19-1" />
+              <div>
+                <button
+                  onClick={handleStickerClick}
+                  id="set_sticker"
+                  className="l6-1"
+                >
+                  <p>스티커 만들기</p>
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        id="result5"
-        style={{ display: showInputButton ? "block" : "none", padding: "30px", margin:'0 0 0 20px'}}
-      >
-        <div className="l19-1" />
-        <div> 
-            <button id='set_sticker' className="l6-1">
-                <p>스티커 만들기</p>
-            </button>
-        </div>
-      </div>
       </div>
     </div>
-    </div></div>
   );
 }
 
