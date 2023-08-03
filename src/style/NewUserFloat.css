@@ -18,10 +18,16 @@
 .l3-4{
     width:  162px;
     height: 223px;
+    position: relative;
+    top:80px;
+    left: -20px;
 }
 .l4-4{
     width:  278px;
     height: 306px;
+    position: relative;
+    top:-70px;
+    left: 50px;
 }
 .l5-4{
     width: 298px;
@@ -39,9 +45,12 @@
     flex-shrink: 0;
     background: var(--unnamed, rgba(25, 25, 25, 0.80));
     position: relative;
-    top:62px;
+    top:-80px;
     left:10px;
     z-index: 1;
 }
 
+.l7-4{
+    height: 550px;
+}
 
