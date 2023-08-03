@@ -19,6 +19,7 @@ const Background = styled.div`
   margin: 0px auto;
   display: flex;
   flex-direction: column;
+  position: relative;
   background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
 `;
 
@@ -67,35 +68,20 @@ const Text2 = styled.div`
   font-weight: 500;
   line-height: 36px;
 `;
-const HostImg = styled.img`
-  max-width: 100px;
-  max-height: 150px;
-  display: flex;
+const MiddleImg = styled.div`
   position: absolute;
-  transform: translate(-40%, -50%);
-  top: 40%;
-  left: 50%;
-`;
 
-const BottomWrap = styled.div`
   height: 60%;
-  justify-content: center;
-  align-items: center;
+  top: -60px;
   display: flex;
 `;
 
-const Bottom = styled.div`
-  border-radius: 40px;
-  border: 2px solid var(--unnamed, #12151c);
-  background: #fff;
-  width: 90%;
-  height: 90%;
-`;
 const ButtonWrap = styled.div`
   height: 20%;
   justify-content: center;
   align-items: center;
   display: flex;
+  position: relative;
 `;
 const Footer = styled.div`
   border-radius: 40px 40px 0px 0px;
@@ -151,9 +137,13 @@ export function VisitPut() {
             <Text2>부착된 스티커는 호스트 외 삭제할 수 없습니다.</Text2>
           </TextHeader>
         </HeaderWrap>
+
         <TestBottom />
 
         <ButtonWrap>
+          <MiddleImg>
+            <img src="https://i.ibb.co/YP6Zk7b/Group-189.png" />
+          </MiddleImg>
           <Footer>
             <Icon src="https://i.ibb.co/R20fGKK/Group-184.png" />
             <Icon
