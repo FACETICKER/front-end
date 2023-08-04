@@ -83,6 +83,14 @@
     left: 20px;
 }
 
+.basic_new {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: -5px;
+    left: 20px;
+}
+
 .basic {
     border: 2px solid var(--unnamed, #FF7427);
 }
