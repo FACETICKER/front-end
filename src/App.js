@@ -12,9 +12,10 @@ import QnApage from "./pages/QnApageMain";
 import StickerMainHost from "./pages/StickersHost";
 import PutPage from "./pages/PutPage";
 import NicknameTotal from "./pages/NicknameTotal";
-import NewUserFlow from "./pages/NewUserFloat";
+import NewUserFlow from "./pages/NewUserFlow.js";
 import Loginpage from "./login/Loginpage";
 import ClickSticker from "./Stickers/ClickSticker";
+import Redirect from "./login/Redirect";
 
 function App() {
   function setScreenSize() {
@@ -55,6 +56,8 @@ function App() {
           {/*스티커 호스트 */}
           <Route path="/newuserflow" element={<NewUserFlow />} />
           {/*신규 가입자 플로우 */}
+          <Route path="redirect" element={<Redirect />} />
+          {/* */}
         </Routes>
       </BrowserRouter>
     </Provider>

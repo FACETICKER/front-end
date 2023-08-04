@@ -1,6 +1,5 @@
 import check from "../img/InitialSurvey_img/icon _check circled outline_ (2).svg";
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import "../style/InitialSurvey.css";
@@ -9,7 +8,6 @@ import Picker from "react-mobile-picker-scroll";
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
 
 function InitialSurvey() {
-  const navigate = useNavigate();
   const [showSecondTextbox, setShowSecondTextbox] = useState(false);
   const [showSecondChooseButton, setSecondChooseButton] = useState(false);
   const [showThirdTextbox, setShowThirdTextbox] = useState(false);
@@ -284,10 +282,6 @@ function InitialSurvey() {
     resultDiv.className = "l10-1";
   };
 
-  const handleStickerClick = () => {
-    navigate("/makesticker");
-  };
-
   return (
     <div className="BackgroundWrap">
       <div className="Background">
@@ -555,11 +549,7 @@ function InitialSurvey() {
             >
               <div className="l19-1" />
               <div>
-                <button
-                  onClick={handleStickerClick}
-                  id="set_sticker"
-                  className="l6-1"
-                >
+                <button id="set_sticker" className="l6-1">
                   <p>스티커 만들기</p>
                 </button>
               </div>

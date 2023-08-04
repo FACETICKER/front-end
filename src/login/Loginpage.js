@@ -3,11 +3,8 @@ import "./Loginpage.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const K_REST_API_KEY = `dbb09284d42b4ebcddf437f9920cb1de`;
-const G_CLIENT_ID = `976093467948-jeflv467jm5k9e38ile8427nbm9inf88.apps.googleusercontent.com`;
-
-/* const G_CLIENT_ID = process.env.REACT_APP_G_CLIENT_ID;
-const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;  */
+const G_CLIENT_ID = process.env.REACT_APP_G_CLIENT_ID;
+const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
 
 const K_REDIRECT_URI = `http://faceticker.site/app/auth/kakao/callback`;
 const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${K_REDIRECT_URI}&response_type=code`;
@@ -21,20 +18,24 @@ const Loginpage = () => {
   const [data, setData] = useState(null);
 
   const handleKakaoLogin = async () => {
-    window.location.href = kakaoURL;
-    fetch(K_REDIRECT_URI)
+    navigate("/newuserflow");
+    /*  window.location.href = kakaoURL; */
+
+    /* fetch(K_REDIRECT_URI)
       .then((response) => response.json())
-      .then(navigate("/newuserflow"))
+      .then(console.log("성공"))
+
       .then((data) => {
         setData(data);
+        navigate("/newuserflow");
       })
       .catch((error) => {
         console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);
-      });
+      }); */
   };
 
   const handleGoogleLogin = async () => {
-    window.location.href = googleURL;
+    /*  window.location.href = googleURL; */
     fetch(googleRedirectUrl)
       .then((response) => response.json())
       .then(navigate("/newuserflow"))
@@ -51,7 +52,7 @@ const Loginpage = () => {
   return (
     <div className="background">
       <div className="title">
-        <h1>FACETICKER</h1>
+        <h1 className="logo">FACETICKER</h1>
       </div>
       <div className="buttons">
         <button onClick={handleKakaoLogin} className="KakaoButton"></button>

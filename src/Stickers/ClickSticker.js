@@ -6,6 +6,7 @@ import Dots from "./Dots";
 import StaticSticker from "./StaticSticker";
 import MainHeader from "./MainHeader";
 import "./ClickSticker.css";
+import "../font/font.css";
 /* import { StickerPageSlice } from "./StickerPageSlice";
 dispatch(NicknamePageSlice.actions.letter()); //letter로 페이지 전환 */
 
@@ -98,15 +99,15 @@ const Dot3 = styled.div`
 const Name = styled.div`
   position: absolute;
   bottom: 5%;
-  right: 5%;
+  right: 10%;
   width: 30%;
   color: #191919;
   text-align: right;
-  font-family: Pretendard;
+  font-family: Cafe24Shiningstar;
   font-size: 36px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 24px; /* 66.667% */
 `;
 const SecondShadow = styled.div`
   position: absolute;
@@ -179,14 +180,15 @@ const BackImg = styled.img`
 const LetterContent = styled.div`
   display: flex;
   position: absolute;
+  width: 75%;
   bottom: 50%;
   color: #191919;
   text-align: center;
   font-family: Pretendard;
-  font-size: 20px;
+  font-size: 17px;
   font-style: normal;
   font-weight: 400;
-  line-height: 38px; /* 190% */
+  line-height: 38px;
 `;
 const StickerImg = styled.img`
   display: flex;
@@ -218,7 +220,7 @@ export function ClickSticker() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3021/user")
+    fetch("http://localhost:3010/user")
       .then((response) => response.json())
       .then((data) => {
         const filteredData = data.filter((item) => item.id !== 1);
@@ -242,7 +244,7 @@ export function ClickSticker() {
 
   //서버에서 방문록 받아오기
   useEffect(() => {
-    fetch("http://localhost:3021/user/1")
+    fetch("http://localhost:3010/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.letter) {
@@ -256,7 +258,7 @@ export function ClickSticker() {
 
   //host 이미지 url 받아오기
   useEffect(() => {
-    fetch("http://localhost:3021/user/1")
+    fetch("http://localhost:3010/user/2")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
@@ -287,7 +289,7 @@ export function ClickSticker() {
               <Dot3>
                 <Dots />
               </Dot3>
-              <Name>이름</Name>
+              <Name>수진</Name>
             </One>
           )}
           {idArray.length === 2 && (
@@ -326,7 +328,7 @@ export function ClickSticker() {
                 <Dot3>
                   <Dots />
                 </Dot3>
-                <Name>이름</Name>
+                <Name>수진</Name>
               </div>
               <div className="back">
                 <Back>

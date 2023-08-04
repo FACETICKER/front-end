@@ -1,21 +1,28 @@
+@import url("https://webfontworld.github.io/LotteriaChab/LotteriaChab.css");
+
 .App {
   text-align: center;
+  position: absolute;
+  left: 25px;
 }
 
-.l1{
+.l1 {
   width: 26px;
   height: 26px;
+
   flex-shrink: 0;
 }
-.l2{
+.l2 {
   width: 338px;
   height: 415px;
   flex-shrink: 0;
   border-radius: 20px;
   background: #FFD25D;
+  position: relative;
+  left:7%;
 }
 
-.l3{
+.l3 {
   color: var(--unnamed, #f26b79);
   transform: rotate(7deg);
   text-align: center;
@@ -36,7 +43,7 @@
   line-height: 36px; /* 180% */
   position: relative;
   top: 140px;
-  left: -10px;
+  left: -20%;
 }
 
 @font-face {
@@ -54,7 +61,7 @@
   line-height: 36px; /* 75% */
   position: relative;
   top: 140px;
-  left: -35px;
+  left: -70%;
 }
 
 .l6 {
@@ -69,7 +76,7 @@
   letter-spacing: -0.408px;
   position: relative;
   top: 0px;
-  left:120px;
+  left:100%;
 }
 
 .l7 {
@@ -81,7 +88,7 @@
   font-weight: 300;
   line-height: normal;
   position: relative;
-  left: 30px;
+  left: 10%;
   top: 170px;
 }
 
@@ -94,7 +101,7 @@
   line-height: 36px; /* 51.429% */
   position: relative;
   top: 120px;
-  left: 20px;
+  left: 8%;
 }
 
 .l9 {
@@ -107,11 +114,10 @@
   line-height: normal;
   position: relative;
   top: 70px;
-  left:-50px;
+  left:-15%;
 }
 
-
-.l10{
+.l10 {
   width: 60px;
   height: 60px;
   flex-shrink: 0;
@@ -121,11 +127,9 @@
   border-radius: 50%;
   position: relative;
   top:80px;
-  left:100px;
+  left:30%;
   margin: 0 10px 0 0;
 }
-
-
 
 .FixedFooter {
   position: fixed;
@@ -133,14 +137,14 @@
   height: 188px;
   flex-shrink: 0;
   border-radius: 50px 50px 0px 0px;
-  background: #FFF;
+  background: #fff;
   box-shadow: 0px -4px 10px 0px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.l11{
+.l11 {
   display: flex;
   width: 140px;
   height: 52px;
@@ -150,7 +154,7 @@
   gap: 10px;
   flex-shrink: 0;
   border-radius: 10px;
-  background: #F4F3F9;
+  background: #f4f3f9;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -174,13 +178,23 @@
   margin-right: 10px;
 }
 
-.l12{
+.l12 {
   width: 161px;
   height: 19px;
   flex-shrink: 0;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  color: #ff6d00;
+  text-align: center;
+  font-family: "LotteriaChab";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 83.333% */
 }
 
-.l13{
+.l13 {
   color: #333;
   text-align: center;
   font-family: Cafe24 Ohsquare;
@@ -192,7 +206,7 @@
   top: 10px;
 }
 
-.l14{
+.l14 {
   display: flex;
   width: 128px;
   padding: 14px 46px;
@@ -200,11 +214,11 @@
   align-items: center;
   gap: 10px;
   border-radius: 10px;
-  border: 2px solid var(--unnamed, #12151C);
-  background: #F1F1F5;
+  border: 2px solid var(--unnamed, #12151c);
+  background: #f1f1f5;
 }
 
-.l15{
+.l15 {
   display: flex;
   width: 128px;
   padding: 14px 46px;
@@ -212,11 +226,11 @@
   align-items: center;
   gap: 10px;
   border-radius: 10px;
-  border: 2px solid var(--unnamed, #12151C);
-  background: var(--unnamed, #FF6D00);
+  border: 2px solid var(--unnamed, #12151c);
+  background: var(--unnamed, #ff6d00);
 }
 
-.l16{
+.l16 {
   display: flex;
   width: 246px;
   padding: 14px 46px;
@@ -224,31 +238,31 @@
   align-items: center;
   gap: 10px;
   border-radius: 10px;
-  border: 2px solid var(--unnamed, #12151C);
-  background: var(--unnamed, #F26B79);
+  border: 2px solid var(--unnamed, #12151c);
+  background: var(--unnamed, #f26b79);
   position: relative;
-  left: 20px;
+  left: 20%;
   top:50px;
 }
 
-.l17{
-  border-radius:50%;
-  background-color:gray;
-  width:60px;
-  height:60px;
-  float:left;
-  text-align:center;
-  font-size:32px;
-  color:white;
+.l17 {
+  border-radius: 50%;
+  background-color: gray;
+  width: 60px;
+  height: 60px;
+  float: left;
+  text-align: center;
+  font-size: 32px;
+  color: white;
   position: relative;
-  left:120px;
+  left: 39%;
 }
 
-.l18{
-  border:none;
-  background-color:transparent;
+.l18 {
+  border: none;
+  background-color: transparent;
   position: relative;
-  left:100px;
+  left:35%;
 }
 
 .l22 {
@@ -257,7 +271,7 @@
   border-radius: 50%;
   border: 2px solid #f26b79;
   position: relative;
-  left: 20px;
+  left: 10%;
 }
 
 .l23 {
@@ -268,11 +282,11 @@
   transform: rotate(-7deg);
 }
 
-.BackgroundWrap{
-  background: #F8F8FA;
+.BackgroundWrap {
+  background: #f8f8fa;
 }
 
-.Background{
+.Background {
   height: calc(var(--vh, 1vh) * 100);
   max-width: 37.5rem;
   margin: 0px auto;
@@ -280,11 +294,11 @@
   flex-direction: column;
 }
 
-.l24{
+.l24 {
   width: 16px;
   height: 16px;
   border-radius: 50%;
   border: 1px solid #767676;
   float: left;
-  margin:6px;
+  margin: 6px;
 }

@@ -24,7 +24,7 @@ export function MainText() {
   const [nicknameValue, setNicknameValue] = useState("사용자");
   //host 닉네임 값 받아오기
   useEffect(() => {
-    fetch("http://localhost:3001/imgUrl/1/")
+    fetch("http://localhost:3010/user/1/")
       .then((response) => response.json())
       .then((data) => {
         if (data.nickname) {

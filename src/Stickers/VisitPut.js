@@ -7,6 +7,7 @@ import { setIsImageFixed } from "./reducers";
 import { TestBottom } from "./TestBottom";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -100,7 +101,9 @@ const Icon = styled.img`
 `;
 
 export function VisitPut() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [change, setChange] = useState(false);
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
   const [imageUrl, setImageUrl] = useState(null);
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
@@ -123,6 +126,11 @@ export function VisitPut() {
 
   const handleButtonClick = () => {
     dispatch(setIsImageFixed(true)); // "Check" 버튼 클릭 시, 스티커 고정
+    setChange(true);
+  };
+
+  const handleQnA = () => {
+    navigate("/qna");
   };
 
   return (
@@ -139,20 +147,35 @@ export function VisitPut() {
         </HeaderWrap>
 
         <TestBottom />
+        {!change && (
+          <ButtonWrap>
+            <MiddleImg>
+              <img src="https://i.ibb.co/YP6Zk7b/Group-189.png" />
+            </MiddleImg>
+            <Footer>
+              <Icon src="https://i.ibb.co/R20fGKK/Group-184.png" />
+              <Icon
+                onClick={handleButtonClick}
+                src="https://i.ibb.co/jzV1rX7/Group-183.png"
+              />
+            </Footer>
+          </ButtonWrap>
+        )}
 
-        <ButtonWrap>
-          <MiddleImg>
-            <img src="https://i.ibb.co/YP6Zk7b/Group-189.png" />
-          </MiddleImg>
-          <Footer>
-            <Icon src="https://i.ibb.co/R20fGKK/Group-184.png" />
-            <Icon
-              onClick={handleButtonClick}
-              src="https://i.ibb.co/jzV1rX7/Group-183.png"
-            />
-          </Footer>
-        </ButtonWrap>
-        {/* Check 버튼 */}
+        {change && (
+          <ButtonWrap>
+            <MiddleImg>
+              <img src="https://i.ibb.co/YP6Zk7b/Group-189.png" />
+            </MiddleImg>
+            <Footer>
+              <Icon src="https://i.ibb.co/YQ8KGWf/Group-96.png" />
+              <Icon
+                onClick={handleQnA}
+                src="https://i.ibb.co/DRrtLCx/Group-97.png"
+              />
+            </Footer>
+          </ButtonWrap>
+        )}
       </Background>
     </BackgroundWrap>
   );

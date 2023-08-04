@@ -31,7 +31,7 @@
   line-height: 36px; /* 180% */
   position: relative;
   top: 140px;
-  left: -10px;
+  left: -10%;
 }
 
 @font-face {
@@ -49,7 +49,7 @@
   line-height: 36px; /* 75% */
   position: relative;
   top: 140px;
-  left: -35px;
+  left: -50%;
 }
 
 .l6-2 {
@@ -63,8 +63,8 @@
   line-height: 22px; /* 68.75% */
   letter-spacing: -0.408px;
   position: relative;
-  top: 0px;
-  left:120px;
+  top: 0%;
+  left: 100%;
 }
 
 .l7-2 {
@@ -76,7 +76,7 @@
   font-weight: 300;
   line-height: normal;
   position: relative;
-  left: 100px;
+  left: 23%;
 }
 
 .l8-2 {
@@ -88,7 +88,7 @@
   line-height: 36px; /* 51.429% */
   position: relative;
   top: -40px;
-  left: 20px;
+  left: 6%;
 }
 
 .l9-2 {
@@ -101,7 +101,7 @@
   line-height: normal;
   position: relative;
   top: -90px;
-  left:-50px;
+  left: -15%;
 }
 
 .l10-2 {
@@ -235,6 +235,7 @@
 .l19-2 {
   display: flex;
   width: 246px;
+  height: 52px;
   padding: 14px 46px;
   justify-content: center;
   align-items: center;
@@ -243,8 +244,8 @@
   border: 2px solid var(--unnamed, #12151c);
   background: var(--unnamed, #f26b79);
   position: relative;
-  top:30px;
-  left:20px
+  top: 100px;
+  left: 8%;
 }
 
 .l20-2 {
@@ -259,7 +260,7 @@
   font-weight: 600;
   line-height: normal;
   position: relative;
-  top:20px;
+  top: 20px;
 }
 
 .l21-2 {
@@ -271,8 +272,8 @@
   font-weight: 600;
   line-height: 20px; /* 142.857% */
   position: relative;
-  top:20px;
-  left:40px;
+  top: 20px;
+  left: 13%;
 }
 
 .l22-2 {
@@ -281,7 +282,7 @@
   border-radius: 50%;
   border: 2px solid #f26b79;
   position: relative;
-  left: 20px;
+  left: 10%;
 }
 
 .l23-2 {
@@ -292,7 +293,7 @@
   transform: rotate(-7deg);
 }
 
-.l24-2{
+.l24-2 {
   display: flex;
   width: 246px;
   height: 40px;
@@ -301,63 +302,62 @@
   align-items: center;
   gap: 10px;
   border-radius: 10px;
-  border: 1px solid var(--unnamed, #12151C);
-  background: #F1F1F5;
+  border: 1px solid var(--unnamed, #12151c);
+  background: #f1f1f5;
   margin: 16px;
   position: relative;
-  top:-125px;
+  top: -125px;
 }
 
-.BackgroundWrap{
-  background: #F8F8FA;
+.BackgroundWrap {
+  background: #f8f8fa;
 }
 
-.Background{
+.Background {
   height: calc(var(--vh, 1vh) * 100);
   max-width: 37.5rem;
   margin: 0px auto;
   display: flex;
   flex-direction: column;
-  
 }
 
-.l25-2{
+.l25-2 {
   width: 246px;
   height: 40px;
   border-radius: 10px;
-  gap:10px;
-  border: 1px solid var(--unnamed, #12151C);
-  background: var(--unnamed, rgba(25, 25, 25, 0.80));
+  gap: 10px;
+  border: 1px solid var(--unnamed, #12151c);
+  background: var(--unnamed, rgba(25, 25, 25, 0.8));
   position: relative;
   margin: 16px 0 0 16px;
-  top:50px;
+  top: 50px;
 }
 
-.l26-2{
-  border-radius:50%;
-  background-color:gray;
-  width:60px;
-  height:60px;
-  float:left;
-  text-align:center;
-  font-size:32px;
-  color:white;
+.l26-2 {
+  border-radius: 50%;
+  background-color: gray;
+  width: 60px;
+  height: 60px;
+  float: left;
+  text-align: center;
+  font-size: 32px;
+  color: white;
   position: relative;
-  left:120px;
+  left: 120px;
 }
 
-.l27-2{
-  border:none;
-  background-color:transparent;
+.l27-2 {
+  border: none;
+  background-color: transparent;
   position: relative;
-  left:100px;
+  left: 100px;
 }
 
-.l28-2{
+.l28-2 {
   width: 16px;
   height: 16px;
   border-radius: 50%;
   border: 1px solid #767676;
   float: left;
-  margin:6px;
+  margin: 6px;
 }
