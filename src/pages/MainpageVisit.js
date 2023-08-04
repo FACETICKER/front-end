@@ -66,7 +66,7 @@ function MainpageVisit() {
   return (
     <div className="BackgroundWarp">
       <div className="Background">
-        <div className="App">
+        <div className="App" style={{position:'relative', left:'15%'}}>
           <header style={{ position: "relative", left: "-10px" }}>
             <button
               onClick={toggleModal2}
