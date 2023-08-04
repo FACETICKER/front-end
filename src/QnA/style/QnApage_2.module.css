@@ -50,22 +50,23 @@
 .buttontext {
     font-size: 16px;
     display: inline-block;
-    width: 70%; /* 버튼의 너비를 80%로 설정하여 텍스트에 맞게 조정 */
+    width: 90%; /* 버튼의 너비를 90%로 설정하여 텍스트에 맞게 조정 */
     box-sizing: border-box; /* padding을 포함한 전체 너비로 설정 */
     word-break: break-all;
     font-family: Pretendard;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .buttonArray {
     min-width: 100px;
-    max-width: 90%;
+    max-width: 70%;
     min-height: 62px;
     max-height: 100%;
-    border-radius: 100px;
     gap: 10px;
     box-shadow: 0px 4px 10px 0px rgba(67, 0, 209, 0.1);
     background-color: rgba(255, 255, 255, 1);
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 22px;
     letter-spacing: -0.025em;
@@ -73,6 +74,14 @@
     z-index: 2;
     border: none;
     position: relative;
+}
+
+.radius_L {
+    border-radius: 20px;
+}
+
+.radius_S {
+    border-radius: 100px;
 }
 
 .new {
@@ -236,29 +245,36 @@
 .answertext {
     display: inline-block;
     font-size: 16px;
-    width: 70%; /* 버튼의 너비를 80%로 설정하여 텍스트에 맞게 조정 */
+    width: 90%; /* 버튼의 너비를 80%로 설정하여 텍스트에 맞게 조정 */
     box-sizing: border-box; /* padding을 포함한 전체 너비로 설정 */
     word-break: break-all;
     font-family: Pretendard;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .button_answer{
-    margin-right: 3%;
+    margin-right: 5%;
     min-width: 100px;
-    max-width: 90%;
+    max-width: 70%;
     min-height: 62px;
-    max-height: 174px;
+    max-height: 100%;
     border: none;
-    border-radius: 100px;
     gap: 10px;
     background-color: rgba(255, 155, 76, 1);
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 22px;
     letter-spacing: -0.025em;
     flex-shrink: 0;
     z-index: 2;
+}
+
+@media (min-width: 768px) {
+    .button_answer {
+        margin-right: 3%; /* 768px 이상일 때 적용할 마진 값 */
+    }
 }
 
 .clicked {
