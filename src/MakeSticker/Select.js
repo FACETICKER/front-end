@@ -24,7 +24,7 @@ const Select = () => {
   };
 
   const handleClick = () => {
-    navigate("/status");
+    navigate("/stickername");
   };
 
   return (
@@ -50,7 +50,6 @@ const Select = () => {
         )}
       </div>
       <BtnWrap />
-      <div className={styles.blackline}></div>
     </div>
   );
 };

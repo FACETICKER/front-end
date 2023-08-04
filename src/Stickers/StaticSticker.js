@@ -89,7 +89,7 @@ export function StaticSticker() {
 
   //host image 받아오기
   useEffect(() => {
-    fetch("http://localhost:3021/user/1")
+    fetch("http://localhost:3010/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
@@ -105,7 +105,7 @@ export function StaticSticker() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3021/user")
+    fetch("http://localhost:3010/user")
       .then((response) => response.json())
       .then((data) => {
         const filteredData = data.filter((item) => item.id !== 1);
@@ -161,10 +161,10 @@ export function StaticSticker() {
         </Bottom>
       </Bottoms>
 
-      <ZoomButtons>
+      {/*      <ZoomButtons>
         <ZoomButton onClick={zoomIn}>Zoom In</ZoomButton>
         <ZoomButton onClick={zoomOut}>Zoom Out</ZoomButton>
-      </ZoomButtons>
+      </ZoomButtons> */}
     </BottomWrap>
   );
 }

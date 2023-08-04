@@ -4,9 +4,17 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import "../style/InitialSurvey.css";
+
 import ReactDOM from "react-dom";
 import Picker from "react-mobile-picker-scroll";
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
+
+const Box = styled.div`
+  border-radius: 20px;
+  background-color: pink;
+  background: #fff;
+  box-shadow: 0px 2px 10px 0px rgba(67, 0, 209, 0.1);
+`;
 
 function InitialSurvey() {
   const navigate = useNavigate();
@@ -303,7 +311,7 @@ function InitialSurvey() {
           </div>
           <div style={{ width: "342px" }}>
             <div className="l16-1">
-              <div style={{ padding: "10px 0 30px 0" }}>
+              <Box>
                 <input
                   className="l5-1"
                   type="text"
@@ -321,7 +329,7 @@ function InitialSurvey() {
                   className="l15-1"
                   style={{ left: "308px", top: "-50px" }}
                 ></img>
-              </div>
+              </Box>
               <div
                 id="result1"
                 style={{ display: "none", padding: "0 0 30px 0" }}

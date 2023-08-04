@@ -85,10 +85,10 @@ function Btn(props) {
 
     return (
         <div>
-            <div className={`${styles2.buttonbackground} ${!view && hasMatchingId ? styles2.hidden : ''}`}>
+            <div className={`${styles2.buttonbackground} ${!view && hasMatchingId ? styles2.hidden : ''} ${view && !hasMatchingId && !props.clicked ? styles2.hidden : ''}`}>
                 <button className={classNames} id={props.id} type={props.type} data-open={props.open} onClick={onclick}>
                     <span className={styles2.buttontext}>{props.text}</span>
-                    <img src={New_mark} className={`${styles2.new} ${hasMatchingId || type === 'basic_question' ? styles2.hidden : ''}`}></img>
+                    <img src={New_mark} className={`${type !== 'basic_question' ? styles2.new : styles2.basic_new} ${!props.clicked ? styles2.hidden : ''}`}></img>
                 </button>
             </div>
             {props.clicked && !choice && !hasMatchingId && (

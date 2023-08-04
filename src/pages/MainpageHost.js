@@ -11,8 +11,15 @@ import close from "../img/MainpageHost_img/close-x.svg";
 import React, { useState, useEffect } from "react";
 import html2canvas from "html2canvas";
 import "../style/MainpageHost.css";
+import { useNavigate } from "react-router-dom";
+
+const Div = styled.div`
+  position: absolute;
+  right: 80px;
+`;
 
 function MainpageHost() {
+  const navigate = useNavigate();
   const [showFooter, setShowFooter] = useState(false);
   const [showModal1, setShowModal1] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
@@ -139,6 +146,9 @@ function MainpageHost() {
     setDay("JUNE, 28");
   };
 
+  const handleStickerPage = () => {
+    navigate("/host");
+  };
   return (
     <div className="BackgroundWarp">
       <div className="Background">
@@ -181,7 +191,7 @@ function MainpageHost() {
                   {chattingNumber || "0"}
                 </p>
               </div>
-              <button
+              {/*   <button
                 style={{
                   width: "20px",
                   height: "20px",
@@ -202,7 +212,7 @@ function MainpageHost() {
                 onClick={handleMinusMessage}
               >
                 -1
-              </button>
+              </button> */}
             </div>
           </header>
 
@@ -310,10 +320,7 @@ function MainpageHost() {
             </div>
             <div>
               <div style={{ float: "left" }}>
-                <button className="l10-2">
-                  <img src={recordpage} alt="recordpage" />
-                </button>
-                <div
+                {/* <div
                   id="countRecordDiv"
                   className="l14-2"
                   style={{ display: "none", top: "-80px", left: "40px" }}
@@ -321,8 +328,8 @@ function MainpageHost() {
                   <p id="countRecord" className="l15-2">
                     {recordNumber || "0"}
                   </p>
-                </div>
-                <button
+                </div> */}
+                {/*  <button
                   style={{
                     width: "20px",
                     height: "20px",
@@ -343,20 +350,36 @@ function MainpageHost() {
                   onClick={handleMinusRecord}
                 >
                   -1
-                </button>
+                </button> */}
               </div>
-              <div style={{ float: "left" }}>
+              <Div>
+                <button className="l10-2">
+                  <img
+                    onClick={handleStickerPage}
+                    src={recordpage}
+                    alt="recordpage"
+                  />
+                </button>
                 <button className="l10-2" onClick={handleLinkDownload}>
                   <img src={share} alt="share" />
                 </button>
-              </div>
-              <div>
                 <button className="l10-2" onClick={handleDownload}>
                   <img src={download} alt="download" />
                 </button>
-              </div>
+              </Div>
+
+              {/* <div style={{ float: "left" }}>
+                <button className="l10-2" onClick={handleLinkDownload}>
+                  <img src={share} alt="share" />
+                </button>
+              </div> */}
+              {/* <div>
+                <button className="l10-2" onClick={handleDownload}>
+                  <img src={download} alt="download" />
+                </button>
+              </div> */}
             </div>
-            <div
+            {/* <div
               style={{ width: "200px", height: "100px", position: "relative" }}
             >
               <button>사랑선택</button>
@@ -367,7 +390,7 @@ function MainpageHost() {
               <button onClick={handleWinter}>겨울선택</button>
               <button onClick={handleNoneProfile}>프로필 생성 안함</button>
               <button onClick={handleHaveProfile}>프로필 생성 함</button>
-            </div>
+            </div> */}
           </div>
           {showFooter && (
             <footer className="FixedFooter">

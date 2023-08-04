@@ -26,7 +26,7 @@ const Popup = (props) => {
 
     const modalStyle = {
         overlay: {
-            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+            backgroundColor: 'rgba(0, 0, 0, 0.01)',
             zIndex: 1000, // z-index 값
             display: 'flex',
             justifyContent: 'center',
@@ -40,7 +40,7 @@ const Popup = (props) => {
             height: '280px',
             padding: '0px',
             margin: '0px',
-            boxShadow: '0px 2px 10px 0px rgba(0, 0, 0, 0.1)',
+            boxShadow: '0px 2px 10px 0px rgba(0, 0, 0, 0.01)',
             position: 'absolute',
             top: '50%',
             left: '50%',
