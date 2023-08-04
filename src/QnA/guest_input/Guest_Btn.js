@@ -42,6 +42,7 @@ function Guest_Btn(props) {
     const classNames = [
         styles2.buttonArray, // 기본 스타일 (container)
         open ? '' : styles2.lock,
+        props.text.length > 16 ? styles2.radius_L : styles2.radius_S,
     ].join(' ');
 
     const scrollRef = useRef();

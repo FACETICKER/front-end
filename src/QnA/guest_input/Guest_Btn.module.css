@@ -20,16 +20,18 @@
 .buttontext {
     font-size: 16px;
     display: inline-block;
-    width: 70%; /* 버튼의 너비를 100%로 설정하여 텍스트에 맞게 조정 */
+    width: 90%; /* 버튼의 너비를 100%로 설정하여 텍스트에 맞게 조정 */
     box-sizing: border-box; /* padding을 포함한 전체 너비로 설정 */
     word-break: break-all;
     font-family: Pretendard;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .buttonArray {
-    margin-right: 3%;
+    margin-right: 5%;
     min-width: 100px;
-    max-width: 90%;
+    max-width: 70%;
     min-height: 62px;
     max-height: 100%;
     border-radius: 100px;
@@ -45,6 +47,20 @@
     border: none;
 }
 
+.radius_L {
+    border-radius: 20px;
+}
+
+.radius_S {
+    border-radius: 100px;
+}
+
+@media (min-width: 768px) {
+    .buttonArray {
+        margin-right: 3%; /* 768px 이상일 때 적용할 마진 값 */
+    }
+}
+
 .basic {
     border: 2px solid var(--unnamed, #FF7427);
 }
@@ -52,15 +68,14 @@
 .button_answer {
     position: relative;
     min-width: 100px;
-    max-width: 90%;
+    max-width: 70%;
     min-height: 62px;
     max-height: 100%;
     border: none;
-    border-radius: 100px;
     gap: 10px;
     background-color: rgba(255, 155, 76, 1);
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 22px;
     letter-spacing: -0.025em;

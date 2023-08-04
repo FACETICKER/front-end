@@ -79,6 +79,7 @@ function Btn(props) {
     const classNames = [
         styles2.buttonArray, // 기본 스타일 (container)
         type === 'basic_question' ? styles2.basic : '', // 기본 질문인가요? 
+        props.text.length > 16 ? styles2.radius_L : styles2.radius_S // 텍스트 길이에 따라 모서리 다르게 적용 
     ].join(' ');
 
     // 답변 내역은 전부 보여주고, 미답변 내역에서는 답변이 있으면 div 숨기는 스타일 적용

@@ -22,7 +22,7 @@ function Del_ansBtn(props) {
     return (
         <div className={styles.answerbackground} onClick={onclick}>
             <img src={`${click ? Check : NoneCheck}`} className={styles.check_img}></img>
-            <button key={props.id} className={styles.button_answer} id={props.id} type={props.type} data-open={props.open}>
+            <button key={props.id} className={`${styles.button_answer} ${props.text.length > 16 ? styles.radius_L : styles.radius_S}`} id={props.id} type={props.type} data-open={props.open}>
                 <span className={styles.answertext}>{props.text}</span>
             </button>
         </div>

@@ -12,7 +12,7 @@ import QnApage from "./pages/QnApageMain";
 import StickerMainHost from "./pages/StickersHost";
 import PutPage from "./pages/PutPage";
 import NicknameTotal from "./pages/NicknameTotal";
-import NewUserFlow from "./pages/NewUserFloat.js";
+import NewUserFlow from "./pages/NewUserFlow.js";
 import Loginpage from "./login/Loginpage";
 import ClickSticker from "./Stickers/ClickSticker";
 import Redirect from "./login/Redirect";

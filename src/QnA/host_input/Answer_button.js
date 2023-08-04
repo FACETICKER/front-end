@@ -31,7 +31,7 @@ function Answer_button(props) {
 
     return (
         <div className={`${page === 'host' && styles2.answerbackground} ${page === 'guest' && styles3.answerbackground}`}>
-            <button key={props.id} className={`${page === 'host' && styles2.button_answer} ${page === 'guest' && styles3.button_answer} ${page === 'guest' && !open && styles3.lock_ans}`} id={props.id} type={props.type} data-open={props.open} onClick={onclick}>
+            <button key={props.id} className={`${page === 'host' && styles2.button_answer} ${page === 'guest' && styles3.button_answer} ${page === 'guest' && !open && styles3.lock_ans} ${props.text.length > 16 ? styles2.radius_L : styles2.radius_S}`} id={props.id} type={props.type} data-open={props.open} onClick={onclick}>
                 <span className={styles2.answertext}>
                     {page === 'host' && (props.text)}
                     {page === 'guest' && open && (props.text)}

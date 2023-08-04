@@ -35,7 +35,8 @@ function Del_btn(props) {
 
     const classNames = [
         styles.buttonArray, // 기본 스타일 (container)
-        type === 'basic_question' ? styles.basic : '', // 기본 질문인가요? 
+        type === 'basic_question' ? styles.basic : '', // 기본 질문인가요?
+        props.text.length > 16 ? styles.radius_L : styles.radius_S,
     ].join(' ');
 
     const onclick = () => {
