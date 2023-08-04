@@ -37,7 +37,7 @@ function Answer_button(props) {
                     {page === 'guest' && open && (props.text)}
                 </span>
             </button>
-            {props.clicked && !choice && (
+            {props.clicked && !choice && page === 'host' && (
                 <EditAns_Modal />
             )}
         </div>

@@ -31,7 +31,7 @@
 .buttonArray {
     margin-right: 5%;
     min-width: 100px;
-    max-width: 70%;
+    max-width: 65%;
     min-height: 62px;
     max-height: 100%;
     border-radius: 100px;
@@ -68,7 +68,7 @@
 .button_answer {
     position: relative;
     min-width: 100px;
-    max-width: 70%;
+    max-width: 65%;
     min-height: 62px;
     max-height: 100%;
     border: none;
