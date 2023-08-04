@@ -153,72 +153,54 @@ function MainpageHost() {
     <div className="BackgroundWarp">
       <div className="Background">
         <div className="App" style={{ width: "400px", height: "700px", position:'relative', left:'20%'}}>
-          <header
-            style={{
-              float: "down",
-              height: "70px",
-            }}
-          >
-            <div style={{ float: "left", position: "relative", top: "30px" }}>
-              <button
-                style={{ border: "none", backgroundColor: "transparent" }}
-                onClick={toggleModal1}
-              >
-                <img src={setting} className="l1-2" alt="setting" />
-              </button>
+        <div className='HeaderWrap'>
+        <div className='Header'>
+        <div className="HeaderIcon" >
+          <img
+            src="https://i.ibb.co/TrT3xzs/gear-settings-1.png"
+            alt="setting-icon"
+            style={{width:'28px',height:'28px'}}
+          />
+        </div>
+        <div className="Modal"
+          contentLabel="Faceticker-Modal"
+        >
+          <div className="ModalContent">
+            <div className="Close"
+              src="https://i.ibb.co/Cw1y11J/close-x.png"
+            />
+            <div className="EidtImg" src="https://i.ibb.co/LNBGHHr/square-edit.png" />
+            <div className="EidtButtons">
+              <div className="EditButton"
+                src="https://i.ibb.co/7QPq765/Group-190.png"
+              />
+              <div className="EditButton"
+                src="https://i.ibb.co/TMWMM0g/Group-191.png"
+              />
+              <div className="EditButton"
+                src="https://i.ibb.co/Qkm8sPF/Group-192.png"
+              />
             </div>
-            <div style={{ float: "left" }}>
-              <button
-                style={{ border: "none", backgroundColor: "transparent" }}
-              >
-                <p className="l12-2">FACETICKER</p>
-              </button>
-            </div>
-            <div style={{ float: "left", position: "relative", top: "30px" }}>
-              <button
-                style={{ border: "none", backgroundColor: "transparent" }}
-              >
-                <img src={message} className="l1-2" alt="message" />
-              </button>
-              <div
-                id="countMessageDiv"
-                className="l14-2"
-                style={{ display: "none", top: "-50px", left: "20px" }}
-              >
-                <p id="countMessage" className="l15-2">
-                  {chattingNumber || "0"}
-                </p>
-              </div>
-              {/*   <button
-                style={{
-                  width: "20px",
-                  height: "20px",
-                  position: "relative",
-                  left: "330px",
-                }}
-                onClick={handlePlusMessage}
-              >
-                +1
-              </button>
-              <button
-                style={{
-                  width: "20px",
-                  height: "20px",
-                  position: "relative",
-                  left: "330px",
-                }}
-                onClick={handleMinusMessage}
-              >
-                -1
-              </button> */}
-            </div>
-          </header>
+          </div>
+        </div>
+        <div className="LogoWrap">
+          <div className="Logo">FACETICKER</div>
+        </div>
 
-          <div style={{ position: "relative", top: "-50px" }}>
+        <div className="HeaderIcon">
+          <img
+            src="https://i.ibb.co/pjkMqBz/ri-message-3-line.png"
+            alt="ChatIcon"
+            style={{width:'28px',height:'28px'}}
+          />
+        </div>
+      </div>
+      </div>
+          <div style={{ position: "relative", top: "-20px" }}>
             <div id="PrtSc" style={{ width: "338px" }}>
-              <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
+              <div name="inyellow" className="l2-2" >
                 <div
-                  style={{ position: "absolute", left: "15%", top: "18%" }}
+                  style={{ position: "absolute", left: "15%", top: "25%" }}
                   name="사진"
                 >
                   <img src={Vector} alt="Vector" />
@@ -257,6 +239,7 @@ function MainpageHost() {
                   position: "relative",
                   width: "338px",
                   height: "140px",
+                  left:'3%'
                 }}
               >
                 <div name="사자성어">
