@@ -157,31 +157,11 @@ function MainpageHost() {
         <div className='Header'>
         <div className="HeaderIcon" >
           <img
-            src="https://i.ibb.co/TrT3xzs/gear-settings-1.png"
+            onClick={toggleModal1}
+            src={setting}
             alt="setting-icon"
             style={{width:'28px',height:'28px'}}
           />
-        </div>
-        <div className="Modal"
-          contentLabel="Faceticker-Modal"
-        >
-          <div className="ModalContent">
-            <div className="Close"
-              src="https://i.ibb.co/Cw1y11J/close-x.png"
-            />
-            <div className="EidtImg" src="https://i.ibb.co/LNBGHHr/square-edit.png" />
-            <div className="EidtButtons">
-              <div className="EditButton"
-                src="https://i.ibb.co/7QPq765/Group-190.png"
-              />
-              <div className="EditButton"
-                src="https://i.ibb.co/TMWMM0g/Group-191.png"
-              />
-              <div className="EditButton"
-                src="https://i.ibb.co/Qkm8sPF/Group-192.png"
-              />
-            </div>
-          </div>
         </div>
         <div className="LogoWrap">
           <div className="Logo">FACETICKER</div>
@@ -189,18 +169,18 @@ function MainpageHost() {
 
         <div className="HeaderIcon">
           <img
-            src="https://i.ibb.co/pjkMqBz/ri-message-3-line.png"
+            src={message}
             alt="ChatIcon"
             style={{width:'28px',height:'28px'}}
           />
         </div>
       </div>
       </div>
-          <div style={{ position: "relative", top: "-20px" }}>
-            <div id="PrtSc" style={{ width: "338px" }}>
+          <div style={{ position: "relative", top: "5%", width:'366px',height:'671px'}}>
+            <div id="PrtSc" style={{ width: "338px", height:'580px'}}>
               <div name="inyellow" className="l2-2" >
                 <div
-                  style={{ position: "absolute", left: "15%", top: "25%" }}
+                  style={{ position: "absolute", left: "18%", top: "35%" }}
                   name="사진"
                 >
                   <img src={Vector} alt="Vector" />
@@ -215,7 +195,7 @@ function MainpageHost() {
                     </p>
                   </div>
                 </div>
-                <div style={{ width: "390px", height: "100px" }}>
+                <div style={{ width: "390px", height: "400px" }}>
                   <div style={{ float: "left" }} name="이름">
                     <p id="" className="l4-2">
                       {Name || "수민님"}
@@ -279,12 +259,24 @@ function MainpageHost() {
                   width: "338px",
                   height: "140px",
                   display: "none",
+                  left:'3%'
                 }}
               >
-                <div name="threeboll">
-                  <div className="l28-2"></div>
-                </div>
-                <div name="프로필 생성 제안">
+                <div>
+                    <div
+                      className="l28-2"
+                      style={{ backgroundColor: "#FF6D00" }}
+                    ></div>
+                    <div
+                      className="l28-2"
+                      style={{ backgroundColor: "#FFE14F" }}
+                    ></div>
+                    <div
+                      className="l28-2"
+                      style={{ backgroundColor: "#FEFAEF" }}
+                    ></div>
+                  </div>
+                <div name="프로필 생성 제안" style={{width:'400px'}}>
                   <p id="" className="ll6-2">
                     프로필이 아직 없다면
                   </p>
@@ -333,7 +325,7 @@ function MainpageHost() {
                   -1
                 </button> */}
               </div>
-              <Div>
+              <div style={{width:"400px",height:'100px'}}>
                 <button className="l10-2">
                   <img
                     onClick={handleStickerPage}
@@ -347,7 +339,8 @@ function MainpageHost() {
                 <button className="l10-2" onClick={handleDownload}>
                   <img src={download} alt="download" />
                 </button>
-              </Div>
+                
+              </div>
 
               {/* <div style={{ float: "left" }}>
                 <button className="l10-2" onClick={handleLinkDownload}>
@@ -415,9 +408,6 @@ function MainpageHost() {
                   <img src={close}></img>
                 </button>
                 <div>
-                  <div className="l25-2"></div>
-                  <div className="l25-2"></div>
-                  <div className="l25-2"></div>
                   <button className="l24-2">포스터 정보 수정</button>
                   <button className="l24-2">스티커 수정</button>
                   <button className="l24-2">상태메시지 수정</button>
