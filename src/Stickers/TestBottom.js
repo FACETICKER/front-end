@@ -90,7 +90,7 @@ export function TestBottom() {
 
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
   useEffect(() => {
-    fetch("http://localhost:3021/user/1")
+    fetch("http://localhost:3010/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
@@ -119,7 +119,7 @@ export function TestBottom() {
 
   const handleFetchImageAndImageClick = async (event) => {
     try {
-      const response = await fetch("http://localhost:3021/user/2");
+      const response = await fetch("http://localhost:3010/user/2");
       const data = await response.json();
       setImageUrl(data.url);
 
@@ -157,7 +157,7 @@ export function TestBottom() {
 
   useEffect(() => {
     if (isImageFixed) {
-      fetch("http://localhost:3021/user", {
+      fetch("http://localhost:3010/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -223,10 +223,10 @@ export function TestBottom() {
           )}
         </Bottom>
       </Bottoms>
-      <ZoomButtons>
+      {/*   <ZoomButtons>
         <ZoomButton onClick={zoomIn}>Zoom In</ZoomButton>
         <ZoomButton onClick={zoomOut}>Zoom Out</ZoomButton>
-      </ZoomButtons>
+      </ZoomButtons> */}
     </BottomWrap>
   );
 }

@@ -133,3 +133,8 @@
       format("truetype");
   font-display: swap;
 }
+
+@font-face {
+  font-family: "Cafe24Shiningstart";
+  src: url(./Cafe24Shiningstar-v2.0//webfont/Cafe24Shiningstar-v2.0.woff);
+}

@@ -73,7 +73,7 @@ const ModalStyle = {
   },
   content: {
     top: "50%",
-    left: "48%",
+    left: "50%",
     height: "300px",
     width: "250px",
     boxShadow: "2px 4px 10px 0px #00000030",

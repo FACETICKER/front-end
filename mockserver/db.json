@@ -6,7 +6,6 @@
       "author": "typicode"
     }
   ],
-
   "profile": {
     "input1": "1",
     "input2": "2",
@@ -20,31 +19,85 @@
     {
       "id": 1,
       "nickname": "수진",
-      "url": "https://i.ibb.co/GtLnztn/Group-174-1.png"
+      "url": "https://i.ibb.co/GtLnztn/Group-174-1.png",
+      "letter": "오랜만이네요~ㅎㅎ 들렀다 갑니다~ 제 메인페이지도 방문해주세요!"
     },
     {
       "id": 2,
       "imgposition": {
-        "x": 128,
-        "y": 78
+        "XPer": "57.39",
+        "YPer": "35.30"
       },
       "url": "https://i.ibb.co/3Rcv3F9/Group-154-6-1.png"
     },
     {
       "id": 3,
       "imgposition": {
-        "x": 57,
-        "y": 136
+        "XPer": "47.39",
+        "YPer": "75.30"
       },
       "url": "https://i.ibb.co/G0dTPYr/sticker-41.png"
     },
     {
       "id": 4,
       "imgposition": {
-        "x": 500,
-        "y": 330
+        "XPer": "12.39",
+        "YPer": "61.30"
       },
       "url": "https://i.ibb.co/T1t1YCr/sticker-43.png"
+    },
+    {
+      "imgposition": {
+        "XPer": "20.56",
+        "YPer": "60.74"
+      },
+      "id": 5
+    },
+    {
+      "imgposition": null,
+      "id": 6
+    },
+    {
+      "imgposition": null,
+      "id": 7
+    },
+    {
+      "imgposition": null,
+      "id": 8
+    },
+    {
+      "imgposition": null,
+      "id": 9
+    },
+    {
+      "imgposition": null,
+      "id": 10
+    },
+    {
+      "imgposition": null,
+      "id": 11
+    },
+    {
+      "imgposition": {
+        "XPer": "24.51",
+        "YPer": "44.78"
+      },
+      "id": 12
+    },
+    {
+      "imgposition": null,
+      "id": 13
+    },
+    {
+      "imgposition": null,
+      "id": 14
+    },
+    {
+      "imgposition": {
+        "XPer": "58.59",
+        "YPer": "52.56"
+      },
+      "id": 15
     }
   ]
 }
