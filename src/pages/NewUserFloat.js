@@ -6,11 +6,9 @@ import ReactDOM from "react-dom";
 import Picker from "react-mobile-picker-scroll";
 import mini1 from "../img/NewUserFloat_img/mini1.png";
 import mini2 from "../img/NewUserFloat_img/mini2.png";
-import { useNavigate } from "react-router-dom";
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
 
-function NewUserFloat() {
-  const navigate = useNavigate();
+function NewUserFlow() {
   const BackgroundWrap = styled.div`
     background: #fefaef;
   `;
@@ -22,19 +20,11 @@ function NewUserFloat() {
     flex-direction: column;
     background: #fefaef;
     position: relative;
-    left: 40px;
+    left: 100px;
   `;
-  const P = styled.div`
-    color: #191919;
-    text-align: center;
-    font-family: Pretendard;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 20px; /* 111.111% */
-  `;
+
   const handleButtonClick = () => {
-    navigate("/initial");
+    window.location.href = "http://localhost:3000/initial";
   };
 
   return (
@@ -62,7 +52,7 @@ function NewUserFloat() {
         </div>
         <div>
           <button className="l5-4" onClick={handleButtonClick}>
-            <P>시작하기</P>
+            <p>시작하기</p>
           </button>
         </div>
       </Background>
@@ -70,4 +60,4 @@ function NewUserFloat() {
   );
 }
 
-export default NewUserFloat;
+export default NewUserFlow;
