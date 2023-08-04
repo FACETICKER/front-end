@@ -31,7 +31,7 @@
   line-height: 36px; /* 180% */
   position: relative;
   top: 140px;
-  left: -10px;
+  left: -10%;
 }
 
 @font-face {
@@ -49,7 +49,7 @@
   line-height: 36px; /* 75% */
   position: relative;
   top: 140px;
-  left: -35px;
+  left: -50%;
 }
 
 .l6-2 {
@@ -63,8 +63,8 @@
   line-height: 22px; /* 68.75% */
   letter-spacing: -0.408px;
   position: relative;
-  top: 0px;
-  left:120px;
+  top: 0%;
+  left:100%;
 }
 
 .l7-2 {
@@ -76,7 +76,7 @@
   font-weight: 300;
   line-height: normal;
   position: relative;
-  left: 100px;
+  left: 23%;
 }
 
 .l8-2 {
@@ -88,7 +88,7 @@
   line-height: 36px; /* 51.429% */
   position: relative;
   top: -40px;
-  left: 20px;
+  left: 6%;
 }
 
 .l9-2 {
@@ -101,7 +101,7 @@
   line-height: normal;
   position: relative;
   top: -90px;
-  left:-50px;
+  left:-15%;
 }
 
 .l10-2 {
@@ -235,6 +235,7 @@
 .l19-2 {
   display: flex;
   width: 246px;
+  height: 52px;
   padding: 14px 46px;
   justify-content: center;
   align-items: center;
@@ -243,8 +244,8 @@
   border: 2px solid var(--unnamed, #12151c);
   background: var(--unnamed, #f26b79);
   position: relative;
-  top:30px;
-  left:20px
+  top:100px;
+  left:8%;
 }
 
 .l20-2 {
@@ -272,7 +273,7 @@
   line-height: 20px; /* 142.857% */
   position: relative;
   top:20px;
-  left:40px;
+  left:13%;
 }
 
 .l22-2 {
@@ -281,7 +282,7 @@
   border-radius: 50%;
   border: 2px solid #f26b79;
   position: relative;
-  left: 20px;
+  left: 10%;
 }
 
 .l23-2 {

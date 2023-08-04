@@ -10,7 +10,7 @@ import mini2 from "../img/NewUserFloat_img/mini2.png";
 
 
 
-function NewUserFloat() {
+function NewUserFlow() {
     const BackgroundWrap = styled.div`
     background: #FEFAEF;
     `;
@@ -61,7 +61,7 @@ function NewUserFloat() {
     );
   }
   
-export default NewUserFloat;
+export default NewUserFlow;
   
 
 
