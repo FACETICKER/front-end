@@ -152,7 +152,7 @@ function MainpageHost() {
   return (
     <div className="BackgroundWarp">
       <div className="Background">
-        <div className="App" style={{ width: "400px", height: "700px" }}>
+        <div className="App" style={{ width: "400px", height: "700px", position:'relative', left:'20%'}}>
           <header
             style={{
               float: "down",
