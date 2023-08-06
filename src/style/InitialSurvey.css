@@ -46,7 +46,7 @@
   height: 70px;
   flex-shrink: 0;
   border-radius: 10px;
-  background: #f4f3f9;
+  background-color: #f4f3f9;
   box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   background: #f4f3f9;
@@ -67,10 +67,12 @@
   height: 80px;
   border-radius: 20px;
   border: 2px solid var(--unnamed, #ff7427);
-  background: #fffef8;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: scroll;
+
   -ms-overflow-style: none; /* IE 및 Edge */
   scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
@@ -79,10 +81,16 @@
   }
 }
 .l8-1 {
-  width: 61px;
-  height: 70px;
+  width: 20%;
+  height: 100%;
   flex-shrink: 0;
   padding: 18px;
+  background-color: white;
+  background-color: transparent;
+  border: none;
+  border-radius: 100px;
+  border: 1px solid var(--unnamed, #d9d9d9);
+  margin: 0 10px 0 0;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -95,7 +103,7 @@ input::-webkit-inner-spin-button {
   justify-content: center;
   align-items: flex-start;
   gap: 38px;
-  border-radius: 100px;
+  border-radius: 0px;
   border: 1px solid var(--unnamed, #d9d9d9);
   padding: 10px 10px;
   justify-content: center;
@@ -190,7 +198,7 @@ input::-webkit-inner-spin-button {
 
 .l16-1 {
   border: 1px;
-  height: 450px;
+  height: 550px;
   overflow: scroll;
   -ms-overflow-style: none; /* IE 및 Edge */
   scrollbar-width: none; /* Firefox */

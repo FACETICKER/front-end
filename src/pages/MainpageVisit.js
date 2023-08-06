@@ -66,8 +66,8 @@ function MainpageVisit() {
   return (
     <div className="BackgroundWarp">
       <div className="Background">
-        <div className="App">
-          <header style={{ position: "relative", left: "-10px" }}>
+        <div className="App" style={{position:'relative', left:'0%'}}>
+          <header style={{ position: "relative", left:'17%'}}>
             <button
               onClick={toggleModal2}
               style={{ border: "none", backgroundColor: "transparent" }}
@@ -86,7 +86,7 @@ function MainpageVisit() {
           </header>
           <body id="PrtSc" className="l2">
             <div
-              style={{ position: "relative", left: "5px", top: "150px" }}
+              style={{ position: "relative", left: "0%", top: "35%" }}
               name="사진"
             >
               <img src={Vector} alt="Vector" />
@@ -119,14 +119,15 @@ function MainpageVisit() {
                   </p>
                 </div>
               </div>
-              <div style={{ position: "relative" }}>
+              <div style={{ position: "absolute", top:'100%', width:'338px',height:'400px'}}>
                 <div name="사자성어">
                   <div
                     name="threeboll"
                     style={{
-                      position: "relative",
-                      left: "-100px",
-                      top: "150px",
+                      width:'100px',
+                      position: "absolute",
+                      left: "0%",
+                      top: "70%",
                     }}
                   >
                     <div
@@ -157,7 +158,7 @@ function MainpageVisit() {
                   </p>
                 </div>
               </div>
-              <div>
+              <div style={{height:'50px'}}>
                 <button className="l10">
                   <img src={recordpage} alt="recordpage" />
                 </button>

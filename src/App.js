@@ -54,9 +54,9 @@ function App() {
           {/*스티커 호스트 */}
           <Route path="clicksticker" element={<ClickSticker />} />
           {/*스티커 호스트 */}
-          {/* <Route path="/newuserflow" element={<NewUserFlow />} /> */}
+          {<Route path="/newuserflow" element={<NewUserFlow />} />}
           {/*신규 가입자 플로우 */}
-          <Route path="/oauth" element={<NewUserFlow />} />
+          <Route path="/oauth" element={<Redirect />} />
           {/*kakao Redirect 화면 */}
         </Routes>
       </BrowserRouter>

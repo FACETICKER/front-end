@@ -9,6 +9,8 @@
   flex-shrink: 0;
   border-radius: 20px;
   background: #ffd25d;
+  position: relative;
+  left:3%;
 }
 .l3-2 {
   color: var(--unnamed, #f26b79);
@@ -22,6 +24,7 @@
 }
 
 .l4-2 {
+  width: 400px;
   transform: rotate(-90deg);
   color: #3f3f3f;
   font-family: JHaebaragi;
@@ -29,9 +32,9 @@
   font-style: normal;
   font-weight: 700;
   line-height: 36px; /* 180% */
-  position: relative;
-  top: 140px;
-  left: -10%;
+  position: absolute;
+  top: 70%;
+  left: -53%;
 }
 
 @font-face {
@@ -47,12 +50,13 @@
   font-style: normal;
   font-weight: 400;
   line-height: 36px; /* 75% */
-  position: relative;
-  top: 140px;
-  left: -50%;
+  position: absolute;
+  top: 70%;
+  left: 10%;
 }
 
 .l6-2 {
+  width: 400px;
   transform: rotate(90deg);
   color: #191919;
   text-align: center;
@@ -62,9 +66,9 @@
   font-weight: 700;
   line-height: 22px; /* 68.75% */
   letter-spacing: -0.408px;
-  position: relative;
-  top: 0%;
-  left: 100%;
+  position: absolute;
+  top: 40%;
+  left: 35%;
 }
 
 .l7-2 {
@@ -86,9 +90,9 @@
   font-style: normal;
   font-weight: 900;
   line-height: 36px; /* 51.429% */
-  position: relative;
-  top: -40px;
-  left: 6%;
+  position: absolute;
+  top: -30px;
+  left: 16%;
 }
 
 .l9-2 {
@@ -99,9 +103,9 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  position: relative;
-  top: -90px;
-  left: -15%;
+  position: absolute;
+  top: 60%;
+  left: 20%;
 }
 
 .l10-2 {
@@ -112,6 +116,10 @@
   background-color: #12151c;
   filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
   border-radius: 50%;
+  position: relative;
+  margin: 0 10px 0 0;
+  top:20%;
+  left:10%;
 }
 
 .FixedFooter {
@@ -187,8 +195,9 @@
   font-style: normal;
   font-weight: 700;
   line-height: 22px; /* 55% */
-  position: relative;
-  top: 10px;
+  position: absolute;
+  top: -7%;
+  left: 10%;
 }
 
 .l14-2 {
@@ -205,6 +214,7 @@
 }
 
 .l16-2 {
+  width:400px;
   color: #191919;
   text-align: center;
   font-family: Pretendard;
@@ -212,6 +222,8 @@
   font-style: normal;
   font-weight: 700;
   line-height: 36px; /* 150% */
+  position: relative;
+  left: 0%;
 }
 
 .l17-2 {
@@ -281,7 +293,8 @@
   height: 63.218px;
   border-radius: 50%;
   border: 2px solid #f26b79;
-  position: relative;
+  position: absolute;
+  top:15%;
   left: 10%;
 }
 
@@ -303,10 +316,9 @@
   gap: 10px;
   border-radius: 10px;
   border: 1px solid var(--unnamed, #12151c);
+  border-width: 1px 1px 4px 1px;
   background: #f1f1f5;
   margin: 16px;
-  position: relative;
-  top: -125px;
 }
 
 .BackgroundWrap {
@@ -321,17 +333,7 @@
   flex-direction: column;
 }
 
-.l25-2 {
-  width: 246px;
-  height: 40px;
-  border-radius: 10px;
-  gap: 10px;
-  border: 1px solid var(--unnamed, #12151c);
-  background: var(--unnamed, rgba(25, 25, 25, 0.8));
-  position: relative;
-  margin: 16px 0 0 16px;
-  top: 50px;
-}
+
 
 .l26-2 {
   border-radius: 50%;
@@ -360,4 +362,82 @@
   border: 1px solid #767676;
   float: left;
   margin: 6px;
+}
+
+.HeaderWarp{
+  height: 10%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.Header{
+  display: flex;
+  height: 30px;
+  width: 100%;
+  margin: auto;
+  flex-direction: row;
+  justify-content: space-around;
+  position: relative;
+  top:15px;
+  left:-6%;
+}
+.HeaderIcon{
+  width: 15%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.LogoWrap{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 70%;
+}
+.Logo{
+  margin: auto;
+  font-family: "LotteriaChab";
+  color: #ff6d00;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 83.333% */
+}
+.Style{
+  width: "50%";
+  margin: "auto";
+}
+.ModalContent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 300px;
+  width: 250px;
+}
+.Close {
+  position: absolute;
+  width: 10%;
+  right: 5%;
+  top: 0%;
+}
+.EidtImg {
+  width: 20%;
+  display: flex;
+}
+.EidtButtons{
+  width: 90%;
+  height:70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+}
+.EditButton{
+  display: flex;
+  width: 100%;
+  margin-bottom: 3%;
 }

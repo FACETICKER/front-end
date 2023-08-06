@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./Accessory.module.css";
-import Accessory1 from "../image/accessory_image/accessory1.png";
-import Accessory2 from "../image/accessory_image/accessory2.png";
-import Accessory3 from "../image/accessory_image/accessory3.png";
-import Accessory4 from "../image/accessory_image/accessory4.png";
-import Accessory5 from "../image/accessory_image/accessory5.png";
-import Accessory6 from "../image/accessory_image/accessory6.png";
+import Accessory1 from "../image/accessory_image/accessory1-1.png";
+import Accessory2 from "../image/accessory_image/accessory2-1.png";
+import Accessory3 from "../image/accessory_image/accessory3-1.png";
+import Accessory4 from "../image/accessory_image/accessory4-1.png";
+import Accessory5 from "../image/accessory_image/accessory5-1.png";
+import Accessory6 from "../image/accessory_image/accessory6-1.png";
 
 const Accessory = () => {
   const accessory = useSelector((state) => {
@@ -21,6 +21,12 @@ const Accessory = () => {
       {/* 
             입1
         */}
+      
+      <img
+        src={Accessory1}
+        className={`${styles.accessory12} 
+        ${face === 0 && accessory === 1 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Accessory1}
@@ -59,6 +65,12 @@ const Accessory = () => {
 
       <img
         src={Accessory2}
+        className={`${styles.accessory22} 
+        ${face === 0 && accessory === 2 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Accessory2}
         className={`${styles.accessory21} 
         ${face === 1 && accessory === 2 ? "" : styles.hidden}`}
       ></img>
@@ -91,6 +103,12 @@ const Accessory = () => {
       {/* 
             입3
         */}
+
+      <img
+        src={Accessory3}
+        className={`${styles.accessory32} 
+        ${face === 0 && accessory === 3 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Accessory3}
@@ -129,6 +147,12 @@ const Accessory = () => {
 
       <img
         src={Accessory4}
+        className={`${styles.accessory42} 
+        ${face === 0 && accessory === 4 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Accessory4}
         className={`${styles.accessory41} 
         ${face === 1 && accessory === 4 ? "" : styles.hidden}`}
       ></img>
@@ -164,6 +188,12 @@ const Accessory = () => {
 
       <img
         src={Accessory5}
+        className={`${styles.accessory52} 
+        ${face === 0 && accessory === 5 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Accessory5}
         className={`${styles.accessory51} 
         ${face === 1 && accessory === 5 ? "" : styles.hidden}`}
       ></img>
@@ -196,6 +226,12 @@ const Accessory = () => {
       {/* 
             입6
         */}
+
+      <img
+        src={Accessory6}
+        className={`${styles.accessory62} 
+        ${face === 0 && accessory === 6 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Accessory6}

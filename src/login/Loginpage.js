@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Loginpage.css";
+import "./Loginpage_test.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -72,6 +72,7 @@ const Loginpage = () => {
         console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);
       }); */
   };
+  
   // 구글 로그인 처리 로직 작성
   // 로그인 버튼을 클릭하면 카카오 로그인 API를 호출하거나, 다른 로직을 수행합니다.
 

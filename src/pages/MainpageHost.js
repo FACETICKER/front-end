@@ -2,6 +2,7 @@ import message from "../img/MainpageHost_img/ri_message-3-line (1).svg";
 import share from "../img/MainpageHost_img/share.svg";
 import download from "../img/MainpageHost_img/download.svg";
 import Vector from "../img/MainpageHost_img/Group 157 1.png";
+import axios from "axios";
 import threeboll from "../img/MainpageHost_img/Group 77.svg";
 import styled from "styled-components";
 import setting from "../img/MainpageHost_img/gear-settings.svg";
@@ -33,6 +34,7 @@ function MainpageHost() {
   const [Name, setName] = useState("");
   const [Number, setNumber] = useState("");
   const [Day, setDay] = useState("");
+  const [uploaded, setUploaded] = useState(false);
 
   const toggleFooter = () => {
     setShowFooter(!showFooter);
@@ -72,6 +74,29 @@ function MainpageHost() {
         link.download = "capture.png";
         link.click();
         toggleModal2();
+      });
+    }
+  };
+  const handleUpload = () => {
+    const targetElement = document.getElementById("PrtSc"); // 캡처할 대상 div의 id
+    if (targetElement) {
+      html2canvas(targetElement).then((canvas) => {
+        const imageData = canvas.toDataURL("../img");
+        const formData = new FormData();
+        formData.append('image', imageData);
+
+        axios.post('../img', formData)
+          .then((response) => {
+            if (response.data.success) {
+              console.log('Image uploaded successfully.');
+              setUploaded(true);
+            } else {
+              console.error('Image upload failed.');
+            }
+          })
+          .catch((error) => {
+            console.error('Error uploading the image:', error);
+          });
       });
     }
   };
@@ -152,75 +177,35 @@ function MainpageHost() {
   return (
     <div className="BackgroundWarp">
       <div className="Background">
-        <div className="App" style={{ width: "400px", height: "700px" }}>
-          <header
-            style={{
-              float: "down",
-              height: "70px",
-              position: "relative",
-              top: "0px",
-            }}
-          >
-            <div style={{ float: "left", position: "relative", top: "30px" }}>
-              <button
-                style={{ border: "none", backgroundColor: "transparent" }}
-                onClick={toggleModal1}
-              >
-                <img src={setting} className="l1-2" alt="setting" />
-              </button>
-            </div>
-            <div style={{ float: "left" }}>
-              <button
-                style={{ border: "none", backgroundColor: "transparent" }}
-              >
-                <p className="l12-2">FACETICKER</p>
-              </button>
-            </div>
-            <div style={{ float: "left", position: "relative", top: "30px" }}>
-              <button
-                style={{ border: "none", backgroundColor: "transparent" }}
-              >
-                <img src={message} className="l1-2" alt="message" />
-              </button>
-              <div
-                id="countMessageDiv"
-                className="l14-2"
-                style={{ display: "none", top: "-50px", left: "20px" }}
-              >
-                <p id="countMessage" className="l15-2">
-                  {chattingNumber || "0"}
-                </p>
-              </div>
-              {/*   <button
-                style={{
-                  width: "20px",
-                  height: "20px",
-                  position: "relative",
-                  left: "330px",
-                }}
-                onClick={handlePlusMessage}
-              >
-                +1
-              </button>
-              <button
-                style={{
-                  width: "20px",
-                  height: "20px",
-                  position: "relative",
-                  left: "330px",
-                }}
-                onClick={handleMinusMessage}
-              >
-                -1
-              </button> */}
-            </div>
-          </header>
+        <div className="App" style={{ width: "400px", height: "700px", position:'relative', left:'20%'}}>
+        <div className='HeaderWrap'>
+        <div className='Header'>
+        <div className="HeaderIcon" >
+          <img
+            onClick={toggleModal1}
+            src={setting}
+            alt="setting-icon"
+            style={{width:'28px',height:'28px'}}
+          />
+        </div>
+        <div className="LogoWrap">
+          <div className="Logo">FACETICKER</div>
+        </div>
 
-          <div style={{ position: "relative", top: "-50px" }}>
-            <div id="PrtSc" style={{ width: "338px" }}>
-              <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
+        <div className="HeaderIcon">
+          <img
+            src={message}
+            alt="ChatIcon"
+            style={{width:'28px',height:'28px'}}
+          />
+        </div>
+      </div>
+      </div>
+          <div style={{ position: "relative", top: "5%", width:'366px',height:'671px'}}>
+            <div id="PrtSc" style={{ width: "338px", height:'580px'}}>
+              <div name="inyellow" className="l2-2" >
                 <div
-                  style={{ position: "absolute", left: "15%", top: "18%" }}
+                  style={{ position: "absolute", left: "18%", top: "35%" }}
                   name="사진"
                 >
                   <img src={Vector} alt="Vector" />
@@ -235,7 +220,7 @@ function MainpageHost() {
                     </p>
                   </div>
                 </div>
-                <div style={{ width: "390px", height: "100px" }}>
+                <div style={{ width: "390px", height: "400px" }}>
                   <div style={{ float: "left" }} name="이름">
                     <p id="" className="l4-2">
                       {Name || "수민님"}
@@ -259,6 +244,7 @@ function MainpageHost() {
                   position: "relative",
                   width: "338px",
                   height: "140px",
+                  left:'3%'
                 }}
               >
                 <div name="사자성어">
@@ -298,12 +284,24 @@ function MainpageHost() {
                   width: "338px",
                   height: "140px",
                   display: "none",
+                  left:'3%'
                 }}
               >
-                <div name="threeboll">
-                  <div className="l28-2"></div>
-                </div>
-                <div name="프로필 생성 제안">
+                <div>
+                    <div
+                      className="l28-2"
+                      style={{ backgroundColor: "#FF6D00" }}
+                    ></div>
+                    <div
+                      className="l28-2"
+                      style={{ backgroundColor: "#FFE14F" }}
+                    ></div>
+                    <div
+                      className="l28-2"
+                      style={{ backgroundColor: "#FEFAEF" }}
+                    ></div>
+                  </div>
+                <div name="프로필 생성 제안" style={{width:'400px'}}>
                   <p id="" className="ll6-2">
                     프로필이 아직 없다면
                   </p>
@@ -352,7 +350,7 @@ function MainpageHost() {
                   -1
                 </button> */}
               </div>
-              <Div>
+              <div style={{width:"400px",height:'100px'}}>
                 <button className="l10-2">
                   <img
                     onClick={handleStickerPage}
@@ -366,7 +364,8 @@ function MainpageHost() {
                 <button className="l10-2" onClick={handleDownload}>
                   <img src={download} alt="download" />
                 </button>
-              </Div>
+                
+              </div>
 
               {/* <div style={{ float: "left" }}>
                 <button className="l10-2" onClick={handleLinkDownload}>
@@ -434,9 +433,6 @@ function MainpageHost() {
                   <img src={close}></img>
                 </button>
                 <div>
-                  <div className="l25-2"></div>
-                  <div className="l25-2"></div>
-                  <div className="l25-2"></div>
                   <button className="l24-2">포스터 정보 수정</button>
                   <button className="l24-2">스티커 수정</button>
                   <button className="l24-2">상태메시지 수정</button>
