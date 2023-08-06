@@ -164,12 +164,17 @@ export function StatusMessage() {
     setStatusValue(event.target.value);
   };
 
-  //하고 싶은 말 입력하고 체크 아이콘 누르면 서버에 전송됨
+  const headers = {
+    "x-access-token":
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkxMjQ4ODY2LCJleHAiOjE2OTEyNTI0NjZ9.-3O7LBYGWPaQO-nvBa6jywLkjkXmFSJhJ-UaXUvysWA",
+    "Content-Type": "application/json",
+  };
+
   const handleStatusSubmit = () => {
-    fetch("http://localhost:3021/user/1", {
+    fetch("https://faceticker.site/app/3/sticker/message?type=host", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status: statusValue }),
+      headers: headers,
+      body: JSON.stringify({ message: statusValue }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -178,12 +183,12 @@ export function StatusMessage() {
       .catch((error) => {
         console.error("실패", error);
       });
-    navigate("/mainhost"); //호스트 메인페이지로 이동
+    navigate("/mainhost"); //호스트 메인페이지로 이동 */
   };
 
   //서버에서 값 받아오기
   useEffect(() => {
-    fetch("http://localhost:3021/user/1")
+    fetch("https://faceticker.site/app/3/sticker/message?type=host")
       .then((response) => response.json())
       .then((data) => {
         if (data.status) {

@@ -206,7 +206,7 @@ export function StickerName() {
 
   //host 이미지 url 받아오기
   useEffect(() => {
-    fetch("http://localhost:3021/user/1")
+    fetch("http://localhost:3010/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
@@ -224,12 +224,18 @@ export function StickerName() {
     setNicknameValue(event.target.value);
   };
 
+  const headers = {
+    "x-access-token":
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkxMjQzNDY2LCJleHAiOjE2OTEyNDcwNjZ9.Wm3t2Fcwy2Q-lt_iIjTzqkFUTBUg_be3KQy2whDpl8U",
+    "Content-Type": "application/json",
+  };
+
   //닉네임 입력하고 다음 아이콘 누르면 서버에 전송됨
   const handleNicknameSubmit = () => {
-    fetch("https://faceticker.site/app/:1/sticker/name?type=visitor", {
+    fetch("https://faceticker.site/app/3/sticker/message?type=visitor", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nicknameValue }),
+      headers: headers,
+      body: JSON.stringify({ nickname: nicknameValue, message: "hi" }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -243,12 +249,12 @@ export function StickerName() {
       .catch((error) => {
         console.error("실패", error);
       });
-    dispatch(NicknamePageSlice.actions.letter()); //letter로 페이지 전환
+    /* dispatch(NicknamePageSlice.actions.letter()); //letter로 페이지 전환 */
   };
 
-  //서버에서 닉네임 값 받아오기
+  /*   //서버에서 닉네임 값 받아오기
   useEffect(() => {
-    fetch("https://faceticker.site/app/:1/sticker/name?type=visitor")
+    fetch("https://faceticker.site/app/3/sticker/message?type=visitor")
       .then((response) => response.json())
       .then((data) => {
         if (data) {
@@ -258,7 +264,7 @@ export function StickerName() {
       .catch((error) => {
         console.error("오류 발생", error);
       });
-  }, []);
+  }, []); */
 
   return (
     <BackgroundWrap>

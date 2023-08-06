@@ -5,11 +5,7 @@
   border-radius: 100px;
   background: #d9d9d9;
   position: relative;
-<<<<<<< HEAD
-  left: 25px;
-=======
-  left:6%;
->>>>>>> 2edcf33fc21d31f6cf29755a0a8be31d3f100859
+  left: 6%;
 }
 .l2-1 {
   height: 6px;
@@ -21,11 +17,7 @@
   top: -6px;
   white-space: pre-line;
   position: relative;
-<<<<<<< HEAD
-  left: 25px;
-=======
-  left:6%;
->>>>>>> 2edcf33fc21d31f6cf29755a0a8be31d3f100859
+  left: 6%;
 }
 .l3-1 {
   width: 266px;
@@ -37,11 +29,7 @@
   font-weight: 700;
   line-height: 36px;
   position: relative;
-<<<<<<< HEAD
-  left: 25px;
-=======
-  left:15%;
->>>>>>> 2edcf33fc21d31f6cf29755a0a8be31d3f100859
+  left: 15%;
 }
 .l4-1 {
   width: 300px;
@@ -58,7 +46,7 @@
   height: 70px;
   flex-shrink: 0;
   border-radius: 10px;
-  background-color: #f4f3f9;
+  background: #f4f3f9;
   box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   background: #f4f3f9;
@@ -71,25 +59,18 @@
   background: #ffe14f;
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
   position: relative;
-<<<<<<< HEAD
-  top: -62px;
-  left: -10px;
-=======
-  top: -60px ;
-  left:-2%;
->>>>>>> 2edcf33fc21d31f6cf29755a0a8be31d3f100859
+  top: -60px;
+  left: -2%;
 }
 .l7-1 {
   width: 335px;
   height: 80px;
   border-radius: 20px;
   border: 2px solid var(--unnamed, #ff7427);
-  background-color: #ffffff;
+  background: #fffef8;
   display: flex;
   align-items: center;
-  justify-content: center;
   overflow: scroll;
-
   -ms-overflow-style: none; /* IE 및 Edge */
   scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
@@ -98,15 +79,10 @@
   }
 }
 .l8-1 {
-  width: 20%;
-  height: 100%;
+  width: 61px;
+  height: 70px;
   flex-shrink: 0;
   padding: 18px;
-  background-color: white;
-  background-color: transparent;
-  border: none;
-  border-radius: 100px;
-  border: 1px solid var(--unnamed, #d9d9d9);
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -119,7 +95,7 @@ input::-webkit-inner-spin-button {
   justify-content: center;
   align-items: flex-start;
   gap: 38px;
-  border-radius: 0px;
+  border-radius: 100px;
   border: 1px solid var(--unnamed, #d9d9d9);
   padding: 10px 10px;
   justify-content: center;
@@ -208,18 +184,13 @@ input::-webkit-inner-spin-button {
 .l15-1 {
   display: none;
   position: relative;
-<<<<<<< HEAD
-  top: -25px;
-  left: 300px;
-=======
-  top:-40%;
+  top: -40%;
   left: 90%;
->>>>>>> 2edcf33fc21d31f6cf29755a0a8be31d3f100859
 }
 
 .l16-1 {
   border: 1px;
-  height: 550px;
+  height: 450px;
   overflow: scroll;
   -ms-overflow-style: none; /* IE 및 Edge */
   scrollbar-width: none; /* Firefox */
@@ -228,11 +199,7 @@ input::-webkit-inner-spin-button {
     display: none;
   }
   position: relative;
-<<<<<<< HEAD
-  left: 25px;
-=======
-  left:7%;
->>>>>>> 2edcf33fc21d31f6cf29755a0a8be31d3f100859
+  left: 7%;
 }
 
 .l17-1 {
