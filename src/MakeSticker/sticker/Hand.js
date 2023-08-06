@@ -24,6 +24,12 @@ import Hand45 from "../image/hand_image/4hand5.png";
 import Hand55 from "../image/hand_image/5hand5.png";
 import Hand65 from "../image/hand_image/6hand5.png";
 
+import Hand1_white from '../image/hand_image/hand1_white.png';
+import Hand2_white from '../image/hand_image/hand2_white.png';
+import Hand3_white from '../image/hand_image/hand3_white.png';
+import Hand4_white from '../image/hand_image/hand4_white.png';
+import Hand5_white from '../image/hand_image/hand5_white.png'; // 배경 흰색 들어간 이미지들
+
 const Hand = () => {
   const hand = useSelector((state) => {
     return state.sticker.hand;
@@ -37,6 +43,12 @@ const Hand = () => {
       {/* 
             팔1
         */}
+
+      <img
+        src={Hand1_white}
+        className={`${styles.hand21} 
+        ${face === 0 && hand === 1 ? "" : styles.hidden}`} // face == 2일 때랑 0일 때랑 위치는 같음
+      ></img>
 
       <img
         src={Hand1}
@@ -69,8 +81,15 @@ const Hand = () => {
         ${face === 6 && hand === 1 ? "" : styles.hidden}`}
       ></img>
       {/* 
-             팔2
+            팔2
         */}
+      
+      <img
+        src={Hand2_white}
+        className={`${styles.hand22} 
+        ${face === 0 && hand === 2 ? "" : styles.hidden}`}
+      ></img>
+      
       <img
         src={Hand2}
         className={`${styles.hand12} 
@@ -104,6 +123,13 @@ const Hand = () => {
       {/* 
         팔3은 Face값에 따라 달라짐 
         */}
+      
+      <img
+        src={Hand3_white}
+        className={`${styles.hand23} 
+        ${face === 0 && hand === 3 ? "" : styles.hidden}`}
+      ></img>
+
       <img
         src={Hand13}
         className={`${styles.hand13} 
@@ -135,8 +161,15 @@ const Hand = () => {
         ${face === 6 && hand === 3 ? "" : styles.hidden}`}
       ></img>
       {/* 
-         팔4은 Face값에 따라 달라짐
+        팔4은 Face값에 따라 달라짐
       */}
+
+      <img
+        src={Hand4_white}
+        className={`${styles.hand24} 
+        ${face === 0 && hand === 4 ? "" : styles.hidden}`}
+      ></img>
+
       <img
         src={Hand14}
         className={`${styles.hand14} 
@@ -168,8 +201,15 @@ const Hand = () => {
         ${face === 6 && hand === 4 ? "" : styles.hidden}`}
       ></img>
       {/* 
-         팔5은 Face값에 따라 달라짐
+        팔5은 Face값에 따라 달라짐
       */}
+
+      <img
+        src={Hand5_white}
+        className={`${styles.hand25} 
+        ${face === 0 && hand === 5 ? "" : styles.hidden}`}
+      ></img>
+
       <img
         src={Hand15}
         className={`${styles.hand15} 
@@ -203,6 +243,13 @@ const Hand = () => {
       {/* 
          팔6
       */}
+
+      <img
+        src={Hand6}
+        className={`${styles.hand26} 
+        ${face === 0 && hand === 6 ? "" : styles.hidden}`}
+      ></img>
+
       <img
         src={Hand6}
         className={`${styles.hand16} 

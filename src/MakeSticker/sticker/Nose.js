@@ -24,6 +24,12 @@ const Nose = () => {
 
       <img
         src={Nose1}
+        className={`${styles.nose12} 
+        ${face === 0 && nose === 1 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Nose1}
         className={`${styles.nose11} 
         ${face === 1 && nose === 1 ? "" : styles.hidden}`}
       ></img>
@@ -56,6 +62,12 @@ const Nose = () => {
       {/* 
             코2
         */}
+
+      <img
+        src={Nose2}
+        className={`${styles.nose22} 
+        ${face === 0 && nose === 2 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Nose2}
@@ -94,6 +106,12 @@ const Nose = () => {
 
       <img
         src={Nose3}
+        className={`${styles.nose32} 
+        ${face === 0 && nose === 3 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Nose3}
         className={`${styles.nose31} 
         ${face === 1 && nose === 3 ? "" : styles.hidden}`}
       ></img>
@@ -126,6 +144,12 @@ const Nose = () => {
       {/* 
             코4
         */}
+
+      <img
+        src={Nose4}
+        className={`${styles.nose42} 
+        ${face === 0 && nose === 4 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Nose4}
@@ -164,6 +188,12 @@ const Nose = () => {
 
       <img
         src={Nose5}
+        className={`${styles.nose52} 
+        ${face === 0 && nose === 5 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Nose5}
         className={`${styles.nose51} 
         ${face === 1 && nose === 5 ? "" : styles.hidden}`}
       ></img>
@@ -196,6 +226,12 @@ const Nose = () => {
       {/* 
             코6
         */}
+
+      <img
+        src={Nose6}
+        className={`${styles.nose62} 
+        ${face === 0 && nose === 6 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Nose6}

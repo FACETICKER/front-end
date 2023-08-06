@@ -24,6 +24,12 @@ const Mouth = () => {
 
       <img
         src={Mouth1}
+        className={`${styles.mouth12} 
+        ${face === 0 && mouth === 1 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Mouth1}
         className={`${styles.mouth11} 
         ${face === 1 && mouth === 1 ? "" : styles.hidden}`}
       ></img>
@@ -56,6 +62,12 @@ const Mouth = () => {
       {/* 
             입2
         */}
+
+      <img
+        src={Mouth2}
+        className={`${styles.mouth22} 
+        ${face === 0 && mouth === 2 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Mouth2}
@@ -94,6 +106,12 @@ const Mouth = () => {
 
       <img
         src={Mouth3}
+        className={`${styles.mouth32} 
+        ${face === 0 && mouth === 3 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Mouth3}
         className={`${styles.mouth31} 
         ${face === 1 && mouth === 3 ? "" : styles.hidden}`}
       ></img>
@@ -129,6 +147,12 @@ const Mouth = () => {
 
       <img
         src={Mouth4}
+        className={`${styles.mouth42} 
+        ${face === 0 && mouth === 4 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Mouth4}
         className={`${styles.mouth41} 
         ${face === 1 && mouth === 4 ? "" : styles.hidden}`}
       ></img>
@@ -161,6 +185,12 @@ const Mouth = () => {
       {/* 
             입5
         */}
+      
+      <img
+        src={Mouth5}
+        className={`${styles.mouth52} 
+        ${face === 0 && mouth === 5 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Mouth5}
@@ -196,6 +226,12 @@ const Mouth = () => {
       {/* 
             입6
         */}
+      
+      <img
+        src={Mouth6}
+        className={`${styles.mouth62} 
+        ${face === 0 && mouth === 6 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Mouth6}

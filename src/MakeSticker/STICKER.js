@@ -37,7 +37,7 @@ const STICKER = () => {
 
   return (
     <div className={styles.background}>
-      {/*  <button onClick={handleCaptureImg}>저장</button> */}
+      <button onClick={handleCaptureImg}>저장</button>
       <div ref={containerRef} className={styles.stickersWrap}>
         <Face />
         <Foot />
