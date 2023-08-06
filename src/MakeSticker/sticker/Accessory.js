@@ -21,6 +21,12 @@ const Accessory = () => {
       {/* 
             입1
         */}
+      
+      <img
+        src={Accessory1}
+        className={`${styles.accessory12} 
+        ${face === 0 && accessory === 1 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Accessory1}
@@ -59,6 +65,12 @@ const Accessory = () => {
 
       <img
         src={Accessory2}
+        className={`${styles.accessory22} 
+        ${face === 0 && accessory === 2 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Accessory2}
         className={`${styles.accessory21} 
         ${face === 1 && accessory === 2 ? "" : styles.hidden}`}
       ></img>
@@ -91,6 +103,12 @@ const Accessory = () => {
       {/* 
             입3
         */}
+
+      <img
+        src={Accessory3}
+        className={`${styles.accessory32} 
+        ${face === 0 && accessory === 3 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Accessory3}
@@ -129,6 +147,12 @@ const Accessory = () => {
 
       <img
         src={Accessory4}
+        className={`${styles.accessory42} 
+        ${face === 0 && accessory === 4 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Accessory4}
         className={`${styles.accessory41} 
         ${face === 1 && accessory === 4 ? "" : styles.hidden}`}
       ></img>
@@ -164,6 +188,12 @@ const Accessory = () => {
 
       <img
         src={Accessory5}
+        className={`${styles.accessory52} 
+        ${face === 0 && accessory === 5 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Accessory5}
         className={`${styles.accessory51} 
         ${face === 1 && accessory === 5 ? "" : styles.hidden}`}
       ></img>
@@ -196,6 +226,12 @@ const Accessory = () => {
       {/* 
             입6
         */}
+
+      <img
+        src={Accessory6}
+        className={`${styles.accessory62} 
+        ${face === 0 && accessory === 6 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Accessory6}

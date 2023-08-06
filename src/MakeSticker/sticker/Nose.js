@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./Nose.module.css";
-import Nose1 from "../image/nose_image/nose1.png";
-import Nose2 from "../image/nose_image/nose2.png";
-import Nose3 from "../image/nose_image/nose3.png";
-import Nose4 from "../image/nose_image/nose4.png";
-import Nose5 from "../image/nose_image/nose5.png";
-import Nose6 from "../image/nose_image/nose6.png";
+import Nose1 from "../image/nose_image/nose1-1.png";
+import Nose2 from "../image/nose_image/nose2-1.png";
+import Nose3 from "../image/nose_image/nose3-1.png";
+import Nose4 from "../image/nose_image/nose4-1.png";
+import Nose5 from "../image/nose_image/nose5-1.png";
+import Nose6 from "../image/nose_image/nose6-1.png";
 
 const Nose = () => {
   const nose = useSelector((state) => {
@@ -21,6 +21,12 @@ const Nose = () => {
       {/* 
             코1
         */}
+
+      <img
+        src={Nose1}
+        className={`${styles.nose12} 
+        ${face === 0 && nose === 1 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Nose1}
@@ -59,6 +65,12 @@ const Nose = () => {
 
       <img
         src={Nose2}
+        className={`${styles.nose22} 
+        ${face === 0 && nose === 2 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Nose2}
         className={`${styles.nose21} 
         ${face === 1 && nose === 2 ? "" : styles.hidden}`}
       ></img>
@@ -91,6 +103,12 @@ const Nose = () => {
       {/* 
             코3
         */}
+
+      <img
+        src={Nose3}
+        className={`${styles.nose32} 
+        ${face === 0 && nose === 3 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Nose3}
@@ -129,6 +147,12 @@ const Nose = () => {
 
       <img
         src={Nose4}
+        className={`${styles.nose42} 
+        ${face === 0 && nose === 4 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Nose4}
         className={`${styles.nose41} 
         ${face === 1 && nose === 4 ? "" : styles.hidden}`}
       ></img>
@@ -164,6 +188,12 @@ const Nose = () => {
 
       <img
         src={Nose5}
+        className={`${styles.nose52} 
+        ${face === 0 && nose === 5 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Nose5}
         className={`${styles.nose51} 
         ${face === 1 && nose === 5 ? "" : styles.hidden}`}
       ></img>
@@ -196,6 +226,12 @@ const Nose = () => {
       {/* 
             코6
         */}
+
+      <img
+        src={Nose6}
+        className={`${styles.nose62} 
+        ${face === 0 && nose === 6 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Nose6}

@@ -373,13 +373,14 @@
 
 .Header{
   display: flex;
-  height: 50%;
+  height: 30px;
   width: 100%;
   margin: auto;
   flex-direction: row;
   justify-content: space-around;
   position: relative;
-  left:-18px;
+  top:15px;
+  left:-6%;
 }
 .HeaderIcon{
   width: 15%;

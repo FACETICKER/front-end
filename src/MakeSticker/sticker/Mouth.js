@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./Mouth.module.css";
-import Mouth1 from "../image/mouth_image/mouth1.png";
-import Mouth2 from "../image/mouth_image/mouth2.png";
-import Mouth3 from "../image/mouth_image/mouth3.png";
-import Mouth4 from "../image/mouth_image/mouth4.png";
-import Mouth5 from "../image/mouth_image/mouth5.png";
-import Mouth6 from "../image/mouth_image/mouth6.png";
+import Mouth1 from "../image/mouth_image/mouth1-1.png";
+import Mouth2 from "../image/mouth_image/mouth2-1.png";
+import Mouth3 from "../image/mouth_image/mouth3-1.png";
+import Mouth4 from "../image/mouth_image/mouth4-1.png";
+import Mouth5 from "../image/mouth_image/mouth5-1.png";
+import Mouth6 from "../image/mouth_image/mouth6-1.png";
 
 const Mouth = () => {
   const mouth = useSelector((state) => {
@@ -21,6 +21,12 @@ const Mouth = () => {
       {/* 
             입1
         */}
+
+      <img
+        src={Mouth1}
+        className={`${styles.mouth12} 
+        ${face === 0 && mouth === 1 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Mouth1}
@@ -59,6 +65,12 @@ const Mouth = () => {
 
       <img
         src={Mouth2}
+        className={`${styles.mouth22} 
+        ${face === 0 && mouth === 2 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Mouth2}
         className={`${styles.mouth21} 
         ${face === 1 && mouth === 2 ? "" : styles.hidden}`}
       ></img>
@@ -91,6 +103,12 @@ const Mouth = () => {
       {/* 
             입3
         */}
+
+      <img
+        src={Mouth3}
+        className={`${styles.mouth32} 
+        ${face === 0 && mouth === 3 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Mouth3}
@@ -129,6 +147,12 @@ const Mouth = () => {
 
       <img
         src={Mouth4}
+        className={`${styles.mouth42} 
+        ${face === 0 && mouth === 4 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Mouth4}
         className={`${styles.mouth41} 
         ${face === 1 && mouth === 4 ? "" : styles.hidden}`}
       ></img>
@@ -161,6 +185,12 @@ const Mouth = () => {
       {/* 
             입5
         */}
+      
+      <img
+        src={Mouth5}
+        className={`${styles.mouth52} 
+        ${face === 0 && mouth === 5 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Mouth5}
@@ -196,6 +226,12 @@ const Mouth = () => {
       {/* 
             입6
         */}
+      
+      <img
+        src={Mouth6}
+        className={`${styles.mouth62} 
+        ${face === 0 && mouth === 6 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Mouth6}

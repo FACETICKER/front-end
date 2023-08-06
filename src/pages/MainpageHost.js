@@ -2,6 +2,7 @@ import message from "../img/MainpageHost_img/ri_message-3-line (1).svg";
 import share from "../img/MainpageHost_img/share.svg";
 import download from "../img/MainpageHost_img/download.svg";
 import Vector from "../img/MainpageHost_img/Group 157 1.png";
+import axios from "axios";
 import threeboll from "../img/MainpageHost_img/Group 77.svg";
 import styled from "styled-components";
 import setting from "../img/MainpageHost_img/gear-settings.svg";
@@ -33,6 +34,7 @@ function MainpageHost() {
   const [Name, setName] = useState("");
   const [Number, setNumber] = useState("");
   const [Day, setDay] = useState("");
+  const [uploaded, setUploaded] = useState(false);
 
   const toggleFooter = () => {
     setShowFooter(!showFooter);
@@ -72,6 +74,29 @@ function MainpageHost() {
         link.download = "capture.png";
         link.click();
         toggleModal2();
+      });
+    }
+  };
+  const handleUpload = () => {
+    const targetElement = document.getElementById("PrtSc"); // 캡처할 대상 div의 id
+    if (targetElement) {
+      html2canvas(targetElement).then((canvas) => {
+        const imageData = canvas.toDataURL("../img");
+        const formData = new FormData();
+        formData.append('image', imageData);
+
+        axios.post('../img', formData)
+          .then((response) => {
+            if (response.data.success) {
+              console.log('Image uploaded successfully.');
+              setUploaded(true);
+            } else {
+              console.error('Image upload failed.');
+            }
+          })
+          .catch((error) => {
+            console.error('Error uploading the image:', error);
+          });
       });
     }
   };

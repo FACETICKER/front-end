@@ -23,6 +23,10 @@ import Foot44 from "../image/foot_image/foot44.png";
 import Foot54 from "../image/foot_image/foot54.png";
 import Foot64 from "../image/foot_image/foot64.png";
 
+import Foot1_white from '../image/foot_image/foot1.png';
+import Foot3_white from '../image/foot_image/foot3_white.png';
+import Foot4_white from '../image/foot_image/foot4.png';
+
 const Foot = () => {
   const foot = useSelector((state) => {
     return state.sticker.foot;
@@ -36,6 +40,12 @@ const Foot = () => {
       {/* 
             발1
         */}
+      
+      <img
+        src={Foot1_white}
+        className={`${styles.foot21} 
+        ${face === 0 && foot === 1 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Foot11}
@@ -74,6 +84,12 @@ const Foot = () => {
 
       <img
         src={Foot2}
+        className={`${styles.foot22} 
+        ${face === 0 && foot === 2 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Foot2}
         className={`${styles.foot12} 
         ${face === 1 && foot === 2 ? "" : styles.hidden}`}
       ></img>
@@ -105,6 +121,12 @@ const Foot = () => {
       {/* 
             발3
         */}
+
+      <img
+        src={Foot3_white}
+        className={`${styles.foot23} 
+        ${face === 0 && foot === 3 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Foot13}
@@ -140,6 +162,12 @@ const Foot = () => {
       {/* 
             발4
         */}
+
+      <img
+        src={Foot4_white}
+        className={`${styles.foot24} 
+        ${face === 0 && foot === 4 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Foot14}
@@ -178,6 +206,12 @@ const Foot = () => {
 
       <img
         src={Foot5}
+        className={`${styles.foot25} 
+        ${face === 0 && foot === 5 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Foot5}
         className={`${styles.foot15} 
         ${face === 1 && foot === 5 ? "" : styles.hidden}`}
       ></img>
@@ -210,6 +244,12 @@ const Foot = () => {
       {/* 
             발6
         */}
+
+      <img
+        src={Foot6}
+        className={`${styles.foot26} 
+        ${face === 0 && foot === 6 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Foot6}

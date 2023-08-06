@@ -24,6 +24,12 @@ const Eyes = () => {
 
       <img
         src={Eyes1}
+        className={`${styles.eyes21} 
+        ${face === 0 && eyes === 1 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Eyes1}
         className={`${styles.eyes11} 
         ${face === 1 && eyes === 1 ? "" : styles.hidden}`}
       ></img>
@@ -56,6 +62,12 @@ const Eyes = () => {
       {/* 
             눈2
         */}
+
+      <img
+        src={Eyes2}
+        className={`${styles.eyes22} 
+        ${face === 0 && eyes === 2 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Eyes2}
@@ -94,6 +106,12 @@ const Eyes = () => {
 
       <img
         src={Eyes3}
+        className={`${styles.eyes23} 
+        ${face === 0 && eyes === 3 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Eyes3}
         className={`${styles.eyes13} 
         ${face === 1 && eyes === 3 ? "" : styles.hidden}`}
       ></img>
@@ -126,6 +144,12 @@ const Eyes = () => {
       {/* 
             눈4
         */}
+
+      <img
+        src={Eyes4}
+        className={`${styles.eyes24} 
+        ${face === 0 && eyes === 4 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Eyes4}
@@ -164,6 +188,12 @@ const Eyes = () => {
 
       <img
         src={Eyes5}
+        className={`${styles.eyes25} 
+        ${face === 0 && eyes === 5 ? "" : styles.hidden}`}
+      ></img>
+
+      <img
+        src={Eyes5}
         className={`${styles.eyes15} 
         ${face === 1 && eyes === 5 ? "" : styles.hidden}`}
       ></img>
@@ -196,6 +226,12 @@ const Eyes = () => {
       {/* 
             눈6
         */}
+
+      <img
+        src={Eyes6}
+        className={`${styles.eyes26} 
+        ${face === 0 && eyes === 6 ? "" : styles.hidden}`}
+      ></img>
 
       <img
         src={Eyes6}
