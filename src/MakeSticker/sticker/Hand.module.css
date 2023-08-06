@@ -1,89 +1,89 @@
 /* face index별 팔1 style */
 .hand11 {
   position: absolute;
-  width: 176px;
+  width: 190px;
   height: 72px;
-  top: 130px;
-  left: 68px;
+  top: 40%;
+  left: 20%;
 }
 .hand21 {
   position: absolute;
-  width: 160px;
+  width: 170px;
   height: 72px;
-  top: 120px;
-  left: 80px;
+  top: 32%;
+  left: 25%;
 }
 .hand31 {
   position: absolute;
   width: 160px;
   height: 68px;
-  top: 140px;
-  left: 70px;
+  top: 40%;
+  left: 23%;
 }
 .hand41 {
   position: absolute;
   width: 160px;
   height: 68px;
-  top: 120px;
-  left: 75px;
+  top: 30%;
+  left: 25%;
 }
 .hand51 {
   position: absolute;
   width: 160px;
   height: 68px;
-  top: 165px;
-  left: 75px;
+  top: 46%;
+  left: 25%;
 }
 .hand61 {
   position: absolute;
   width: 180px;
   height: 75px;
-  top: 115px;
-  left: 65px;
+  top: 33%;
+  left: 22%;
 }
 
 /* face index별 팔2 style */
 .hand12 {
   position: absolute;
   width: 180px;
-  height: 65px;
-  top: 150px;
-  left: 55px;
+  height: 70px;
+  top: 47%;
+  left: 20%;
 }
 .hand22 {
   position: absolute;
   width: 154px;
   height: 68px;
-  top: 120px;
-  left: 75px;
+  top: 35%;
+  left: 24%;
 }
 .hand32 {
   position: absolute;
   width: 154px;
   height: 68px;
-  top: 150px;
-  left: 65px;
+  top: 40%;
+  left: 21%;
 }
 .hand42 {
   position: absolute;
   width: 140px;
   height: 60px;
-  top: 130px;
-  left: 80px;
+  top: 35%;
+  left: 26%;
 }
 .hand52 {
   position: absolute;
   width: 140px;
   height: 60px;
-  top: 190px;
-  left: 85px;
+  top: 55%;
+  left: 28%;
 }
 .hand62 {
   position: absolute;
   width: 180px;
   height: 65px;
-  top: 125px;
-  left: 60px;
+  top: 35%;
+  left: 20%;
 }
 
 /* face index별 팔3 style */
