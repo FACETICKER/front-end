@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./Mouth.module.css";
-import Mouth1 from "../image/mouth_image/mouth1.png";
-import Mouth2 from "../image/mouth_image/mouth2.png";
-import Mouth3 from "../image/mouth_image/mouth3.png";
-import Mouth4 from "../image/mouth_image/mouth4.png";
-import Mouth5 from "../image/mouth_image/mouth5.png";
-import Mouth6 from "../image/mouth_image/mouth6.png";
+import Mouth1 from "../image/mouth_image/mouth1-1.png";
+import Mouth2 from "../image/mouth_image/mouth2-1.png";
+import Mouth3 from "../image/mouth_image/mouth3-1.png";
+import Mouth4 from "../image/mouth_image/mouth4-1.png";
+import Mouth5 from "../image/mouth_image/mouth5-1.png";
+import Mouth6 from "../image/mouth_image/mouth6-1.png";
 
 const Mouth = () => {
   const mouth = useSelector((state) => {

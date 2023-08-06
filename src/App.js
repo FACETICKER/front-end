@@ -13,7 +13,7 @@ import StickerMainHost from "./pages/StickersHost";
 import PutPage from "./pages/PutPage";
 import NicknameTotal from "./pages/NicknameTotal";
 import NewUserFlow from "./pages/NewUserFlow.js";
-import Loginpage from "./login/Loginpage";
+import Loginpage from "./pages/LoginpageMain";
 import ClickSticker from "./Stickers/ClickSticker";
 import Redirect from "./login/Redirect";
 
