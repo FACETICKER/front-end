@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./Nose.module.css";
-import Nose1 from "../image/nose_image/nose1.png";
-import Nose2 from "../image/nose_image/nose2.png";
-import Nose3 from "../image/nose_image/nose3.png";
-import Nose4 from "../image/nose_image/nose4.png";
-import Nose5 from "../image/nose_image/nose5.png";
-import Nose6 from "../image/nose_image/nose6.png";
+import Nose1 from "../image/nose_image/nose1-1.png";
+import Nose2 from "../image/nose_image/nose2-1.png";
+import Nose3 from "../image/nose_image/nose3-1.png";
+import Nose4 from "../image/nose_image/nose4-1.png";
+import Nose5 from "../image/nose_image/nose5-1.png";
+import Nose6 from "../image/nose_image/nose6-1.png";
 
 const Nose = () => {
   const nose = useSelector((state) => {
