@@ -45,7 +45,7 @@ const Btn_face = () => {
         >
           <img src={item.img} className={styles.element}></img>
           <img
-            src={Check}
+            src={Check} style={{width:'25px',height:'25px'}}
             className={`${styles.check} ${
               face === item.index ? "" : styles.hidden
             }`}
