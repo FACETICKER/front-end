@@ -40,12 +40,12 @@ const STICKER = () => {
       <button onClick={handleCaptureImg}>저장</button>
       <div ref={containerRef} className={styles.stickersWrap}>
         <Face />
-        <Hand />
         <Foot />
         <Eyes />
         <Mouth />
         <Nose />
         <Accessory />
+        <Hand />
       </div>
     </div>
   );
