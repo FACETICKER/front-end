@@ -4,8 +4,8 @@ import axios from "axios";
 import "./NewUserFlow.css";
 import ReactDOM from "react-dom";
 import Picker from "react-mobile-picker-scroll";
-import mini1 from "../img/NewUserFloat_img/mini1.png";
-import mini2 from "../img/NewUserFloat_img/mini2.png";
+import mini1 from "../img/NewUserFlow_img/mini1.png";
+import mini2 from "../img/NewUserFlow_img/mini2.png";
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
 
 function NewUserFlow() {

@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+{/*
 import questionSlice from "./QnA/Slice/questionSlice";
 import IDSlice from "./QnA/Slice/IDSlice";
 import AnswerSlice from "./QnA//Slice/AnswerSlice";
@@ -18,10 +19,11 @@ import ShareOrNotSlice from "./QnA/Slice/ShareOrNotSlice";
 import appReducer from "./Stickers/reducers";
 import StickerSlice from "./MakeSticker/StickerSlice";
 import MS_PopupSlice from "./MakeSticker/PopupSlice";
-import NicknamePage from "./Nickname/NicknamePageSlice";
+import NicknamePage from "./Nickname/NicknamePageSlice";*/}
 
 const store = configureStore({
   reducer: {
+    /*
     question: questionSlice.reducer, // 질문 저장소
     idcounter: IDSlice.reducer, // 질문 ID 값 지정해주는 저장소
     answer: AnswerSlice.reducer, // 답변 저장소
@@ -41,11 +43,11 @@ const store = configureStore({
 
     app: appReducer, //Stickers
     nicknamepage: NicknamePage.reducer,
-
+    
     /* 아이디, 토큰 추가 */
 
-    sticker: StickerSlice.reducer, //  총 저장소
-    popup: MS_PopupSlice.reducer, // 팝업창 onoff 저장소
+    /*sticker: StickerSlice.reducer, //  총 저장소
+    popup: MS_PopupSlice.reducer, // 팝업창 onoff 저장소*/
   },
 });
 export default store;

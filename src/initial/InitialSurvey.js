@@ -50,6 +50,7 @@ function InitialSurvey() {
     const resultDiv2 = document.getElementById("gauge");
     const resultDiv3 = document.getElementById("check1");
     if (nameInput.value.trim() !== "") {
+      nameInput.style.backgroundColor = "#FFF";
       resultDiv1.style.display = "block";
       setName("name");
       resultDiv3.style.display = "block";
@@ -77,6 +78,7 @@ function InitialSurvey() {
     const nameInput = document.getElementById("season");
     const resultDiv = document.getElementById("result1-1");
     resultDiv.style.display = "block";
+    nameInput.style.border = "10px solid #FF7427;"
   };
 
   const handleShowTextbox = (evant) => {
@@ -290,14 +292,22 @@ function InitialSurvey() {
   return (
     <div className="BackgroundWrap">
       <div className="Background">
-        <div className="App" style={{ position: "relative" }}>
+        <div className="l20-1" style={{ position: "relative" }}>
           <div className="l17-1">
-            <div>
+            <div style={{width:'342px', height:'6px',position:'absolute',top:'40px'}}>
               <div className="l1-1"></div>
               <div className="l2-1" id="gauge"></div>
             </div>
+            <div style={{width:'320px',height:'120px', position:'absolute',top:'76px',left:'3%',display:'flex',flexWrap: 'wrap'}}>
+            <div className="l3-1" style={{position:'relative',left:'1%'}}>
+              FACETICKER에서
+            </div>
             <div className="l3-1">
-              FACETICKER에서 사용할 프로필 포스터 정보를 등록해주세요.
+              사용할 프로필 포스터 정보를
+            </div>
+            <div className="l3-1" style={{position:'relative',left:'0%'}}>
+              등록해주세요.
+            </div>
             </div>
           </div>
           <div style={{ width: "342px" }}>
@@ -548,8 +558,7 @@ function InitialSurvey() {
               id="result5"
               style={{
                 display: showInputButton ? "block" : "none",
-                padding: "30px",
-                margin: "0 0 0 20px",
+                position:'relative', left:'6%'
               }}
             >
               <div className="l19-1" />
