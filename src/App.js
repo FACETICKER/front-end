@@ -5,11 +5,11 @@ import { Provider } from "react-redux";
 import StatusMessage from "./hostStatus/StatusMessage";
 import InitialSurvey from "./initial/InitialSurvey";
 import MainpageVisit from "./initial/MainpageVisit";
-import MakeSticker from "./pages/MakeSticker";
+import MakeSticker from "./page/MakeSticker";
 import MainpageHost from "./initial/MainpageHost";
-import QnApage from "./pages/QnApageMain";
-import StickerMainHost from "./pages/StickersHost";
-import PutPage from "./pages/PutPage";
+import QnApage from "./page/QnApageMain";
+import StickerMainHost from "./page/StickersHost";
+import PutPage from "./page/PutPage";
 import NicknameTotal from "./Nickname/NicknameTotal";
 import NewUserFlow from "./initial/NewUserFlow.js";
 import Loginpage from "./login/Loginpage";
@@ -46,7 +46,6 @@ function App() {
           {/*방문자 방명록 설정 */}
           <Route path="/status" element={<StatusMessage />} />
           {/* 호스트가 남기고 싶은 말 페이지 */}
-
           <Route path="/mainvisit" element={<MainpageVisit />} />
           {/*방문자 메인페이지 */}
           <Route path="/mainhost" element={<MainpageHost />} />
@@ -61,7 +60,6 @@ function App() {
           {/*스티커 호스트 */}
           <Route path="clicksticker" element={<ClickSticker />} />
           {/*호스트가 스티커 클릭할 때 */}
-
           <Route path="/stickermenu" element={<StickerMenu />} />
           {/*스티커 메뉴 */}
         </Routes>
