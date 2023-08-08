@@ -61,6 +61,7 @@ function InitialSurvey() {
   };
 
   const handleSeasonButtonClick = (season) => {
+    const nameInput = document.getElementById("season");
     const resultDiv1 = document.getElementById("result2");
     const resultDiv2 = document.getElementById("gauge");
     const resultDiv3 = document.getElementById("result1-1");
@@ -72,13 +73,14 @@ function InitialSurvey() {
     }
     resultDiv3.style.display = "none";
     resultDiv4.style.display = "block";
+    nameInput.className = "l5-1"
   };
 
   const handleShowSeasonButton = (event) => {
     const nameInput = document.getElementById("season");
     const resultDiv = document.getElementById("result1-1");
     resultDiv.style.display = "block";
-    nameInput.style.border = "10px solid #FF7427;"
+    nameInput.className = "l21-1"
   };
 
   const handleShowTextbox = (evant) => {
@@ -128,6 +130,7 @@ function InitialSurvey() {
   const [inputValue6, setInputValue6] = useState("");
 
   const handleShowFourNumber = () => {
+    const nameInput = document.getElementById("number");
     const resultDiv = document.getElementById("result2-1");
     const resultDiv1 = document.getElementById("check3");
     const resultDiv2 = document.getElementById("result3");
@@ -138,11 +141,13 @@ function InitialSurvey() {
         resultDiv1.style.display = "block";
         setChooseNumber(input1 + input2 + input3 + input4);
         resultDiv2.style.display = "block";
+        nameInput.className = "l5-1"
         if (resultDiv3.style.width < "228px") {
           resultDiv3.style.width = "228px";
         }
       }
     } else {
+      nameInput.className = "l21-1"
       resultDiv.style.display = "block"; // 닫혀있는 경우 열기
     }
   };
@@ -357,6 +362,7 @@ function InitialSurvey() {
                     name="spring"
                     onClick={() => handleSeasonButtonClick("봄")}
                   >
+                  
                     <p>봄</p>
                   </button>
                   <button
@@ -496,7 +502,7 @@ function InitialSurvey() {
                 </button>
                 <div
                   id="result3-1"
-                  className="l7-1"
+                  className="l22-1"
                   style={{ display: "none", height: "200px" }}
                 >
                   <Picker
