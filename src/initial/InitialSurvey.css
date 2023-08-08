@@ -48,6 +48,12 @@
   background: #FFF;
   position: relative;
   z-index: 2;
+  color: #191919;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 100% */
 }
 .l6-1 {
   width: 298px;
@@ -57,7 +63,7 @@
   background: #ffe14f;
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
   position: relative;
-  top: -60px;
+  top: -40px;
 }
 .l7-1 {
   width: 342px;
@@ -234,6 +240,14 @@ input::-webkit-inner-spin-button {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25) inset;
   margin: 25% 2.5%;
   position: relative;
+  padding: 0 0 0 0px;
+  color: var(--unnamed, #FF6D00);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 125% */
 }
 .l19-1 {
   width: 298px;
@@ -242,6 +256,7 @@ input::-webkit-inner-spin-button {
   background: var(--unnamed, rgba(25, 25, 25, 0.8));
   position: relative;
   left:2%;
+  top:18px;
 }
 .l20-1{
   width:390px;
@@ -261,6 +276,12 @@ input::-webkit-inner-spin-button {
   background: #FFF;
   position: relative;
   z-index: 2;
+  color: #191919;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 100% */
 }
 
 

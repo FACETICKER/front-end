@@ -62,6 +62,7 @@ function InitialSurvey() {
 
   const handleSeasonButtonClick = (season) => {
     const nameInput = document.getElementById("season");
+    const nameInput2 = document.getElementById("chooseSeason");
     const resultDiv1 = document.getElementById("result2");
     const resultDiv2 = document.getElementById("gauge");
     const resultDiv3 = document.getElementById("result1-1");
@@ -73,7 +74,10 @@ function InitialSurvey() {
     }
     resultDiv3.style.display = "none";
     resultDiv4.style.display = "block";
-    nameInput.className = "l5-1"
+    nameInput.className = "l5-1";
+    nameInput2.style.position='relative';
+    nameInput2.style.top='10%';
+    nameInput2.style.left='-45%';
   };
 
   const handleShowSeasonButton = (event) => {
@@ -84,6 +88,8 @@ function InitialSurvey() {
   };
 
   const handleShowTextbox = (evant) => {
+    const nameInput = document.getElementById("day");
+    const nameInput2 = document.getElementById("chooseDay");
     const resultDiv1 = document.getElementById("result3-1");
     const resultDiv2 = document.getElementById("check4");
     const resultDiv3 = document.getElementById("result4");
@@ -91,10 +97,15 @@ function InitialSurvey() {
     if (resultDiv1.style.display == "none") {
       resultDiv1.style.display = "block";
       toggleBodyOverflow(showThirdTextbox);
+      nameInput.className = "l21-1"
     } else {
       resultDiv1.style.display = "none";
       resultDiv2.style.display = "block";
       resultDiv3.style.display = "block";
+      nameInput.className = "l5-1"
+      nameInput2.style.position='relative';
+      nameInput2.style.top='10%';
+      nameInput2.style.left='-35%';
       setChooseDay(valueGroups["Month"] + " " + valueGroups["Days"]);
       toggleBodyOverflow(false);
       if (resultDiv4.style.width < "285px") {
@@ -107,15 +118,22 @@ function InitialSurvey() {
     const nameInput = document.getElementById("import");
     const resultDiv = document.getElementById("result4-1");
     resultDiv.style.display = "block";
+    nameInput.className = "l21-1"
   };
 
   const handleImportButtonClick = (evant) => {
+    const nameInput = document.getElementById("import");
+    const nameInput2 = document.getElementById("chooseImport");
     const resultDiv1 = document.getElementById("result5");
     const resultDiv2 = document.getElementById("gauge");
     const resultDiv3 = document.getElementById("result4-1");
     const resultDiv4 = document.getElementById("check5");
     setChooseImport(evant); // 선택한 계절을 상태에 저장
     setShowThirdTextbox(true);
+    nameInput.className = "l5-1"
+    nameInput2.style.position='relative';
+    nameInput2.style.top='10%';
+    nameInput2.style.left='-42%';
     resultDiv1.style.display = "block";
     resultDiv2.style.width = "342px";
     resultDiv3.style.display = "none";
@@ -131,6 +149,7 @@ function InitialSurvey() {
 
   const handleShowFourNumber = () => {
     const nameInput = document.getElementById("number");
+    const nameInput2 = document.getElementById("chooseNumber");
     const resultDiv = document.getElementById("result2-1");
     const resultDiv1 = document.getElementById("check3");
     const resultDiv2 = document.getElementById("result3");
@@ -142,6 +161,9 @@ function InitialSurvey() {
         setChooseNumber(input1 + input2 + input3 + input4);
         resultDiv2.style.display = "block";
         nameInput.className = "l5-1"
+        nameInput2.style.position='relative';
+        nameInput2.style.top='10%';
+        nameInput2.style.left='-40%';
         if (resultDiv3.style.width < "228px") {
           resultDiv3.style.width = "228px";
         }
@@ -317,7 +339,7 @@ function InitialSurvey() {
           </div>
           <div style={{ width: "342px" }}>
             <div className="l16-1">
-              <div style={{ padding: "10px 0 30px 0" }}>
+              <div style={{ padding: "10px 0 0 0" }}>
                 <input
                   className="l5-1"
                   type="text"
@@ -346,7 +368,7 @@ function InitialSurvey() {
                   className="l5-1"
                   onClick={() => handleShowSeasonButton()}
                 >
-                  <p id="chooseSeason">
+                  <p id="chooseSeason" style={{position:'relative',left:'-10%',top:'0%'}}>
                     {chooseSeason || "좋아하는 계절을 선택하세요"}
                   </p>
                   <img src={check} id="check2" className="l15-1"></img>
@@ -401,7 +423,7 @@ function InitialSurvey() {
                   className="l5-1"
                   onClick={handleShowFourNumber}
                 >
-                  <p id="chooseNumber">{chooseNumber || "좋아하는 숫자는?"}</p>
+                  <p id="chooseNumber" style={{position:'relative',left:'-25%',top:'0%'}}>{chooseNumber || "좋아하는 숫자는?"}</p>
                   <img src={check} id="check3" className="l15-1"></img>
                 </button>
                 <div
@@ -497,7 +519,7 @@ function InitialSurvey() {
                   className="l5-1"
                   onClick={handleShowTextbox}
                 >
-                  <p id="chooseDay">{chooseDay || "본인에게 의미있는 날은?"}</p>
+                  <p id="chooseDay" style={{position:'relative',left:'-13%',top:'0%'}}>{chooseDay || "본인에게 의미있는 날은?"}</p>
                   <img src={check} id="check4" className="l15-1"></img>
                 </button>
                 <div
@@ -523,7 +545,7 @@ function InitialSurvey() {
                   className="l5-1"
                   onClick={handleShowImport}
                 >
-                  <p id="chooseImport">
+                  <p id="chooseImport" style={{position:'relative',left:'-20%',top:'0%'}}>
                     {chooseImport || "내게 더 중요한 것은?"}
                   </p>
                   <img src={check} id="check5" className="l15-1"></img>
