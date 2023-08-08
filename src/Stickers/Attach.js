@@ -9,7 +9,6 @@ const BackContainer = styled.img`
   max-width: 800px;
   top: 95px;
   left: 115px;
-  z-index: ;
 `;
 const ButtonImg = styled.img`
   position: absolute;
