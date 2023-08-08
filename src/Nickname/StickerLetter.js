@@ -222,7 +222,7 @@ export function StickerLetter() {
   };
   //첫 번째 이전 버튼
   const handleFirstBack = () => {
-    dispatch(NicknamePageSlice.actions.nickname()); //nickname으로 페이지 전환
+    navigate("/stickername"); //nickname으로 페이지 전환
   };
 
   //두 번째 이전버튼
@@ -233,7 +233,7 @@ export function StickerLetter() {
 
   //host 이미지 url 받아오기
   useEffect(() => {
-    fetch("http://localhost:3021/user/1")
+    fetch("http://localhost:3011/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {

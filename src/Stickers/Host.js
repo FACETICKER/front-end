@@ -8,7 +8,7 @@ import { TestBottom } from "./TestBottom";
 import { useState } from "react";
 import { useEffect } from "react";
 import StaticSticker from "./StaticSticker";
-import MainHeader from "./MainHeader";
+import MainHeader from "../components/HostHeader";
 import { MainText } from "./MainText";
 
 //방문자 기록 컴포넌트

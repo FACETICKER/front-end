@@ -8,7 +8,7 @@ import { TestBottom } from "./TestBottom";
 import { useState } from "react";
 import { useEffect } from "react";
 import StaticSticker from "./StaticSticker";
-import MainHeader from "./MainHeader";
+import MainHeader from "../components/HostHeader";
 import { MainText } from "./MainText";
 import menu from "../img/Stickers_img/menu.png";
 import change from "../img/Stickers_img/change.png";

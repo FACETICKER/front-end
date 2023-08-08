@@ -8,7 +8,7 @@ import recordpage from "../img/MainpageVisit_img/3users.svg";
 import styled from "styled-components";
 import React, { useState } from "react";
 
-import "../style/MainpageVisit.css";
+import "./MainpageVisit.css";
 import { useNavigate } from "react-router-dom";
 
 function MainpageVisit() {
@@ -66,8 +66,8 @@ function MainpageVisit() {
   return (
     <div className="BackgroundWarp">
       <div className="Background">
-        <div className="App" style={{position:'relative', left:'0%'}}>
-          <header style={{ position: "relative", left:'17%'}}>
+        <div className="App" style={{ position: "relative", left: "0%" }}>
+          <header style={{ position: "relative", left: "17%" }}>
             <button
               onClick={toggleModal2}
               style={{ border: "none", backgroundColor: "transparent" }}
@@ -119,12 +119,19 @@ function MainpageVisit() {
                   </p>
                 </div>
               </div>
-              <div style={{ position: "absolute", top:'100%', width:'338px',height:'400px'}}>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  width: "338px",
+                  height: "400px",
+                }}
+              >
                 <div name="사자성어">
                   <div
                     name="threeboll"
                     style={{
-                      width:'100px',
+                      width: "100px",
                       position: "absolute",
                       left: "0%",
                       top: "70%",
@@ -158,7 +165,7 @@ function MainpageVisit() {
                   </p>
                 </div>
               </div>
-              <div style={{height:'50px'}}>
+              <div style={{ height: "50px" }}>
                 <button className="l10">
                   <img src={recordpage} alt="recordpage" />
                 </button>

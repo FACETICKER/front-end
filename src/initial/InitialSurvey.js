@@ -2,12 +2,14 @@ import check from "../img/InitialSurvey_img/icon _check circled outline_ (2).svg
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import "../style/InitialSurvey.css";
+import "./InitialSurvey.css";
 import ReactDOM from "react-dom";
 import Picker from "react-mobile-picker-scroll";
+import { useNavigate } from "react-router-dom";
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
 
 function InitialSurvey() {
+  const navigate = useNavigate();
   const [showSecondTextbox, setShowSecondTextbox] = useState(false);
   const [showSecondChooseButton, setSecondChooseButton] = useState(false);
   const [showThirdTextbox, setShowThirdTextbox] = useState(false);
@@ -281,11 +283,14 @@ function InitialSurvey() {
     const resultDiv = document.getElementById(id);
     resultDiv.className = "l10-1";
   };
+  const handleNext = () => {
+    navigate("/makesticker");
+  };
 
   return (
     <div className="BackgroundWrap">
       <div className="Background">
-        <div className="App" style={{position:'relative'}}>
+        <div className="App" style={{ position: "relative" }}>
           <div className="l17-1">
             <div>
               <div className="l1-1"></div>
@@ -549,7 +554,7 @@ function InitialSurvey() {
             >
               <div className="l19-1" />
               <div>
-                <button id="set_sticker" className="l6-1">
+                <button onClick={handleNext} id="set_sticker" className="l6-1">
                   <p>스티커 만들기</p>
                 </button>
               </div>

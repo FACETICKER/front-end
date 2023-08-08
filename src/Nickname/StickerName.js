@@ -206,7 +206,7 @@ export function StickerName() {
 
   //host 이미지 url 받아오기
   useEffect(() => {
-    fetch("http://localhost:3010/user/1")
+    fetch("http://localhost:3011/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
@@ -235,7 +235,7 @@ export function StickerName() {
     fetch("https://faceticker.site/app/3/sticker/message?type=visitor", {
       method: "POST",
       headers: headers,
-      body: JSON.stringify({ nickname: nicknameValue, message: "hi" }),
+      body: JSON.stringify({ nickname: nicknameValue }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -249,12 +249,12 @@ export function StickerName() {
       .catch((error) => {
         console.error("실패", error);
       });
-    /* dispatch(NicknamePageSlice.actions.letter()); //letter로 페이지 전환 */
+    navigate("/stickerletter"); //letter로 페이지 전환 */
   };
 
   /*   //서버에서 닉네임 값 받아오기
   useEffect(() => {
-    fetch("https://faceticker.site/app/3/sticker/message?type=visitor")
+    fetch("https://faceticker.site/app/:user_id/sticker/message?type=visitor")
       .then((response) => response.json())
       .then((data) => {
         if (data) {
@@ -320,7 +320,7 @@ export function StickerName() {
                 onChange={saveNickname}
                 value={nicknameValue}
                 top={inputTop}
-                placeholder="스티커 네임 입력 (15자 이내)"
+                placeholder={nicknameValue}
               ></Input>
             </InputWrap>
           </Bottom>
