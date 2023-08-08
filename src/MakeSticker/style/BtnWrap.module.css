@@ -1,8 +1,0 @@
-.background {
-    height: 65%;
-    overflow-x: scroll;
-}
-
-.background::-webkit-scrollbar {
-	display: none; /* Chrome , Safari , Opera */
-}
