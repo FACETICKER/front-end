@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 const Div = styled.div`
   position: absolute;
-  right: 80px;
+  left: 30%;
 `;
 
 function MainpageHost() {
@@ -152,16 +152,19 @@ function MainpageHost() {
   return (
     <div className="BackgroundWarp">
       <div className="Background">
-        <div className="App" style={{ width: "400px", height: "700px" }}>
+        <div className="l29-2" style={{position:'relative'}}>
           <header
             style={{
               float: "down",
+              width:'320px',
               height: "70px",
               position: "relative",
               top: "0px",
+              display:'flex',
+              justifyContent: 'space-between'
             }}
           >
-            <div style={{ float: "left", position: "relative", top: "30px" }}>
+            <div style={{width:'30px', height:'30px' , position: "relative",  top: "35%", left:'-3%' }}>
               <button
                 style={{ border: "none", backgroundColor: "transparent" }}
                 onClick={toggleModal1}
@@ -176,7 +179,7 @@ function MainpageHost() {
                 <p className="l12-2">FACETICKER</p>
               </button>
             </div>
-            <div style={{ float: "left", position: "relative", top: "30px" }}>
+            <div style={{ width:'26px', height:'26px' ,float: "left", position: "relative", top: "35%", left:'-3%' }}>
               <button
                 style={{ border: "none", backgroundColor: "transparent" }}
               >
@@ -213,15 +216,15 @@ function MainpageHost() {
               >
                 -1
               </button>{" "}
-              */
+              
             </div>
           </header>
 
-          <div style={{ position: "relative", top: "-50px" }}>
+          <div style={{ position: "relative", top: "0px" }}>
             <div id="PrtSc" style={{ width: "338px" }}>
               <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
                 <div
-                  style={{ position: "absolute", left: "15%", top: "18%" }}
+                  style={{ position: "absolute", left: "20%", top: "35%" }}
                   name="사진"
                 >
                   <img src={Vector} alt="Vector" />

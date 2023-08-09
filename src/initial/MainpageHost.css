@@ -10,7 +10,6 @@
   border-radius: 20px;
   background: #ffd25d;
   position: relative;
-  left:3%;
 }
 .l3-2 {
   color: var(--unnamed, #f26b79);
@@ -27,13 +26,13 @@
   width: 400px;
   transform: rotate(-90deg);
   color: #3f3f3f;
-  font-family: JHaebaragi;
+  font-family: 'JHaebaragi';
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: 36px; /* 180% */
   position: absolute;
-  top: 70%;
+  top: 30%;
   left: -53%;
 }
 
@@ -180,7 +179,7 @@
   flex-shrink: 0;
   color: #ff6d00;
   text-align: center;
-  font-family: LOTTERIA CHAB;
+  font-family: "LotteriaChab";
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
@@ -326,11 +325,12 @@
 }
 
 .Background {
-  height: calc(var(--vh, 1vh) * 100);
+  height: calc(var(--vh) * 100);
   max-width: 37.5rem;
   margin: 0px auto;
   display: flex;
   flex-direction: column;
+  background: #f8f8fa;
 }
 
 
@@ -440,4 +440,13 @@
   display: flex;
   width: 100%;
   margin-bottom: 3%;
+}
+
+.l29-2{
+  width:390px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  margin: 0px auto;
 }
