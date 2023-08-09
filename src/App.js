@@ -2,6 +2,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import store from "./store";
 import { Provider } from "react-redux";
+
+
+import MakeSticker from "./page/MakeSticker";
+
 import StatusMessage from "./hostStatus/StatusMessage";
 import InitialSurvey from "./initial/InitialSurvey";
 import MainpageVisit from "./initial/MainpageVisit";
@@ -19,6 +23,7 @@ import StickerMenu from "./Stickers/StickerMenu";
 import StickerLetter from "./Nickname/StickerLetter";
 import StickerName from "./Nickname/StickerName";
 
+
 function App() {
   function setScreenSize() {
     let vh = window.innerHeight * 0.01;
@@ -32,6 +37,10 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
+
+          <Route path="/makesticker" element={<MakeSticker />} />
+          {/*스티커 제작 페이지 */}
+
           <Route path="/" element={<Loginpage />} />
           {/*로그인 페이지 */}
           <Route path="/oauth" element={<Redirect />} />
@@ -62,6 +71,7 @@ function App() {
           {/*호스트가 스티커 클릭할 때 */}
           <Route path="/stickermenu" element={<StickerMenu />} />
           {/*스티커 메뉴 */}
+
         </Routes>
       </BrowserRouter>
     </Provider>
