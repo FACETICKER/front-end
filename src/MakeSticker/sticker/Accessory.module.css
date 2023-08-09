@@ -1,0 +1,257 @@
+.hidden {
+  display: none;
+}
+
+/* face index별 입 style */
+.accessory11 {
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  top: 35%;
+  left: 25%;
+}
+.accessory12 {
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  top: 35%;
+  left: 25%;
+}
+.accessory13 {
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  top: 35%;
+  left: 22%;
+}
+.accessory14 {
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  top: 35%;
+  left: 25%;
+}
+.accessory15 {
+  position: absolute;
+  width: 130px;
+  height: 30px;
+  top: 35%;
+  left: 29%;
+}
+.accessory16 {
+  position: absolute;
+  width: 130px;
+  height: 30px;
+  top: 36%;
+  left: 29%;
+}
+.accessory21 {
+  position: absolute;
+  width: 25px;
+  height: 35px;
+  top: 20%;
+  left: 68%;
+}
+.accessory22 {
+  position: absolute;
+  width: 25px;
+  height: 35px;
+  top: 20%;
+  left: 68%;
+}
+.accessory23 {
+  position: absolute;
+  width: 25px;
+  height: 35px;
+  top: 18%;
+  left: 68%;
+}
+.accessory24 {
+  position: absolute;
+  width: 25px;
+  height: 35px;
+  top: 18%;
+  left: 64%;
+}
+.accessory25 {
+  position: absolute;
+  width: 25px;
+  height: 35px;
+  top: 18%;
+  left: 63%;
+}
+.accessory26 {
+  position: absolute;
+  width: 25px;
+  height: 35px;
+  top: 24%;
+  left: 65%;
+}
+.accessory31 {
+  position: absolute;
+  width: 75px;
+  height: 45px;
+  top: 37%;
+  left: 37%;
+}
+.accessory32 {
+  position: absolute;
+  width: 75px;
+  height: 45px;
+  top: 37%;
+  left: 37%;
+}
+.accessory33 {
+  position: absolute;
+  width: 75px;
+  height: 45px;
+  top: 37%;
+  left: 34%;
+}
+.accessory34 {
+  position: absolute;
+  width: 75px;
+  height: 45px;
+  top: 36%;
+  left: 37%;
+}
+.accessory35 {
+  position: absolute;
+  width: 75px;
+  height: 45px;
+  top: 38%;
+  left: 38%;
+}
+.accessory36 {
+  position: absolute;
+  width: 75px;
+  height: 45px;
+  top: 40%;
+  left: 38%;
+}
+.accessory41 {
+  position: absolute;
+  width: 130px;
+  height: 20px;
+  top: 35%;
+  left: 29%;
+}
+.accessory42 {
+  position: absolute;
+  width: 130px;
+  height: 20px;
+  top: 35%;
+  left: 29%;
+}
+.accessory43 {
+  position: absolute;
+  width: 130px;
+  height: 20px;
+  top: 35%;
+  left: 26%;
+}
+.accessory44 {
+  position: absolute;
+  width: 130px;
+  height: 20px;
+  top: 35%;
+  left: 29%;
+}
+.accessory45 {
+  position: absolute;
+  width: 130px;
+  height: 20px;
+  top: 35%;
+  left: 30%;
+}
+.accessory46 {
+  position: absolute;
+  width: 130px;
+  height: 20px;
+  top: 38%;
+  left: 30%;
+}
+.accessory51 {
+  position: absolute;
+  width: 128px;
+  height: 40px;
+  top: 28%;
+  left: 35%;
+}
+.accessory52 {
+  position: absolute;
+  width: 128px;
+  height: 40px;
+  top: 28%;
+  left: 35%;
+}
+.accessory53 {
+  position: absolute;
+  width: 128px;
+  height: 40px;
+  top: 28%;
+  left: 33%;
+}
+.accessory54 {
+  position: absolute;
+  width: 128px;
+  height: 40px;
+  top: 28%;
+  left: 35%;
+}
+.accessory55 {
+  position: absolute;
+  width: 128px;
+  height: 40px;
+  top: 28%;
+  left: 36%;
+}
+.accessory56 {
+  position: absolute;
+  width: 128px;
+  height: 40px;
+  top: 33%;
+  left: 37%;
+}
+.accessory61 {
+  position: absolute;
+  width: 65px;
+  height: 35px;
+  top: 0%;
+  left: 0%;
+}
+.accessory62 {
+  position: absolute;
+  width: 65px;
+  height: 35px;
+  top: 0%;
+  left: 0%;
+}
+.accessory63 {
+  position: absolute;
+  width: 65px;
+  height: 35px;
+  top: 0%;
+  left: 0%;
+}
+.accessory64 {
+  position: absolute;
+  width: 65px;
+  height: 35px;
+  top: 0%;
+  left: 0%;
+}
+.accessory65 {
+  position: absolute;
+  width: 65px;
+  height: 35px;
+  top: 0%;
+  left: 0%;
+}
+.accessory66 {
+  position: absolute;
+  width: 65px;
+  height: 35px;
+  top: 0%;
+  left: 0%;
+}
