@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 const Select = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  
   const step = useSelector((state) => {
     return state.sticker.step;
   });
