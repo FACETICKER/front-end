@@ -7,9 +7,12 @@ import Picker from "react-mobile-picker-scroll";
 import mini1 from "../img/NewUserFlow_img/mini1.png";
 import mini2 from "../img/NewUserFlow_img/mini2.png";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
 
 function NewUserFlow() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const BackgroundWrap = styled.div`
     background: #fefaef;
   `;
