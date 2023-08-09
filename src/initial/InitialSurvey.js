@@ -1,3 +1,4 @@
+import InitialSurveyList from "./InitialSurveyList.js";
 import check from "../img/InitialSurvey_img/icon _check circled outline_ (2).svg";
 import down from "../img/InitialSurvey_img/chevron-down.png"
 import up from "../img/InitialSurvey_img/chevron-up (1).png"
@@ -8,10 +9,21 @@ import "./InitialSurvey.css";
 import ReactDOM from "react-dom";
 import Picker from "react-mobile-picker-scroll";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import {
+  setInitialName,
+  setInitialSeason,
+  setInitialNumber,
+  setInitialDay,
+  setInitialImport,
+} from './InitialSurveyList.js'; // 경로는 실제 파일 경로에 맞게 수정해주세요
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
+
+
 
 function InitialSurvey() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showSecondTextbox, setShowSecondTextbox] = useState(false);
   const [showSecondChooseButton, setSecondChooseButton] = useState(false);
   const [showThirdTextbox, setShowThirdTextbox] = useState(false);
@@ -57,6 +69,7 @@ function InitialSurvey() {
       setName("name");
       resultDiv3.style.display = "block";
       resultDiv2.style.width = "114px";
+      handleInitialNameChange()
     } else {
       resultDiv3.style.display = "none";
     }
@@ -374,6 +387,23 @@ function InitialSurvey() {
   const handleNext = () => {
     navigate("/makesticker");
   };
+  const handleInitialNameChange = () => {
+    const nameInput = document.getElementById("name");
+    dispatch(setInitialName(nameInput.value));
+  };
+  const handleInitialSeasonChange = () => {
+    dispatch(setInitialSeason(chooseSeason));
+  };
+  const handleInitialNumberChange = () => {
+    dispatch(setInitialNumber(chooseNumber));
+  };
+  const handleInitialDayChange = () => {
+    dispatch(setInitialDay(chooseDay));
+  };
+  const handleInitialImportChange = () => {
+    dispatch(setInitialImport(chooseImport));
+  };
+  
 
   return (
     <div className="BackgroundWrap">
