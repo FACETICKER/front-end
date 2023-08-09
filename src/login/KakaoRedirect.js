@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
+import "../font/font.css";
+import spinner from "../img/loginImg/spinner.gif";
+import { BarLoader } from "react-spinners";
 
 export function KakaoRedirect() {
   console.log("12");
@@ -29,9 +33,40 @@ export function KakaoRedirect() {
   }, []);
 
   return (
-    <div>
-      <h1>로그인 중입니다.</h1>
-    </div>
+    <BackgroundWrap>
+      <Background>
+        <Text1>Loading</Text1>
+        <BarLoader color="rgba(25, 25, 25, 0.8)" />
+      </Background>
+    </BackgroundWrap>
   );
 }
 export default KakaoRedirect;
+
+const BackgroundWrap = styled.div`
+  background: #fefaef;
+`;
+//Background : 모바일로 보이는 영역
+const Background = styled.div`
+  height: calc(var(--vh, 1vh) * 100);
+  max-width: 37.5rem;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  background: #fefaef;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+`;
+
+const Text1 = styled.div`
+  height: 10%;
+  color: rgba(25, 25, 25, 0.8);
+  text-align: center;
+  display: flex;
+  font-family: "Pretendard";
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 36px;
+`;
