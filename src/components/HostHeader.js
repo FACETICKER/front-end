@@ -49,12 +49,14 @@ const LogoWrap = styled.div`
 const Logo = styled.div`
   margin: auto;
   font-family: "LotteriaChab";
+  font-weight: normal;
+  font-style: normal;
   color: #ff6d00;
   text-align: center;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px; /* 83.333% */
+  line-height: 20px;
 `;
 
 const style = {

@@ -3,16 +3,17 @@ import styled from "styled-components";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsImageFixed } from "./reducers";
-
+import "../font/font.css";
 import { TestBottom } from "./TestBottom";
 import { useState } from "react";
 import { useEffect } from "react";
 import StaticSticker from "./StaticSticker";
 import MainHeader from "../components/HostHeader";
 import { MainText } from "./MainText";
-import menu from "../img/Stickers_img/menu.png";
+import HostHeader from "../components/HostHeader";
+/* import menu from "../img/Stickers_img/menu.png";
 import change from "../img/Stickers_img/change.png";
-
+ */
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
   background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
@@ -157,7 +158,7 @@ export function StickerMenu() {
   return (
     <BackgroundWrap>
       <Background>
-        <MainHeader />
+        <HostHeader />
         <BottomWrap>
           <Bottom>
             <Text1>My Faceticker List</Text1>
