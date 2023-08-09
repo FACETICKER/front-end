@@ -1,3 +1,4 @@
+import InitialSurveyList from "./InitialSurveyList.js";
 import check from "../img/InitialSurvey_img/icon _check circled outline_ (2).svg";
 import down from "../img/InitialSurvey_img/chevron-down.png"
 import up from "../img/InitialSurvey_img/chevron-up (1).png"
@@ -9,6 +10,8 @@ import ReactDOM from "react-dom";
 import Picker from "react-mobile-picker-scroll";
 import { useNavigate } from "react-router-dom";
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
+
+
 
 function InitialSurvey() {
   const navigate = useNavigate();
@@ -374,6 +377,7 @@ function InitialSurvey() {
   const handleNext = () => {
     navigate("/makesticker");
   };
+  
 
   return (
     <div className="BackgroundWrap">
