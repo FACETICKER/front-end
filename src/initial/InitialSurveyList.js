@@ -27,6 +27,7 @@ const InitialSurveyList = createSlice({
         },
     },
 });
+
 export const {
     setInitialName,
     setInitialSeason,
