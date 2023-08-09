@@ -36,7 +36,7 @@
     padding: 0;
     border-radius: 36px;
     border: none;
-    background-image: url("./image/kakao.png");
+    background-image: url("../img/loginImg/kakao.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -49,7 +49,7 @@
     padding: 0;
     border-radius: 36px;
     border: none;
-    background-image: url("./image/google.png");
+    background-image: url("../img/loginImg/google.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -57,19 +57,19 @@
 
   .noline {
     text-decoration: none;
-    /*    color: var(--unnamed, #06f);
+    color: var(--unnamed, #06f);
     font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
-    line-height: 20px; */
+    line-height: 20px;
   }
 
   .background {
     position: absolute;
     width: 100%;
     height: 100vh;
-    background-image: url("./image/background.png");
+    background-image: url("../img/loginImg/background.png");
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -79,7 +79,7 @@
     font-size: 80%;
     color: #191919;
     text-align: center;
-    font-family: Pretendard;
+    font-family: "Pretendard";
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -124,7 +124,7 @@
     padding: 0;
     border-radius: 36px;
     border: none;
-    background-image: url("./image/kakao.png");
+    background-image: url("../img/loginImg/kakao.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -137,7 +137,7 @@
     padding: 0;
     border-radius: 36px;
     border: none;
-    background-image: url("./image/google.png");
+    background-image: url("../img/loginImg/google.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -151,7 +151,7 @@
     position: absolute;
     width: 100%;
     height: 100vh;
-    background-image: url("./image/background.png");
+    background-image: url("../img/loginImg/background.png");
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -199,7 +199,7 @@
     padding: 0;
     border-radius: 36px;
     border: none;
-    background-image: url("./image/kakao.png");
+    background-image: url("../img/loginImg/kakao.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -215,7 +215,7 @@
     padding: 0;
     border-radius: 36px;
     border: none;
-    background-image: url("./image/google.png");
+    background-image: url("../img/loginImg/google.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -231,7 +231,7 @@
     position: absolute;
     width: 100%;
     height: 100vh;
-    background-image: url("./image/background.png");
+    background-image: url("../img/loginImg/background.png");
     background-repeat: no-repeat;
     background-size: cover;
   }
