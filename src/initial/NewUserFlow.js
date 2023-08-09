@@ -24,7 +24,7 @@ function NewUserFlow() {
   `;
 
   const handleButtonClick = () => {
-    window.location.href = "http://localhost:3000/initial";
+    navigate("/initial");
   };
 
   return (
