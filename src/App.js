@@ -2,18 +2,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import store from "./store";
 import { Provider } from "react-redux";
-import InitialSurvey from "./initial/InitialSurvey";
-import MainpageVisit from "./initial/MainpageVisit";
-import MainpageHost from "./initial/MainpageHost";
+
+
 import NewUserFlow from "./initial/NewUserFlow.js";
-import MakeSticker from "./pages/MakeSticker";
-import QnApage from "./pages/QnApageMain";
-import StickerMainHost from "./pages/StickersHost";
-import PutPage from "./pages/PutPage";
-
-
-import MakeSticker from "./page/MakeSticker";
-
 import StatusMessage from "./hostStatus/StatusMessage";
 import InitialSurvey from "./initial/InitialSurvey";
 import MainpageVisit from "./initial/MainpageVisit";
@@ -29,7 +20,6 @@ import Redirect from "./login/KakaoRedirect";
 import StickerMenu from "./Stickers/StickerMenu";
 import StickerLetter from "./Nickname/StickerLetter";
 import StickerName from "./Nickname/StickerName";
-import StatusMessage from "./hostStatus/StatusMessage";*/}
 
 
 function App() {
