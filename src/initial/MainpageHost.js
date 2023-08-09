@@ -12,6 +12,8 @@ import React, { useState, useEffect } from "react";
 import html2canvas from "html2canvas";
 import "./MainpageHost.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const Div = styled.div`
   position: absolute;
@@ -20,6 +22,7 @@ const Div = styled.div`
 
 function MainpageHost() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showFooter, setShowFooter] = useState(false);
   const [showModal1, setShowModal1] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
@@ -149,6 +152,15 @@ function MainpageHost() {
     setName("홍길동");
     setNumber("#128");
     setDay("JUNE, 28");
+  };
+  const handleMakeSticker = () => {
+    navigate("/makesticker");
+  };
+  const handleInitial = () => {
+    navigate("/initial");
+  };
+  const handleStickerLetter = () => {
+    navigate("/stickerletter");
   };
 
   const handleStickerPage = () => {
@@ -442,9 +454,9 @@ function MainpageHost() {
                   <img src={close}></img>
                 </button>
                 <div style={{padding:'24px 0 0 0', width: '294px', height:'250px', display:'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
-                  <button className="l24-2">포스터 정보 수정</button>
-                  <button className="l24-2">스티커 수정</button>
-                  <button className="l24-2">상태메시지 수정</button>
+                  <button className="l24-2" onClick={handleInitial}>포스터 정보 수정</button>
+                  <button className="l24-2" onClick={handleMakeSticker}>스티커 수정</button>
+                  <button className="l24-2" onClick={handleStickerLetter}>상태메시지 수정</button>
                 </div>
             </div>
           )}
