@@ -1,0 +1,257 @@
+.hidden {
+  display: none;
+}
+
+/* face index별 코1 style */
+.nose11 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 37%;
+  left: 42%;
+}
+.nose12 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 37%;
+  left: 42%;
+}
+.nose13 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 37%;
+  left: 39%;
+}
+.nose14 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 37%;
+  left: 42%;
+}
+.nose15 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 38%;
+  left: 42%;
+}
+.nose16 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 41%;
+  left: 43%;
+}
+.nose21 {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 38%;
+  left: 46%;
+}
+.nose22 {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 38%;
+  left: 46%;
+}
+.nose23 {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 39%;
+  left: 43%;
+}
+.nose24 {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 37%;
+  left: 46%;
+}
+.nose25 {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 36%;
+  left: 47%;
+}
+.nose26 {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 42%;
+  left: 47%;
+}
+.nose31 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 37%;
+  left: 44%;
+}
+.nose32 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 37%;
+  left: 44%;
+}
+.nose33 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 38%;
+  left: 42%;
+}
+.nose34 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 38%;
+  left: 44%;
+}
+.nose35 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 38%;
+  left: 45%;
+}
+.nose36 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 42%;
+  left: 45%;
+}
+.nose41 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 37%;
+  left: 45%;
+}
+.nose42 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 37%;
+  left: 45%;
+}
+.nose43 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 37%;
+  left: 42%;
+}
+.nose44 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 37%;
+  left: 44%;
+}
+.nose45 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 37%;
+  left: 45%;
+}
+.nose46 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 41%;
+  left: 46%;
+}
+.nose51 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 38%;
+  left: 45%;
+}
+.nose52 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 38%;
+  left: 45%;
+}
+.nose53 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 38%;
+  left: 42%;
+}
+.nose54 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 38%;
+  left: 44%;
+}
+.nose55 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 38%;
+  left: 45%;
+}
+.nose56 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 42%;
+  left: 46%;
+}
+.nose61 {
+  position: absolute;
+  width: 30px;
+  height: 10px;
+  top: 37%;
+  left: 44%;
+}
+.nose62 {
+  position: absolute;
+  width: 30px;
+  height: 10px;
+  top: 37%;
+  left: 44%;
+}
+.nose63 {
+  position: absolute;
+  width: 30px;
+  height: 10px;
+  top: 38%;
+  left: 42%;
+}
+.nose64 {
+  position: absolute;
+  width: 30px;
+  height: 10px;
+  top: 39%;
+  left: 44%;
+}
+.nose65 {
+  position: absolute;
+  width: 30px;
+  height: 10px;
+  top: 37%;
+  left: 45%;
+}
+.nose66 {
+  position: absolute;
+  width: 30px;
+  height: 10px;
+  top: 43%;
+  left: 46%;
+}
