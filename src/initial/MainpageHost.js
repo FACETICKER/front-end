@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 const Div = styled.div`
   position: absolute;
-  right: 80px;
+  left: 30%;
 `;
 
 function MainpageHost() {
@@ -24,6 +24,7 @@ function MainpageHost() {
   const [showModal1, setShowModal1] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
   const [showModal3, setShowModal3] = useState(false);
+  const [showModal4, setShowModal4] = useState(false);
   const [chattingNumber, setChattingNumber] = useState(0);
   const [recordNumber, setRecordNumber] = useState(0);
   const [Korean, setKorean] = useState("");
@@ -48,6 +49,10 @@ function MainpageHost() {
 
   const toggleModal3 = () => {
     setShowModal3(!showModal3);
+  };
+
+  const toggleModal4 = () => {
+    setShowModal4(!showModal4);
   };
 
   const handleLinkDownload = () => {
@@ -152,21 +157,24 @@ function MainpageHost() {
   return (
     <div className="BackgroundWarp">
       <div className="Background">
-        <div className="App" style={{ width: "400px", height: "700px" }}>
+        <div className="l29-2" style={{position:'relative'}}>
           <header
             style={{
               float: "down",
+              width:'320px',
               height: "70px",
               position: "relative",
               top: "0px",
+              display:'flex',
+              justifyContent: 'space-between'
             }}
           >
-            <div style={{ float: "left", position: "relative", top: "30px" }}>
+            <div style={{width:'30px', height:'30px' , position: "relative",  top: "35%", left:'-3%' }} >
               <button
                 style={{ border: "none", backgroundColor: "transparent" }}
                 onClick={toggleModal1}
               >
-                <img src={setting} className="l1-2" alt="setting" />
+                <img src={setting} className="l1-2" alt="setting" onClick={toggleModal1}/>
               </button>
             </div>
             <div style={{ float: "left" }}>
@@ -176,7 +184,7 @@ function MainpageHost() {
                 <p className="l12-2">FACETICKER</p>
               </button>
             </div>
-            <div style={{ float: "left", position: "relative", top: "30px" }}>
+            <div style={{ width:'26px', height:'26px' ,float: "left", position: "relative", top: "35%", left:'-3%' }}>
               <button
                 style={{ border: "none", backgroundColor: "transparent" }}
               >
@@ -185,7 +193,7 @@ function MainpageHost() {
               <div
                 id="countMessageDiv"
                 className="l14-2"
-                style={{ display: "none", top: "-50px", left: "20px" }}
+                style={{ display: "none"}}
               >
                 <p id="countMessage" className="l15-2">
                   {chattingNumber || "0"}
@@ -213,15 +221,15 @@ function MainpageHost() {
               >
                 -1
               </button>{" "}
-              */
+              
             </div>
           </header>
 
-          <div style={{ position: "relative", top: "-50px" }}>
+          <div style={{ position: "relative", top: "0px" }}>
             <div id="PrtSc" style={{ width: "338px" }}>
               <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
                 <div
-                  style={{ position: "absolute", left: "15%", top: "18%" }}
+                  style={{ position: "absolute", left: "20%", top: "35%" }}
                   name="사진"
                 >
                   <img src={Vector} alt="Vector" />
@@ -419,31 +427,49 @@ function MainpageHost() {
           )}
           {showModal1 && (
             <div className="Modal">
-              <div>
-                <img src={edit}></img>
+                <div style={{width: '294px', height:'52px' ,position:'relative', display:'flex', justifyContent: 'center'}}><img src={edit} /></div>
                 <button
                   style={{
                     border: "none",
                     backgroundColor: "transparent",
-                    position: "relative",
-                    top: "-30px",
-                    left: "80px",
+                    position: "absolute",
+                    top: "3%",
+                    left: "85%",
                   }}
                   name="close"
                   onClick={toggleModal1}
                 >
                   <img src={close}></img>
                 </button>
-                <div>
-                  <div className="l25-2"></div>
-                  <div className="l25-2"></div>
-                  <div className="l25-2"></div>
+                <div style={{padding:'24px 0 0 0', width: '294px', height:'250px', display:'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
                   <button className="l24-2">포스터 정보 수정</button>
                   <button className="l24-2">스티커 수정</button>
                   <button className="l24-2">상태메시지 수정</button>
                 </div>
-              </div>
             </div>
+          )}
+          {showModal4 && (
+            <div className="ModalContent">
+            <div className="Close"
+              
+              src="https://i.ibb.co/Cw1y11J/close-x.png"
+            />
+            <img src="https://i.ibb.co/LNBGHHr/square-edit.png" />
+            <div className="EditButtons">
+              <div className="EditButton"
+                
+                src="https://i.ibb.co/7QPq765/Group-190.png"
+              />
+              <div className="EditButton"
+                
+                src="https://i.ibb.co/TMWMM0g/Group-191.png"
+              />
+              <div className="EditButton"
+                
+                src="https://i.ibb.co/Qkm8sPF/Group-192.png"
+              />
+            </div>
+          </div>
           )}
           {showModal2 && (
             <div className="Modal">
