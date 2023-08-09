@@ -37,10 +37,12 @@ const store = configureStore({
     page: PageSlice.reducer, // page 전환용 컨트롤러
     basic_question: Basic_questionSlice.reducer, // 기본 질문 저장소
     popup_QnA: Popup_QnA_Slice.reducer, // 기본 질문 팝업창 관리
-    share:ShareOrNotSlice.reducer, // 질문 비공개 공개 설정
+    share: ShareOrNotSlice.reducer, // 질문 비공개 공개 설정
 
-    app: appReducer, //Stickers(수진)
+    app: appReducer, //Stickers
     nicknamepage: NicknamePage.reducer,
+
+    /* 아이디, 토큰 추가 */
 
     sticker: StickerSlice.reducer, //  총 저장소
     popup: MS_PopupSlice.reducer, // 팝업창 onoff 저장소
