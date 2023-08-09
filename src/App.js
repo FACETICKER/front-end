@@ -22,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Loginpage />} />
           {/*로그인 페이지 */}
+
           <Route path="/oauth" element={<Redirect />} />
           {/*kakao Redirect 화면 */}
         </Routes>
