@@ -71,6 +71,9 @@ function MainpageVisit() {
   const handleNo = () => {
     navigate("/makesticker");
   };
+  const handleYes = () => {
+    navigate("/");
+  };
 
   return (
     <div className="BackgroundWarp">
@@ -215,20 +218,24 @@ function MainpageVisit() {
           {showModal && (
             <div className="Modal">
               <div>
-                <div>
+                <div style={{}}>
                   <div className="l17">!</div>
                   <button className="l18" name="close" onClick={toggleModal}>
                     <img src={close}></img>
                   </button>
-                  <p className="l13" style={{ clear: "left" }}>
+                  <div className="l26">
+                  <p>
                     앗!
                   </p>
-                  <p style={{ position: "relative", top: "140px",left:'-20px' }}>
+                  </div>
+                  <div className="l27">
+                  <p>
                     ‘호스트명’님 공간에 흔적을 남기기 전, 로그인 하시겠어요?
                   </p>
+                  </div>
                 </div>
                 <div
-                  style={{ width:'318px' , display:'flex' ,position: "relative", left: "14px", top: "150px" }}
+                  style={{ width:'318px' , display:'flex' ,position: "relative", left: "14px", top: "100px" }}
                 >
                   <button
                     id="No"
@@ -243,6 +250,7 @@ function MainpageVisit() {
                   <button
                     id="Yes"
                     className="l14"
+                    onClick={handleYes}
                     onMouseOver={handleDragBtnYes}
                     onMouseLeave={handleOutBtnYes}
                   >
@@ -255,25 +263,29 @@ function MainpageVisit() {
           {showModal3 && (
             <div className="Modal">
               <div>
-                <div>
+                <div style={{}}>
                   <div className="l17">!</div>
                   <button className="l18" name="close" onClick={toggleModal3}>
                     <img src={close}></img>
                   </button>
-                  <p className="l13" style={{ clear: "left" }}>
+                  <div className="l26">
+                  <p>
                     앗!
                   </p>
-                  <p style={{ position: "relative", top: "140px",left:'-20px' }}>
+                  </div>
+                  <div className="l27">
+                  <p>
                     ‘호스트명’님 공간에 흔적을 남기기 전, 로그인 하시겠어요?
                   </p>
+                  </div>
                 </div>
                 <div
-                  style={{ width:'318px' , display:'flex' ,position: "relative", left: "14px", top: "150px" }}
+                  style={{ width:'318px' , display:'flex' ,position: "relative", left: "14px", top: "100px" }}
                 >
                   <button
                     id="No"
                     className="l14"
-                    onClick={handleNo}
+                    
                     onMouseOver={handleDragBtnNo}
                     onMouseLeave={handleOutBtnNo}
                     style={{ float: "left" }}
@@ -283,6 +295,7 @@ function MainpageVisit() {
                   <button
                     id="Yes"
                     className="l14"
+                    onClick={handleYes}
                     onMouseOver={handleDragBtnYes}
                     onMouseLeave={handleOutBtnYes}
                   >
