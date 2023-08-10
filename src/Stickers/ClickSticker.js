@@ -220,7 +220,7 @@ export function ClickSticker() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3011/user")
+    fetch("http://localhost:3010/user")
       .then((response) => response.json())
       .then((data) => {
         const filteredData = data.filter((item) => item.id !== 1);
@@ -233,22 +233,18 @@ export function ClickSticker() {
   }, []);
 
   const handleBackClick = () => {
-    navigate("/hoststicker"); //페이지 전환
+    navigate("/host"); //페이지 전환
   };
   const handleTrashClick = () => {
-    navigate("/hoststicker");
+    navigate("/host");
   };
   /*   const handleProfileClick = (item) => {
     navigate("/"); //해당 스티커 프로필로 
   }; */
 
-  const idArray = imageData.map((item) => item.id);
-  const selectedImageId = useSelector((state) => state.image.selectedImageId);
-  console.log(selectedImageId);
-
   //서버에서 방문록 받아오기
   useEffect(() => {
-    fetch("http://localhost:3011/user/1")
+    fetch("http://localhost:3010/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.letter) {
@@ -260,9 +256,9 @@ export function ClickSticker() {
       });
   }, []);
 
-  //이미지 url 받아오기
+  //host 이미지 url 받아오기
   useEffect(() => {
-    fetch("http://localhost:3011/user/2")
+    fetch("http://localhost:3010/user/2")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
@@ -273,6 +269,8 @@ export function ClickSticker() {
         console.error("오류 발생", error);
       });
   }, []);
+
+  const idArray = imageData.map((item) => item.id);
 
   return (
     <BackgroundWrap>

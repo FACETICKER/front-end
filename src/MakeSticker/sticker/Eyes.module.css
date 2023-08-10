@@ -1,0 +1,267 @@
+.hidden {
+  display: none;
+}
+
+/* face index별 눈1 style */
+.eyes11 {
+  position: absolute;
+  width: 110px;
+  height: 55px;
+  top: 20%;
+  left: 33%;
+}
+.eyes21 {
+  position: absolute;
+  width: 110px;
+  height: 55px;
+  top: 20%;
+  left: 33%;
+}
+.eyes31 {
+  position: absolute;
+  width: 110px;
+  height: 55px;
+  top: 20%;
+  left: 30%;
+}
+.eyes41 {
+  position: absolute;
+  width: 110px;
+  height: 55px;
+  top: 20%;
+  left: 33%;
+}
+.eyes51 {
+  position: absolute;
+  width: 110px;
+  height: 55px;
+  top: 20%;
+  left: 32%;
+}
+.eyes61 {
+  position: absolute;
+  width: 110px;
+  height: 55px;
+  top: 22%;
+  left: 33%;
+}
+
+/* face index별 눈2 style */
+.eyes12 {
+  position: absolute;
+  width: 75px;
+  height: 72px;
+  top: 12%;
+  left: 38%;
+}
+.eyes22 {
+  position: absolute;
+  width: 75px;
+  height: 72px;
+  top: 12%;
+  left: 38%;
+}
+.eyes32 {
+  position: absolute;
+  width: 75px;
+  height: 72px;
+  top: 13%;
+  left: 35%;
+}
+.eyes42 {
+  position: absolute;
+  width: 75px;
+  height: 72px;
+  top: 14%;
+  left: 37%;
+}
+.eyes52 {
+  position: absolute;
+  width: 75px;
+  height: 72px;
+  top: 12%;
+  left: 38%;
+}
+.eyes62 {
+  position: absolute;
+  width: 75px;
+  height: 72px;
+  top: 19%;
+  left: 39%;
+}
+
+/* face index별 눈3 style */
+.eyes13 {
+  position: absolute;
+  width: 136px;
+  height: 38px;
+  top: 20%;
+  left: 28%;
+}
+.eyes23 {
+  position: absolute;
+  width: 136px;
+  height: 38px;
+  top: 20%;
+  left: 28%;
+}
+.eyes33 {
+  position: absolute;
+  width: 136px;
+  height: 38px;
+  top: 23%;
+  left: 26%;
+}
+.eyes43 {
+  position: absolute;
+  width: 136px;
+  height: 38px;
+  top: 23%;
+  left: 28%;
+}
+.eyes53 {
+  position: absolute;
+  width: 120px;
+  height: 33px;
+  top: 24%;
+  left: 31%;
+}
+.eyes63 {
+  position: absolute;
+  width: 120px;
+  height: 33px;
+  top: 28%;
+  left: 32%;
+}
+
+/* face index별 눈4 style */
+.eyes14 {
+  position: absolute;
+  width: 92px;
+  height: 44px;
+  top: 20%;
+  left: 35%;
+}
+.eyes24 {
+  position: absolute;
+  width: 92px;
+  height: 44px;
+  top: 20%;
+  left: 35%;
+}
+.eyes34 {
+  position: absolute;
+  width: 92px;
+  height: 44px;
+  top: 20%;
+  left: 33%;
+}
+.eyes44 {
+  position: absolute;
+  width: 92px;
+  height: 44px;
+  top: 20%;
+  left: 35%;
+}
+.eyes54 {
+  position: absolute;
+  width: 92px;
+  height: 44px;
+  top: 20%;
+  left:  35%;
+}
+.eyes64 {
+  position: absolute;
+  width: 92px;
+  height: 44px;
+  top: 25%;
+  left: 36%;
+}
+
+/* face index별 눈5 style */
+.eyes15 {
+  position: absolute;
+  width: 90px;
+  height: 38px;
+  top: 22%;
+  left: 36%;
+}
+.eyes25 {
+  position: absolute;
+  width: 90px;
+  height: 38px;
+  top: 22%;
+  left: 36%;
+}
+.eyes35 {
+  position: absolute;
+  width: 90px;
+  height: 38px;
+  top: 22%;
+  left: 33%;
+}
+.eyes45 {
+  position: absolute;
+  width: 90px;
+  height: 38px;
+  top: 22%;
+  left: 35%;
+}
+.eyes55 {
+  position: absolute;
+  width: 90px;
+  height: 38px;
+  top: 22%;
+  left: 37%;
+}
+.eyes65 {
+  position: absolute;
+  width: 90px;
+  height: 38px;
+  top: 28%;
+  left: 37%;
+}
+
+/* face index별 눈6 style */
+.eyes16 {
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  top: 17%;
+  left: 40%;
+}
+.eyes26 {
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  top: 17%;
+  left: 40%;
+}
+.eyes36 {
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  top: 17%;
+  left: 37%;
+}
+.eyes46 {
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  top: 17%;
+  left: 38%;
+}
+.eyes56 {
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  top: 17%;
+  left: 40%;
+}
+.eyes66 {
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  top: 21%;
+  left: 40%;
+}
