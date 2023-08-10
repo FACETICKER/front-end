@@ -32,8 +32,8 @@ function MainpageVisit() {
     left: 100px;
   `;
   const Div = styled.div`
-  position: absolute;
-  left: 30%;
+    position: absolute;
+    left: 30%;
   `;
 
   const toggleFooter = () => {
@@ -78,23 +78,31 @@ function MainpageVisit() {
   return (
     <div className="BackgroundWarp">
       <div className="Background">
-        <div className="l25" style={{position:'relative'}}>
-        <header
+        <div className="l25" style={{ position: "relative" }}>
+          <header
             style={{
               float: "down",
-              width:'320px',
+              width: "320px",
               height: "70px",
               position: "relative",
               top: "0px",
-              display:'flex',
-              justifyContent: 'space-between'
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            <div style={{width:'30px', height:'30px' , position: "relative",  top: "35%", left:'-3%' }} >
+            <div
+              style={{
+                width: "30px",
+                height: "30px",
+                position: "relative",
+                top: "35%",
+                left: "-3%",
+              }}
+            >
               <button
                 style={{ border: "none", backgroundColor: "transparent" }}
               >
-                <img src={user} className="l1" alt="setting"/>
+                <img src={user} className="l1" alt="setting" />
               </button>
             </div>
             <div style={{ float: "left" }}>
@@ -104,7 +112,17 @@ function MainpageVisit() {
                 <p className="l12">FACETICKER</p>
               </button>
             </div>
-            <div style={{ width:'26px', height:'26px' ,float: "left", position: "relative", top: "35%", left:'-3%' }} onClick={toggleModal3}>
+            <div
+              style={{
+                width: "26px",
+                height: "26px",
+                float: "left",
+                position: "relative",
+                top: "35%",
+                left: "-3%",
+              }}
+              onClick={toggleModal3}
+            >
               <button
                 style={{ border: "none", backgroundColor: "transparent" }}
               >
@@ -113,97 +131,97 @@ function MainpageVisit() {
             </div>
           </header>
           <div style={{ position: "relative", top: "0px" }}>
-          <div id="PrtSc" className="l2">
-            <div
-              style={{ position: "relative", left: "18%", top: "35%" }}
-              name="사진"
-            >
-              <img src={Vector} alt="Vector" />
-            </div>
-            <div style={{ position: "relative", top: "-300px" }}>
-              <div>
-                <p className="l13">WIN 겨울 TER</p>
-              </div>
-              <div id="ment" className="l22">
-                <div className="l23">
-                  <p id="" className="l3">
-                    어서옵쇼 다들 스티커 붙여주세요..!
-                  </p>
-                </div>
-              </div>
-              <div style={{ width: "390px", height: "100px" }}>
-                <div style={{ float: "left" }} name="이름">
-                  <p id="" className="l4">
-                    수진님
-                  </p>
-                </div>
-                <div style={{ float: "left" }} name="숫자">
-                  <p id="" className="l5">
-                    #28
-                  </p>
-                </div>
-                <div style={{ float: "left" }} name="날짜">
-                  <p id="" className="l6">
-                    JUNE, 28
-                  </p>
-                </div>
-              </div>
+            <div id="PrtSc" className="l2">
               <div
-                style={{
-                  position: "absolute",
-                  top: "155%",
-                  width: "338px",
-                  height: "400px",
-                }}
+                style={{ position: "relative", left: "18%", top: "35%" }}
+                name="사진"
               >
-                <div name="사자성어">
-                  <div
-                    name="threeboll"
-                    style={{
-                      width: "100px",
-                      position: "absolute",
-                      left: "0%",
-                      top: "70%",
-                    }}
-                  >
-                    <div
-                      className="l24"
-                      style={{ backgroundColor: "#FF6D00" }}
-                    ></div>
-                    <div
-                      className="l24"
-                      style={{ backgroundColor: "#FFE14F" }}
-                    ></div>
-                    <div
-                      className="l24"
-                      style={{ backgroundColor: "#FEFAEF" }}
-                    ></div>
-                  </div>
-                  <p id="" className="l7">
-                    오매불망
-                  </p>
-                </div>
-                <div name="한자">
-                  <p id="" className="l8">
-                    寤寐不忘
-                  </p>
-                </div>
-                <div name="뜻">
-                  <p id="" className="l9">
-                    자나깨나 잊지 못함
-                  </p>
-                </div>
+                <img src={Vector} alt="Vector" />
               </div>
-              <Div>
-                <button className="l10">
-                  <img src={recordpage} alt="recordpage" />
-                </button>
-                <button className="l10" onClick={toggleModal}>
-                  <img src={sticker} alt="sticker"/>
-                </button>
-              </Div>
+              <div style={{ position: "relative", top: "-300px" }}>
+                <div>
+                  <p className="l13">WIN 겨울 TER</p>
+                </div>
+                <div id="ment" className="l22">
+                  <div className="l23">
+                    <p id="" className="l3">
+                      어서옵쇼 다들 스티커 붙여주세요..!
+                    </p>
+                  </div>
+                </div>
+                <div style={{ width: "390px", height: "100px" }}>
+                  <div style={{ float: "left" }} name="이름">
+                    <p id="" className="l4">
+                      수진님
+                    </p>
+                  </div>
+                  <div style={{ float: "left" }} name="숫자">
+                    <p id="" className="l5">
+                      #28
+                    </p>
+                  </div>
+                  <div style={{ float: "left" }} name="날짜">
+                    <p id="" className="l6">
+                      JUNE, 28
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "155%",
+                    width: "338px",
+                    height: "400px",
+                  }}
+                >
+                  <div name="사자성어">
+                    <div
+                      name="threeboll"
+                      style={{
+                        width: "100px",
+                        position: "absolute",
+                        left: "0%",
+                        top: "70%",
+                      }}
+                    >
+                      <div
+                        className="l24"
+                        style={{ backgroundColor: "#FF6D00" }}
+                      ></div>
+                      <div
+                        className="l24"
+                        style={{ backgroundColor: "#FFE14F" }}
+                      ></div>
+                      <div
+                        className="l24"
+                        style={{ backgroundColor: "#FEFAEF" }}
+                      ></div>
+                    </div>
+                    <p id="" className="l7">
+                      오매불망
+                    </p>
+                  </div>
+                  <div name="한자">
+                    <p id="" className="l8">
+                      寤寐不忘
+                    </p>
+                  </div>
+                  <div name="뜻">
+                    <p id="" className="l9">
+                      자나깨나 잊지 못함
+                    </p>
+                  </div>
+                </div>
+                <Div>
+                  <button className="l10">
+                    <img src={recordpage} alt="recordpage" />
+                  </button>
+                  <button className="l10" onClick={toggleModal}>
+                    <img src={sticker} alt="sticker" />
+                  </button>
+                </Div>
+              </div>
             </div>
-          </div>
           </div>
           {showFooter && (
             <footer className="FixedFooter">
@@ -224,18 +242,22 @@ function MainpageVisit() {
                     <img src={close}></img>
                   </button>
                   <div className="l26">
-                  <p>
-                    앗!
-                  </p>
+                    <p>앗!</p>
                   </div>
                   <div className="l27">
-                  <p>
-                    ‘호스트명’님 공간에 흔적을 남기기 전, 로그인 하시겠어요?
-                  </p>
+                    <p>
+                      ‘호스트명’님 공간에 흔적을 남기기 전, 로그인 하시겠어요?
+                    </p>
                   </div>
                 </div>
                 <div
-                  style={{ width:'318px' , display:'flex' ,position: "relative", left: "14px", top: "100px" }}
+                  style={{
+                    width: "318px",
+                    display: "flex",
+                    position: "relative",
+                    left: "14px",
+                    top: "100px",
+                  }}
                 >
                   <button
                     id="No"
@@ -269,23 +291,26 @@ function MainpageVisit() {
                     <img src={close}></img>
                   </button>
                   <div className="l26">
-                  <p>
-                    앗!
-                  </p>
+                    <p>앗!</p>
                   </div>
                   <div className="l27">
-                  <p>
-                    ‘호스트명’님 공간에 흔적을 남기기 전, 로그인 하시겠어요?
-                  </p>
+                    <p>
+                      ‘호스트명’님 공간에 흔적을 남기기 전, 로그인 하시겠어요?
+                    </p>
                   </div>
                 </div>
                 <div
-                  style={{ width:'318px' , display:'flex' ,position: "relative", left: "14px", top: "100px" }}
+                  style={{
+                    width: "318px",
+                    display: "flex",
+                    position: "relative",
+                    left: "14px",
+                    top: "100px",
+                  }}
                 >
                   <button
                     id="No"
                     className="l14"
-                    
                     onMouseOver={handleDragBtnNo}
                     onMouseLeave={handleOutBtnNo}
                     style={{ float: "left" }}

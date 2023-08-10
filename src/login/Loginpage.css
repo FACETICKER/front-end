@@ -1,3 +1,4 @@
+
 @import url("https://webfontworld.github.io/LotteriaChab/LotteriaChab.css");
 
 @media all and (max-width: 768px) {
@@ -57,12 +58,12 @@
 
   .noline {
     text-decoration: none;
-    /*    color: var(--unnamed, #06f);
+    color: var(--unnamed, #06f);
     font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
-    line-height: 20px; */
+    line-height: 20px;
   }
 
   .background {
@@ -79,7 +80,7 @@
     font-size: 80%;
     color: #191919;
     text-align: center;
-    font-family: Pretendard;
+    font-family: "Pretendard";
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
