@@ -10,7 +10,9 @@ import { useEffect } from "react";
 import StaticSticker from "./StaticSticker";
 import MainHeader from "../components/HostHeader";
 import { MainText } from "./MainText";
-
+import menu from "../img/stickers_img/Group 198.png";
+import reposition from "../img/stickers_img/Group 199.png";
+import { useNavigate } from "react-router-dom";
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
   background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
@@ -111,13 +113,28 @@ const Footer = styled.div`
   display: flex;
   flex-direction: row;
 `;
-const Icon = styled.img`
+const Icons = styled.div`
   max-height: 50%;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+const Icon1 = styled.img`
+  display: flex;
+  width: 22%;
+`;
+const Icon2 = styled.img`
+  display: flex;
+  width: 72%;
 `;
 
 export function Host() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleMenu = () => {
+    navigate("/stickermenu");
+  };
 
   return (
     <BackgroundWrap>
@@ -127,7 +144,10 @@ export function Host() {
         <StaticSticker />
         <ButtonWrap>
           <Footer>
-            <Icon src="https://i.ibb.co/8z9SQZj/Group-187.png" />
+            <Icons>
+              <Icon1 onClick={handleMenu} src={menu} />
+              <Icon2 src={reposition} />
+            </Icons>
           </Footer>
         </ButtonWrap>
         {/* Check 버튼 */}
