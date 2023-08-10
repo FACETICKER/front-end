@@ -9,6 +9,7 @@ import PutPage from "./page/PutPage";
 import ClickSticker from "./Stickers/ClickSticker";
 
 import StickerMenu from "./Stickers/StickerMenu";
+import Reposition from "./Stickers/Reposition";
 
 function App() {
   function setScreenSize() {
@@ -32,6 +33,8 @@ function App() {
 
           <Route path="/stickermenu" element={<StickerMenu />} />
           {/*스티커 메뉴 */}
+          <Route path="/repositionsticker" element={<Reposition />} />
+          {/*스티커 재배치 */}
         </Routes>
       </BrowserRouter>
     </Provider>

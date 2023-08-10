@@ -47,57 +47,36 @@
       "url": "https://i.ibb.co/T1t1YCr/sticker-43.png"
     },
     {
+      "id": 5,
       "imgposition": {
-        "XPer": "20.56",
-        "YPer": "60.74"
+        "XPer": "12.39",
+        "YPer": "61.30"
       },
-      "id": 5
+      "url": "https://i.ibb.co/T1t1YCr/sticker-43.png"
     },
     {
-      "imgposition": null,
-      "id": 6
-    },
-    {
-      "imgposition": null,
-      "id": 7
-    },
-    {
-      "imgposition": null,
-      "id": 8
-    },
-    {
-      "imgposition": null,
-      "id": 9
-    },
-    {
-      "imgposition": null,
-      "id": 10
-    },
-    {
-      "imgposition": null,
-      "id": 11
-    },
-    {
+      "id": 6,
       "imgposition": {
-        "XPer": "24.51",
-        "YPer": "44.78"
+        "XPer": "12.39",
+        "YPer": "61.30"
       },
-      "id": 12
+      "url": "https://i.ibb.co/T1t1YCr/sticker-43.png"
     },
     {
-      "imgposition": null,
-      "id": 13
-    },
-    {
-      "imgposition": null,
-      "id": 14
-    },
-    {
+      "id": 7,
       "imgposition": {
-        "XPer": "58.59",
-        "YPer": "52.56"
+        "XPer": "12.39",
+        "YPer": "61.30"
       },
-      "id": 15
+      "url": "https://i.ibb.co/T1t1YCr/sticker-43.png"
+    },
+    {
+      "id": 8,
+      "imgposition": {
+        "XPer": "12.39",
+        "YPer": "61.30"
+      },
+      "url": "https://i.ibb.co/T1t1YCr/sticker-43.png"
     }
   ]
 }
