@@ -3,19 +3,23 @@ import styled from "styled-components";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsImageFixed } from "./reducers";
-
+import "../font/font.css";
 import { TestBottom } from "./TestBottom";
 import { useState } from "react";
 import { useEffect } from "react";
 import StaticSticker from "./StaticSticker";
 import MainHeader from "../components/HostHeader";
 import { MainText } from "./MainText";
-import menu from "../img/Stickers_img/menu.png";
-import change from "../img/Stickers_img/change.png";
+import HostHeader from "../components/HostHeader";
+import { useNavigate } from "react-router-dom";
+import { setSelectedImage } from "./imageSlice";
 
+/* import menu from "../img/Stickers_img/menu.png";
+import change from "../img/Stickers_img/change.png";
+ */
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
-  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  background: #fefaef;
 `;
 //Background : 모바일로 보이는 영역
 const Background = styled.div`
@@ -24,7 +28,7 @@ const Background = styled.div`
   margin: 0px auto;
   display: flex;
   flex-direction: column;
-  background: ${(props) => props.color};
+  background: #fefaef;
 `;
 
 const BottomWrap = styled.div`
@@ -72,8 +76,9 @@ const Stickers = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  height: 80%;
-  background-color: pink;
+  height: 90%;
+  flex-direction: column;
+  overflow: hidden;
 `;
 
 const YellowCircle = styled.div`
@@ -99,20 +104,16 @@ const CircleContainer = styled.div`
   margin: 0 auto;
 `;
 
-const Circle = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: yellow;
-  border-radius: 50%;
-  margin: 5px;
-`;
-
 const StyledImage = styled.img`
   max-width: 100%;
   max-height: 100%;
 `;
-
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 export function StickerMenu() {
+  const navigate = useNavigate();
   const [images, setImageData] = useState([]);
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -120,7 +121,6 @@ export function StickerMenu() {
   const handleMenuClick = () => {
     setMenuOpen(true);
   };
-  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch("http://localhost:3011/user")
@@ -128,41 +128,107 @@ export function StickerMenu() {
       .then((data) => {
         const filteredData = data.filter((item) => item.id !== 1);
         setImageData(filteredData);
+        console.log(images);
       })
       .catch((error) => {
         console.error("오류 발생", error);
       });
   }, []);
 
-  /*   const Circle = ({ imageUrl }) => (
-    <YellowCircle>
-      <StyledImage src={imageUrl} alt="Image" />
-    </YellowCircle>
-  ); */
+  const filteredData2 = images.filter((item) => item.id >= 2 && item.id <= 4);
+  const filteredData3 = images.filter((item) => item.id >= 5 && item.id <= 7);
+  const filteredData4 = images.filter((item) => item.id >= 8 && item.id <= 10);
+  const filteredData5 = images.filter((item) => item.id >= 11 && item.id <= 13);
+  const filteredData6 = images.filter((item) => item.id >= 14 && item.id <= 16);
+  const filteredData7 = images.filter((item) => item.id >= 17 && item.id <= 19);
+  console.log(filteredData2);
 
-  /*   const renderImageRows = () => {
-    const rows = [];
-    for (let i = 0; i < images.length; i += 3) {
-      const rowImages = images.slice(i, i + 3);
-      rows.push(
-        <div key={i} style={{ display: "flex", justifyContent: "center" }}>
-          {rowImages.map((imageData) => (
-            <Circle key={imageData.id} imageUrl={imageData.url} />
-          ))}
-        </div>
-      );
-    }
-    return rows; */
+  const dispatch = useDispatch();
+
+  const handleClickSticker = (imageId) => {
+    dispatch(setSelectedImage(imageId));
+    navigate("/clicksticker");
+  };
 
   return (
     <BackgroundWrap>
       <Background>
-        <MainHeader />
+        <HostHeader />
         <BottomWrap>
           <Bottom>
             <Text1>My Faceticker List</Text1>
             <Text2>내 페이지에 부착된 스티커 목록입니다.</Text2>
-            <Stickers></Stickers>
+            <Stickers>
+              <First>
+                {filteredData2.map((item) => (
+                  <Row
+                    onClick={() => handleClickSticker(item.id)}
+                    key={item.id}
+                  >
+                    <Circle>
+                      <CircleImage src={item.url} alt={item.nickname} />
+                    </Circle>
+                    <Nickname>닉네임</Nickname>
+                    {/*   <Nickname>{item.nickname}</Nickname> */}
+                  </Row>
+                ))}
+              </First>
+              <First>
+                {filteredData3.map((item) => (
+                  <Row key={item.id}>
+                    <Circle>
+                      <CircleImage src={item.url} alt={item.nickname} />
+                    </Circle>
+                    <Nickname>닉네임</Nickname>
+                    {/*   <Nickname>{item.nickname}</Nickname> */}
+                  </Row>
+                ))}
+              </First>
+              <First>
+                {filteredData4.map((item) => (
+                  <Row key={item.id}>
+                    <Circle>
+                      <CircleImage src={item.url} alt={item.nickname} />
+                    </Circle>
+                    <Nickname>닉네임</Nickname>
+                    {/*   <Nickname>{item.nickname}</Nickname> */}
+                  </Row>
+                ))}
+              </First>
+              <First>
+                {filteredData5.map((item) => (
+                  <Row key={item.id}>
+                    <Circle>
+                      <CircleImage src={item.url} alt={item.nickname} />
+                    </Circle>
+                    <Nickname>닉네임</Nickname>
+                    {/*   <Nickname>{item.nickname}</Nickname> */}
+                  </Row>
+                ))}
+              </First>
+              <First>
+                {filteredData6.map((item) => (
+                  <Row key={item.id}>
+                    <Circle>
+                      <CircleImage src={item.url} alt={item.nickname} />
+                    </Circle>
+                    <Nickname>닉네임</Nickname>
+                    {/*   <Nickname>{item.nickname}</Nickname> */}
+                  </Row>
+                ))}
+              </First>
+              <First>
+                {filteredData7.map((item) => (
+                  <Row key={item.id}>
+                    <Circle>
+                      <CircleImage src={item.url} alt={item.nickname} />
+                    </Circle>
+                    <Nickname>닉네임</Nickname>
+                    {/*   <Nickname>{item.nickname}</Nickname> */}
+                  </Row>
+                ))}
+              </First>
+            </Stickers>
           </Bottom>
         </BottomWrap>
       </Background>
@@ -171,3 +237,41 @@ export function StickerMenu() {
 }
 
 export default StickerMenu;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+`;
+const Circle = styled.div`
+  display: flex;
+  width: 100px;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 210, 93, 0.8);
+  border-radius: 50%;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+`;
+const CircleImage = styled.img`
+  display: flex;
+  max-height: 80%;
+`;
+const Nickname = styled.div`
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 36px;
+`;
+
+const First = styled.div`
+  display: flex;
+  margin-bottom: 5%;
+  width: 100%;
+  height: 30%;
+`;

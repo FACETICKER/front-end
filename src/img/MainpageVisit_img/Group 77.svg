@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <svg width="60" height="16" viewBox="0 0 60 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Group 77">
 <circle id="Ellipse 194" cx="8" cy="8" r="7.5" fill="#FF6D00" stroke="#767676"/>
@@ -5,3 +6,12 @@
 <circle id="Ellipse 196" cx="52" cy="8" r="7.5" fill="#FEFAEF" stroke="#767676"/>
 </g>
 </svg>
+=======
+<svg width="60" height="16" viewBox="0 0 60 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 77">
+<circle id="Ellipse 194" cx="8" cy="8" r="7.5" fill="#FF6D00" stroke="#767676"/>
+<circle id="Ellipse 195" cx="30" cy="8" r="7.5" fill="#FFE14F" stroke="#767676"/>
+<circle id="Ellipse 196" cx="52" cy="8" r="7.5" fill="#FEFAEF" stroke="#767676"/>
+</g>
+</svg>
+>>>>>>> 9c3f7f99e948cd0a32c93a99e4c6367aa6bb8898

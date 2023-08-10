@@ -1,0 +1,82 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "profile": {
+    "input1": "1",
+    "input2": "2",
+    "input3": "2",
+    "input4": "2"
+  },
+  "board": {
+    "board": "hhh"
+  },
+  "user": [
+    {
+      "id": 1,
+      "nickname": "수진",
+      "url": "https://i.ibb.co/GtLnztn/Group-174-1.png",
+      "letter": "오랜만이네요~ㅎㅎ 들렀다 갑니다~ 제 메인페이지도 방문해주세요!"
+    },
+    {
+      "id": 2,
+      "imgposition": {
+        "XPer": "57.39",
+        "YPer": "35.30"
+      },
+      "url": "https://i.ibb.co/3Rcv3F9/Group-154-6-1.png"
+    },
+    {
+      "id": 3,
+      "imgposition": {
+        "XPer": "47.39",
+        "YPer": "75.30"
+      },
+      "url": "https://i.ibb.co/G0dTPYr/sticker-41.png"
+    },
+    {
+      "id": 4,
+      "imgposition": {
+        "XPer": "12.39",
+        "YPer": "61.30"
+      },
+      "url": "https://i.ibb.co/T1t1YCr/sticker-43.png"
+    },
+    {
+      "id": 5,
+      "imgposition": {
+        "XPer": "12.39",
+        "YPer": "61.30"
+      },
+      "url": "https://i.ibb.co/T1t1YCr/sticker-43.png"
+    },
+    {
+      "id": 6,
+      "imgposition": {
+        "XPer": "12.39",
+        "YPer": "61.30"
+      },
+      "url": "https://i.ibb.co/T1t1YCr/sticker-43.png"
+    },
+    {
+      "id": 7,
+      "imgposition": {
+        "XPer": "12.39",
+        "YPer": "61.30"
+      },
+      "url": "https://i.ibb.co/T1t1YCr/sticker-43.png"
+    },
+    {
+      "id": 8,
+      "imgposition": {
+        "XPer": "12.39",
+        "YPer": "61.30"
+      },
+      "url": "https://i.ibb.co/T1t1YCr/sticker-43.png"
+    }
+  ]
+}
