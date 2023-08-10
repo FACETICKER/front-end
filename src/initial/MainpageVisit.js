@@ -16,6 +16,8 @@ function MainpageVisit() {
   const [showFooter, setShowFooter] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
+  const [showModal3, setShowModal3] = useState(false);
+
   const BackgroundWrap = styled.div`
     background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
   `;
@@ -29,6 +31,10 @@ function MainpageVisit() {
     position: relative;
     left: 100px;
   `;
+  const Div = styled.div`
+  position: absolute;
+  left: 30%;
+  `;
 
   const toggleFooter = () => {
     setShowFooter(!showFooter);
@@ -36,6 +42,9 @@ function MainpageVisit() {
 
   const toggleModal = () => {
     setShowModal(!showModal);
+  };
+  const toggleModal3 = () => {
+    setShowModal3(!showModal3);
   };
   const toggleModal2 = () => {
     setShowModal2(!showModal2);
@@ -62,31 +71,51 @@ function MainpageVisit() {
   const handleNo = () => {
     navigate("/makesticker");
   };
+  const handleYes = () => {
+    navigate("/");
+  };
 
   return (
     <div className="BackgroundWarp">
       <div className="Background">
-        <div className="App" style={{ position: "relative", left: "0%" }}>
-          <header style={{ position: "relative", left: "17%" }}>
-            <button
-              onClick={toggleModal2}
-              style={{ border: "none", backgroundColor: "transparent" }}
-            >
-              <img src={user} className="l1" alt="user" />
-            </button>
-            <button style={{ border: "none", backgroundColor: "transparent" }}>
-              <p className="l12">FACETICKER</p>
-            </button>
-            <button
-              onClick={toggleModal}
-              style={{ border: "none", backgroundColor: "transparent" }}
-            >
-              <img src={message} className="l1" alt="message" />
-            </button>
+        <div className="l25" style={{position:'relative'}}>
+        <header
+            style={{
+              float: "down",
+              width:'320px',
+              height: "70px",
+              position: "relative",
+              top: "0px",
+              display:'flex',
+              justifyContent: 'space-between'
+            }}
+          >
+            <div style={{width:'30px', height:'30px' , position: "relative",  top: "35%", left:'-3%' }} >
+              <button
+                style={{ border: "none", backgroundColor: "transparent" }}
+              >
+                <img src={user} className="l1" alt="setting"/>
+              </button>
+            </div>
+            <div style={{ float: "left" }}>
+              <button
+                style={{ border: "none", backgroundColor: "transparent" }}
+              >
+                <p className="l12">FACETICKER</p>
+              </button>
+            </div>
+            <div style={{ width:'26px', height:'26px' ,float: "left", position: "relative", top: "35%", left:'-3%' }} onClick={toggleModal3}>
+              <button
+                style={{ border: "none", backgroundColor: "transparent" }}
+              >
+                <img src={message} className="l1" alt="message" />
+              </button>
+            </div>
           </header>
-          <body id="PrtSc" className="l2">
+          <div style={{ position: "relative", top: "0px" }}>
+          <div id="PrtSc" className="l2">
             <div
-              style={{ position: "relative", left: "0%", top: "35%" }}
+              style={{ position: "relative", left: "18%", top: "35%" }}
               name="사진"
             >
               <img src={Vector} alt="Vector" />
@@ -122,7 +151,7 @@ function MainpageVisit() {
               <div
                 style={{
                   position: "absolute",
-                  top: "100%",
+                  top: "155%",
                   width: "338px",
                   height: "400px",
                 }}
@@ -165,16 +194,17 @@ function MainpageVisit() {
                   </p>
                 </div>
               </div>
-              <div style={{ height: "50px" }}>
+              <Div>
                 <button className="l10">
                   <img src={recordpage} alt="recordpage" />
                 </button>
-                <button className="l10">
-                  <img src={sticker} alt="sticker" onClick={toggleModal} />
+                <button className="l10" onClick={toggleModal}>
+                  <img src={sticker} alt="sticker"/>
                 </button>
-              </div>
+              </Div>
             </div>
-          </body>
+          </div>
+          </div>
           {showFooter && (
             <footer className="FixedFooter">
               <div>
@@ -188,20 +218,24 @@ function MainpageVisit() {
           {showModal && (
             <div className="Modal">
               <div>
-                <div>
+                <div style={{}}>
                   <div className="l17">!</div>
                   <button className="l18" name="close" onClick={toggleModal}>
                     <img src={close}></img>
                   </button>
-                  <p className="l13" style={{ clear: "left" }}>
+                  <div className="l26">
+                  <p>
                     앗!
                   </p>
-                  <p style={{ position: "relative", top: "20px" }}>
+                  </div>
+                  <div className="l27">
+                  <p>
                     ‘호스트명’님 공간에 흔적을 남기기 전, 로그인 하시겠어요?
                   </p>
+                  </div>
                 </div>
                 <div
-                  style={{ position: "relative", left: "14px", top: "50px" }}
+                  style={{ width:'318px' , display:'flex' ,position: "relative", left: "14px", top: "100px" }}
                 >
                   <button
                     id="No"
@@ -216,6 +250,52 @@ function MainpageVisit() {
                   <button
                     id="Yes"
                     className="l14"
+                    onClick={handleYes}
+                    onMouseOver={handleDragBtnYes}
+                    onMouseLeave={handleOutBtnYes}
+                  >
+                    YES
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+          {showModal3 && (
+            <div className="Modal">
+              <div>
+                <div style={{}}>
+                  <div className="l17">!</div>
+                  <button className="l18" name="close" onClick={toggleModal3}>
+                    <img src={close}></img>
+                  </button>
+                  <div className="l26">
+                  <p>
+                    앗!
+                  </p>
+                  </div>
+                  <div className="l27">
+                  <p>
+                    ‘호스트명’님 공간에 흔적을 남기기 전, 로그인 하시겠어요?
+                  </p>
+                  </div>
+                </div>
+                <div
+                  style={{ width:'318px' , display:'flex' ,position: "relative", left: "14px", top: "100px" }}
+                >
+                  <button
+                    id="No"
+                    className="l14"
+                    
+                    onMouseOver={handleDragBtnNo}
+                    onMouseLeave={handleOutBtnNo}
+                    style={{ float: "left" }}
+                  >
+                    NO
+                  </button>
+                  <button
+                    id="Yes"
+                    className="l14"
+                    onClick={handleYes}
                     onMouseOver={handleDragBtnYes}
                     onMouseLeave={handleOutBtnYes}
                   >

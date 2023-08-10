@@ -210,7 +210,7 @@ function MainpageHost() {
                 <p id="countMessage" className="l15-2">
                   {chattingNumber || "0"}
                 </p>
-              </div>
+              </div>{/*
               <button
                 style={{
                   width: "20px",
@@ -233,7 +233,7 @@ function MainpageHost() {
               >
                 -1
               </button>{" "}
-              
+              */}
             </div>
           </header>
 
@@ -297,9 +297,11 @@ function MainpageHost() {
                       style={{ backgroundColor: "#FEFAEF" }}
                     ></div>
                   </div>
-                  <p id="" className="l7-2">
+                  <div className="l7-2">
+                    <p id="" >
                     {Korean || "오매불망"}
-                  </p>
+                    </p>
+                  </div>
                 </div>
                 <div name="한자">
                   <p id="" className="l8-2">
