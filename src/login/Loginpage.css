@@ -1,0 +1,247 @@
+@import url("https://webfontworld.github.io/LotteriaChab/LotteriaChab.css");
+
+@media all and (max-width: 768px) {
+  .title {
+    text-align: center;
+    margin-top: 20vh;
+  }
+
+  .logo {
+    color: #ff6d00;
+    text-align: center;
+    font-family: "LotteriaChab";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 55.556% */
+  }
+
+  .buttons {
+    margin-top: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-left: 1vw;
+    margin-right: 1vw;
+    height: 100%;
+    border-radius: 30px;
+    border: 0.2vh solid #ffffff;
+  }
+
+  .KakaoButton {
+    margin-top: 7vh;
+    width: 90%;
+    height: 7vh;
+    padding: 0;
+    border-radius: 36px;
+    border: none;
+    background-image: url("../img/loginImg/kakao.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .GoogleButton {
+    width: 90%;
+    height: 7vh;
+    margin-top: 4.5vh;
+    padding: 0;
+    border-radius: 36px;
+    border: none;
+    background-image: url("../img/loginImg/google.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .noline {
+    text-decoration: none;
+    /*    color: var(--unnamed, #06f);
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; */
+  }
+
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-image: url("../img/loginImg/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .notice {
+    margin-top: 10vh;
+    font-size: 80%;
+    color: #191919;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 166.667% */
+  }
+}
+
+@media all and (min-width: 769px) and (max-width: 1024px) {
+  .title {
+    text-align: center;
+    margin-top: 15vh;
+  }
+
+  .logo {
+    color: #ff6d00;
+    text-align: center;
+    font-family: "LotteriaChab";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 55.556% */
+  }
+
+  .buttons {
+    margin-top: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-left: 1vw;
+    margin-right: 1vw;
+    height: 100%;
+    border-radius: 30px;
+    border-radius: 30px;
+    border: 0.2vh solid #ffffff;
+  }
+
+  .KakaoButton {
+    margin-top: 7vh;
+    width: 80%;
+    height: 10vh;
+    padding: 0;
+    border-radius: 36px;
+    border: none;
+    background-image: url("../img/loginImg/kakao.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .GoogleButton {
+    width: 80%;
+    height: 10vh;
+    margin-top: 4.5vh;
+    padding: 0;
+    border-radius: 36px;
+    border: none;
+    background-image: url("../img/loginImg/google.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .noline {
+    text-decoration: none;
+  }
+
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-image: url("../img/loginImg/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .notice {
+    margin-top: 5vh;
+    font-size: 100%;
+  }
+}
+
+@media all and (min-width: 1025px) {
+  .title {
+    text-align: center;
+    margin-top: 15vh;
+  }
+  .logo {
+    color: #ff6d00;
+    text-align: center;
+    font-family: "LotteriaChab";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 55.556% */
+  }
+
+  .buttons {
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-left: 1vw;
+    margin-right: 1vw;
+    height: 100%;
+    border-radius: 30px;
+    position: relative;
+    border-radius: 30px;
+    border: 0.2vh solid #ffffff;
+  }
+
+  .KakaoButton {
+    margin-top: 4.5vh;
+    width: 50%;
+    height: 15vh;
+    padding: 0;
+    border-radius: 36px;
+    border: none;
+    background-image: url("../img/loginImg/kakao.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 40vh;
+    margin-right: 2vw;
+    margin-left: 1vw;
+  }
+
+  .GoogleButton {
+    width: 50%;
+    height: 15vh;
+    margin-top: 4.5vh;
+    padding: 0;
+    border-radius: 36px;
+    border: none;
+    background-image: url("../img/loginImg/google.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 40vh;
+    margin-right: 1vw;
+  }
+
+  .noline {
+    text-decoration: none;
+  }
+
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-image: url("../img/loginImg/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .notice {
+    position: absolute;
+    align-content: center;
+    margin-top: 5vh;
+    font-size: 150%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+  }
+}
