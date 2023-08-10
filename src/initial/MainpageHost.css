@@ -15,13 +15,18 @@
   color: var(--unnamed, #f26b79);
   transform: rotate(7deg);
   text-align: center;
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: 24px; /* 171.429% */
 }
 
+@font-face {
+  font-family: "JHaebaragi"; /* 폰트 이름 지정 (임의의 이름으로 설정 가능) */
+  src: url("../font/Sunflower-Medium.ttf")
+    format("woff"); /* 폰트 파일 경로 지정 */
+}
 .l4-2 {
   width: 200px;
   transform: rotate(-90deg);
@@ -71,33 +76,40 @@
 }
 
 .l7-2 {
+  width:100px;
   color: rgba(51, 51, 51, 0.8);
   text-align: center;
-  font-family: KIMM_Light;
+  font-family: 'KIMM_Light';
   font-size: 16px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
   position: relative;
-  left: 23%;
+  left: 73%;
+  top: -25px;
 }
-
+@font-face {
+  font-family: "TmonMonsori"; /* 폰트 이름 지정 (임의의 이름으로 설정 가능) */
+  src: url("../font/TMONBlack.ttf")
+    format("woff"); /* 폰트 파일 경로 지정 */
+}
 .l8-2 {
   color: #767676;
-  font-family: TmonMonsori;
+  font-family: 'TmonMonsori';
   font-size: 70px;
   font-style: normal;
   font-weight: 900;
   line-height: 36px; /* 51.429% */
   position: absolute;
-  top: -30px;
-  left: 16%;
+  top: -20px;
+  left: 20%;
+  float: right;
 }
 
 .l9-2 {
   color: rgba(0, 0, 0, 0.25);
   text-align: center;
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -221,7 +233,7 @@
   width:400px;
   color: #191919;
   text-align: center;
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
@@ -232,7 +244,7 @@
 
 .l17-2 {
   color: rgba(25, 25, 25, 0.8);
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -241,7 +253,7 @@
 
 .l18-2 {
   color: var(--unnamed, #06f);
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -270,7 +282,7 @@
   flex-shrink: 0;
   color: #000;
   text-align: center;
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -282,7 +294,7 @@
 .l21-2 {
   width: 212px;
   color: rgba(0, 0, 0, 0.25);
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -323,10 +335,20 @@
   border-width: 1px 1px 4px 1px;
   background: #f1f1f5;
   margin: 16px 0 0 0;
+
+  color: #191919;
+  text-align: center;
+  font-family: 'Pretendard';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 150% */
 }
 
 .BackgroundWrap {
   background: #f8f8fa;
+  display: flex;
+  justify-content: center;
 }
 
 .Background {
