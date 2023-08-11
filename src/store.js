@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import questionSlice from "./QnA/Slice/questionSlice";
+/* import questionSlice from "./QnA/Slice/questionSlice";
 import IDSlice from "./QnA/Slice/IDSlice";
 import AnswerSlice from "./QnA//Slice/AnswerSlice";
 import ID_answerSlice from "./QnA/Slice/ID_AnswerSlice";
@@ -14,7 +14,8 @@ import FirstSlice from "./QnA/Slice/FirstSlice";
 import PageSlice from "./QnA/Slice/PageSlice";
 import Basic_questionSlice from "./QnA/Slice/Basic_questionSlice";
 import Popup_QnA_Slice from "./QnA/Slice/Popup_QnA_Slice";
-import ShareOrNotSlice from "./QnA/Slice/ShareOrNotSlice";
+import ShareOrNotSlice from "./QnA/Slice/ShareOrNotSlice"; */
+
 import appReducer from "./Stickers/reducers";
 import StickerSlice from "./MakeSticker/StickerSlice";
 import MS_PopupSlice from "./MakeSticker/PopupSlice";
@@ -22,7 +23,7 @@ import NicknamePage from "./Nickname/NicknamePageSlice";
 
 const store = configureStore({
   reducer: {
-    question: questionSlice.reducer, // 질문 저장소
+    /*     question: questionSlice.reducer, // 질문 저장소
     idcounter: IDSlice.reducer, // 질문 ID 값 지정해주는 저장소
     answer: AnswerSlice.reducer, // 답변 저장소
     id_answer: ID_answerSlice.reducer, // 답변 ID 값 지정해주는 저장소
@@ -38,7 +39,7 @@ const store = configureStore({
     basic_question: Basic_questionSlice.reducer, // 기본 질문 저장소
     popup_QnA: Popup_QnA_Slice.reducer, // 기본 질문 팝업창 관리
     share: ShareOrNotSlice.reducer, // 질문 비공개 공개 설정
-
+ */
     app: appReducer, //Stickers
     nicknamepage: NicknamePage.reducer,
 

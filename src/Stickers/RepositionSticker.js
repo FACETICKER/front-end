@@ -5,7 +5,7 @@ import { setIsImageFixed } from "./reducers";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import zoom from "../img/stickers_img/zoom.png";
+import zoom from "../img/Stickers_img/zoom.png";
 
 //방문자 기록 컴포넌트
 
