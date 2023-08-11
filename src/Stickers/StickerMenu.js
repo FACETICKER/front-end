@@ -13,7 +13,7 @@ import { MainText } from "./MainText";
 import menu from "../img/Stickers_img/menu.png";
 import change from "../img/Stickers_img/change.png";
 import { useNavigate } from "react-router-dom";
-
+import HostHeader from "../components/HostHeader";
 import { setSelectedImage } from "./imageSlice";
 import close from "../img/Header_img/close.png";
 
@@ -84,8 +84,10 @@ const Stickers = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  height: 80%;
-  background-color: ;
+
+  height: 90%;
+  flex-direction: column;
+  overflow: hidden;
 `;
 const Close = styled.img`
   display: flex;
@@ -111,6 +113,7 @@ export function StickerMenu() {
       .then((data) => {
         const filteredData = data.filter((item) => item.id !== 1);
         setImageData(filteredData);
+        console.log(images);
       })
       .catch((error) => {
         console.error("오류 발생", error);
@@ -135,12 +138,13 @@ export function StickerMenu() {
   return (
     <BackgroundWrap>
       <Background>
-        <MainHeader />
+        <HostHeader />
         <BottomWrap>
           <Bottom>
             <Text1>My Faceticker List</Text1>
             <Text2>내 페이지에 부착된 스티커 목록입니다.</Text2>
             <Close onClick={handleClose} src={close} />
+
             <Stickers>
               <First>
                 {filteredData2.map((item) => (
