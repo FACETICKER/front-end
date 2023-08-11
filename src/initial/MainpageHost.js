@@ -14,6 +14,7 @@ import "./MainpageHost.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+
 const Div = styled.div`
   position: absolute;
   left: 30%;
@@ -163,42 +164,35 @@ function MainpageHost() {
   };
 
   const handleStickerPage = () => {
-    navigate("/host");
+    navigate("/hoststicker");
+  };
+  const handleQna = () => {
+    navigate("/qna");
+  };
+  const handleHoststicker = () => {
+    navigate("/hoststicker");
   };
   return (
     <div className="BackgroundWarp">
       <div className="Background">
-        <div className="l29-2" style={{ position: "relative" }}>
+        <div className="l29-2" style={{position:'relative'}}>
           <header
             style={{
               float: "down",
-              width: "320px",
+              width:'320px',
               height: "70px",
               position: "relative",
               top: "0px",
-              display: "flex",
-              justifyContent: "space-between",
+              display:'flex',
+              justifyContent: 'space-between'
             }}
           >
-            <div
-              style={{
-                width: "30px",
-                height: "30px",
-                position: "relative",
-                top: "35%",
-                left: "-3%",
-              }}
-            >
+            <div style={{width:'30px', height:'30px' , position: "relative",  top: "35%", left:'-3%' }} >
               <button
                 style={{ border: "none", backgroundColor: "transparent" }}
                 onClick={toggleModal1}
               >
-                <img
-                  src={setting}
-                  className="l1-2"
-                  alt="setting"
-                  onClick={toggleModal1}
-                />
+                <img src={setting} className="l1-2" alt="setting" onClick={toggleModal1}/>
               </button>
             </div>
             <div style={{ float: "left" }}>
@@ -208,31 +202,21 @@ function MainpageHost() {
                 <p className="l12-2">FACETICKER</p>
               </button>
             </div>
-            <div
-              style={{
-                width: "26px",
-                height: "26px",
-                float: "left",
-                position: "relative",
-                top: "35%",
-                left: "-3%",
-              }}
-            >
+            <div style={{ width:'26px', height:'26px' ,float: "left", position: "relative", top: "35%", left:'-3%' }}>
               <button
-                style={{ border: "none", backgroundColor: "transparent" }}
+                style={{ border: "none", backgroundColor: "transparent" }} onClick={handleQna}
               >
                 <img src={message} className="l1-2" alt="message" />
               </button>
               <div
                 id="countMessageDiv"
                 className="l14-2"
-                style={{ display: "none" }}
+                style={{ display: "none"}}
               >
                 <p id="countMessage" className="l15-2">
                   {chattingNumber || "0"}
                 </p>
-              </div>
-              {/*
+              </div>{/*
               <button
                 style={{
                   width: "20px",
@@ -320,7 +304,9 @@ function MainpageHost() {
                     ></div>
                   </div>
                   <div className="l7-2">
-                    <p id="">{Korean || "오매불망"}</p>
+                    <p id="" >
+                    {Korean || "오매불망"}
+                    </p>
                   </div>
                 </div>
                 <div name="한자">
@@ -396,9 +382,8 @@ function MainpageHost() {
                 </button> */}
               </div>
               <Div>
-                <button className="l10-2">
+                <button className="l10-2" onClick={handleHoststicker}>
                   <img
-                    onClick={handleStickerPage}
                     src={recordpage}
                     alt="recordpage"
                   />
@@ -461,74 +446,49 @@ function MainpageHost() {
           )}
           {showModal1 && (
             <div className="Modal">
-              <div
-                style={{
-                  width: "294px",
-                  height: "52px",
-                  position: "relative",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <img src={edit} />
-              </div>
-              <button
-                style={{
-                  border: "none",
-                  backgroundColor: "transparent",
-                  position: "absolute",
-                  top: "3%",
-                  left: "85%",
-                }}
-                name="close"
-                onClick={toggleModal1}
-              >
-                <img src={close}></img>
-              </button>
-              <div
-                style={{
-                  padding: "24px 0 0 0",
-                  width: "294px",
-                  height: "250px",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  justifyContent: "center",
-                }}
-              >
-                <button className="l24-2" onClick={handleInitial}>
-                  포스터 정보 수정
+                <div style={{width: '294px', height:'52px' ,position:'relative', display:'flex', justifyContent: 'center'}}><img src={edit} /></div>
+                <button
+                  style={{
+                    border: "none",
+                    backgroundColor: "transparent",
+                    position: "absolute",
+                    top: "3%",
+                    left: "85%",
+                  }}
+                  name="close"
+                  onClick={toggleModal1}
+                >
+                  <img src={close}></img>
                 </button>
-                <button className="l24-2" onClick={handleMakeSticker}>
-                  스티커 수정
-                </button>
-                <button className="l24-2" onClick={handleStickerLetter}>
-                  상태메시지 수정
-                </button>
-              </div>
+                <div style={{padding:'24px 0 0 0', width: '294px', height:'250px', display:'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
+                  <button className="l24-2" onClick={handleInitial}>포스터 정보 수정</button>
+                  <button className="l24-2" onClick={handleMakeSticker}>스티커 수정</button>
+                  <button className="l24-2" onClick={handleStickerLetter}>상태메시지 수정</button>
+                </div>
             </div>
           )}
           {showModal4 && (
             <div className="ModalContent">
-              <div
-                className="Close"
-                src="https://i.ibb.co/Cw1y11J/close-x.png"
+            <div className="Close"
+              
+              src="https://i.ibb.co/Cw1y11J/close-x.png"
+            />
+            <img src="https://i.ibb.co/LNBGHHr/square-edit.png" />
+            <div className="EditButtons">
+              <div className="EditButton"
+                
+                src="https://i.ibb.co/7QPq765/Group-190.png"
               />
-              <img src="https://i.ibb.co/LNBGHHr/square-edit.png" />
-              <div className="EditButtons">
-                <div
-                  className="EditButton"
-                  src="https://i.ibb.co/7QPq765/Group-190.png"
-                />
-                <div
-                  className="EditButton"
-                  src="https://i.ibb.co/TMWMM0g/Group-191.png"
-                />
-                <div
-                  className="EditButton"
-                  src="https://i.ibb.co/Qkm8sPF/Group-192.png"
-                />
-              </div>
+              <div className="EditButton"
+                
+                src="https://i.ibb.co/TMWMM0g/Group-191.png"
+              />
+              <div className="EditButton"
+                
+                src="https://i.ibb.co/Qkm8sPF/Group-192.png"
+              />
             </div>
+          </div>
           )}
           {showModal2 && (
             <div className="Modal">

@@ -1,5 +1,7 @@
 @import url("https://webfontworld.github.io/LotteriaChab/LotteriaChab.css");
 
+
+
 .l1 {
   width: 26px;
   height: 26px;
@@ -19,17 +21,22 @@
   color: var(--unnamed, #f26b79);
   transform: rotate(7deg);
   text-align: center;
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: 24px; /* 171.429% */
 }
 
+@font-face {
+  font-family: "JHaebaragi"; /* 폰트 이름 지정 (임의의 이름으로 설정 가능) */
+  src: url("../font/Sunflower-Medium.ttf")
+    format("woff"); /* 폰트 파일 경로 지정 */
+}
 .l4 {
   transform: rotate(-90deg);
   color: #3f3f3f;
-  font-family: JHaebaragi;
+  font-family: 'JHaebaragi';
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -70,11 +77,11 @@
   letter-spacing: -0.408px;
   position: absolute;
   top: 170%;
-  left: 33%;
+  left:33%;
 }
 
 .l7 {
-  width: 100px;
+  width:100px;
   color: rgba(51, 51, 51, 0.8);
   text-align: center;
   font-family: KIMM_Light;
@@ -87,10 +94,15 @@
   top: 67%;
 }
 
+@font-face {
+  font-family: "TmonMonsori"; /* 폰트 이름 지정 (임의의 이름으로 설정 가능) */
+  src: url("../font/TMONBlack.ttf")
+    format("woff"); /* 폰트 파일 경로 지정 */
+}
 .l8 {
   width: 300px;
   color: #767676;
-  font-family: TmonMonsori;
+  font-family: 'TmonMonsori';
   font-size: 70px;
   font-style: normal;
   font-weight: 900;
@@ -104,14 +116,14 @@
   width: 200px;
   color: rgba(0, 0, 0, 0.25);
   text-align: center;
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   position: absolute;
   top: 95%;
-  left: 0%;
+  left:0%;
 }
 
 .l10 {
@@ -124,8 +136,8 @@
   border-radius: 50%;
   position: relative;
   margin: 0 10px 0 0;
-  top: 500px;
-  left: 60%;
+  top:500px;
+  left:60%;
 }
 
 .FixedFooter {
@@ -201,7 +213,7 @@
   line-height: 22px; /* 55% */
   position: absolute;
   top: -10%;
-  left: 12%;
+  left:12%;
 }
 
 .l14 {
@@ -240,7 +252,7 @@
   background: var(--unnamed, #f26b79);
   position: relative;
   left: 20%;
-  top: 50px;
+  top:50px;
 }
 
 .l17 {
@@ -260,8 +272,8 @@
   border: none;
   background-color: transparent;
   position: absolute;
-  left: 85%;
-  top: 1%;
+  left:85%;
+  top:1%;
 }
 
 .l22 {
@@ -271,7 +283,7 @@
   border: 2px solid #f26b79;
   position: absolute;
   left: 10%;
-  top: 80%;
+  top:80%;
 }
 
 .l23 {
@@ -295,6 +307,7 @@
   background: #f8f8fa;
 }
 
+
 .l24 {
   width: 16px;
   height: 16px;
@@ -304,14 +317,14 @@
   margin: 6px;
 }
 
-.HeaderWarp {
+.HeaderWarp{
   height: 10%;
   justify-content: center;
   align-items: center;
   display: flex;
 }
 
-.Header {
+.Header{
   display: flex;
   height: 30px;
   width: 100%;
@@ -319,22 +332,22 @@
   flex-direction: row;
   justify-content: space-around;
   position: relative;
-  top: 15px;
-  left: -6%;
+  top:15px;
+  left:-6%;
 }
-.HeaderIcon {
+.HeaderIcon{
   width: 15%;
   justify-content: center;
   align-items: center;
   display: flex;
 }
-.LogoWrap {
+.LogoWrap{
   justify-content: center;
   align-items: center;
   display: flex;
   width: 70%;
 }
-.Logo {
+.Logo{
   margin: auto;
   font-family: "LotteriaChab";
   color: #ff6d00;
@@ -344,11 +357,11 @@
   font-weight: 400;
   line-height: 20px; /* 83.333% */
 }
-.Style {
+.Style{
   width: "50%";
   margin: "auto";
 }
-.ModalContent {
+.ModalContent{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -367,50 +380,50 @@
   width: 20%;
   display: flex;
 }
-.EditButtons {
+.EditButtons{
   width: 90%;
-  height: 70%;
+  height:70%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 10%;
 }
-.EditButton {
+.EditButton{
   display: flex;
   width: 100%;
   margin-bottom: 3%;
 }
 
-.l25 {
-  width: 390px;
+.l25{
+  width:390px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   position: relative;
   margin: 0px auto;
 }
-.l26 {
-  width: 284px;
-  height: 24px;
+.l26{
+  width:284px;
+  height:24px;
   display: flex;
   justify-content: center;
   color: #000;
   text-align: center;
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
-.l27 {
+.l27{
   position: relative;
   width: 250px;
   top: 50px;
-  left: 8%;
+  left:8%;
   color: #767676;
   text-align: center;
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
