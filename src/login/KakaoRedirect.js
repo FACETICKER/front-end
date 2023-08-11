@@ -25,7 +25,7 @@ export function KakaoRedirect() {
         console.log(data);
         console.log(data.result.user_id);
         console.log(data.result.jwt);
-        navigate("/newuserflow"); //시작하기로
+        navigate("/newuserflow"); //시작하기로 페이지 이동
       })
       .catch((error) => {
         console.error("오류 발생", error);
