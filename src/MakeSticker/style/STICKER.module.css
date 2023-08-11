@@ -1,0 +1,15 @@
+.background {
+  height: 55%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stickersWrap {
+  height: 350px;
+  width: 300px;
+  position: relative;
+
+  z-index: 4;
+}
