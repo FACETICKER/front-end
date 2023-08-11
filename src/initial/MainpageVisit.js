@@ -1,4 +1,4 @@
-import InitialSurveyList from "./NextLoginList";
+import NextLoginList from "./NextLoginList";
 import message from "../img/MainpageVisit_img/ri_message-3-line.png";
 import Vector from "../img/MainpageVisit_img/Group 157 1.png";
 import threeboll from "../img/MainpageVisit_img/Group 77.svg";
@@ -11,6 +11,11 @@ import React, { useState } from "react";
 
 import "./MainpageVisit.css";
 import { useNavigate } from "react-router-dom";
+
+import {
+  setStickeris,
+  setQuestionis,
+} from './NextLoginList'; // 경로는 실제 파일 경로에 맞게 수정해주세요
 
 function MainpageVisit() {
   const navigate = useNavigate();
@@ -83,6 +88,15 @@ function MainpageVisit() {
   };
   const handleVisitorsticker = () => {
     navigate("visitorsticker");
+  };
+
+  const handleStickerLogin = () => {
+    handleYes();
+    setStickeris(1);
+  };
+  const handleQuestionLogin = () => {
+    handleYes();
+    setQuestionis(1);
   };
 
   return (
@@ -283,7 +297,7 @@ function MainpageVisit() {
                   <button
                     id="Yes"
                     className="l14"
-                    onClick={handleYes}
+                    onClick={handleStickerLogin}
                     onMouseOver={handleDragBtnYes}
                     onMouseLeave={handleOutBtnYes}
                   >
@@ -322,7 +336,7 @@ function MainpageVisit() {
                   <button
                     id="No"
                     className="l14"
-                    onClick={handleQna}
+                    onClick={handleQuestionLogin}
                     onMouseOver={handleDragBtnNo}
                     onMouseLeave={handleOutBtnNo}
                     style={{ float: "left" }}
