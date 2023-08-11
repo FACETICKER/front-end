@@ -19,6 +19,7 @@ import Redirect from "./login/KakaoRedirect";
 import StickerMenu from "./Stickers/StickerMenu";
 import StickerLetter from "./Nickname/StickerLetter";
 import StickerName from "./Nickname/StickerName";
+import Reposition from "./Stickers/Reposition";
 
 function App() {
   function setScreenSize() {
@@ -76,6 +77,8 @@ function App() {
           {/*호스트가 스티커 클릭할 때 */}
           <Route path="/stickermenu" element={<StickerMenu />} />
           {/*스티커 메뉴 */}
+          <Route path="/repositionsticker" element={<Reposition />} />
+          {/*스티커 재배치 */}
         </Routes>
       </BrowserRouter>
     </Provider>
