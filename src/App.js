@@ -12,7 +12,7 @@ import MainpageHost from "./initial/MainpageHost";
 /* import QnApage from "./page/QnApageMain"; */
 import StickerMainHost from "./page/StickersHost";
 import PutPage from "./page/PutPage";
-
+import VisitorSticker from "./Stickers/Visitor";
 import Loginpage from "./login/Loginpage";
 import ClickSticker from "./Stickers/ClickSticker";
 import Redirect from "./login/KakaoRedirect";
@@ -67,6 +67,8 @@ function App() {
           {/*질문답변 */}{" "}
           <Route path="put" element={<PutPage />} />
           {/*스티커 붙이기 방문자 */}
+          <Route path="visitorsticker" element={<VisitorSticker />} />
+          {/*스티커 방문자 */}
           <Route path="hoststicker" element={<StickerMainHost />} />
           {/*스티커 호스트 */}
           <Route path="clicksticker" element={<ClickSticker />} />
