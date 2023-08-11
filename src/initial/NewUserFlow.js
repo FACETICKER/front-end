@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from "react-redux";
 function NewUserFlow() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
 
   const handleButtonClick = () => {
     navigate("/initial");
