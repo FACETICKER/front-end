@@ -15,6 +15,7 @@ import change from "../img/Stickers_img/change.png";
 import { useNavigate } from "react-router-dom";
 
 import { setSelectedImage } from "./imageSlice";
+import close from "../img/Header_img/close.png";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -45,11 +46,12 @@ const BottomWrap = styled.div`
 `;
 
 const Bottom = styled.div`
-  border-radius: 40px;
-  border: 2px solid var(--unnamed, #12151c);
+  border-radius: 20px;
+  border: 3px solid var(--unnamed, #12151c);
   background: #fff;
   width: 90%;
   height: 90%;
+  position: relative;
 `;
 
 const Text1 = styled.div`
@@ -85,7 +87,13 @@ const Stickers = styled.div`
   height: 80%;
   background-color: ;
 `;
-
+const Close = styled.img`
+  display: flex;
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  max-width: 8%;
+`;
 export function StickerMenu() {
   const navigate = useNavigate();
   const [images, setImageData] = useState([]);
@@ -121,7 +129,9 @@ export function StickerMenu() {
     dispatch(setSelectedImage(imageId));
     navigate("/clicksticker");
   };
-
+  const handleClose = () => {
+    navigate("/hoststicker");
+  };
   return (
     <BackgroundWrap>
       <Background>
@@ -130,6 +140,7 @@ export function StickerMenu() {
           <Bottom>
             <Text1>My Faceticker List</Text1>
             <Text2>내 페이지에 부착된 스티커 목록입니다.</Text2>
+            <Close onClick={handleClose} src={close} />
             <Stickers>
               <First>
                 {filteredData2.map((item) => (
