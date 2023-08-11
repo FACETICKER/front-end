@@ -89,7 +89,7 @@ export function StaticSticker() {
 
   //host image 받아오기
   useEffect(() => {
-    fetch("http://localhost:3011/user/1")
+    fetch("http://localhost:3012/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
@@ -105,7 +105,7 @@ export function StaticSticker() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3011/user")
+    fetch("http://localhost:3012/user")
       .then((response) => response.json())
       .then((data) => {
         const filteredData = data.filter((item) => item.id !== 1);

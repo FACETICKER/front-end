@@ -13,8 +13,9 @@ import { MainText } from "./MainText";
 import menu from "../img/Stickers_img/menu.png";
 import change from "../img/Stickers_img/change.png";
 import { useNavigate } from "react-router-dom";
-
+import HostHeader from "../components/HostHeader";
 import { setSelectedImage } from "./imageSlice";
+import close from "../img/Header_img/close.png";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -41,22 +42,24 @@ const BottomWrap = styled.div`
   display: flex;
   height: 90%;
   flex-direction: column;
-  overflow: hidden;
 `;
 
 const Bottom = styled.div`
-  border-radius: 40px;
-  border: 2px solid var(--unnamed, #12151c);
+  border-radius: 20px;
+  border: 3px solid var(--unnamed, #12151c);
   background: #fff;
   width: 90%;
   height: 90%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Text1 = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  height: 10%;
+  height: 8%;
   color: #191919;
   text-align: center;
   font-family: Pretendard;
@@ -69,7 +72,7 @@ const Text2 = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  height: 10%;
+  height: 8%;
   color: #767676;
   text-align: center;
   font-family: Pretendard;
@@ -83,37 +86,16 @@ const Stickers = styled.div`
   align-items: center;
   display: flex;
   height: 80%;
-  background-color: pink;
-`;
-
-const YellowCircle = styled.div`
-  width: 20vw;
-  padding: 5% 5‰;
-  height: 20vw;
-  border-radius: 50%;
-  background-color: rgba(255, 210, 93, 0.8);
-
-  display: flex;
+  overflow: scroll;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
 `;
-
-const CircleContainer = styled.div`
+const Close = styled.img`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 500px;
-  flex-direction: column;
-  margin: 0 auto;
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  max-width: 8%;
 `;
-
-const StyledImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-`;
-
 export function StickerMenu() {
   const navigate = useNavigate();
   const [images, setImageData] = useState([]);
@@ -126,11 +108,12 @@ export function StickerMenu() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("http://localhost:3011/user")
+    fetch("http://localhost:3012/user")
       .then((response) => response.json())
       .then((data) => {
         const filteredData = data.filter((item) => item.id !== 1);
         setImageData(filteredData);
+        console.log(images);
       })
       .catch((error) => {
         console.error("오류 발생", error);
@@ -149,15 +132,19 @@ export function StickerMenu() {
     dispatch(setSelectedImage(imageId));
     navigate("/clicksticker");
   };
-
+  const handleClose = () => {
+    navigate("/hoststicker");
+  };
   return (
     <BackgroundWrap>
       <Background>
-        <MainHeader />
+        <HostHeader />
         <BottomWrap>
           <Bottom>
             <Text1>My Faceticker List</Text1>
             <Text2>내 페이지에 부착된 스티커 목록입니다.</Text2>
+            <Close onClick={handleClose} src={close} />
+
             <Stickers>
               <First>
                 {filteredData2.map((item) => (
@@ -272,6 +259,8 @@ const First = styled.div`
   margin-bottom: 5%;
   width: 100%;
   height: 30%;
+
+  transform: translateY(100%);
 `;
 
 export default StickerMenu;

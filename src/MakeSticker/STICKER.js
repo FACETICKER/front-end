@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./style/STICKER.module.css";
 import Face from "./sticker/Face";
 import Hand from "./sticker/Hand";
@@ -8,10 +8,13 @@ import Nose from "./sticker/Nose";
 import Mouth from "./sticker/Mouth";
 import Accessory from "./sticker/Accessory";
 import domtoimage from "dom-to-image";
+import { useDispatch, useSelector } from "react-redux";
 
 const STICKER = () => {
   const [imageURL, setImageURL] = useState(null);
   const containerRef = useRef(null);
+  const dispatch = useDispatch();
+  const captureEnabled = useSelector((state) => state.capture.captureEnabled);
 
   const handleCaptureImg = () => {
     if (containerRef.current) {
@@ -20,7 +23,7 @@ const STICKER = () => {
         .then(function (dataUrl) {
           setImageURL(dataUrl);
           downloadImage(dataUrl); // 이미지를 파일로 다운로드하는 함수 호출
-          console.log(imageURL);
+          console.log(dataUrl);
         })
         .catch(function (error) {
           console.error("이미지 캡처 오류:", error);
@@ -35,9 +38,14 @@ const STICKER = () => {
     link.click();
   };
 
+  useEffect(() => {
+    if (captureEnabled) {
+      handleCaptureImg();
+    }
+  }, [captureEnabled]);
+
   return (
     <div className={styles.background}>
-      <button onClick={handleCaptureImg}>저장</button>
       <div ref={containerRef} className={styles.stickersWrap}>
         <Face />
         <Foot />
