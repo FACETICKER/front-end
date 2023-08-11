@@ -80,8 +80,8 @@ function MainpageVisit() {
   const handleMainHost = () => {
     navigate("/mainhost");
   };
-  const handleHoststicker = () => {
-    navigate("/hoststicker");
+  const handleVisitorsticker = () => {
+    navigate("visitorsticker");
   };
 
 
@@ -205,7 +205,7 @@ function MainpageVisit() {
                 </div>
               </div>
               <Div>
-                <button className="l10">
+                <button className="l10" onClick={handleVisitorsticker}>
                   <img src={recordpage} alt="recordpage" />
                 </button>
                 <button className="l10" onClick={toggleModal}>
