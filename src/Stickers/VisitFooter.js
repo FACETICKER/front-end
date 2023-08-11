@@ -32,7 +32,7 @@ export function VisitFooter() {
   const [hostImageUrl, setHostImageUrl] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3001/imgUrl/1")
+    fetch("http://localhost:3012/imgUrl/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
@@ -46,7 +46,7 @@ export function VisitFooter() {
 
   const handleFetchImageAndImageClick = async (event) => {
     try {
-      const response = await fetch("http://localhost:3001/imgUrl/2");
+      const response = await fetch("http://localhost:3012/imgUrl/2");
       const data = await response.json();
       setImageUrl(data.url);
       setImagePosition({ x: event.clientX, y: event.clientY });

@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Light from "./image/light.png";
 import StickerSlice from "./StickerSlice";
 import PopupSlice from "./PopupSlice";
+import { useNavigate } from "react-router-dom";
 
 // 팝업창 띄우기 버튼(전등), faceticker, 나만의 스티커를 만들어보세요, 얼굴형~악세사리 글자 표현 컴포넌트
 
 const Top = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const steps = useSelector((state) => {
     return state.sticker.step;
@@ -43,11 +45,16 @@ const Top = () => {
   const open = () => {
     dispatch(PopupSlice.actions.open());
   };
-
+  const faceticker = () => {
+    //방문자, 호스트에 따라 바꾸기
+    navigate("/mainvisit");
+  };
   return (
     <div className={styles.background}>
       <img src={Light} className={styles.light} onClick={open}></img>
-      <p className={styles.title}>FACETICKER</p>
+      <p onClick={faceticker} className={styles.title}>
+        FACETICKER
+      </p>
       <p className={styles.explanation}>나만의 스티커를 만들어보세요.</p>
       <p className={styles.step}>{step}</p>
     </div>

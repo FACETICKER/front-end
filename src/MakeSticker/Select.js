@@ -10,6 +10,7 @@ import styles1 from "./style/Popup.module.css";
 import styles2 from "./Modal_jh.module.css";
 import Close from "../img/QnA_img/close-x.png";
 import Dots from "../components/Dots";
+import { setCaptureEnabled } from "./CaptureSlice";
 
 const modalStyle = {
   overlay: {
@@ -37,11 +38,10 @@ const modalStyle = {
 
 // 선택창 관리 컴포넌트
 
-const Select = () => {
+const Select = ({ handleCaptureImg }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -51,6 +51,10 @@ const Select = () => {
     setModalIsOpen(false);
   };
 
+  const capture = (isEnabled) => {
+    dispatch(setCaptureEnabled(isEnabled));
+    setModalIsOpen(true);
+  };
   const step = useSelector((state) => {
     return state.sticker.step;
   });
@@ -61,6 +65,13 @@ const Select = () => {
 
   const down = () => {
     dispatch(StickerSlice.actions.stepcontrol(false));
+  };
+  const handleMain = () => {
+    navigate("/mainhost");
+  };
+
+  const handlenickname = () => {
+    navigate("/stickername");
   };
 
   return (
@@ -80,7 +91,7 @@ const Select = () => {
           다음
         </button>
         {step == 6 && (
-          <button onClick={openModal} className={styles.button}>
+          <button onClick={capture} className={styles.button}>
             완료
           </button>
         )}
@@ -103,11 +114,15 @@ const Select = () => {
               <p className={styles2.p2}>미 작성시 랜덤 문구가 표시됩니다.</p>
               <div className={styles2.button_zone}>
                 <div className={styles2.button1}>
-                  <button className={styles2.btn}>나중에..</button>
+                  <button onClick={handleMain} className={styles2.btn}>
+                    나중에..
+                  </button>
                   <button className={styles2.btnshadow}></button>
                 </div>
                 <div className={styles2.button2}>
-                  <button className={styles2.btn_red}>좋아요</button>
+                  <button onClick={handlenickname} className={styles2.btn_red}>
+                    좋아요
+                  </button>
                   <button className={styles2.btnshadow}></button>
                 </div>
               </div>
