@@ -81,7 +81,7 @@ function MainpageVisit() {
     navigate("/mainhost");
   };
   const handleVisitorsticker = () => {
-    navigate("visitorsticker");
+    navigate("/visitorsticker");
   };
 
   return (
