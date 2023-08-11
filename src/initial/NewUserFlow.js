@@ -20,8 +20,8 @@ function NewUserFlow() {
   };
 
   return (
-    <div className="BackgroundWrap">
-      <div className="Background">
+    <div className="BackgroundWrap-4">
+      <div className="Background-4">
         <div className="Container">
           <div className="l1-4">
             <p>FACETICKER</p>

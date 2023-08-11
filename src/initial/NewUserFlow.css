@@ -72,12 +72,12 @@
   background: #FEFAEF;
 }
 
-.BackgroundWrap{
-  background: #FEFAEF;
+.BackgroundWrap-4{
   display: flex;
   justify-content: center;
+  background: #FEFAEF;
 }
-.Background{
+.Background-4{
   height: calc(var(--vh, 1vh) * 100);
   max-width: 37.5rem;
   margin: 0px auto;
