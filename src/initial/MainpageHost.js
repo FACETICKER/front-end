@@ -164,7 +164,13 @@ function MainpageHost() {
   };
 
   const handleStickerPage = () => {
-    navigate("/host");
+    navigate("/hoststicker");
+  };
+  const handleQna = () => {
+    navigate("/qna");
+  };
+  const handleHoststicker = () => {
+    navigate("/hoststicker");
   };
   return (
     <div className="BackgroundWarp">
@@ -198,7 +204,7 @@ function MainpageHost() {
             </div>
             <div style={{ width:'26px', height:'26px' ,float: "left", position: "relative", top: "35%", left:'-3%' }}>
               <button
-                style={{ border: "none", backgroundColor: "transparent" }}
+                style={{ border: "none", backgroundColor: "transparent" }} onClick={handleQna}
               >
                 <img src={message} className="l1-2" alt="message" />
               </button>
@@ -376,9 +382,8 @@ function MainpageHost() {
                 </button> */}
               </div>
               <Div>
-                <button className="l10-2">
+                <button className="l10-2" onClick={handleStickerPage}>
                   <img
-                    onClick={handleStickerPage}
                     src={recordpage}
                     alt="recordpage"
                   />
