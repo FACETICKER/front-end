@@ -1,3 +1,4 @@
+import InitialSurveyList from "./NextLoginList";
 import message from "../img/MainpageVisit_img/ri_message-3-line.png";
 import Vector from "../img/MainpageVisit_img/Group 157 1.png";
 import threeboll from "../img/MainpageVisit_img/Group 77.svg";
