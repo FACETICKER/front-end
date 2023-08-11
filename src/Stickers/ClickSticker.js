@@ -164,7 +164,6 @@ const Back = styled.div`
   height: 100%;
   justify-content: center;
 
-  position: relative;
   display: flex;
   background: #fff;
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
@@ -224,7 +223,7 @@ export function ClickSticker() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3011/user")
+    fetch("http://localhost:3012/user")
       .then((response) => response.json())
       .then((data) => {
         const filteredData = data.filter((item) => item.id !== 1);
@@ -252,7 +251,7 @@ export function ClickSticker() {
   console.log(selectedImageId);
   //서버에서 방문록 받아오기
   useEffect(() => {
-    fetch("http://localhost:3011/user/1")
+    fetch("http://localhost:3012/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.letter) {
@@ -266,7 +265,7 @@ export function ClickSticker() {
 
   //host 이미지 url 받아오기
   useEffect(() => {
-    fetch("http://localhost:3011/user/2")
+    fetch("http://localhost:3012/user/2")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {

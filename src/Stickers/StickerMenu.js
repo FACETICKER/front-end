@@ -42,7 +42,6 @@ const BottomWrap = styled.div`
   display: flex;
   height: 90%;
   flex-direction: column;
-  overflow: hidden;
 `;
 
 const Bottom = styled.div`
@@ -52,13 +51,15 @@ const Bottom = styled.div`
   width: 90%;
   height: 90%;
   position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Text1 = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  height: 10%;
+  height: 8%;
   color: #191919;
   text-align: center;
   font-family: Pretendard;
@@ -71,7 +72,7 @@ const Text2 = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  height: 10%;
+  height: 8%;
   color: #767676;
   text-align: center;
   font-family: Pretendard;
@@ -84,10 +85,9 @@ const Stickers = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-
-  height: 90%;
+  height: 80%;
+  overflow: scroll;
   flex-direction: column;
-  overflow: hidden;
 `;
 const Close = styled.img`
   display: flex;
@@ -108,7 +108,7 @@ export function StickerMenu() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("http://localhost:3011/user")
+    fetch("http://localhost:3012/user")
       .then((response) => response.json())
       .then((data) => {
         const filteredData = data.filter((item) => item.id !== 1);
@@ -259,6 +259,8 @@ const First = styled.div`
   margin-bottom: 5%;
   width: 100%;
   height: 30%;
+
+  transform: translateY(100%);
 `;
 
 export default StickerMenu;
