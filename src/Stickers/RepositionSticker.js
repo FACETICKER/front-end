@@ -5,6 +5,7 @@ import { setIsImageFixed } from "./reducers";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import zoom from "../img/Stickers_img/zoom.png";
 
 //방문자 기록 컴포넌트
 
@@ -67,7 +68,7 @@ const ZoomButton = styled.button`
   cursor: pointer;
 `;
 
-export function StaticSticker() {
+export function RepositionSticker() {
   const [hostImageUrl, setHostImageUrl] = useState(null);
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
   const [imageData, setImageData] = useState([]);
@@ -116,9 +117,6 @@ export function StaticSticker() {
       });
   }, []);
 
-  const handleStickerClick = (item) => {
-    navigate("/clicksticker"); //페이지 전환
-  };
   const [zoomLevel, setZoomLevel] = useState(1);
   const minZoomLevel = 0.5;
   const maxZoomLevel = 2;
@@ -137,6 +135,68 @@ export function StaticSticker() {
     }
   };
 
+  const [selectedImageId, setSelectedImageId] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [ImagePosition, setImagePosition] = useState(null);
+
+  const handleImageMouseDown = (event, itemId) => {
+    setSelectedImageId(itemId);
+    setIsDragging(true);
+    const offsetX = event.nativeEvent.offsetX;
+    const offsetY = event.nativeEvent.offsetY;
+    setDragOffset({ x: offsetX, y: offsetY });
+  };
+
+  const handleMouseMove = (event) => {
+    if (isDragging && selectedImageId !== null) {
+      const sidePosition = {
+        // 클릭한 엘리먼트의 절대좌표
+        // .getBoundingClientRect().left 뷰포트 기준 X값 top은 Y 값
+        X: Math.floor(event.target.getBoundingClientRect().left),
+        Y: Math.floor(event.target.getBoundingClientRect().top),
+      };
+
+      const clickPosition = {
+        X: Math.floor(event.clientX),
+        Y: Math.floor(event.clientY),
+      };
+
+      const ratio = {
+        X: clickPosition.X - sidePosition.X,
+        Y: clickPosition.Y - sidePosition.Y,
+      };
+
+      // 상대 좌표
+      /* const XPer = (ratio.X / componentWidth) * 100;
+      const YPer = (ratio.Y / componentHeight) * 100; */
+      // 소수점 둘째 자리까지 반올림
+      /*   const xyPer = { XPer: XPer.toFixed(2), YPer: YPer.toFixed(2) };
+      setImagePosition(xyPer); */
+
+      const offsetX = event.nativeEvent.offsetX;
+      const offsetY = event.nativeEvent.offsetY;
+
+      setImageData((prevImageData) =>
+        prevImageData.map((item) =>
+          item.id === selectedImageId
+            ? {
+                ...item,
+                imgposition: {
+                  XPer: (ratio.X / componentWidth) * 100,
+                  YPer: (ratio.Y / componentHeight) * 100,
+                },
+              }
+            : item
+        )
+      );
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    setSelectedImageId(null);
+  };
   return (
     <BottomWrap>
       <Bottoms>
@@ -145,13 +205,35 @@ export function StaticSticker() {
 
           {imageData.map((item) => (
             <img
-              onClick={() => handleStickerClick(item)}
               key={item.id}
               src={item.url}
               style={{
                 position: "absolute",
-                top: `${(item.imgposition.YPer * componentHeight) / 100}px`,
+                top: (item.imgposition.YPer * componentHeight) / 100,
                 left: `${(item.imgposition.XPer * componentWidth) / 100}px`,
+                zIndex: 9999,
+                maxWidth: "100px",
+                cursor: selectedImageId === item.id ? "grabbing" : "grab",
+              }}
+              alt={`Image ${item.id}`}
+              onMouseDown={(event) => handleImageMouseDown(event, item.id)}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+            />
+          ))}
+          {imageData.map((item) => (
+            <img
+              key={item.id}
+              src={zoom}
+              style={{
+                position: "absolute",
+                width: "20px",
+                top: `${
+                  -10 + (item.imgposition.YPer * componentHeight) / 100
+                }px`,
+                left: `${
+                  90 + (item.imgposition.XPer * componentWidth) / 100
+                }px`,
                 zIndex: 9999,
                 maxWidth: "100px",
               }}
@@ -169,4 +251,4 @@ export function StaticSticker() {
   );
 }
 
-export default StaticSticker;
+export default RepositionSticker;
