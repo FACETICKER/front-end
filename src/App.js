@@ -35,9 +35,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Loginpage />} />
-          <Route path="/makesticker" element={<MakeSticker />} />
-          {/*스티커 제작 페이지 */}
-          <Route path="/" element={<Loginpage />} />
           {/*로그인 페이지 */}
           {<Route path="/oauth" element={<Redirect />} />}
           {/*kakao Redirect 화면 */}
@@ -45,12 +42,6 @@ function App() {
           {/*신규 가입자 플로우 */}
           <Route path="/initial" element={<InitialSurvey />} />
           {/* 초기 설정 */}
-          <Route path="/stickername" element={<StickerName />} />
-          {/* 방문자 스티커 네임 설정 */}
-          <Route path="/stickerletter" element={<StickerLetter />} />
-          {/*방문자 방명록 설정 */}
-          <Route path="/status" element={<StatusMessage />} />
-          {/* 호스트가 남기고 싶은 말 페이지 */}
           <Route path="/mainvisit" element={<MainpageVisit />} />
           {/*방문자 메인페이지 */}
           <Route path="/mainhost" element={<MainpageHost />} />
