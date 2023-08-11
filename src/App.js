@@ -12,7 +12,7 @@ import MainpageHost from "./initial/MainpageHost";
 import QnApage from "./page/QnApageMain";
 import StickerMainHost from "./page/StickersHost";
 import PutPage from "./page/PutPage";
-import NicknameTotal from "./Nickname/NicknameTotal";
+
 import Loginpage from "./login/Loginpage";
 import ClickSticker from "./Stickers/ClickSticker";
 import Redirect from "./login/KakaoRedirect";
@@ -41,7 +41,7 @@ function App() {
 
           <Route path="/" element={<Loginpage />} />
           {/*로그인 페이지 */}
-          {/*<Route path="/oauth" element={<Redirect />} />*/}
+          {<Route path="/oauth" element={<Redirect />} />}
           {/*kakao Redirect 화면 */}
           {<Route path="/newuserflow" element={<NewUserFlow />} />}
           {/*신규 가입자 플로우 */}
