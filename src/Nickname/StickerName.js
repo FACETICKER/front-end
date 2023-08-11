@@ -2,7 +2,6 @@ import styled from "styled-components";
 import "../font/font.css";
 import { useState, useEffect } from "react";
 
-import { NicknamePageSlice } from "./NicknamePageSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh

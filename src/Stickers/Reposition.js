@@ -10,8 +10,8 @@ import { useEffect } from "react";
 import StaticSticker from "./StaticSticker";
 import MainHeader from "../components/HostHeader";
 import { MainText } from "./MainText";
-import change from "../img/stickers_img/change.png";
-import complete from "../img/stickers_img/complete.png";
+import change from "../img/Stickers_img/changeIcon.png";
+import complete from "../img/Stickers_img/complete.png";
 import { useNavigate } from "react-router-dom";
 import RepositionSticker from "./RepositionSticker";
 //방문자 기록 컴포넌트
