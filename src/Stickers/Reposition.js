@@ -14,6 +14,8 @@ import change from "../img/Stickers_img/changeIcon.png";
 import complete from "../img/Stickers_img/complete.png";
 import { useNavigate } from "react-router-dom";
 import RepositionSticker from "./RepositionSticker";
+import middle from "../img/Stickers_img/Middle.png";
+
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
   background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
@@ -101,6 +103,7 @@ const ButtonWrap = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
+  position: relative;
 `;
 const Footer = styled.div`
   border-radius: 40px 40px 0px 0px;
@@ -144,7 +147,11 @@ const Text = styled.div`
   font-weight: 800;
   line-height: 30px;
 `;
-
+const Middle = styled.img`
+  display: flex;
+  position: absolute;
+  top: -26%;
+`;
 export function Reposition() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -162,6 +169,7 @@ export function Reposition() {
         </TextWrap>
         <RepositionSticker />
         <ButtonWrap>
+          <Middle src={middle} />
           <Footer>
             <Icons>
               <Icon1 src={change} />

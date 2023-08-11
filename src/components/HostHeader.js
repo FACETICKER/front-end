@@ -4,6 +4,14 @@ import { useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 import { useState } from "react";
 
+import button1 from "../img/Header_img/button1.png";
+import button2 from "../img/Header_img/button2.png";
+import button3 from "../img/Header_img/button3.png";
+import chat from "../img/Header_img/chat.png";
+import close from "../img/Header_img/close.png";
+import pencil from "../img/Header_img/pencil.png";
+import setting from "../img/Header_img/setting.png";
+
 //호스트 헤더
 
 //BackgroundWrap : 가로 길어졌을 때 Background는 고정. 나머지 영역에 보이게 할 색/이미지 설정
@@ -156,12 +164,7 @@ export function MainHeader() {
     <HeaderWrap>
       <Header>
         <HeaderIcon>
-          <img
-            onClick={openModal}
-            style={style}
-            src="https://i.ibb.co/TrT3xzs/gear-settings-1.png"
-            alt="setting-icon"
-          />
+          <img onClick={openModal} style={style} src={setting} />
         </HeaderIcon>
         <Modal
           style={ModalStyle}
@@ -170,24 +173,12 @@ export function MainHeader() {
           contentLabel="Faceticker-Modal"
         >
           <ModalContent>
-            <Close
-              onClick={closeModal}
-              src="https://i.ibb.co/Cw1y11J/close-x.png"
-            />
-            <EidtImg src="https://i.ibb.co/LNBGHHr/square-edit.png" />
+            <Close onClick={closeModal} src={close} />
+            <EidtImg src={pencil} />
             <EidtButtons>
-              <EditButton
-                onClick={handleFirstClick}
-                src="https://i.ibb.co/7QPq765/Group-190.png"
-              />
-              <EditButton
-                onClick={handleSecondClick}
-                src="https://i.ibb.co/TMWMM0g/Group-191.png"
-              />
-              <EditButton
-                onClick={handleThirdClick}
-                src="https://i.ibb.co/Qkm8sPF/Group-192.png"
-              />
+              <EditButton onClick={handleFirstClick} src={button1} />
+              <EditButton onClick={handleSecondClick} src={button2} />
+              <EditButton onClick={handleThirdClick} src={button3} />
             </EidtButtons>
           </ModalContent>
         </Modal>
@@ -196,12 +187,7 @@ export function MainHeader() {
         </LogoWrap>
 
         <HeaderIcon>
-          <img
-            onClick={handleChatClick}
-            style={style}
-            src="https://i.ibb.co/pjkMqBz/ri-message-3-line.png"
-            alt="ChatIcon"
-          />
+          <img onClick={handleChatClick} style={style} src={chat} />
         </HeaderIcon>
       </Header>
     </HeaderWrap>

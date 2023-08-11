@@ -13,6 +13,7 @@ import { MainText } from "./MainText";
 import { useNavigate } from "react-router-dom";
 import menu from "../img/Stickers_img/menu.png";
 import reposition from "../img/Stickers_img/change.png";
+import middle from "../img/Stickers_img/Middle.png";
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
   background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
@@ -101,6 +102,7 @@ const ButtonWrap = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
+  position: relative;
 `;
 const Footer = styled.div`
   border-radius: 40px 40px 0px 0px;
@@ -128,7 +130,11 @@ const Icon2 = styled.img`
   display: flex;
   width: 72%;
 `;
-
+const Middle = styled.img`
+  display: flex;
+  position: absolute;
+  top: -26%;
+`;
 export function Host() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -145,7 +151,9 @@ export function Host() {
         <MainHeader />
         <MainText />
         <StaticSticker />
+
         <ButtonWrap>
+          <Middle src={middle} />
           <Footer>
             <Icons>
               <Icon1 onClick={handleMenu} src={menu} />
