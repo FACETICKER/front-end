@@ -19,8 +19,7 @@ import ShareOrNotSlice from "./QnA/Slice/ShareOrNotSlice"; */
 import appReducer from "./Stickers/reducers";
 import StickerSlice from "./MakeSticker/StickerSlice";
 import MS_PopupSlice from "./MakeSticker/PopupSlice";
-import NicknamePage from "./Nickname/NicknamePageSlice";
-
+import imageReducer from "./Stickers/imageSlice";
 const store = configureStore({
   reducer: {
     /*     question: questionSlice.reducer, // 질문 저장소
@@ -41,7 +40,7 @@ const store = configureStore({
     share: ShareOrNotSlice.reducer, // 질문 비공개 공개 설정
  */
     app: appReducer, //Stickers
-    nicknamepage: NicknamePage.reducer,
+    image: imageReducer,
 
     /* 아이디, 토큰 추가 */
 

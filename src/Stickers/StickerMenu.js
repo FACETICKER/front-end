@@ -14,6 +14,8 @@ import menu from "../img/Stickers_img/menu.png";
 import change from "../img/Stickers_img/change.png";
 import { useNavigate } from "react-router-dom";
 
+import { setSelectedImage } from "./imageSlice";
+
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
   background: #fefaef;

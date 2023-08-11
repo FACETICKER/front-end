@@ -11,8 +11,7 @@ import StaticSticker from "./StaticSticker";
 import MainHeader from "../components/HostHeader";
 import { MainText } from "./MainText";
 import { useNavigate } from "react-router-dom";
-import menu from "../img/Stickers_img/menu.png";
-import reposition from "../img/Stickers_img/change.png";
+import visitorbutton from "../img/Stickers_img/visitorbutton.png";
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
   background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
@@ -120,24 +119,18 @@ const Icons = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const Icon1 = styled.img`
+
+const Icon = styled.img`
   display: flex;
-  width: 22%;
-`;
-const Icon2 = styled.img`
-  display: flex;
-  width: 72%;
+  width: 90%;
 `;
 
-export function Host() {
+export function Visitor() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const handleReposition = () => {
-    navigate("/repositionsticker");
-  };
 
-  const handleMenu = () => {
-    navigate("/stickermenu");
+  const handlesticker = () => {
+    navigate("/makesticker");
   };
   return (
     <BackgroundWrap>
@@ -148,8 +141,7 @@ export function Host() {
         <ButtonWrap>
           <Footer>
             <Icons>
-              <Icon1 onClick={handleMenu} src={menu} />
-              <Icon2 onClick={handleReposition} src={reposition} />
+              <Icon onClick={handlesticker} src={visitorbutton} />
             </Icons>
           </Footer>
         </ButtonWrap>
@@ -158,4 +150,4 @@ export function Host() {
   );
 }
 
-export default Host;
+export default Visitor;
