@@ -233,7 +233,7 @@ export function StickerLetter() {
 
   //host 이미지 url 받아오기
   useEffect(() => {
-    fetch("http://localhost:3011/user/1")
+    fetch("http://localhost:3012/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
