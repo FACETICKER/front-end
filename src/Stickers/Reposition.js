@@ -10,7 +10,10 @@ import { useEffect } from "react";
 import StaticSticker from "./StaticSticker";
 import MainHeader from "../components/HostHeader";
 import { MainText } from "./MainText";
-
+import change from "../img/stickers_img/change.png";
+import complete from "../img/stickers_img/complete.png";
+import { useNavigate } from "react-router-dom";
+import RepositionSticker from "./RepositionSticker";
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
   background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
@@ -35,7 +38,6 @@ const HeaderWrap = styled.div`
 const FirstHeader = styled.div`
   height: 30%;
   display: flex;
-
   justify-content: flex-start;
   padding-left: 10px;
 `;
@@ -126,28 +128,51 @@ const Icon2 = styled.img`
   display: flex;
   width: 72%;
 `;
+const TextWrap = styled.div`
+  justify-content: center;
+  align-item: center;
+  display: flex;
+  height: 8%;
+  flex-direction: column;
+`;
+const Text = styled.div`
+  color: #191919;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 30px;
+`;
 
-export function Host() {
+export function Reposition() {
   const dispatch = useDispatch();
-  const handleReposition = () => {
-    navigate("/repositionsticker");
+  const navigate = useNavigate();
+  const handleBack = () => {
+    navigate("/hoststicker");
   };
+
   return (
     <BackgroundWrap>
       <Background>
         <MainHeader />
-        <MainText />
-        <StaticSticker />
-        <ButtonWrap />
-        <Footer>
-          <Icons>
-            <Icon1 onClick={handleMenu} src={menu} />
-            <Icon2 onClick={handleReposition} src={reposition} />
-          </Icons>
-        </Footer>
+        <TextWrap>
+          <Text>스티커를 자유롭게</Text>
+          <Text>움직여서 배치해보세요!</Text>
+        </TextWrap>
+        <RepositionSticker />
+        <ButtonWrap>
+          <Footer>
+            <Icons>
+              <Icon1 src={change} />
+              <Icon2 onClick={handleBack} src={complete} />
+            </Icons>
+          </Footer>
+        </ButtonWrap>
+        {/* Check 버튼 */}
       </Background>
     </BackgroundWrap>
   );
 }
 
-export default Host;
+export default Reposition;
