@@ -1,0 +1,87 @@
+.l1-4 {
+  color: #191919;
+  width: 250px;
+  font-family: "Pretendard";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 36px; /* 112.5% */
+  display: flex;
+  justify-content: center;
+  position: relative;
+  left: -20%;
+}
+.l2-4 {
+  width: 284px;
+  color: #191919;
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px; /* 162.5% */
+  position: relative;
+  left: -13%;
+}
+.l3-4 {
+  width: 162px;
+  height: 223px;
+  position: relative;
+  top: 70%;
+  left: -8%;
+}
+.l4-4 {
+  width: 278px;
+  height: 306px;
+  position: relative;
+  top: -50%;
+  left: 12%;
+}
+.l5-4 {
+  width: 298px;
+  height: 52px;
+  flex-shrink: 0;
+  border: 1px solid var(--unnamed, #12151c);
+  background: #fff;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+  position: relative;
+  top: -50%;
+  z-index: 2;
+}
+.l6-4 {
+  width: 298px;
+  height: 52px;
+  flex-shrink: 0;
+  background: var(--unnamed, rgba(25, 25, 25, 0.8));
+  position: relative;
+  top: 10%;
+  left: 2%;
+  z-index: 1;
+}
+
+.l7-4 {
+  height: 550px;
+}
+
+.Container {
+  width: 390px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  flex-wrap: wrap;
+  margin: 0px auto;
+  background: #fefaef;
+}
+
+.BackgroundWrap-4 {
+  display: flex;
+  justify-content: center;
+  background: #fefaef;
+}
+.Background-4 {
+  height: calc(var(--vh, 1vh) * 100);
+  max-width: 37.5rem;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  background: #fefaef;
+}
