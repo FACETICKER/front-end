@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./Loginpage.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-/* import dotenv from "dotenv";
-dotenv.config(); */
 
 const G_CLIENT_ID = process.env.REACT_APP_G_CLIENT_ID;
 const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
 
-const K_REDIRECT_URI = `http://localhost:3007/oauth`;
+const K_REDIRECT_URI = `http://localhost:3000/oauth`;
 const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${K_REDIRECT_URI}&response_type=code`;
 const code = new URL(window.location.href).searchParams.get("code");
 
