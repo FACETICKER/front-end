@@ -42,7 +42,6 @@ const Select = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   const openModal = () => {
     setModalIsOpen(true);
   };
@@ -61,6 +60,13 @@ const Select = () => {
 
   const down = () => {
     dispatch(StickerSlice.actions.stepcontrol(false));
+  };
+  const handleMain = () => {
+    navigate("/mainhost");
+  };
+
+  const handlenickname = () => {
+    navigate("/stickername");
   };
 
   return (
@@ -103,11 +109,15 @@ const Select = () => {
               <p className={styles2.p2}>미 작성시 랜덤 문구가 표시됩니다.</p>
               <div className={styles2.button_zone}>
                 <div className={styles2.button1}>
-                  <button className={styles2.btn}>나중에..</button>
+                  <button onClick={handleMain} className={styles2.btn}>
+                    나중에..
+                  </button>
                   <button className={styles2.btnshadow}></button>
                 </div>
                 <div className={styles2.button2}>
-                  <button className={styles2.btn_red}>좋아요</button>
+                  <button onClick={handlenickname} className={styles2.btn_red}>
+                    좋아요
+                  </button>
                   <button className={styles2.btnshadow}></button>
                 </div>
               </div>
