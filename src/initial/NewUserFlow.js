@@ -13,27 +13,15 @@ import { useDispatch, useSelector } from "react-redux";
 function NewUserFlow() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const BackgroundWrap = styled.div`
-    background: #fefaef;
-  `;
-  const Background = styled.div`
-    height: calc(var(--vh, 1vh) * 100);
-    max-width: 37.5rem;
-    margin: 0px auto;
-    display: flex;
-    flex-direction: column;
-    background: #fefaef;
-    position: relative;
-    left: 100px;
-  `;
+  
 
   const handleButtonClick = () => {
     navigate("/initial");
   };
 
   return (
-    <BackgroundWrap>
-      <Background>
+    <div className="BackgroundWrap">
+      <div className="Background">
         <div className="Container">
           <div className="l1-4">
             <p>FACETICKER</p>
@@ -61,8 +49,8 @@ function NewUserFlow() {
             </button>
           </div>
         </div>
-      </Background>
-    </BackgroundWrap>
+      </div>
+    </div>
   );
 }
 
