@@ -20,6 +20,8 @@ import appReducer from "./Stickers/reducers";
 import StickerSlice from "./MakeSticker/StickerSlice";
 import MS_PopupSlice from "./MakeSticker/PopupSlice";
 import imageReducer from "./Stickers/imageSlice";
+import captureReducer from "./MakeSticker/CaptureSlice";
+
 const store = configureStore({
   reducer: {
     /*     question: questionSlice.reducer, // 질문 저장소
@@ -46,6 +48,7 @@ const store = configureStore({
 
     sticker: StickerSlice.reducer, //  총 저장소
     popup: MS_PopupSlice.reducer, // 팝업창 onoff 저장소
+    capture: captureReducer,
   },
 });
 export default store;

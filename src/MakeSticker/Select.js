@@ -10,6 +10,7 @@ import styles1 from "./style/Popup.module.css";
 import styles2 from "./Modal_jh.module.css";
 import Close from "../img/QnA_img/close-x.png";
 import Dots from "../components/Dots";
+import { setCaptureEnabled } from "./CaptureSlice";
 
 const modalStyle = {
   overlay: {
@@ -37,7 +38,7 @@ const modalStyle = {
 
 // 선택창 관리 컴포넌트
 
-const Select = () => {
+const Select = ({ handleCaptureImg }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -50,6 +51,10 @@ const Select = () => {
     setModalIsOpen(false);
   };
 
+  const capture = (isEnabled) => {
+    dispatch(setCaptureEnabled(isEnabled));
+    setModalIsOpen(true);
+  };
   const step = useSelector((state) => {
     return state.sticker.step;
   });
@@ -86,7 +91,7 @@ const Select = () => {
           다음
         </button>
         {step == 6 && (
-          <button onClick={openModal} className={styles.button}>
+          <button onClick={capture} className={styles.button}>
             완료
           </button>
         )}
