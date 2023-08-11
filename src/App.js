@@ -13,7 +13,7 @@ import QnApage from "./page/QnApageMain";
 import StickerMainHost from "./page/StickersHost";
 import PutPage from "./page/PutPage";
 import VisitorSticker from "./Stickers/Visitor";
-import Loginpage from "./login/Loginpage";
+import Loginpage from "./page/LoginpageMain";
 import ClickSticker from "./Stickers/ClickSticker";
 import Redirect from "./login/KakaoRedirect";
 import StickerMenu from "./Stickers/StickerMenu";
