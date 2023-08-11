@@ -7,6 +7,10 @@ import StaticSticker from "./StaticSticker";
 import MainHeader from "../components/HostHeader";
 import "./ClickSticker.css";
 import "../font/font.css";
+import trash from "../img/Stickers_img/trash.png";
+import post from "../img/Stickers_img/post.png";
+import backtext from "../img/Stickers_img/backtext.png";
+import visitprofile from "../img/Stickers_img/visitprofile.png";
 /* import { StickerPageSlice } from "./StickerPageSlice";
 dispatch(NicknamePageSlice.actions.letter()); //letter로 페이지 전환 */
 
@@ -160,7 +164,6 @@ const Back = styled.div`
   height: 100%;
   justify-content: center;
 
-  position: relative;
   display: flex;
   background: #fff;
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
@@ -220,7 +223,7 @@ export function ClickSticker() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3011/user")
+    fetch("http://localhost:3012/user")
       .then((response) => response.json())
       .then((data) => {
         const filteredData = data.filter((item) => item.id !== 1);
@@ -238,15 +241,17 @@ export function ClickSticker() {
   const handleTrashClick = () => {
     navigate("/hoststicker");
   };
-  /*   const handleProfileClick = (item) => {
-    navigate("/"); //해당 스티커 프로필로 
-  }; */
+  /*     const handleProfileClick = (item) => {
+  //visior id 받아와서 해당 main으로 이동
+
+    navigate("/"); //클릭한 해당 스티커 프로필로 
+  };  */
   const idArray = imageData.map((item) => item.id);
   const selectedImageId = useSelector((state) => state.image.selectedImageId);
   console.log(selectedImageId);
   //서버에서 방문록 받아오기
   useEffect(() => {
-    fetch("http://localhost:3011/user/1")
+    fetch("http://localhost:3012/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.letter) {
@@ -260,7 +265,7 @@ export function ClickSticker() {
 
   //host 이미지 url 받아오기
   useEffect(() => {
-    fetch("http://localhost:3011/user/2")
+    fetch("http://localhost:3012/user/2")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
@@ -280,10 +285,7 @@ export function ClickSticker() {
           {idArray.length === 1 && (
             <One>
               <Second>
-                <TrashIcon
-                  onClick={handleTrashClick}
-                  src="https://i.ibb.co/vLys4MC/Group-92-1.png"
-                />
+                <TrashIcon onClick={handleTrashClick} src={trash} />
                 <Shadow />
               </Second>
               <Dot3>
@@ -295,10 +297,7 @@ export function ClickSticker() {
           {idArray.length === 2 && (
             <One>
               <Second>
-                <TrashIcon
-                  onClick={handleTrashClick}
-                  src="https://i.ibb.co/vLys4MC/Group-92-1.png"
-                />
+                <TrashIcon onClick={handleTrashClick} src={trash} />
                 <Shadow />
               </Second>
               <SecondShadow />
@@ -316,10 +315,7 @@ export function ClickSticker() {
             >
               <div className="front">
                 <Second>
-                  <TrashIcon
-                    onClick={handleTrashClick}
-                    src="https://i.ibb.co/vLys4MC/Group-92-1.png"
-                  />
+                  <TrashIcon onClick={handleTrashClick} src={trash} />
                   <Shadow />
                   <StickerImg src={stickerImg} />
                 </Second>
@@ -332,11 +328,8 @@ export function ClickSticker() {
               </div>
               <div className="back">
                 <Back>
-                  <TrashIcon
-                    onClick={handleTrashClick}
-                    src="https://i.ibb.co/vLys4MC/Group-92-1.png"
-                  />
-                  <BackImg src="https://i.ibb.co/3vfvNYb/Post-it-4-3.png" />
+                  <TrashIcon onClick={handleTrashClick} src={trash} />
+                  <BackImg src={post} />
                   <LetterContent>{letterValue}</LetterContent>
                   <StickerImg2 src={stickerImg} />
                 </Back>
@@ -349,13 +342,8 @@ export function ClickSticker() {
 
         <Footer>
           <Icons>
-            <Icon
-              onClick={handleBackClick}
-              src="https://i.ibb.co/3NCPkMf/Group-95.png"
-            />
-            <Icon
-              /* onClick = {handleProfileClick} */ src="https://i.ibb.co/Gdwfz15/Group-94-1.png"
-            />
+            <Icon onClick={handleBackClick} src={backtext} />
+            <Icon /* onClick={handleProfileClick} */ src={visitprofile} />
           </Icons>
         </Footer>
       </Background>

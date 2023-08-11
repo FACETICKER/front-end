@@ -192,7 +192,7 @@ export function StickerName() {
   };
   //처음 back은 누르면 이전 페이지
   const handleFirstBack = () => {
-    navigate("/makesticker");
+    navigate(-1);
   };
   //이전 누르면 state 이전값으로 바뀜
   const handleSecondBack = () => {

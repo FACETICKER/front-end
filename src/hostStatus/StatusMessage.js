@@ -209,7 +209,7 @@ export function StatusMessage() {
     setMargin("0%");
   };
   const handleFirstBack = () => {
-    navigate("/makesticker");
+    navigate(-1);
   };
 
   return (
