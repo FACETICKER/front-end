@@ -1,0 +1,257 @@
+.hidden {
+  display: none;
+}
+
+/* face index별 입 style */
+.mouth11 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 50%;
+  left: 38%; 
+}
+.mouth12 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 50%;
+  left: 38%;
+}
+.mouth13 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 50%;
+  left: 35%;
+}
+.mouth14 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 47%;
+  left: 38%;
+}
+.mouth15 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 47%;
+  left: 39%;
+}
+.mouth16 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 50%;
+  left: 39%;
+}
+.mouth21 {
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  top: 48%;
+  left: 43%;
+}
+.mouth22 {
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  top: 48%;
+  left: 43%;
+}
+.mouth23 {
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  top: 50%;
+  left: 40%;
+}
+.mouth24 {
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  top: 48%;
+  left: 43%;
+}
+.mouth25 {
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  top: 50%;
+  left: 44%;
+}
+.mouth26 {
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  top: 51%;
+  left: 44%;
+}
+.mouth31 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 48%;
+  left: 42%;
+}
+.mouth32 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 48%;
+  left: 42%;
+}
+.mouth33 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 48%;
+  left: 39%;
+}
+.mouth34 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 48%;
+  left: 42%;
+}
+.mouth35 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 48%;
+  left: 42%;
+}
+.mouth36 {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  top: 50%;
+  left: 43%
+}
+.mouth41 {
+  position: absolute;
+  width: 70px;
+  height: 20px;
+  top: 48%;
+  left: 39%;
+}
+.mouth42 {
+  position: absolute;
+  width: 70px;
+  height: 20px;
+  top: 48%;
+  left: 39%;
+}
+.mouth43 {
+  position: absolute;
+  width: 70px;
+  height: 20px;
+  top: 48%;
+  left: 36%;
+}
+.mouth44 {
+  position: absolute;
+  width: 70px;
+  height: 20px;
+  top: 48%;
+  left: 38%;
+}
+.mouth45 {
+  position: absolute;
+  width: 70px;
+  height: 20px;
+  top: 49%;
+  left: 39%;
+}
+.mouth46 {
+  position: absolute;
+  width: 70px;
+  height: 20px;
+  top: 50%;
+  left: 40%;
+}
+.mouth51 {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  top: 49%;
+  left: 42%;
+}
+.mouth52 {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  top: 49%;
+  left: 42%;
+}
+.mouth53 {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  top: 49%;
+  left: 39%;
+}
+.mouth54 {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  top: 49%;
+  left: 42%;
+}
+.mouth55 {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  top: 50%;
+  left: 42%;
+}
+.mouth56 {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  top: 52%;
+  left: 43%;
+}
+.mouth61 {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  top: 50%;
+  left: 42%;
+}
+.mouth62 {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  top: 50%;
+  left: 42%;
+}
+.mouth63 {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  top: 50%;
+  left: 38%;
+}
+.mouth64 {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  top: 48%;
+  left: 42%;
+}
+.mouth65 {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  top: 50%;
+  left: 42%;
+}
+.mouth66 {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  top: 51%;
+  left: 42%;
+}
