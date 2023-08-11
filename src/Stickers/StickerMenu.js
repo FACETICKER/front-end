@@ -83,35 +83,7 @@ const Stickers = styled.div`
   align-items: center;
   display: flex;
   height: 80%;
-  background-color: pink;
-`;
-
-const YellowCircle = styled.div`
-  width: 20vw;
-  padding: 5% 5‰;
-  height: 20vw;
-  border-radius: 50%;
-  background-color: rgba(255, 210, 93, 0.8);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-`;
-
-const CircleContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 500px;
-  flex-direction: column;
-  margin: 0 auto;
-`;
-
-const StyledImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
+  background-color: ;
 `;
 
 export function StickerMenu() {

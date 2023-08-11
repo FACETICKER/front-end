@@ -8,6 +8,12 @@ import { TestBottom } from "./TestBottom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import backIcon from "../img/Stickers_img/backIcon.png";
+import middle from "../img/Stickers_img/Middle.png";
+import changeIcon from "../img/Stickers_img/changeIcon.png";
+import putcomplete from "../img/Stickers_img/putcomplete.png";
+import mysticker from "../img/Stickers_img/mysticker.png";
+import goqna from "../img/Stickers_img/goqna.png";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -25,7 +31,7 @@ const Background = styled.div`
 `;
 
 const HeaderWrap = styled.div`
-  height: 10%;
+  height: 15%;
   justify-content: center;
   align-item: center;
   display: flex;
@@ -39,7 +45,8 @@ const FirstHeader = styled.div`
   padding-left: 10px;
 `;
 const BackIcon = styled.img`
-  max-width: 30px;
+  max-width: 50px;
+  padding-top: 3%;
 `;
 const TextHeader = styled.div`
   height: 70%;
@@ -69,6 +76,26 @@ const Text2 = styled.div`
   font-weight: 500;
   line-height: 36px;
 `;
+
+const Text3 = styled.div`
+  color: #191919;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px; /* 150% */
+`;
+
+const Text4 = styled.div`
+  color: rgba(25, 25, 25, 0.8);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 36px; /* 257.143% */
+`;
 const MiddleImg = styled.div`
   position: absolute;
 
@@ -96,33 +123,28 @@ const Footer = styled.div`
   flex-direction: row;
 `;
 const Icon = styled.img`
+  max-height: 48%;
+  display: flex;
+`;
+
+const Icon2 = styled.div`
+  justify-content: center;
+  align-items: center;
   max-height: 50%;
   display: flex;
+  width: 80%;
+`;
+
+const Icon3 = styled.img`
+  display: flex;
+  width: 60%;
 `;
 
 export function VisitPut() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [HostName, useHostName] = useState("호스트명");
   const [change, setChange] = useState(false);
-  const isImageFixed = useSelector((state) => state.app.isImageFixed);
-  const [imageUrl, setImageUrl] = useState(null);
-  const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
-  const [isImageVisible, setIsImageVisible] = useState(false);
-
-  const [hostImageUrl, setHostImageUrl] = useState(null);
-
-  useEffect(() => {
-    fetch("http://localhost:3001/imgUrl/1")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.url) {
-          setHostImageUrl(data.url);
-        }
-      })
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []);
 
   const handleButtonClick = () => {
     dispatch(setIsImageFixed(true)); // "Check" 버튼 클릭 시, 스티커 고정
@@ -133,50 +155,86 @@ export function VisitPut() {
     navigate("/qna");
   };
 
+  //처음 이전 아이콘
+  const handlefirstBack = () => {
+    navigate(-1);
+  };
+
+  //두 번째 이전 아이콘
+  const handleSecondBack = () => {
+    setChange(false);
+  };
+
+  //내 프로필 제작 누르면
+  const handleMakeprofile = () => {
+    //만든 스티커 post
+    //로그인 페이지로
+    navigate("/");
+  };
+
+  useEffect(() => {
+    if (change) {
+      const timer = setTimeout(() => {
+        // 5초 후에 페이지 이동
+        navigate("/mainvisit"); // 메인페이지로
+      }, 5000);
+
+      return () => clearTimeout(timer); // 컴포넌트가 언마운트될 때 타이머 제거
+    }
+  }, [change]);
+
   return (
     <BackgroundWrap>
-      <Background>
-        <HeaderWrap>
-          <FirstHeader>
-            <BackIcon src="https://i.ibb.co/bKVJZtD/arrow-left-1.png" />
-          </FirstHeader>
-          <TextHeader>
-            <Text1>스티커를 붙여보세요!</Text1>
-            <Text2>부착된 스티커는 호스트 외 삭제할 수 없습니다.</Text2>
-          </TextHeader>
-        </HeaderWrap>
+      {!change && (
+        <Background>
+          <HeaderWrap>
+            <FirstHeader>
+              <BackIcon onClick={handlefirstBack} src={backIcon} />
+            </FirstHeader>
+            <TextHeader>
+              <Text1>스티커를 붙여보세요!</Text1>
+              <Text2>부착된 스티커는 호스트 외 삭제할 수 없습니다.</Text2>
+            </TextHeader>
+          </HeaderWrap>
+          <TestBottom />
 
-        <TestBottom />
-        {!change && (
           <ButtonWrap>
             <MiddleImg>
-              <img src="https://i.ibb.co/YP6Zk7b/Group-189.png" />
+              <img src={middle} />
             </MiddleImg>
             <Footer>
-              <Icon src="https://i.ibb.co/R20fGKK/Group-184.png" />
-              <Icon
-                onClick={handleButtonClick}
-                src="https://i.ibb.co/jzV1rX7/Group-183.png"
-              />
+              <Icon src={changeIcon} />
+              <Icon onClick={handleButtonClick} src={putcomplete} />
             </Footer>
           </ButtonWrap>
-        )}
-
-        {change && (
+        </Background>
+      )}
+      {change && (
+        <Background>
+          <HeaderWrap>
+            <FirstHeader>
+              <BackIcon onClick={handleSecondBack} src={backIcon} />
+            </FirstHeader>
+            <TextHeader>
+              <Text4>메인화면 이동까지 5초...</Text4>
+              <Text3>'{HostName}'님의 페이지에</Text3>
+              <Text3>내 스티커가 부착되었습니다.</Text3>
+            </TextHeader>
+          </HeaderWrap>
+          <TestBottom />
           <ButtonWrap>
             <MiddleImg>
-              <img src="https://i.ibb.co/YP6Zk7b/Group-189.png" />
+              <img src={middle} />
             </MiddleImg>
             <Footer>
-              <Icon src="https://i.ibb.co/YQ8KGWf/Group-96.png" />
-              <Icon
-                onClick={handleQnA}
-                src="https://i.ibb.co/DRrtLCx/Group-97.png"
-              />
+              <Icon2>
+                <Icon3 onClick={handleMakeprofile} src={mysticker} />
+                <Icon3 onClick={handleQnA} src={goqna} />
+              </Icon2>
             </Footer>
           </ButtonWrap>
-        )}
-      </Background>
+        </Background>
+      )}
     </BackgroundWrap>
   );
 }
