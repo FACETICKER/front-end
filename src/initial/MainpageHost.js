@@ -382,7 +382,7 @@ function MainpageHost() {
                 </button> */}
               </div>
               <Div>
-                <button className="l10-2" onClick={handleStickerPage}>
+                <button className="l10-2" onClick={handleHoststicker}>
                   <img
                     src={recordpage}
                     alt="recordpage"

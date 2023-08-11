@@ -74,6 +74,16 @@ function MainpageVisit() {
   const handleYes = () => {
     navigate("/");
   };
+  const handleQna = () => {
+    navigate("/qna");
+  };
+  const handleMainHost = () => {
+    navigate("/mainhost");
+  };
+  const handleHoststicker = () => {
+    navigate("/hoststicker");
+  };
+
 
   return (
     <div className="BackgroundWarp">
@@ -92,7 +102,7 @@ function MainpageVisit() {
           >
             <div style={{width:'30px', height:'30px' , position: "relative",  top: "35%", left:'-3%' }} >
               <button
-                style={{ border: "none", backgroundColor: "transparent" }}
+                style={{ border: "none", backgroundColor: "transparent" }} onClick={handleMainHost}
               >
                 <img src={user} className="l1" alt="setting"/>
               </button>
@@ -285,7 +295,7 @@ function MainpageVisit() {
                   <button
                     id="No"
                     className="l14"
-                    
+                    onClick={handleQna}
                     onMouseOver={handleDragBtnNo}
                     onMouseLeave={handleOutBtnNo}
                     style={{ float: "left" }}
