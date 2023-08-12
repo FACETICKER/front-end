@@ -85,6 +85,7 @@ function InitialSurvey() {
     const resultDiv4 = document.getElementById("check2-2");
     const resultDiv5 = document.getElementById("check2-3");
     setChooseSeason(season); // 선택한 계절을 상태에 저장
+    handleInitialSeasonChange();
     resultDiv1.style.display = "block";
     if (resultDiv2.style.width < "171px") {
       resultDiv2.style.width = "171px";
@@ -100,6 +101,7 @@ function InitialSurvey() {
     nameInput2.style.position='relative';
     nameInput2.style.top='10%';
     nameInput2.style.left='-45%';
+    handleInitialSeasonChange();
   };
 
   const handleShowSeasonButton = (event) => {
@@ -152,6 +154,7 @@ function InitialSurvey() {
       nameInput2.style.top='10%';
       nameInput2.style.left='-35%';
       setChooseDay(valueGroups["Month"] + " " + valueGroups["Days"]);
+      handleInitialDayChange();
       toggleBodyOverflow(false);
       if (resultDiv4.style.width < "285px") {
         resultDiv4.style.width = "285px";
@@ -185,6 +188,7 @@ function InitialSurvey() {
     const resultDiv5 = document.getElementById("check5-3");
     setChooseImport(evant); // 선택한 계절을 상태에 저장
     setShowThirdTextbox(true);
+    handleInitialImportChange();
     nameInput.className = "l5-1"
     nameInput2.style.position='relative';
     nameInput2.style.top='10%';
@@ -226,8 +230,9 @@ function InitialSurvey() {
           return
         }
         setChooseNumber(input1 + input2 + input3 + input4);
+        handleInitialNumberChange();
         resultDiv2.style.display = "block";
-        nameInput.className = "l5-1"
+        nameInput.className = "l5-1";
         nameInput2.style.position='relative';
         nameInput2.style.top='10%';
         nameInput2.style.left='-40%';
@@ -385,10 +390,11 @@ function InitialSurvey() {
     const resultDiv = document.getElementById(id);
     resultDiv.className = "l10-1";
   };
-  const handleNext = () => {
+  const handleNext = (() => {
+    dispatch(setInitialImport(chooseImport));
     console.log(InitialSurveyList);
     navigate("/makesticker");
-  };
+  });
   const handleInitialNameChange = () => {
     const nameInput = document.getElementById("name");
     dispatch(setInitialName(nameInput.value));
@@ -396,21 +402,27 @@ function InitialSurvey() {
   };
   const handleInitialSeasonChange = () => {
     const nameInput = document.getElementById("chooseSeason");
-    dispatch(setInitialSeason(nameInput.value));
+    console.log(nameInput.value);
+    console.log(chooseSeason);
+    dispatch(setInitialSeason(chooseSeason));
     console.log(InitialSurveyList);
   };
   const handleInitialNumberChange = () => {
-    dispatch(setInitialNumber(chooseNumber));
+    dispatch(setInitialSeason(chooseSeason));
     console.log(InitialSurveyList);
   };
   const handleInitialDayChange = () => {
     dispatch(setInitialDay(chooseDay));
+    dispatch(setInitialNumber(chooseNumber));
     console.log(InitialSurveyList);
   };
   const handleInitialImportChange = () => {
     dispatch(setInitialImport(chooseImport));
+    dispatch(setInitialDay(chooseDay));
     console.log(InitialSurveyList);
+    
   };
+  
   
 
   return (
