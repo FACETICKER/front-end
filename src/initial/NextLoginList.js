@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const InitialSurveyList = createSlice({
+const NextLoginList = createSlice({
     name:'nextloginlist',
     initialState:{
         stickeris: 0,
@@ -19,6 +19,6 @@ const InitialSurveyList = createSlice({
 export const {
     setStickeris,
     setQuestionis
-  } = InitialSurveyList.actions;
-export default InitialSurveyList.reducer;
+  } = NextLoginList.actions;
+export default NextLoginList;
 // 변수 저장소
