@@ -4,7 +4,7 @@ const NextLoginList = createSlice({
     name:'nextloginlist',
     initialState:{
         stickeris: 0,
-        questionis: 0
+        questionis: 0,
     },
     reducers: {
         setStickeris: (state, action) => {
