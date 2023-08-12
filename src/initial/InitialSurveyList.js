@@ -8,6 +8,7 @@ const InitialSurveyList = createSlice({
         Number: '',
         Day: '',
         Import: '',
+        SetSticker: ''
     },
     reducers: {
         setInitialName: (state, action) => {
@@ -25,6 +26,9 @@ const InitialSurveyList = createSlice({
         setInitialImport: (state, action) => {
           state.Import = action.payload;
         },
+        setInitialSetSticker: (state, action) => {
+          state.Import = action.payload;
+        },
     },
 });
 
@@ -34,6 +38,7 @@ export const {
     setInitialNumber,
     setInitialDay,
     setInitialImport,
+    SetSticker
   } = InitialSurveyList.actions;
 export default InitialSurveyList.reducer;
 // 변수 저장소
