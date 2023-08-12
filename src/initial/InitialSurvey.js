@@ -9,7 +9,7 @@ import "./InitialSurvey.css";
 import ReactDOM from "react-dom";
 import Picker from "react-mobile-picker-scroll";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import {
   setInitialName,
   setInitialSeason,
@@ -24,6 +24,7 @@ import {
 function InitialSurvey() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const InitialSurveyList = useSelector(state => {return state.initialList;});
   const [showSecondTextbox, setShowSecondTextbox] = useState(false);
   const [showSecondChooseButton, setSecondChooseButton] = useState(false);
   const [showThirdTextbox, setShowThirdTextbox] = useState(false);
@@ -385,23 +386,30 @@ function InitialSurvey() {
     resultDiv.className = "l10-1";
   };
   const handleNext = () => {
+    console.log(InitialSurveyList);
     navigate("/makesticker");
   };
   const handleInitialNameChange = () => {
     const nameInput = document.getElementById("name");
     dispatch(setInitialName(nameInput.value));
+    console.log(InitialSurveyList);
   };
   const handleInitialSeasonChange = () => {
-    dispatch(setInitialSeason(chooseSeason));
+    const nameInput = document.getElementById("chooseSeason");
+    dispatch(setInitialSeason(nameInput.value));
+    console.log(InitialSurveyList);
   };
   const handleInitialNumberChange = () => {
     dispatch(setInitialNumber(chooseNumber));
+    console.log(InitialSurveyList);
   };
   const handleInitialDayChange = () => {
     dispatch(setInitialDay(chooseDay));
+    console.log(InitialSurveyList);
   };
   const handleInitialImportChange = () => {
     dispatch(setInitialImport(chooseImport));
+    console.log(InitialSurveyList);
   };
   
 
