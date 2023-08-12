@@ -23,6 +23,8 @@ import imageReducer from "./Stickers/imageSlice";
 import captureReducer from "./MakeSticker/CaptureSlice";
 
 import InitialSurveyList from "./initial/InitialSurveyList";
+import NextLoginList from "./initial/NextLoginList";
+
 
 const store = configureStore({
   reducer: {
@@ -46,6 +48,7 @@ const store = configureStore({
 
     
     initialList: InitialSurveyList.reducer, // 프로필 저장소
+    nextLoginList: NextLoginList.reducer, // 로그인 후 경로 구분하는 역할 
 
     app: appReducer, //Stickers
     image: imageReducer,

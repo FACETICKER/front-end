@@ -101,7 +101,6 @@ function InitialSurvey() {
     nameInput2.style.position='relative';
     nameInput2.style.top='10%';
     nameInput2.style.left='-45%';
-    handleInitialSeasonChange();
   };
 
   const handleShowSeasonButton = (event) => {
@@ -390,6 +389,28 @@ function InitialSurvey() {
     const resultDiv = document.getElementById(id);
     resultDiv.className = "l10-1";
   };
+
+
+
+  useEffect(() => {
+    console.log('Updated chooseSeason:', chooseSeason);
+    handleInitialSeasonChange();
+  }, [chooseSeason]);
+  useEffect(() => {
+    console.log('Updated chooseNumber:', chooseNumber);
+    handleInitialNumberChange();
+  }, [chooseNumber]);
+  useEffect(() => {
+    console.log('Updated chooseDay:', chooseDay);
+    handleInitialDayChange();
+  }, [chooseDay]);
+  useEffect(() => {
+    console.log('Updated chooseImport:', chooseImport);
+    handleInitialImportChange();
+  }, [chooseImport]);
+  
+  
+  
   const handleNext = (() => {
     dispatch(setInitialImport(chooseImport));
     console.log(InitialSurveyList);
@@ -401,26 +422,20 @@ function InitialSurvey() {
     console.log(InitialSurveyList);
   };
   const handleInitialSeasonChange = () => {
-    const nameInput = document.getElementById("chooseSeason");
-    console.log(nameInput.value);
-    console.log(chooseSeason);
     dispatch(setInitialSeason(chooseSeason));
     console.log(InitialSurveyList);
   };
   const handleInitialNumberChange = () => {
-    dispatch(setInitialSeason(chooseSeason));
+    dispatch(setInitialNumber(chooseNumber));
     console.log(InitialSurveyList);
   };
   const handleInitialDayChange = () => {
     dispatch(setInitialDay(chooseDay));
-    dispatch(setInitialNumber(chooseNumber));
     console.log(InitialSurveyList);
   };
   const handleInitialImportChange = () => {
     dispatch(setInitialImport(chooseImport));
-    dispatch(setInitialDay(chooseDay));
-    console.log(InitialSurveyList);
-    
+    console.log(InitialSurveyList);    
   };
   
   
