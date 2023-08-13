@@ -1,24 +1,20 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const NextLoginList = createSlice({
-    name:'nextloginlist',
-    initialState:{
-        stickeris: 0,
-        questionis: 0
-    },
-    reducers: {
-        setStickeris: (state, action) => {
-          state.stickeris = action.payload;
-        },
-        setQuestionis: (state, action) => {
-          state.questionis = action.payload;
-        },
-    },
+  name: 'nextLoginList',
+  initialState: {
+      stickeris: 0,
+      questionis: 0,
+  },
+  reducers: {
+      update: (state, action) => {
+        const first = action.payload[0];
+        const second = action.payload[1];
+        state[first] = second; 
+      },
+  },
 });
 
-export const {
-    setStickeris,
-    setQuestionis
-  } = NextLoginList.actions;
+export const { update } = NextLoginList.actions;
+
 export default NextLoginList;
-// 변수 저장소
