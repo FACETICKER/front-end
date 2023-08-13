@@ -215,6 +215,9 @@ export function StickerLetter() {
   const [letterValue, setLetterValue] = useState("");
   const [inputHeight, setInputHeight] = useState("20%");
 
+  //방문자 스티커
+  const VisitorimageUrl = useSelector((state) => state.capture.imageUrl);
+
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
     setFirstBottom(false);

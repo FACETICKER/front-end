@@ -208,6 +208,8 @@ const Select = ({ handleCaptureImg }) => {
       });
   };
 
+  //방문자는 이미지 링크 redux로 저장해놓기
+
   /*   const loginData = useSelector((state) => state.login);
 
   console.log("id", loginData.id);
