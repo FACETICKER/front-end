@@ -1,4 +1,4 @@
-import NextLoginList from "./NextLoginList";
+import NextLoginList , { update } from "./NextLoginList";
 import message from "../img/MainpageVisit_img/ri_message-3-line.png";
 import Vector from "../img/MainpageVisit_img/Group 157 1.png";
 import threeboll from "../img/MainpageVisit_img/Group 77.svg";
@@ -14,17 +14,22 @@ import "./MainpageVisit.css";
 import { useNavigate } from "react-router-dom";
 
 import {
+  stickeris,
   setStickeris,
   setQuestionis,
-} from './NextLoginList'; // 경로는 실제 파일 경로에 맞게 수정해주세요
+} from './NextLoginList.js'; // 경로는 실제 파일 경로에 맞게 수정해주세요
+
 
 function MainpageVisit() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const NextLoginList = useSelector(state => {return state.nextLoginList;});
   const [showFooter, setShowFooter] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
   const [showModal3, setShowModal3] = useState(false);
+  const [stickerInput, setStickerInput] = useState(false);
+  const [stickerInput2, setStickerInput2] = useState(false);
 
   const BackgroundWrap = styled.div`
     background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
@@ -80,6 +85,7 @@ function MainpageVisit() {
     navigate("/makesticker");
   };
   const handleYes = () => {
+    console.log(NextLoginList);
     navigate("/");
   };
   const handleQna = () => {
@@ -91,21 +97,61 @@ function MainpageVisit() {
   const handleVisitorsticker = () => {
     navigate("/visitorsticker");
   };
+  const [count1, setCount1] = useState(0);
+  const [count2, setCount2] = useState(0);
 
-  
-  const handleStickerLogin = () => {
-    dispatch(setStickeris('1'));
-    //handleYes();
+  {/*const handleStickerLogin = () => {
+    stickerLogin();
+    console.log(NextLoginList);
+    handleYes();
   };
   useEffect(() => {
-    console.log('Updated setStickeris:', setStickeris);
-    console.log(NextLoginList)
-  }, [setStickeris]);
+    stickerLogin();
+    setCount1(count1+1);
+    
+  }, [stickerInput]);
+  const stickerLogin = () => {
+    if (count1==1){
+      dispatch(setStickeris(1));
+      dispatch(setQuestionis(0));
+      console.log(NextLoginList);
+    }
+    setStickerInput(100)
+  };
+
+
 
   const handleQuestionLogin = () => {
+    questionLogin();
+    console.log(NextLoginList);
     handleYes();
-    setQuestionis(1);
   };
+  useEffect(() => {
+    questionLogin();
+    setCount2(count2+1);
+    
+  }, [stickerInput2]);
+  const questionLogin = () => {
+    if (count2==1){
+      dispatch(setQuestionis(1));
+      dispatch(setStickeris(0));
+      console.log(NextLoginList);
+    }
+    setStickerInput2(100)
+  };
+*/}
+
+
+const handleStickerLogin = () => {
+  dispatch(update(["stickeris", 1]));
+  handleYes();
+};
+
+const handleQuestionLogin = () => {
+  dispatch(update(["questionis", 1]));
+  handleYes();
+};
+
 
   return (
     <div className="BackgroundWarp">
@@ -309,7 +355,7 @@ function MainpageVisit() {
                     onMouseOver={handleDragBtnYes}
                     onMouseLeave={handleOutBtnYes}
                   >
-                    YES
+                    YES스티커
                   </button>
                 </div>
               </div>
@@ -344,7 +390,7 @@ function MainpageVisit() {
                   <button
                     id="No"
                     className="l14"
-                    onClick={handleQuestionLogin}
+                    onClick={handleQna}
                     onMouseOver={handleDragBtnNo}
                     onMouseLeave={handleOutBtnNo}
                     style={{ float: "left" }}
@@ -354,11 +400,11 @@ function MainpageVisit() {
                   <button
                     id="Yes"
                     className="l14"
-                    onClick={handleYes}
+                    onClick={handleQuestionLogin}
                     onMouseOver={handleDragBtnYes}
                     onMouseLeave={handleOutBtnYes}
                   >
-                    YES
+                    YES질문
                   </button>
                 </div>
               </div>
