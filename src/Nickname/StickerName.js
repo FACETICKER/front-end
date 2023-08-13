@@ -3,7 +3,11 @@ import "../font/font.css";
 import { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import inputImage from "../img/Stickers_img/inputimg.png";
+import checkicon from "../img/Stickers_img/checkicon.png";
+import backicon from "../img/Stickers_img/backIcon.png";
+
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
 //현재 뷰포트 높이 가져와서 쓰기(App.js App함수 return 위에 꼭 함수 추가해주기)
@@ -51,6 +55,11 @@ const HeaderIcon = styled.div`
   width: 20%;
   justify-content: center;
   align-item: center;
+  display: flex;
+`;
+
+const Back = styled.img`
+  max-width: 40%;
   display: flex;
 `;
 
@@ -116,6 +125,7 @@ const Bottom = styled.div`
 `;
 const HostImg = styled.img`
   max-width: ${(props) => props.size};
+  padding-top: 5%;
 `;
 const CheckIcon = styled.img`
   max-height: 60px;
@@ -145,8 +155,9 @@ const InputWrap = styled.div`
 
 const InputImg = styled.img`
   position: absolute;
-  height: 150px;
+  height: 110px;
   width: 80%;
+
   display: flex;
 `;
 
@@ -182,6 +193,11 @@ export function StickerName() {
   const [inputTop, setInputTop] = useState("-2%");
   const [nicknameValue, setNicknameValue] = useState("");
 
+  //방문자 스티커
+
+  const imageUrl = useSelector((state) => state.capture.imageUrl);
+  console.log("이미지url ", imageUrl);
+
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
     setStickerSize("50px");
@@ -205,7 +221,7 @@ export function StickerName() {
 
   //host 이미지 url 받아오기
   useEffect(() => {
-    fetch("http://localhost:3011/user/1")
+    fetch("http://localhost:3012/user/1")
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
@@ -223,18 +239,20 @@ export function StickerName() {
     setNicknameValue(event.target.value);
   };
 
+  //저장된 아이디(호스트꺼) 불러오기
+  const hostID = "1";
+  const ID = hostID;
+
   const headers = {
-    "x-access-token":
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkxMjQzNDY2LCJleHAiOjE2OTEyNDcwNjZ9.Wm3t2Fcwy2Q-lt_iIjTzqkFUTBUg_be3KQy2whDpl8U",
     "Content-Type": "application/json",
   };
 
   //닉네임 입력하고 다음 아이콘 누르면 서버에 전송됨
   const handleNicknameSubmit = () => {
-    fetch("https://faceticker.site/app/3/sticker/message?type=visitor", {
-      method: "POST",
+    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/name`, {
+      method: "PATCH",
       headers: headers,
-      body: JSON.stringify({ nickname: nicknameValue }),
+      body: JSON.stringify({ nicknameValue }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -272,20 +290,10 @@ export function StickerName() {
           <Header>
             <HeaderIcon>
               {!clickname && (
-                <img
-                  onClick={handleFirstBack}
-                  style={style}
-                  src="https://i.ibb.co/rdqkHHs/arrow-left.png"
-                  alt="setting-icon"
-                />
+                <Back onClick={handleFirstBack} style={style} src={backicon} />
               )}
               {clickname && (
-                <img
-                  onClick={handleSecondBack}
-                  style={style}
-                  src="https://i.ibb.co/rdqkHHs/arrow-left.png"
-                  alt="setting-icon"
-                />
+                <Back onClick={handleSecondBack} style={style} src={backicon} />
               )}
             </HeaderIcon>
           </Header>
@@ -300,20 +308,14 @@ export function StickerName() {
         <BottomWrap>
           <Bottom>
             {clickname && (
-              <CheckIcon
-                onClick={handleNicknameSubmit}
-                src="https://i.ibb.co/PrmpgLr/Group-74.png"
-              />
+              <CheckIcon onClick={handleNicknameSubmit} src={checkicon} />
             )}
             <ImgWrap>
-              <HostImg size={stickerSize} style={style} src={HostImgurl} />
+              <HostImg size={stickerSize} style={style} src={imageUrl} />
             </ImgWrap>
 
             <InputWrap height={inputheight} onClick={handleClickInput}>
-              <InputImg
-                height={inputheight}
-                src="https://i.ibb.co/B4Y5jgG/Group-69.png"
-              />
+              <InputImg height={inputheight} src={inputImage} />
               <Input
                 maxLength="15"
                 onChange={saveNickname}

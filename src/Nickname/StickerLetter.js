@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import "../font/font.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import backicon from "../img/Stickers_img/backIcon.png";
+
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
 //현재 뷰포트 높이 가져와서 쓰기(App.js App함수 return 위에 꼭 함수 추가해주기)
@@ -51,6 +53,12 @@ const HeaderIcon = styled.div`
   width: 20%;
   justify-content: center;
   align-item: center;
+  display: flex;
+`;
+
+const Back = styled.img`
+  max-width: 38%;
+  height: auto;
   display: flex;
 `;
 
@@ -215,6 +223,9 @@ export function StickerLetter() {
   const [letterValue, setLetterValue] = useState("");
   const [inputHeight, setInputHeight] = useState("20%");
 
+  //방문자 스티커
+  const imageUrl = useSelector((state) => state.capture.imageUrl);
+
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
     setFirstBottom(false);
@@ -230,20 +241,6 @@ export function StickerLetter() {
     setFirstBottom(true);
     setInputHeight("20%");
   };
-
-  //host 이미지 url 받아오기
-  useEffect(() => {
-    fetch("http://localhost:3011/user/1")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.url) {
-          setHostImg(data.url);
-        }
-      })
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []);
 
   //방문록 저장
   const saveLetter = (event) => {
@@ -287,21 +284,9 @@ export function StickerLetter() {
         <HeaderWrap>
           <Header>
             <HeaderIcon>
-              {firstBottom && (
-                <img
-                  onClick={handleFirstBack}
-                  style={style}
-                  src="https://i.ibb.co/rdqkHHs/arrow-left.png"
-                  alt="setting-icon"
-                />
-              )}
+              {firstBottom && <Back onClick={handleFirstBack} src={backicon} />}
               {!firstBottom && (
-                <img
-                  onClick={handleSecondBack}
-                  style={style}
-                  src="https://i.ibb.co/rdqkHHs/arrow-left.png"
-                  alt="setting-icon"
-                />
+                <Back onClick={handleSecondBack} src={backicon} />
               )}
             </HeaderIcon>
           </Header>
@@ -322,7 +307,7 @@ export function StickerLetter() {
                     <InputImg src="https://i.ibb.co/3vfvNYb/Post-it-4-3.png" />
                   </ImgWrap>
 
-                  <HostImg src={HostImgurl} />
+                  <HostImg src={imageUrl} />
                 </Wrap>
               )}
               <InputWrap height={inputHeight}>

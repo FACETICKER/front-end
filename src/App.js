@@ -55,10 +55,9 @@ function App() {
           <Route path="/makesticker" element={<MakeSticker />} />
           {/*스티커 제작 페이지 */}
           <Route path="/qna" element={<QnApage />} />
-          {/*질문답변 */}{" "}
-          <Route path="put" element={<PutPage />} />
+          {/*질문답변 */} <Route path="put" element={<PutPage />} />
           {/*스티커 붙이기 방문자 */}
-          <Route path="/visitorsticker" element={<VisitorSticker />} />
+          <Route path="visitorsticker" element={<VisitorSticker />} />
           {/*스티커 방문자 */}
           <Route path="hoststicker" element={<StickerMainHost />} />
           {/*스티커 호스트 */}
