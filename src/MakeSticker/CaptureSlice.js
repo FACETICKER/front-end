@@ -20,9 +20,16 @@ const captureSlice = createSlice({
     setVisitorImageUrl: (state, action) => {
       state.visitorimageUrl = action.payload;
     },
+    setVisitorId: (state, action) => {
+      state.visitorId = action.payload;
+    },
   },
 });
 
-export const { setCaptureEnabled, setImageUrl, setVisitorImageUrl } =
-  captureSlice.actions;
+export const {
+  setVisitorId,
+  setCaptureEnabled,
+  setImageUrl,
+  setVisitorImageUrl,
+} = captureSlice.actions;
 export default captureSlice.reducer;
