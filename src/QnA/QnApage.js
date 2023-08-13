@@ -53,7 +53,7 @@ const QnApage = () => {
   /* userID와 토큰 정의 */
 
   const userID = 2;
-  const JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VyX2VtYWlsIjoiYmFkdWswMzI2QG5hdmVyLmNvbSIsImlhdCI6MTY5MTk0MDMzOSwiZXhwIjoxNjkxOTQzOTM5fQ.t1KRbWwi5alb76mnGNUTX-wa5W4WA9fCkR4-c03ASTs';
+  const JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VyX2VtYWlsIjoiYmFkdWswMzI2QG5hdmVyLmNvbSIsImlhdCI6MTY5MTk0Nzk1OCwiZXhwIjoxNjkxOTUxNTU4fQ._KIzNc4zSQB8oFUC-RrfcKTOg-3aZHlqBpzUeS1E13g';
 
   useEffect(() => {
     test2();
@@ -62,7 +62,7 @@ const QnApage = () => {
   useEffect(() => {
     if (getques) {
       const list = getques.result;
-      let ID = 0
+      let ID = 0;
       list.forEach(item => {
         const quesOpen = item.question_hidden === 0 ? true : false;
         dispatch(questionSlice.actions.up({text: item.question, id: ID, type: "question", open: quesOpen, clicked: false, nQnA_id: item.nQnA_id})); // type 수정 필요 벡에서 받은걸로
@@ -90,3 +90,4 @@ const QnApage = () => {
 };
 
 export default QnApage;
+
