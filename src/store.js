@@ -14,7 +14,7 @@ import FirstSlice from "./QnA/Slice/FirstSlice";
 import PageSlice from "./QnA/Slice/PageSlice";
 import Basic_questionSlice from "./QnA/Slice/Basic_questionSlice";
 import Popup_QnA_Slice from "./QnA/Slice/Popup_QnA_Slice";
-import ShareOrNotSlice from "./QnA/Slice/ShareOrNotSlice"; 
+import ShareOrNotSlice from "./QnA/Slice/ShareOrNotSlice";
 
 import appReducer from "./Stickers/reducers";
 import StickerSlice from "./MakeSticker/StickerSlice";
@@ -22,10 +22,14 @@ import MS_PopupSlice from "./MakeSticker/PopupSlice";
 import imageReducer from "./Stickers/imageSlice";
 import captureReducer from "./MakeSticker/CaptureSlice";
 
+<<<<<<< HEAD
+import loginReducer from "./login/LoginSlice";
+=======
 import InitialSurveyList from "./initial/InitialSurveyList";
 import NextLoginList from "./initial/NextLoginList";
 
 
+>>>>>>> a3c39afd3caf60a6fc2b0d22863f5425ad85115e
 const store = configureStore({
   reducer: {
     question: questionSlice.reducer, // 질문 저장소
@@ -58,6 +62,8 @@ const store = configureStore({
     sticker: StickerSlice.reducer, //  총 저장소
     popup: MS_PopupSlice.reducer, // 팝업창 onoff 저장소
     capture: captureReducer,
+
+    login: loginReducer,
   },
 });
 export default store;

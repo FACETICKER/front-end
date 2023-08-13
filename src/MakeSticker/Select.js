@@ -5,7 +5,7 @@ import StickerSlice from "./StickerSlice";
 import BtnWrap from "./BtnWrap";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-modal";
-
+import store from "../store";
 import styles1 from "./style/Popup.module.css";
 import styles2 from "./Modal_jh.module.css";
 import Close from "../img/QnA_img/close-x.png";
@@ -39,6 +39,7 @@ const modalStyle = {
 // 선택창 관리 컴포넌트
 
 const Select = ({ handleCaptureImg }) => {
+  const [stickeris, setStickeris] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -54,7 +55,9 @@ const Select = ({ handleCaptureImg }) => {
   const capture = (isEnabled) => {
     dispatch(setCaptureEnabled(isEnabled));
     setModalIsOpen(true);
+    PostOrPatch();
   };
+
   const step = useSelector((state) => {
     return state.sticker.step;
   });
@@ -74,6 +77,108 @@ const Select = ({ handleCaptureImg }) => {
     navigate("/stickername");
   };
 
+  //완료 누르면 백에 POST
+  const stickerState = useSelector((state) => state.sticker);
+  console.log("StickerSlice Value:", stickerState);
+
+  /*  const headers = {
+    "x-access-token": { jwt },
+    "Content-Type": "application/json",
+  };
+ */
+
+  //수정하기
+  const jwt = null;
+  /*     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkxODYyNzgzLCJleHAiOjE2OTE4NjYzODN9.F0joqgaZ5GYQYXHf2zsT1pYyzNaYHxaZ4xgddpqsdio"; */ /*  */
+  const userId = "2";
+
+  //jwt가 없으면 visitor, jwt 있으면 host
+  const whatType = jwt !== null ? "host" : "visitor";
+  console.log("what", whatType);
+  //헤더
+  const headers = {
+    "x-access-token": jwt,
+    "Content-Type": "application/json",
+  };
+  console.log(headers);
+  const VisitorHeader = {
+    "Content-Type": "application/json",
+  };
+  const Header = whatType == "host" ? headers : VisitorHeader;
+  console.log("header", Header);
+  const userid = userId;
+
+  //sticker 없을 때 post, 있으면 patch
+
+  //먼저 페이지 들어가면 스티커 get 해오기(호스트, 방문자 상관 X 어차피 토큰 없으면 요청 안 됨)
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${userid}/sticker/detail`, {
+      headers: headers,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setStickeris(true);
+        console.log("성공", data);
+        dispatch(StickerSlice.actions.update(["face", data.result[0].face_id]));
+        dispatch(StickerSlice.actions.update(["eyes", data.result[0].eyes_id]));
+        dispatch(StickerSlice.actions.update(["nose", data.result[0].nose_id]));
+        dispatch(
+          StickerSlice.actions.update(["mouth", data.result[0].mouth_id])
+        );
+        dispatch(StickerSlice.actions.update(["hand", data.result[0].arm_id]));
+        dispatch(StickerSlice.actions.update(["foot", data.result[0].foot_id]));
+        dispatch(
+          StickerSlice.actions.update([
+            "accessory",
+            data.result[0].accessory_id,
+          ])
+        );
+      })
+
+      .catch((error) => {
+        console.error("실패", error);
+      });
+  }, []);
+
+  //sticker 보낼 거
+  const imageUrl = useSelector((state) => state.capture.imageUrl);
+
+  const finalsticker = {
+    face: stickerState.face,
+    eyes: stickerState.eyes,
+    nose: stickerState.nose,
+    mouth: stickerState.mouth,
+    arm: stickerState.hand,
+    foot: stickerState.foot,
+    accessory: stickerState.accessory,
+    final: imageUrl,
+  };
+  console.log("finalsticker", finalsticker);
+
+  console.log("stickeris", stickeris);
+
+  const PostOrPatch = () => {
+    const apiUrl = stickeris
+      ? `http://app.faceticker.site/${userid}/sticker/put`
+      : `http://app.faceticker.site/${userid}/sticker?type=${whatType}`;
+
+    fetch(apiUrl, {
+      method: stickeris ? "PATCH" : "POST",
+      headers: Header,
+    })
+      .then((response) => response.json())
+      .then((data) => {})
+      .catch((error) => {
+        // Handle errors
+        console.error("An error occurred:", error);
+      });
+  };
+
+  /*   const loginData = useSelector((state) => state.login);
+
+  console.log("id", loginData.id);
+  console.log("token", loginData.token);
+ */
   return (
     <div className={styles.background}>
       <div className={styles.line}></div>
