@@ -9,7 +9,11 @@ import Mouth from "./sticker/Mouth";
 import Accessory from "./sticker/Accessory";
 import domtoimage from "dom-to-image";
 import { useDispatch, useSelector } from "react-redux";
-import { setCaptureEnabled, setImageUrl } from "./CaptureSlice";
+import {
+  setCaptureEnabled,
+  setVisitorImageUrl,
+  setImageUrl,
+} from "./CaptureSlice";
 
 const STICKER = () => {
   const containerRef = useRef(null);
@@ -23,6 +27,8 @@ const STICKER = () => {
         .toPng(containerRef.current)
         .then(function (dataUrl) {
           dispatch(setImageUrl(dataUrl));
+          dispatch(setVisitorImageUrl(dataUrl));
+
           /*   downloadImage(dataUrl); // 이미지를 파일로 다운로드하는 함수 호출 */
           /*    console.log(dataUrl); */
         })

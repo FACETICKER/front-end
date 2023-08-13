@@ -182,6 +182,9 @@ export function StickerName() {
   const [inputTop, setInputTop] = useState("-2%");
   const [nicknameValue, setNicknameValue] = useState("");
 
+  //방문자 스티커
+  const VisitorimageUrl = useSelector((state) => state.capture.imageUrl);
+
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
     setStickerSize("50px");
