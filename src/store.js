@@ -22,7 +22,14 @@ import MS_PopupSlice from "./MakeSticker/PopupSlice";
 import imageReducer from "./Stickers/imageSlice";
 import captureReducer from "./MakeSticker/CaptureSlice";
 
+<<<<<<< HEAD
 import loginReducer from "./login/LoginSlice";
+=======
+import InitialSurveyList from "./initial/InitialSurveyList";
+import NextLoginList from "./initial/NextLoginList";
+
+
+>>>>>>> a3c39afd3caf60a6fc2b0d22863f5425ad85115e
 const store = configureStore({
   reducer: {
     question: questionSlice.reducer, // 질문 저장소
@@ -41,6 +48,11 @@ const store = configureStore({
     basic_question: Basic_questionSlice.reducer, // 기본 질문 저장소
     popup_QnA: Popup_QnA_Slice.reducer, // 기본 질문 팝업창 관리
     share: ShareOrNotSlice.reducer, // 질문 비공개 공개 설정
+
+
+    
+    initialList: InitialSurveyList.reducer, // 프로필 저장소
+    nextLoginList: NextLoginList.reducer, // 로그인 후 경로 구분하는 역할 
 
     app: appReducer, //Stickers
     image: imageReducer,

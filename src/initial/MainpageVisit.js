@@ -7,7 +7,8 @@ import close from "../img/MainpageVisit_img/close-x.svg";
 import sticker from "../img/MainpageVisit_img/sticker.svg";
 import recordpage from "../img/MainpageVisit_img/3users.svg";
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useState,useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./MainpageVisit.css";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +20,7 @@ import {
 
 function MainpageVisit() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showFooter, setShowFooter] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
@@ -90,10 +92,16 @@ function MainpageVisit() {
     navigate("/visitorsticker");
   };
 
+  
   const handleStickerLogin = () => {
-    handleYes();
-    setStickeris(1);
+    dispatch(setStickeris('1'));
+    //handleYes();
   };
+  useEffect(() => {
+    console.log('Updated setStickeris:', setStickeris);
+    console.log(NextLoginList)
+  }, [setStickeris]);
+
   const handleQuestionLogin = () => {
     handleYes();
     setQuestionis(1);
