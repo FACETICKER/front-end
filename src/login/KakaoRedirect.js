@@ -67,7 +67,7 @@ export function KakaoRedirect() {
           setLoginData({ id: data.result.user_id, token: data.result.jwt })
         ); */
         console.log("dispatch 후");
-        navigate("/makesticker");
+        navigate("/initial");
       })
 
       .catch((error) => {

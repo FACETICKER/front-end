@@ -52,10 +52,18 @@ const Select = ({ handleCaptureImg }) => {
     setModalIsOpen(false);
   };
 
+  //호스트가 완료 누를 때
   const capture = (isEnabled) => {
     dispatch(setCaptureEnabled(isEnabled));
     setModalIsOpen(true);
     PostOrPatch();
+  };
+
+  //방문자가 완료 누를 때
+  const captureVisitor = (isEnabled) => {
+    dispatch(setCaptureEnabled(isEnabled));
+    PostOrPatch();
+    navigate("/visitorname");
   };
 
   const step = useSelector((state) => {
@@ -87,14 +95,19 @@ const Select = ({ handleCaptureImg }) => {
   };
  */
 
-  //수정하기
-  const jwt = null;
-  /*     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkxODYyNzgzLCJleHAiOjE2OTE4NjYzODN9.F0joqgaZ5GYQYXHf2zsT1pYyzNaYHxaZ4xgddpqsdio"; */ /*  */
-  const userId = "2";
+  //수정하기 userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
+  const jwt = "null";
+  /*   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkxOTIxNTU0LCJleHAiOjE2OTE5MjUxNTR9.zpDYDWEXgzeYFfkrLnIxaRl6cqzEoL-PNv4rfXYuJv8"; */
+  const userId = null; //호스트 자신 아이디
+  const HostId = "1"; //방문자가 가지고 온 호스트 아이디
 
   //jwt가 없으면 visitor, jwt 있으면 host
-  const whatType = jwt !== null ? "host" : "visitor";
+  const whatType = HostId == null ? "host" : "visitor";
   console.log("what", whatType);
+
+  //완료 누르고 버튼 지정
+  const CompleteButton = whatType == "host" ? capture : captureVisitor;
+  console.log("버튼 ", CompleteButton);
   //헤더
   const headers = {
     "x-access-token": jwt,
@@ -106,40 +119,55 @@ const Select = ({ handleCaptureImg }) => {
   };
   const Header = whatType == "host" ? headers : VisitorHeader;
   console.log("header", Header);
-  const userid = userId;
+  const Id = whatType == "host" ? userId : HostId;
+  console.log("id", Id);
 
   //sticker 없을 때 post, 있으면 patch
 
-  //먼저 페이지 들어가면 스티커 get 해오기(호스트, 방문자 상관 X 어차피 토큰 없으면 요청 안 됨)
+  //호스트면 자기 스티커 get해오기
   useEffect(() => {
-    fetch(`http://app.faceticker.site/${userid}/sticker/detail`, {
-      headers: headers,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setStickeris(true);
-        console.log("성공", data);
-        dispatch(StickerSlice.actions.update(["face", data.result[0].face_id]));
-        dispatch(StickerSlice.actions.update(["eyes", data.result[0].eyes_id]));
-        dispatch(StickerSlice.actions.update(["nose", data.result[0].nose_id]));
-        dispatch(
-          StickerSlice.actions.update(["mouth", data.result[0].mouth_id])
-        );
-        dispatch(StickerSlice.actions.update(["hand", data.result[0].arm_id]));
-        dispatch(StickerSlice.actions.update(["foot", data.result[0].foot_id]));
-        dispatch(
-          StickerSlice.actions.update([
-            "accessory",
-            data.result[0].accessory_id,
-          ])
-        );
+    if (whatType === "host") {
+      fetch(`http://app.faceticker.site/${userId}/sticker/detail`, {
+        headers: headers,
       })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("성공", data);
+          dispatch(
+            StickerSlice.actions.update(["face", data.result[0].face_id])
+          );
+          dispatch(
+            StickerSlice.actions.update(["eyes", data.result[0].eyes_id])
+          );
+          dispatch(
+            StickerSlice.actions.update(["nose", data.result[0].nose_id])
+          );
+          dispatch(
+            StickerSlice.actions.update(["mouth", data.result[0].mouth_id])
+          );
+          dispatch(
+            StickerSlice.actions.update(["hand", data.result[0].arm_id])
+          );
+          dispatch(
+            StickerSlice.actions.update(["foot", data.result[0].foot_id])
+          );
+          dispatch(
+            StickerSlice.actions.update([
+              "accessory",
+              data.result[0].accessory_id,
+            ])
+          );
+          console.log("stickeris1", stickeris);
+          setStickeris(true);
+        })
 
-      .catch((error) => {
-        console.error("실패", error);
-      });
-  }, []);
+        .catch((error) => {
+          console.error("실패", error);
+        });
+    }
+  }, [whatType]);
 
+  console.log("stickeris", stickeris);
   //sticker 보낼 거
   const imageUrl = useSelector((state) => state.capture.imageUrl);
 
@@ -159,18 +187,24 @@ const Select = ({ handleCaptureImg }) => {
 
   const PostOrPatch = () => {
     const apiUrl = stickeris
-      ? `http://app.faceticker.site/${userid}/sticker/put`
-      : `http://app.faceticker.site/${userid}/sticker?type=${whatType}`;
+      ? `http://app.faceticker.site/${Id}/sticker/put`
+      : `http://app.faceticker.site/${Id}/sticker?type=${whatType}`;
+    console.log("api", apiUrl);
+    console.log("15:");
 
     fetch(apiUrl, {
       method: stickeris ? "PATCH" : "POST",
-      headers: Header,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(finalsticker),
     })
-      .then((response) => response.json())
-      .then((data) => {})
+      /*   .then((response) => response.json()) */
+      .then((data) => {
+        console.log("성공", data);
+      })
       .catch((error) => {
-        // Handle errors
-        console.error("An error occurred:", error);
+        console.error("실패:", error);
       });
   };
 
@@ -196,7 +230,7 @@ const Select = ({ handleCaptureImg }) => {
           다음
         </button>
         {step == 6 && (
-          <button onClick={capture} className={styles.button}>
+          <button onClick={CompleteButton} className={styles.button}>
             완료
           </button>
         )}
