@@ -10,7 +10,7 @@ import styles1 from "./style/Popup.module.css";
 import styles2 from "./Modal_jh.module.css";
 import Close from "../img/QnA_img/close-x.png";
 import Dots from "../components/Dots";
-import { setCaptureEnabled } from "./CaptureSlice";
+import { setCaptureEnabled, setVisitorId } from "./CaptureSlice";
 
 const modalStyle = {
   overlay: {
@@ -63,14 +63,18 @@ const Select = ({ handleCaptureImg }) => {
   const captureVisitor = (isEnabled) => {
     dispatch(setCaptureEnabled(isEnabled));
     PostOrPatch();
-    navigate("/visitorname");
+    /*     navigate("/stickername"); */
   };
 
   const step = useSelector((state) => {
     return state.sticker.step;
   });
 
-  const up = () => {
+  const up = (isEnabled) => {
+    dispatch(StickerSlice.actions.stepcontrol(true));
+  };
+  const up2 = (isEnabled) => {
+    dispatch(setCaptureEnabled(isEnabled));
     dispatch(StickerSlice.actions.stepcontrol(true));
   };
 
@@ -96,10 +100,10 @@ const Select = ({ handleCaptureImg }) => {
  */
 
   //수정하기 userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
-  const jwt = "null";
-  /*   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkxOTIxNTU0LCJleHAiOjE2OTE5MjUxNTR9.zpDYDWEXgzeYFfkrLnIxaRl6cqzEoL-PNv4rfXYuJv8"; */
-  const userId = null; //호스트 자신 아이디
-  const HostId = "1"; //방문자가 가지고 온 호스트 아이디
+  const jwt =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkxOTMzOTA2LCJleHAiOjE2OTE5Mzc1MDZ9.lQdUWyBQYeCz7OEnapawJFzBgaYsSktpDBDB14UvjG0";
+  const userId = "1"; //호스트 자신 아이디
+  const HostId = null; //방문자가 가지고 온 호스트 아이디
 
   //jwt가 없으면 visitor, jwt 있으면 host
   const whatType = HostId == null ? "host" : "visitor";
@@ -181,6 +185,7 @@ const Select = ({ handleCaptureImg }) => {
     accessory: stickerState.accessory,
     final: imageUrl,
   };
+
   console.log("finalsticker", finalsticker);
 
   console.log("stickeris", stickeris);
@@ -188,20 +193,22 @@ const Select = ({ handleCaptureImg }) => {
   const PostOrPatch = () => {
     const apiUrl = stickeris
       ? `http://app.faceticker.site/${Id}/sticker/put`
-      : `http://app.faceticker.site/${Id}/sticker?type=${whatType}`;
+      : `http://app.faceticker.site/${Id}/sticker`;
     console.log("api", apiUrl);
-    console.log("15:");
 
     fetch(apiUrl, {
       method: stickeris ? "PATCH" : "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(finalsticker),
+      body: JSON.stringify({ finalsticker }),
     })
-      /*   .then((response) => response.json()) */
+      .then((response) => response.json())
       .then((data) => {
         console.log("성공", data);
+        console.log("스티커 아이디", data.result.visitor_sticker_id);
+        dispatch(setVisitorId(data.result.visitor_sticker_id));
+        console.log("스티커아이디 저장 완료");
       })
       .catch((error) => {
         console.error("실패:", error);
@@ -226,11 +233,20 @@ const Select = ({ handleCaptureImg }) => {
           이전
         </button>
         <button
-          className={`${styles.button} ${step !== 6 ? "" : styles.hidden}`}
+          className={`${styles.button} ${
+            step !== 5 && step !== 6 ? "" : styles.hidden
+          }`}
           onClick={up}
         >
           다음
         </button>
+
+        {step == 5 && (
+          <button onClick={up2} className={styles.button}>
+            다음
+          </button>
+        )}
+
         {step == 6 && (
           <button onClick={CompleteButton} className={styles.button}>
             완료
