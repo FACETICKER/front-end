@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import "../font/font.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -217,6 +217,7 @@ export function StickerLetter() {
 
   //방문자 스티커
   const VisitorimageUrl = useSelector((state) => state.capture.imageUrl);
+  console.log(VisitorimageUrl);
 
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
