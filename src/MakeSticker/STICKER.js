@@ -9,21 +9,22 @@ import Mouth from "./sticker/Mouth";
 import Accessory from "./sticker/Accessory";
 import domtoimage from "dom-to-image";
 import { useDispatch, useSelector } from "react-redux";
+import { setCaptureEnabled, setImageUrl } from "./CaptureSlice";
 
 const STICKER = () => {
-  const [imageURL, setImageURL] = useState(null);
   const containerRef = useRef(null);
   const dispatch = useDispatch();
   const captureEnabled = useSelector((state) => state.capture.captureEnabled);
+  const imageUrl = useSelector((state) => state.capture.imageUrl);
 
   const handleCaptureImg = () => {
     if (containerRef.current) {
       domtoimage
         .toPng(containerRef.current)
         .then(function (dataUrl) {
-          setImageURL(dataUrl);
-          downloadImage(dataUrl); // 이미지를 파일로 다운로드하는 함수 호출
-          console.log(dataUrl);
+          dispatch(setImageUrl(dataUrl));
+          /*   downloadImage(dataUrl); // 이미지를 파일로 다운로드하는 함수 호출 */
+          /*    console.log(dataUrl); */
         })
         .catch(function (error) {
           console.error("이미지 캡처 오류:", error);
