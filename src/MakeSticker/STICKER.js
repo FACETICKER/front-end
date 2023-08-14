@@ -20,7 +20,7 @@ const STICKER = () => {
   const dispatch = useDispatch();
   const captureEnabled = useSelector((state) => state.capture.captureEnabled);
   const imageUrl = useSelector((state) => state.capture.imageUrl);
-  console.log(imageUrl);
+  /*   console.log(imageUrl); */
   const handleCaptureImg = () => {
     if (containerRef.current) {
       domtoimage
