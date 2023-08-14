@@ -4,6 +4,7 @@ import { useState } from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import questionSlice from '../Slice/questionSlice';
 import IDSlice from '../Slice/IDSlice';
+import Token from '../Token';
 
 function Quesinput() {
 
@@ -13,7 +14,8 @@ function Quesinput() {
         return state.idcounter.value;
     });
 
-    const JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VyX2VtYWlsIjoiYmFkdWswMzI2QG5hdmVyLmNvbSIsImlhdCI6MTY5MTk0Nzk1OCwiZXhwIjoxNjkxOTUxNTU4fQ._KIzNc4zSQB8oFUC-RrfcKTOg-3aZHlqBpzUeS1E13g';
+    const userID = Token()[0];
+    const JWT = Token()[1];
 
     const postQuestion = () => {
 
@@ -22,7 +24,7 @@ function Quesinput() {
             'Content-Type': 'application/json',
         };
 
-        fetch("http://app.faceticker.site/2/nqna/question/visitor", {
+        fetch(`http://app.faceticker.site/${userID}/nqna/question/visitor`, {
             method: "POST", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
             headers: headers,
             body: JSON.stringify({question: question})
@@ -44,7 +46,7 @@ function Quesinput() {
             'Content-Type': 'application/json'
         };
     
-        fetch(`http://app.faceticker.site/2/nqna`, {
+        fetch(`http://app.faceticker.site/${userID}/nqna`, {
             method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
             headers: headers,
           }) // 서버로 GET 요청을 보냄
