@@ -14,9 +14,9 @@ import "./MainpageVisit.css";
 import { useNavigate } from "react-router-dom";
 
 import {
-  stickeris,
   setStickeris,
   setQuestionis,
+  setNothing,
 } from './NextLoginList.js'; // 경로는 실제 파일 경로에 맞게 수정해주세요
 
 
@@ -87,6 +87,7 @@ function MainpageVisit() {
   const handleYes = () => {
     console.log(NextLoginList);
     navigate("/");
+    console.log(NextLoginList);
   };
   const handleQna = () => {
     navigate("/qna");
@@ -140,17 +141,39 @@ function MainpageVisit() {
     setStickerInput2(100)
   };
 */}
-
+const dispatchNothing = () => {
+  dispatch(setNothing(1));
+}
 
 const handleStickerLogin = () => {
-  dispatch(update(["stickeris", 1]));
+  console.log(count1);
+  setCount1(count1+1);
+  console.log(count1);
   handleYes();
 };
+const dispatchSticker = () => {
+  dispatch(setStickeris(1));
+}
+useEffect(() => {
+  if (count1){
+    dispatchSticker();
+    console.log(NextLoginList);
+  }
+}, [count1]);
 
 const handleQuestionLogin = () => {
-  dispatch(update(["questionis", 1]));
+  setCount2(count2+1);
   handleYes();
 };
+const dispatchQuestion = () =>{
+  dispatch(setQuestionis(1));
+}
+useEffect(() => {
+  if (count2) {
+    dispatchQuestion();
+    console.log(NextLoginList);
+  }
+}, [count2]);
 
 
   return (

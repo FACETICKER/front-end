@@ -5,16 +5,26 @@ const NextLoginList = createSlice({
   initialState: {
       stickeris: 0,
       questionis: 0,
+      nothing: 0,
   },
   reducers: {
-      update: (state, action) => {
-        const first = action.payload[0];
-        const second = action.payload[1];
-        state[first] = second; 
-      },
+    setStickeris: (state, action) => {
+      state.stickeris = action.payload;
+    },
+    setQuestionis: (state, action) => {
+      state.questionis = action.payload;
+    },
+    setNothing: (state, action) => {
+      state.nothing = action.payload;
+    },
   },
 });
 
+export const {
+  setStickeris,
+  setQuestionis,
+  setNothing
+} = NextLoginList.actions;
 export const { update } = NextLoginList.actions;
 
 export default NextLoginList;
