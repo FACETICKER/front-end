@@ -1,13 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit';
-
 const InitialSurveyList = createSlice({
-    name:'stickerslice',
+    name:'initialList',
     initialState:{
         Name: '',
         Season: '',
         Number: '',
         Day: '',
         Import: '',
+        SetSticker: ''
     },
     reducers: {
         setInitialName: (state, action) => {
@@ -25,6 +25,9 @@ const InitialSurveyList = createSlice({
         setInitialImport: (state, action) => {
           state.Import = action.payload;
         },
+        setInitialSetSticker: (state, action) => {
+          state.Import = action.payload;
+        },
     },
 });
 
@@ -34,6 +37,7 @@ export const {
     setInitialNumber,
     setInitialDay,
     setInitialImport,
+    SetSticker
   } = InitialSurveyList.actions;
-export default InitialSurveyList.reducer;
+export default InitialSurveyList;
 // 변수 저장소
