@@ -1,3 +1,4 @@
+import InitialSurveyList from "./InitialSurveyList.js";
 import message from "../img/MainpageHost_img/ri_message-3-line (1).svg";
 import share from "../img/MainpageHost_img/share.svg";
 import download from "../img/MainpageHost_img/download.svg";
@@ -11,9 +12,20 @@ import close from "../img/MainpageHost_img/close-x.svg";
 import React, { useState, useEffect } from "react";
 import html2canvas from "html2canvas";
 import "./MainpageHost.css";
+import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux"; 
+import { useSelector } from "react-redux";
+import {
+  setInitialName,
+  setInitialSeason,
+  setInitialNumber,
+  setInitialDay,
+  setInitialImport,
+  setInitialSetSticker,
+  setInitialMessage,
+  Season_id,
+} from './InitialSurveyList.js'; // 경로는 실제 파일 경로에 맞게 수정해주세요
 
 const Div = styled.div`
   position: absolute;
@@ -23,6 +35,7 @@ const Div = styled.div`
 function MainpageHost() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const InitialSurveyList = useSelector(state => {return state.initialList;});
   const [showFooter, setShowFooter] = useState(false);
   const [showModal1, setShowModal1] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
@@ -37,6 +50,8 @@ function MainpageHost() {
   const [Name, setName] = useState("");
   const [Number, setNumber] = useState("");
   const [Day, setDay] = useState("");
+  const [Message, setMessage] = useState("");
+  
 
   const toggleFooter = () => {
     setShowFooter(!showFooter);
@@ -128,6 +143,40 @@ function MainpageHost() {
   const handleWinter = () => {
     setSeason("WIN 겨울 TER");
   };
+  useEffect(() => {
+    const handleSelleckSeason = () => {
+      if (InitialSurveyList.Season_id === '봄') {
+        handleSpring();
+      } else if (InitialSurveyList.Season_id === '여름') {
+        handleSummer();
+      } else if (InitialSurveyList.Season_id === '가을') {
+        handleAutumn();
+      } else if (InitialSurveyList.Season_id === '겨울') {
+        handleWinter();
+      }
+    };
+
+    handleSelleckSeason();
+  }, []);
+  useEffect(()=> {
+    const handleSelleckName = () => {
+      setName(InitialSurveyList.Name_id)
+    };
+    handleSelleckName();
+  },[]);
+  useEffect(()=> {
+    const handleSelleckNumber = () => {
+      setNumber(InitialSurveyList.Number_id)
+    };
+    handleSelleckNumber();
+  },[]);
+  useEffect(()=> {
+    const handleSelleckDay = () => {
+      setDay(InitialSurveyList.Day_id)
+    };
+    handleSelleckDay();
+  },[]);
+  
 
   const handleNoneProfile = () => {
     const resultDiv1 = document.getElementById("ment");
@@ -258,7 +307,7 @@ function MainpageHost() {
                 <div id="ment" className="l22-2">
                   <div className="l23-2">
                     <p id="" className="l3-2">
-                      어서옵쇼 다들 스티커 붙여주세요..!
+                      {Message || "어서옵쇼 다들 스티커 붙여주세요..!"}
                     </p>
                   </div>
                 </div>
