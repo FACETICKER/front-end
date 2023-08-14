@@ -2,11 +2,12 @@ import styled from "styled-components";
 import "../font/font.css";
 import { useState, useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import inputImage from "../img/Stickers_img/inputimg.png";
 import checkicon from "../img/Stickers_img/checkicon.png";
 import backicon from "../img/Stickers_img/backIcon.png";
+import { setVisitorId } from "../MakeSticker/CaptureSlice";
 
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
@@ -193,11 +194,18 @@ export function StickerName() {
   const [inputTop, setInputTop] = useState("-2%");
   const [nicknameValue, setNicknameValue] = useState("");
 
+  const { state } = useLocation();
+  console.log("State", state.test);
+  const VID = state.test;
+
   //방문자 스티커
 
+  const visitorId = useSelector((state) => state.visitorId);
   const imageUrl = useSelector((state) => state.capture.imageUrl);
   console.log("이미지url ", imageUrl);
-
+  console.log("방문자id", visitorId);
+  console.log("vid", VID);
+  console.log("url", imageUrl);
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
     setStickerSize("50px");
@@ -219,20 +227,6 @@ export function StickerName() {
     setInputTop("-2%");
   };
 
-  //host 이미지 url 받아오기
-  useEffect(() => {
-    fetch("http://localhost:3012/user/1")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.url) {
-          setHostImg(data.url);
-        }
-      })
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []);
-
   //닉네임 저장
 
   const saveNickname = (event) => {
@@ -249,24 +243,22 @@ export function StickerName() {
 
   //닉네임 입력하고 다음 아이콘 누르면 서버에 전송됨
   const handleNicknameSubmit = () => {
-    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/name`, {
+    console.log(visitorId);
+    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/name?id=${VID}`, {
       method: "PATCH",
-      headers: headers,
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ nicknameValue }),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
         console.log("성공", data);
       })
       .catch((error) => {
         console.error("실패", error);
       });
-    navigate("/stickerletter"); //letter로 페이지 전환 */
+    navigate("/stickerletter", { state: { visitor: VID } });
   };
 
   /*   //서버에서 닉네임 값 받아오기

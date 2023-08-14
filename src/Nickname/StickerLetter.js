@@ -3,7 +3,7 @@ import "../font/font.css";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import backicon from "../img/Stickers_img/backIcon.png";
 
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
@@ -223,9 +223,14 @@ export function StickerLetter() {
   const [letterValue, setLetterValue] = useState("");
   const [inputHeight, setInputHeight] = useState("20%");
 
+  const { state } = useLocation();
+  console.log("State", state.visitor);
+  const VID = state.visitor;
+
   //방문자 스티커
   const imageUrl = useSelector((state) => state.capture.imageUrl);
-
+  //방문자 스티커 id
+  const visitorId = useSelector((state) => state.visitorId);
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
     setFirstBottom(false);
@@ -246,14 +251,18 @@ export function StickerLetter() {
   const saveLetter = (event) => {
     setLetterValue(event.target.value);
   };
-
+  const userId = "1";
+  const ID = userId;
   //방문록 입력하고 체크 아이콘 누르면 서버에 전송됨
   const handleLetterSubmit = () => {
-    fetch("https://faceticker.site/app/:1/sticker/message?type=visitor", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ letter: letterValue }),
-    })
+    fetch(
+      `https://app.faceticker.site/${ID}/sticker/visitor/message?id=${VID}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ letterValue }),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("성공", data);
@@ -261,10 +270,10 @@ export function StickerLetter() {
       .catch((error) => {
         console.error("실패", error);
       });
-    navigate("/put");
+    /* navigate("/put"); */
   };
 
-  //서버에서 방문록 받아오기
+  /*   //서버에서 방문록 받아오기
   useEffect(() => {
     fetch("https://faceticker.site/app/:1/sticker/message?type=visitor")
       .then((response) => response.json())
@@ -277,7 +286,7 @@ export function StickerLetter() {
         console.error("오류 발생", error);
       });
   }, []);
-
+ */
   return (
     <BackgroundWrap>
       <Background>
