@@ -14,7 +14,7 @@ const K_REDIRECT_URI = `http://localhost:3000/oauth`;
 const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${K_REDIRECT_URI}&response_type=code`;
 const code = new URL(window.location.href).searchParams.get("code");
 
-const googleRedirectUrl = `http://localhost:3000/oauth`;
+const googleRedirectUrl = `http://localhost:3000/auth`;
 const googleURL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${G_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${googleRedirectUrl}`;
 
 const Loginpage = () => {

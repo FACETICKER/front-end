@@ -45,16 +45,9 @@ export function KakaoRedirect({ k, g }) {
   const headers = {
     "Content-Type": "application/x-www-form-urlencoded",
   };
-  console.log("type", logintype);
-  console.log("type2", logintype);
-  const KG = logintype ? "kakao" : "google";
-  console.log("k", k);
-  console.log(KG);
-  const [id1, setId1] = useState(null);
-  const [Token1, setToken1] = useState(null);
 
   useEffect(() => {
-    fetch(`http://app.faceticker.site/login/${KG}?code=${code}`, {
+    fetch(`http://app.faceticker.site/login/kakao?code=${code}`, {
       method: "POST",
       headers: headers,
     })
@@ -63,10 +56,10 @@ export function KakaoRedirect({ k, g }) {
         console.log(data);
         console.log(data.result.user_id);
         console.log(data.result.jwt);
-
+        /* 
         setId1(data.result.user_id);
         setToken1(data.result.jwt);
-        console.log("dispatch 전");
+        console.log("dispatch 전"); */
 
         /* dispatch(
           setLoginData({ id: data.result.user_id, token: data.result.jwt })
@@ -107,9 +100,9 @@ export function KakaoRedirect({ k, g }) {
       });
   }, []); */
 
-  console.log("id", id1);
+  /*   console.log("id", id1);
   console.log("token", Token1);
-
+ */
   console.log("5");
 
   return (
