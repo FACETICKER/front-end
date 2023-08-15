@@ -21,10 +21,6 @@ import StickerLetter from "./Nickname/StickerLetter";
 import StickerName from "./Nickname/StickerName";
 import Reposition from "./Stickers/Reposition";
 import GoogleRedirect from "./login/GoogleRedirect";
-<<<<<<< HEAD
-
-=======
->>>>>>> 714f60aac3a2d77504509dbfc42a84e9b5dce33e
 
 function App() {
   function setScreenSize() {

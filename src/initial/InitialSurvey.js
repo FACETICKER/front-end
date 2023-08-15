@@ -408,17 +408,7 @@ function InitialSurvey() {
     console.log('Updated chooseImport:', chooseImport);
     handleInitialImportChange();
   }, [chooseImport]);
-<<<<<<< HEAD
-  
-  
-  
-  
 
-  
-  
-=======
-
->>>>>>> 714f60aac3a2d77504509dbfc42a84e9b5dce33e
   const handleNext = (() => {
     dispatch(setInitialImport(chooseImport));
     console.log(InitialSurveyList);
