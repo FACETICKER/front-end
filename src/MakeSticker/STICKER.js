@@ -21,13 +21,15 @@ const STICKER = () => {
   const captureEnabled = useSelector((state) => state.capture.captureEnabled);
   const imageUrl = useSelector((state) => state.capture.imageUrl);
   /*   console.log(imageUrl); */
+
   const handleCaptureImg = () => {
     if (containerRef.current) {
       domtoimage
         .toPng(containerRef.current)
         .then(function (dataUrl) {
           dispatch(setImageUrl(dataUrl));
-          dispatch(setVisitorImageUrl(dataUrl));
+          console.log("넘어온", dataUrl);
+          /* dispatch(setVisitorImageUrl(dataUrl)); */
 
           /*   downloadImage(dataUrl); // 이미지를 파일로 다운로드하는 함수 호출 */
           /*    console.log(dataUrl); */
