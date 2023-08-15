@@ -209,9 +209,12 @@ export function StickerMenu() {
     dispatch(setSelectedImage(imageId));
     navigate("/clicksticker");
   };
+  const selectedImageId = useSelector((state) => state.image.selectedImageId);
+
   const handleClose = () => {
     navigate("/hoststicker");
   };
+
   return (
     <BackgroundWrap>
       <Background>

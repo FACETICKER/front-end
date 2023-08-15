@@ -79,10 +79,18 @@ const Second = styled.div`
 const TrashIcon = styled.img`
   display: flex;
   position: absolute;
-  width: 26%;
+  width: 24%;
   right: -2%;
-  top: -8%;
+  top: -9%;
 `;
+const TrashIcon2 = styled.img`
+  display: flex;
+  position: absolute;
+  width: 21%;
+  right: 2%;
+  top: -5%;
+`;
+
 const Shadow = styled.div`
   width: 80%;
   border-radius: 100%;
@@ -96,7 +104,7 @@ const Shadow = styled.div`
 
 const Dot3 = styled.div`
   position: absolute;
-  bottom: 7%;
+  bottom: 5%;
   left: 10%;
 `;
 
@@ -172,8 +180,8 @@ const Back = styled.div`
 
 const BackImg = styled.img`
   display: flex;
-  width: 85%;
-  height: 70%;
+  width: 83%;
+  height: 72%;
   position: absolute;
   top: 10px;
   z-index: -1;
@@ -183,8 +191,11 @@ const BackImg = styled.img`
 const LetterContent = styled.div`
   display: flex;
   position: absolute;
+  align-items: center;
+  justify-content: center;
+
   width: 75%;
-  bottom: 50%;
+  bottom: 53%;
   color: #191919;
   text-align: center;
   font-family: Pretendard;
@@ -243,15 +254,17 @@ export function ClickSticker() {
   };  */
   /*   const idArray = imageData.map((item) => item.id); */
   const selectedImageId = useSelector((state) => state.image.selectedImageId);
-  console.log(selectedImageId);
+
+  console.log("100", selectedImageId);
 
   //방문록 받아오기
-  console.log("100", selectedImageId);
   useEffect(() => {
     fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${selectedImageId}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("특정", data);
+        console.log("특정 스티커", data);
+        console.log("방문록", data.result.message);
+        setLetterValue(data.result.message);
       })
       .catch((error) => {
         console.error("오류 발생", error);
@@ -282,6 +295,24 @@ export function ClickSticker() {
         console.error("오류 발생", error);
       });
   }, []);
+
+  //스티커 삭제
+  useEffect(() => {
+    fetch(
+      `http://app.faceticker.site/${ID}/sticker/visitor/${selectedImageId}`,
+      {
+        method: "DELETE",
+      }
+    )
+      .then((response) => response.json())
+
+      .then((data) => {
+        console.log("특정 스티커 삭제", data);
+      })
+      .catch((error) => {
+        console.error("특정 스티커 삭제 오류 발생", error);
+      });
+  }, [handleTrashClick]);
 
   return (
     <BackgroundWrap>
@@ -334,7 +365,7 @@ export function ClickSticker() {
               </div>
               <div className="back">
                 <Back>
-                  <TrashIcon onClick={handleTrashClick} src={trash} />
+                  <TrashIcon2 onClick={handleTrashClick} src={trash} />
                   <BackImg src={post} />
                   <LetterContent>{letterValue}</LetterContent>
                   <StickerImg2 src={stickerImg} />
