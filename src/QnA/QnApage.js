@@ -66,7 +66,8 @@ const QnApage = () => {
       let ID = 0;
       list.forEach(item => {
         const quesOpen = item.question_hidden === 0 ? true : false;
-        dispatch(questionSlice.actions.up({text: item.question, id: ID, type: "question", open: quesOpen, clicked: false, nQnA_id: item.nQnA_id})); // type 수정 필요 벡에서 받은걸로
+        const Type = item.question_type === 'default' ? 'basic_question' : 'question';
+        dispatch(questionSlice.actions.up({text: item.question, id: ID, type: Type, open: quesOpen, clicked: false, nQnA_id: item.nQnA_id})); // type 수정 필요 벡에서 받은걸로
         if (item.answer) {
           const ansOpen = item.answer_hidden === 0 ? true : false;
           dispatch(AnswerSlice.actions.up({text: item.answer, id: ID, type: "answer", open: ansOpen, clicked: false, nQnA_id: item.nQnA_id}));

@@ -32,29 +32,8 @@ function Quesinput() {
             .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
             .then((data) => {
                 console.log(data);
-                getNqnaID(); // 질문 조회 후 nqna_id를 받아서 questionslice에 등록
-            })
-            .catch((error) => {
-                console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
-            });
-    }
-
-    const getNqnaID = () => { 
-
-        const headers = {
-            "x-access-token": JWT,
-            'Content-Type': 'application/json'
-        };
-    
-        fetch(`http://app.faceticker.site/${userID}/nqna`, {
-            method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
-            headers: headers,
-          }) // 서버로 GET 요청을 보냄
-            .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
-            .then((data) => {
-                console.log(data);
                 dispatch(IDSlice.actions.up(1));
-                dispatch(questionSlice.actions.up({text: question, id: ID, type: "question", open: true, clicked: false, nQnA_id: data.result[data.result.length - 1].nQnA_id}));
+                dispatch(questionSlice.actions.up({text: question, id: ID, type: "question", open: true, clicked: false, nQnA_id: data.result}));
                 setquestion("");
             })
             .catch((error) => {

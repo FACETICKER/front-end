@@ -126,7 +126,7 @@ const EditQues_Modal = () => {
                     </div>
                 </div>
                 <div className={styles.closezone} onClick={close}>
-                    <p className={styles.p_style2}>취소</p>
+                    <p className={styles.p_style2}>확인</p>
                 </div>
             </Modal>
         </>
