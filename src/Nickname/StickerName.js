@@ -249,7 +249,7 @@ export function StickerName() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ nicknameValue }),
+      body: JSON.stringify({ name: nicknameValue }),
     })
       .then((response) => response.json())
       .then((data) => {

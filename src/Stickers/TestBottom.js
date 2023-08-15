@@ -7,6 +7,7 @@ import { useDrag } from "react-use-gesture";
 import { useEffect, useState } from "react";
 import { useGesture } from "react-use-gesture";
 import React, { useRef } from "react";
+import positionSlice from "./positionSlice";
 
 //방문자가 자신의 스티커를 호스트 페이지에 붙이는 컴포넌트
 
@@ -80,6 +81,8 @@ const ZoomButton = styled.button`
 `;
 
 export function TestBottom(props) {
+  const [xvalue, setX] = useState(0);
+  const [yvalue, setY] = useState(0);
   const [imageUrl, setImageUrl] = useState(null);
   const [imagePosition, setImagePosition] = useState(null);
   const [isImageVisible, setIsImageVisible] = useState(false);
@@ -135,6 +138,8 @@ export function TestBottom(props) {
   const imageUrl2 = useSelector((state) => state.capture.imageUrl);
   /*   const visible = useSelector((state) => state.reducers.imagevisible); */
   console.log("put");
+  console.log("보낼 값", { x: xvalue, y: yvalue });
+  console.log("x", xvalue);
 
   const handlePut = async (event) => {
     try {
@@ -146,6 +151,7 @@ export function TestBottom(props) {
         X: Math.floor(event.target.getBoundingClientRect().left),
         Y: Math.floor(event.target.getBoundingClientRect().top),
       };
+      console.log("1", sidePosition);
 
       const clickPosition = {
         X: Math.floor(event.clientX),
@@ -156,16 +162,32 @@ export function TestBottom(props) {
         X: clickPosition.X - sidePosition.X,
         Y: clickPosition.Y - sidePosition.Y,
       };
+      console.log("2", ratio);
 
       // 상대 좌표
       const XPer = (ratio.X / componentWidth) * 100;
       const YPer = (ratio.Y / componentHeight) * 100;
-      // 소수점 둘째 자리까지 반올림
-      const xyPer = { x: XPer.toFixed(2), y: YPer.toFixed(2) };
-      setImagePosition(xyPer);
+      console.log("2", ratio);
 
-      console.log(imagePosition);
+      const xyPer = {
+        x: XPer,
+        y: YPer,
+      };
+      /*  const xyPer = {
+        x: XPer.toFixed(2),
+        y: YPer.toFixed(2),
+      }; */
+      console.log("3", xyPer);
+
+      setImagePosition(xyPer);
+      console.log(XPer.toFixed(2));
+      setX(XPer.toFixed(2));
+      setY(YPer.toFixed(2));
+      console.log("imageposition", imagePosition);
+      dispatch(positionSlice.actions.update(["x", XPer]));
+      dispatch(positionSlice.actions.update(["y", YPer]));
       setIsImageVisible(true);
+      console.log("topost", { x: xvalue, y: yvalue });
       dispatch(setIsImageVisible(true));
 
       console.log("2");
@@ -175,20 +197,31 @@ export function TestBottom(props) {
     }
   };
 
-  //이미지 POST
+  const VID3 = 134;
+  const positionState = useSelector((state) => state.position);
+  const finalPosition = {
+    x: positionState.x,
+    y: positionState.y,
+  };
+  console.log("finalposition", finalPosition);
+
+  console.log("완료", imagePosition);
+  //이미지 PATCH
   useEffect(() => {
     if (isImageFixed) {
-      fetch(`http://app.faceticker.site/${ID}/sticker/attach/97`, {
-        method: "POST",
+      fetch(`http://app.faceticker.site/${ID}/sticker/attach?id=${VID3}`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(imagePosition),
+        body: JSON.stringify(finalPosition),
       })
         .then((response) => response.json())
-
+        .then((data) => {
+          console.log("patch 성공", data);
+        })
         .catch((error) => {
-          console.error("오류 발생", error);
+          console.error("patch 오류", error);
         });
     }
   }, [isImageFixed]);
@@ -204,7 +237,7 @@ export function TestBottom(props) {
           const filteredData = data.result.visitorStickerResult.filter(
             (item) => item.location_x !== null
           );
-          console.log("00", filteredData);
+          console.log("모든 방문자 스티커", filteredData);
           setImageData(filteredData);
         })
         .catch((error) => {

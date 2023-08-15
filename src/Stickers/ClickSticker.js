@@ -195,9 +195,10 @@ const LetterContent = styled.div`
 `;
 const StickerImg = styled.img`
   display: flex;
-  width: 50%;
+  width: 65%;
   position: absolute;
-  bottom: 22%;
+  bottom: 18%;
+
   object-fit: cover;
 `;
 
@@ -213,6 +214,13 @@ export function ClickSticker() {
   const [isFlipped, setIsFlipped] = useState(false);
   const [letterValue, setLetterValue] = useState("");
   const [stickerImg, setStickerImg] = useState();
+  const [name, setName] = useState();
+
+  const userId = 1;
+  const ID = userId;
+
+  //클릭한 이미지 방문자 id
+  const selectedImageKey = useSelector((state) => state.app.selectedImageKey);
 
   const handleCardClick = () => {
     setIsFlipped(!isFlipped);
@@ -221,19 +229,6 @@ export function ClickSticker() {
   const [imageData, setImageData] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetch("http://localhost:3012/user")
-      .then((response) => response.json())
-      .then((data) => {
-        const filteredData = data.filter((item) => item.id !== 1);
-        setImageData(filteredData);
-        console.log(imageData);
-      })
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []);
 
   const handleBackClick = () => {
     navigate("/hoststicker");
@@ -246,31 +241,42 @@ export function ClickSticker() {
 
     navigate("/"); //클릭한 해당 스티커 프로필로 
   };  */
-  const idArray = imageData.map((item) => item.id);
+  /*   const idArray = imageData.map((item) => item.id); */
   const selectedImageId = useSelector((state) => state.image.selectedImageId);
   console.log(selectedImageId);
-  //서버에서 방문록 받아오기
+
+  //방문록 받아오기
+  console.log("100", selectedImageId);
   useEffect(() => {
-    fetch("http://localhost:3012/user/1")
+    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${selectedImageId}`)
       .then((response) => response.json())
       .then((data) => {
-        if (data.letter) {
-          setLetterValue(data.letter);
-        }
+        console.log("특정", data);
       })
       .catch((error) => {
         console.error("오류 발생", error);
       });
   }, []);
 
-  //host 이미지 url 받아오기
+  //이미지, 닉네임불러오기
   useEffect(() => {
-    fetch("http://localhost:3012/user/2")
+    fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        if (data.url) {
-          setStickerImg(data.url);
-        }
+        console.log(data);
+
+        const filteredData = data.result.visitorStickerResult.filter(
+          (item) => item.location_x !== null
+        );
+        const filteredData2 = data.result.visitorStickerResult.filter(
+          (item) => item.visitor_sticker_id == selectedImageId
+        ); //선택한 캐릭터
+
+        console.log("00", filteredData);
+        setStickerImg(filteredData2[0].final_image_url);
+        setName(filteredData2[0].name);
+        console.log(filteredData2[0].name);
+        setImageData("name", filteredData2[0].final_image_url);
       })
       .catch((error) => {
         console.error("오류 발생", error);
@@ -282,7 +288,7 @@ export function ClickSticker() {
       <Background>
         <MainHeader />
         <Bottom>
-          {idArray.length === 1 && (
+          {/* {idArray.length === 1 && (
             <One>
               <Second>
                 <TrashIcon onClick={handleTrashClick} src={trash} />
@@ -307,8 +313,8 @@ export function ClickSticker() {
               <Name>이름</Name>
             </One>
           )}
-
-          {idArray.length >= 3 && (
+ */}
+          {imageData && (
             <div
               className={`card ${isFlipped ? "flipped" : ""}`}
               onClick={handleCardClick}
@@ -324,7 +330,7 @@ export function ClickSticker() {
                 <Dot3>
                   <Dots />
                 </Dot3>
-                <Name>수진</Name>
+                <Name>{name}</Name>
               </div>
               <div className="back">
                 <Back>

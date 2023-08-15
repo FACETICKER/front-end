@@ -263,7 +263,7 @@ export function StickerLetter() {
       {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ letterValue }),
+        body: JSON.stringify({ message: letterValue }),
       }
     )
       .then((response) => response.json())
