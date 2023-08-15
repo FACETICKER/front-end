@@ -20,6 +20,8 @@ import StickerMenu from "./Stickers/StickerMenu";
 import StickerLetter from "./Nickname/StickerLetter";
 import StickerName from "./Nickname/StickerName";
 import Reposition from "./Stickers/Reposition";
+import GoogleRedirect from "./login/GoogleRedirect";
+
 
 function App() {
   function setScreenSize() {
@@ -67,6 +69,8 @@ function App() {
           {/*스티커 메뉴 */}
           <Route path="/repositionsticker" element={<Reposition />} />
           {/*스티커 재배치 */}
+          {<Route path="/auth" element={<GoogleRedirect />} />}
+          {/*kakao Redirect 화면*/}
         </Routes>
       </BrowserRouter>
     </Provider>

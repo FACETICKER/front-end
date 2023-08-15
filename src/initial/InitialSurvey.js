@@ -440,6 +440,59 @@ function InitialSurvey() {
   
   
 
+  const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX2VtYWlsIjoiaW16emFuZzZ1QG5hdmVyLmNvbSIsImlhdCI6MTY5MjEwNjIzMSwiZXhwIjoxNjkyMTA5ODMxfQ.eLcekWNUTMyg0Xjf9pFsxsde45ohh2y29NJMVxY-t_E";
+  
+  
+  const test1 = () => {
+
+    const headers = {
+        "x-access-token": JWT,
+        'Content-Type': 'application/json'
+    };
+    
+    fetch(`http://app.faceticker.site/3/poster`, {
+        method: "POST", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
+        headers: headers,
+        body: JSON.stringify({
+          nickname: InitialSurveyList.Name_id,
+          season: InitialSurveyList.Season_id,
+          number: InitialSurveyList.Number_id,
+          date: InitialSurveyList.Day_id,
+          important: InitialSurveyList.Import_id,
+        },
+          ),
+      })
+        .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
+        .then((data) => {
+            console.log("성공", data);
+        })
+        .catch((error) => {
+            console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
+        });
+  }
+  test1();
+
+  const test2 = () => {
+
+    const headers = {
+        "x-access-token": JWT,
+        'Content-Type': 'application/json'
+    };
+    
+    fetch(`http://app.faceticker.site/3/poster/patch`, {
+        method: "PATCH", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
+        headers: headers,
+      }) // 서버로 GET 요청을 보냄
+        .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((error) => {
+            console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
+        });
+  }
+  test2();
+
   return (
     <div className="BackgroundWrap">
       <div className="Background">

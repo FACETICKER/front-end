@@ -221,7 +221,7 @@ function MainpageHost() {
   const handleHoststicker = () => {
     navigate("/hoststicker");
   };
-  const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX2VtYWlsIjoiaW16emFuZzZ1QG5hdmVyLmNvbSIsImlhdCI6MTY5MjEwMzI5NiwiZXhwIjoxNjkyMTA2ODk2fQ.11fvOad-CvkH7YGY30NkD5fg568_S9nIFxosEJkgHCY";
+  const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX2VtYWlsIjoiaW16emFuZzZ1QG5hdmVyLmNvbSIsImlhdCI6MTY5MjEwNzU3NiwiZXhwIjoxNjkyMTExMTc2fQ.aJ7ibeLsKzda_VMYoSp_v1JW7qolOXcwIOOhk15frxU";
   
   
   const test1 = () => {
