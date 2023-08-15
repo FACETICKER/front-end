@@ -13,6 +13,7 @@ import Switchquestion_Slice from '../Slice/Switchquestion_Slice';
 import ShareOrNotSlice from '../Slice/ShareOrNotSlice';
 import Edit from '../../img/QnA_img/edit.png';
 import Delete from '../../img/QnA_img/trash-delete.png';
+import Token from '../Token';
 
 
 function Choice_Modal(props) {
@@ -53,13 +54,20 @@ function Choice_Modal(props) {
 
     const ID = ques.filter(obj => obj.clicked === true).map(obj => obj.id)[0];
 
+    const nqna_id = ques.filter(obj => obj.clicked === true).map(obj => obj.nQnA_id)[0];
+
     const ques_open = ques.filter(obj => obj.clicked === true).map(obj => obj.open)[0];
 
     const ans_open = ans.filter(obj => obj.id === ID).map(obj => obj.open)[0];
 
+    const userID = Token()[0];
+    const JWT = Token()[1];
+
     const del = () => {
+
+        Delquestion(nqna_id);
         dispatch(AnswerSlice.actions.remove(ID));
-        
+
         const type = ques.filter(obj => obj.id === ID).map(obj => obj.type)[0];
         if (type === 'basic_question') {
             const text = ques.filter(obj => obj.id === ID).map(obj => obj.text)[0];
@@ -67,6 +75,26 @@ function Choice_Modal(props) {
         } // 기본 질문 삭제 시 기본 질문 리스트에 다시 추가
 
         dispatch(questionSlice.actions.remove(ID));
+    }
+
+    const Delquestion = (num) => {
+
+        const headers = {
+            "x-access-token": JWT,
+            'Content-Type': 'application/json',
+        };
+
+        fetch(`http://app.faceticker.site/${userID}/nqna/${num}/question`, {
+            method: "DELETE", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
+            headers: headers,
+        })
+            .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
+            });
     }
 
     const modalStyle = {

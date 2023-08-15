@@ -3,7 +3,7 @@ import styled from "styled-components";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsImageFixed } from "./reducers";
-
+import { setIsImageVisible } from "./reducers";
 import { TestBottom } from "./TestBottom";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -40,12 +40,13 @@ const HeaderWrap = styled.div`
 const FirstHeader = styled.div`
   height: 30%;
   display: flex;
-
+  align-item: center;
   justify-content: flex-start;
   padding-left: 10px;
 `;
 const BackIcon = styled.img`
-  max-width: 50px;
+  max-width: 10%;
+  height: 100%;
   padding-top: 3%;
 `;
 const TextHeader = styled.div`
@@ -140,10 +141,11 @@ const Icon3 = styled.img`
   width: 60%;
 `;
 
-export function VisitPut() {
+export function VisitPut(props) {
+  const VID2 = props.VID;
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [HostName, useHostName] = useState("호스트명");
+  const [HostName, setHostName] = useState("호스트명");
   const [change, setChange] = useState(false);
 
   const handleButtonClick = () => {
@@ -183,6 +185,25 @@ export function VisitPut() {
     }
   }, [change]);
 
+  const userId = "1";
+  const ID = userId;
+  //호스트 닉네임 불러오기
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("호스트 성공", data);
+        console.log("호스트명", data.result.userNickname);
+        setHostName(data.result.userNickname);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
+
+  const reset = () => {
+    dispatch(setIsImageVisible(false));
+  };
   return (
     <BackgroundWrap>
       {!change && (
@@ -196,14 +217,14 @@ export function VisitPut() {
               <Text2>부착된 스티커는 호스트 외 삭제할 수 없습니다.</Text2>
             </TextHeader>
           </HeaderWrap>
-          <TestBottom />
+          <TestBottom id={VID2} />
 
           <ButtonWrap>
             <MiddleImg>
               <img src={middle} />
             </MiddleImg>
             <Footer>
-              <Icon src={changeIcon} />
+              <Icon onClick={reset} src={changeIcon} />
               <Icon onClick={handleButtonClick} src={putcomplete} />
             </Footer>
           </ButtonWrap>

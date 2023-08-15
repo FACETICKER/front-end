@@ -26,6 +26,7 @@ import loginReducer from "./login/LoginSlice";
 
 import InitialSurveyList from "./initial/InitialSurveyList";
 import NextLoginList from "./initial/NextLoginList";
+import positionSlice from "./Stickers/positionSlice";
 
 const store = configureStore({
   reducer: {
@@ -51,6 +52,7 @@ const store = configureStore({
 
     app: appReducer, //Stickers
     image: imageReducer,
+    position: positionSlice.reducer,
 
     /* 아이디, 토큰 추가 */
 

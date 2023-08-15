@@ -3,6 +3,10 @@ import "../font/font.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import inputimg from "../img/Stickers_img/inputimg.png";
+import backicon from "../img/Stickers_img/backIcon.png";
+import checkicon from "../img/Stickers_img/checkicon.png";
+import letter from "../img/Stickers_img/letter.png";
 
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
@@ -113,10 +117,14 @@ const CheckIcon = styled.img`
   z-index: 1;
 `;
 const ImgWrap = styled.div`
-  height: 60%;
+  height: 65%;
+
   justify-content: center;
   align-item: center;
   display: flex;
+`;
+const Letter = styled.img`
+  width: 80%;
 `;
 
 const InputWrap = styled.div`
@@ -151,6 +159,11 @@ const Input = styled.textarea`
   border: none;
   outline: none;
 `;
+const Back = styled.img`
+  max-width: 38%;
+  height: auto;
+  display: flex;
+`;
 
 export function StatusMessage() {
   const navigate = useNavigate();
@@ -163,16 +176,17 @@ export function StatusMessage() {
   const saveStatus = (event) => {
     setStatusValue(event.target.value);
   };
-
+  const userId = "1";
+  const jwt =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkxOTg0NjgyLCJleHAiOjE2OTE5ODgyODJ9.aoFSEQAOfdBNxA4CNYkkaBVHfXRThGZRMuHSb_oq3iI";
   const headers = {
-    "x-access-token":
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkxMjQ4ODY2LCJleHAiOjE2OTEyNTI0NjZ9.-3O7LBYGWPaQO-nvBa6jywLkjkXmFSJhJ-UaXUvysWA",
+    "x-access-token": jwt,
     "Content-Type": "application/json",
   };
 
   const handleStatusSubmit = () => {
-    fetch("https://faceticker.site/app/3/sticker/message?type=host", {
-      method: "POST",
+    fetch(`https://app.faceticker.site/${userId}/sticker/message`, {
+      method: "PATCH",
       headers: headers,
       body: JSON.stringify({ message: statusValue }),
     })
@@ -187,7 +201,7 @@ export function StatusMessage() {
   };
 
   //서버에서 값 받아오기
-  useEffect(() => {
+  /*  useEffect(() => {
     fetch("https://faceticker.site/app/3/sticker/message?type=host")
       .then((response) => response.json())
       .then((data) => {
@@ -198,7 +212,7 @@ export function StatusMessage() {
       .catch((error) => {
         console.error("오류 발생", error);
       });
-  }, []);
+  }, []); */
 
   const handleClickInput = () => {
     setHideImg(false);
@@ -219,20 +233,10 @@ export function StatusMessage() {
           <Header>
             <HeaderIcon>
               {hideImg && (
-                <img
-                  onClick={handleFirstBack}
-                  style={style}
-                  src="https://i.ibb.co/rdqkHHs/arrow-left.png"
-                  alt="setting-icon"
-                />
+                <Back onClick={handleFirstBack} style={style} src={backicon} />
               )}
               {!hideImg && (
-                <img
-                  onClick={handleSecondBack}
-                  style={style}
-                  src="https://i.ibb.co/rdqkHHs/arrow-left.png"
-                  alt="setting-icon"
-                />
+                <Back onClick={handleSecondBack} style={style} src={backicon} />
               )}
             </HeaderIcon>
           </Header>
@@ -247,23 +251,17 @@ export function StatusMessage() {
         <BottomWrap>
           <Bottom>
             {!hideImg && (
-              <CheckIcon
-                onClick={handleStatusSubmit}
-                src="https://i.ibb.co/PrmpgLr/Group-74.png"
-              />
+              <CheckIcon onClick={handleStatusSubmit} src={checkicon} />
             )}
             {hideImg && (
               <ImgWrap>
-                <img
-                  style={style}
-                  src="https://i.ibb.co/r4qpQzX/Love-Letter.png"
-                />
+                <Letter style={style} src={letter} />
               </ImgWrap>
             )}
 
             <InputWrap margin={Margin} onClick={handleClickInput}>
               <InputImgWrap>
-                <img src="https://i.ibb.co/B4Y5jgG/Group-69.png" />
+                <img src={inputimg} />
               </InputImgWrap>
 
               <Input

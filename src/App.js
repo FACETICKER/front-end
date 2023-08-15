@@ -21,7 +21,10 @@ import StickerLetter from "./Nickname/StickerLetter";
 import StickerName from "./Nickname/StickerName";
 import Reposition from "./Stickers/Reposition";
 import GoogleRedirect from "./login/GoogleRedirect";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 714f60aac3a2d77504509dbfc42a84e9b5dce33e
 
 function App() {
   function setScreenSize() {
@@ -40,6 +43,8 @@ function App() {
           {/*로그인 페이지 */}
           {<Route path="/oauth" element={<Redirect />} />}
           {/*kakao Redirect 화면 */}
+          {<Route path="/auth" element={<GoogleRedirect />} />}
+          {/*kakao Redirect 화면 */}
           {<Route path="/newuserflow" element={<NewUserFlow />} />}
           {/*신규 가입자 플로우 */}
           <Route path="/initial" element={<InitialSurvey />} />
@@ -57,7 +62,8 @@ function App() {
           <Route path="/makesticker" element={<MakeSticker />} />
           {/*스티커 제작 페이지 */}
           <Route path="/qna" element={<QnApage />} />
-          {/*질문답변 */} <Route path="put" element={<PutPage />} />
+          {/*질문답변 */}
+          <Route path="put" element={<PutPage />} />
           {/*스티커 붙이기 방문자 */}
           <Route path="visitorsticker" element={<VisitorSticker />} />
           {/*스티커 방문자 */}

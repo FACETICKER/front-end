@@ -4,8 +4,8 @@ import styled from "styled-components";
 import "../font/font.css";
 import { BarLoader } from "react-spinners";
 import { useDispatch, useSelector } from "react-redux";
-
-import { setLoginData } from "./LoginSlice";
+import { setId, setToken } from "./LoginSlice";
+import axios from "axios";
 
 const BackgroundWrap = styled.div`
   background: #fefaef;
@@ -35,82 +35,38 @@ const Text1 = styled.div`
   line-height: 36px;
 `;
 
-export function KakaoRedirect({ k, g }) {
-  const dispatch = useDispatch;
-  const logintype = useSelector((state) => state.login.logintype);
-  console.log(logintype);
+export function KakaoRedirect() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const code = new URL(window.location.href).searchParams.get("code");
+
+  const code = new URL(window.location.href).searchParams.get("code"); //인가코드 추출
 
   const headers = {
     "Content-Type": "application/x-www-form-urlencoded",
   };
-  console.log("type", logintype);
-  console.log("type2", logintype);
-  const KG = logintype ? "kakao" : "google";
-  console.log("k", k);
-  console.log(KG);
-  const [id1, setId1] = useState(null);
-  const [Token1, setToken1] = useState(null);
 
   useEffect(() => {
-    fetch(`http://app.faceticker.site/login/${KG}?code=${code}`, {
-      method: "POST",
-      headers: headers,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        console.log(data.result.user_id);
-        console.log(data.result.jwt);
+    async function fetchData() {
+      try {
+        const response = await axios.post(
+          `http://app.faceticker.site/login/kakao?code=${code}`
+        );
+        const resdata = response.data;
+        console.log(resdata);
+        
+        // 토큰, 아이디 저장
+        
+        dispatch(setId(resdata.result.user_id));
+        dispatch(setToken(resdata.result.jwt));
 
-        setId1(data.result.user_id);
-        setToken1(data.result.jwt);
-        console.log("dispatch 전");
-
-        /* dispatch(
-          setLoginData({ id: data.result.user_id, token: data.result.jwt })
-        ); */
-        console.log("dispatch 후");
         navigate("/initial");
-      })
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
 
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []);
-  /* 
-  useEffect(() => {
-    fetch(`http://app.faceticker.site/login/kakao?code=${code}`, {
-      method: "POST",
-      headers: headers,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        console.log(data.result.user_id);
-        console.log(data.result.jwt);
-
-        setId1(data.result.user_id);
-        setToken1(data.result.jwt);
-        console.log("dispatch 전");
-
-        /* dispatch(
-          setLoginData({ id: data.result.user_id, token: data.result.jwt })
-        ); */
-  /*       console.log("dispatch 후");
-        navigate("/initial");
-      })
-
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []); */
-
-  console.log("id", id1);
-  console.log("token", Token1);
-
-  console.log("5");
+    fetchData();
+  }, [code, dispatch]);
 
   return (
     <BackgroundWrap>

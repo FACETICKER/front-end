@@ -9,7 +9,8 @@ import Basic_Choice from "./Basic_Choice";
 import Del_page from "./delete_page/Del_page";
 import IDSlice from "./Slice/IDSlice";
 import questionSlice from "./Slice/questionSlice";
-import AnswerSlice from './Slice/AnswerSlice'
+import AnswerSlice from './Slice/AnswerSlice';
+import Token from "./Token";
 
 const QnApage = () => {
   const dispatch = useDispatch();
@@ -52,8 +53,8 @@ const QnApage = () => {
 
   /* userID와 토큰 정의 */
 
-  const userID = 2;
-  const JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VyX2VtYWlsIjoiYmFkdWswMzI2QG5hdmVyLmNvbSIsImlhdCI6MTY5MTk0Nzk1OCwiZXhwIjoxNjkxOTUxNTU4fQ._KIzNc4zSQB8oFUC-RrfcKTOg-3aZHlqBpzUeS1E13g';
+  const userID = Token()[0];
+  const JWT = Token()[1];
 
   useEffect(() => {
     test2();

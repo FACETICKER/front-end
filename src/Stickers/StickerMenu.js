@@ -50,6 +50,8 @@ const Bottom = styled.div`
   background: #fff;
   width: 90%;
   height: 90%;
+  justify-content: center;
+  align-items: center;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -86,6 +88,8 @@ const Stickers = styled.div`
   align-items: center;
   display: flex;
   height: 80%;
+  width: 90%;
+
   overflow: scroll;
   flex-direction: column;
 `;
@@ -96,132 +100,6 @@ const Close = styled.img`
   right: 5%;
   max-width: 8%;
 `;
-export function StickerMenu() {
-  const navigate = useNavigate();
-  const [images, setImageData] = useState([]);
-
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const handleMenuClick = () => {
-    setMenuOpen(true);
-  };
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    fetch("http://localhost:3012/user")
-      .then((response) => response.json())
-      .then((data) => {
-        const filteredData = data.filter((item) => item.id !== 1);
-        setImageData(filteredData);
-        console.log(images);
-      })
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []);
-
-  const filteredData2 = images.filter((item) => item.id >= 2 && item.id <= 4);
-  const filteredData3 = images.filter((item) => item.id >= 5 && item.id <= 7);
-  const filteredData4 = images.filter((item) => item.id >= 8 && item.id <= 10);
-  const filteredData5 = images.filter((item) => item.id >= 11 && item.id <= 13);
-  const filteredData6 = images.filter((item) => item.id >= 14 && item.id <= 16);
-  const filteredData7 = images.filter((item) => item.id >= 17 && item.id <= 19);
-  console.log(filteredData2);
-
-  const handleClickSticker = (imageId) => {
-    dispatch(setSelectedImage(imageId));
-    navigate("/clicksticker");
-  };
-  const handleClose = () => {
-    navigate("/hoststicker");
-  };
-  return (
-    <BackgroundWrap>
-      <Background>
-        <HostHeader />
-        <BottomWrap>
-          <Bottom>
-            <Text1>My Faceticker List</Text1>
-            <Text2>내 페이지에 부착된 스티커 목록입니다.</Text2>
-            <Close onClick={handleClose} src={close} />
-
-            <Stickers>
-              <First>
-                {filteredData2.map((item) => (
-                  <Row
-                    onClick={() => handleClickSticker(item.id)}
-                    key={item.id}
-                  >
-                    <Circle>
-                      <CircleImage src={item.url} alt={item.nickname} />
-                    </Circle>
-                    <Nickname>닉네임</Nickname>
-                    {/*   <Nickname>{item.nickname}</Nickname> */}
-                  </Row>
-                ))}
-              </First>
-              <First>
-                {filteredData3.map((item) => (
-                  <Row key={item.id}>
-                    <Circle>
-                      <CircleImage src={item.url} alt={item.nickname} />
-                    </Circle>
-                    <Nickname>닉네임</Nickname>
-                    {/*   <Nickname>{item.nickname}</Nickname> */}
-                  </Row>
-                ))}
-              </First>
-              <First>
-                {filteredData4.map((item) => (
-                  <Row key={item.id}>
-                    <Circle>
-                      <CircleImage src={item.url} alt={item.nickname} />
-                    </Circle>
-                    <Nickname>닉네임</Nickname>
-                    {/*   <Nickname>{item.nickname}</Nickname> */}
-                  </Row>
-                ))}
-              </First>
-              <First>
-                {filteredData5.map((item) => (
-                  <Row key={item.id}>
-                    <Circle>
-                      <CircleImage src={item.url} alt={item.nickname} />
-                    </Circle>
-                    <Nickname>닉네임</Nickname>
-                    {/*   <Nickname>{item.nickname}</Nickname> */}
-                  </Row>
-                ))}
-              </First>
-              <First>
-                {filteredData6.map((item) => (
-                  <Row key={item.id}>
-                    <Circle>
-                      <CircleImage src={item.url} alt={item.nickname} />
-                    </Circle>
-                    <Nickname>닉네임</Nickname>
-                    {/*   <Nickname>{item.nickname}</Nickname> */}
-                  </Row>
-                ))}
-              </First>
-              <First>
-                {filteredData7.map((item) => (
-                  <Row key={item.id}>
-                    <Circle>
-                      <CircleImage src={item.url} alt={item.nickname} />
-                    </Circle>
-                    <Nickname>닉네임</Nickname>
-                    {/*   <Nickname>{item.nickname}</Nickname> */}
-                  </Row>
-                ))}
-              </First>
-            </Stickers>
-          </Bottom>
-        </BottomWrap>
-      </Background>
-    </BackgroundWrap>
-  );
-}
 
 const Row = styled.div`
   display: flex;
@@ -232,17 +110,20 @@ const Row = styled.div`
 `;
 const Circle = styled.div`
   display: flex;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 210, 93, 0.8);
   border-radius: 50%;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+  position: relative;
 `;
 const CircleImage = styled.img`
   display: flex;
   max-height: 80%;
+  position: absolute;
+  top: 15%;
 `;
 const Nickname = styled.div`
   color: #000;
@@ -260,7 +141,212 @@ const First = styled.div`
   width: 100%;
   height: 30%;
 
-  transform: translateY(100%);
+  transform: translateY(50%); //이거 나중에 데이터 더 들어오는 거 보고 수정
 `;
+export function StickerMenu() {
+  const navigate = useNavigate();
+  const [images, setImageData] = useState([]);
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleMenuClick = () => {
+    setMenuOpen(true);
+  };
+  const dispatch = useDispatch();
+
+  const userId = 1;
+  const ID = userId;
+
+  //이미지들 불러오기
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}/sticker/all`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+
+        const filteredData = data.result.visitorStickerResult.filter(
+          (item) => item.location_x !== null
+        );
+
+        console.log("00", filteredData);
+        setImageData(filteredData);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
+
+  const extractedDataObjects = [];
+  const totalIndexes = Object.keys(images).length;
+
+  for (let start = 0; start < totalIndexes; start += 3) {
+    const end = Math.min(start + 2, totalIndexes - 1);
+    const extractedData = [];
+
+    for (let i = start; i <= end; i++) {
+      extractedData[i] = images[i];
+    }
+
+    extractedDataObjects.push(extractedData);
+    console.log("개수", extractedData.length);
+  }
+
+  console.log(extractedDataObjects);
+
+  console.log("7", extractedDataObjects[1]);
+
+  const filteredData2 = extractedDataObjects[0];
+  const filteredData3 = extractedDataObjects[1];
+  const filteredData4 = extractedDataObjects[2];
+  const filteredData5 = extractedDataObjects[3];
+  const filteredData6 = extractedDataObjects[4];
+  const filteredData7 = extractedDataObjects[5];
+
+  console.log("8", filteredData2);
+  console.log("9", images);
+
+  const handleClickSticker = (imageId) => {
+    dispatch(setSelectedImage(imageId));
+    navigate("/clicksticker");
+  };
+  const selectedImageId = useSelector((state) => state.image.selectedImageId);
+
+  const handleClose = () => {
+    navigate("/hoststicker");
+  };
+
+  return (
+    <BackgroundWrap>
+      <Background>
+        <HostHeader />
+        <BottomWrap>
+          <Bottom>
+            <Text1>My Faceticker List</Text1>
+            <Text2>내 페이지에 부착된 스티커 목록입니다.</Text2>
+            <Close onClick={handleClose} src={close} />
+
+            <Stickers>
+              <First>
+                {filteredData2 &&
+                  filteredData2.map((item) => (
+                    <Row
+                      onClick={() =>
+                        handleClickSticker(item.visitor_sticker_id)
+                      }
+                      key={item.visitor_sticker_id}
+                    >
+                      <Circle>
+                        <CircleImage
+                          src={item.final_image_url}
+                          alt={item.visitor_sticker_id}
+                        />
+                      </Circle>
+
+                      <Nickname>{item.name}</Nickname>
+                    </Row>
+                  ))}
+              </First>
+              <First>
+                {filteredData3 &&
+                  filteredData3.map((item) => (
+                    <Row
+                      onClick={() =>
+                        handleClickSticker(item.visitor_sticker_id)
+                      }
+                      key={item.visitor_sticker_id}
+                    >
+                      <Circle>
+                        <CircleImage
+                          src={item.final_image_url}
+                          alt={item.visitor_sticker_id}
+                        />
+                      </Circle>
+                      <Nickname>{item.name}</Nickname>
+                    </Row>
+                  ))}
+              </First>
+              <First>
+                {filteredData4 &&
+                  filteredData4.map((item) => (
+                    <Row
+                      onClick={() =>
+                        handleClickSticker(item.visitor_sticker_id)
+                      }
+                      key={item.visitor_sticker_id}
+                    >
+                      <Circle>
+                        <CircleImage
+                          src={item.final_image_url}
+                          alt={item.visitor_sticker_id}
+                        />
+                      </Circle>
+                      <Nickname>{item.name}</Nickname>
+                    </Row>
+                  ))}
+              </First>
+              <First>
+                {filteredData5 &&
+                  filteredData5.map((item) => (
+                    <Row
+                      onClick={() =>
+                        handleClickSticker(item.visitor_sticker_id)
+                      }
+                      key={item.visitor_sticker_id}
+                    >
+                      <Circle>
+                        <CircleImage
+                          src={item.final_image_url}
+                          alt={item.visitor_sticker_id}
+                        />
+                      </Circle>
+                      <Nickname>{item.name}</Nickname>
+                    </Row>
+                  ))}
+              </First>
+              <First>
+                {filteredData6 &&
+                  filteredData6.map((item) => (
+                    <Row
+                      onClick={() =>
+                        handleClickSticker(item.visitor_sticker_id)
+                      }
+                      key={item.visitor_sticker_id}
+                    >
+                      <Circle>
+                        <CircleImage
+                          src={item.final_image_url}
+                          alt={item.visitor_sticker_id}
+                        />
+                      </Circle>
+                      <Nickname>{item.name}</Nickname>
+                    </Row>
+                  ))}
+              </First>
+              <First>
+                {filteredData7 &&
+                  filteredData7.map((item) => (
+                    <Row
+                      onClick={() =>
+                        handleClickSticker(item.visitor_sticker_id)
+                      }
+                      key={item.visitor_sticker_id}
+                    >
+                      <Circle>
+                        <CircleImage
+                          src={item.final_image_url}
+                          alt={item.visitor_sticker_id}
+                        />
+                      </Circle>
+                      <Nickname>{item.name}</Nickname>
+                    </Row>
+                  ))}
+              </First>
+            </Stickers>
+          </Bottom>
+        </BottomWrap>
+      </Background>
+    </BackgroundWrap>
+  );
+}
 
 export default StickerMenu;

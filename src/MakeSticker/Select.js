@@ -11,6 +11,8 @@ import styles2 from "./Modal_jh.module.css";
 import Close from "../img/QnA_img/close-x.png";
 import Dots from "../components/Dots";
 import { setCaptureEnabled, setVisitorId } from "./CaptureSlice";
+import axios from "axios";
+import StickerName from "../Nickname/StickerName";
 
 const modalStyle = {
   overlay: {
@@ -39,11 +41,14 @@ const modalStyle = {
 // 선택창 관리 컴포넌트
 
 const Select = ({ handleCaptureImg }) => {
+  const [name, setname] = useState(false);
   const [stickeris, setStickeris] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [test2, setTest] = useState(null);
 
+  const VID = useSelector((state) => state.visitorId);
   const openModal = () => {
     setModalIsOpen(true);
   };
@@ -56,14 +61,13 @@ const Select = ({ handleCaptureImg }) => {
   const capture = (isEnabled) => {
     dispatch(setCaptureEnabled(isEnabled));
     setModalIsOpen(true);
-    PostOrPatch();
   };
 
   //방문자가 완료 누를 때
   const captureVisitor = (isEnabled) => {
     dispatch(setCaptureEnabled(isEnabled));
-    PostOrPatch();
-    /*     navigate("/stickername"); */
+
+    /*   navigate("/stickername", { state: { test: test2 } }); */
   };
 
   const step = useSelector((state) => {
@@ -85,8 +89,8 @@ const Select = ({ handleCaptureImg }) => {
     navigate("/mainhost");
   };
 
-  const handlenickname = () => {
-    navigate("/stickername");
+  const handlestatus = () => {
+    navigate("/status");
   };
 
   //완료 누르면 백에 POST
@@ -100,10 +104,10 @@ const Select = ({ handleCaptureImg }) => {
  */
 
   //수정하기 userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
-  const jwt =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkxOTMzOTA2LCJleHAiOjE2OTE5Mzc1MDZ9.lQdUWyBQYeCz7OEnapawJFzBgaYsSktpDBDB14UvjG0";
-  const userId = "1"; //호스트 자신 아이디
-  const HostId = null; //방문자가 가지고 온 호스트 아이디
+  const jwt = null;
+  /*  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkxOTk0NDIwLCJleHAiOjE2OTE5OTgwMjB9.brygAtUUyaKGQNO_ZJQloc"; */
+  const userId = null; //호스트 자신 아이디
+  const HostId = 1; //방문자가 가지고 온 호스트 아이디
 
   //jwt가 없으면 visitor, jwt 있으면 host
   const whatType = HostId == null ? "host" : "visitor";
@@ -174,7 +178,7 @@ const Select = ({ handleCaptureImg }) => {
   console.log("stickeris", stickeris);
   //sticker 보낼 거
   const imageUrl = useSelector((state) => state.capture.imageUrl);
-
+  const visitorId = useSelector((state) => state.visitorId);
   const finalsticker = {
     face: stickerState.face,
     eyes: stickerState.eyes,
@@ -187,41 +191,92 @@ const Select = ({ handleCaptureImg }) => {
   };
 
   console.log("finalsticker", finalsticker);
-
+  console.log("url", imageUrl);
   console.log("stickeris", stickeris);
 
-  const PostOrPatch = () => {
+  /* const PostOrPatch = async () => {
     const apiUrl = stickeris
       ? `http://app.faceticker.site/${Id}/sticker/put`
       : `http://app.faceticker.site/${Id}/sticker`;
     console.log("api", apiUrl);
 
-    fetch(apiUrl, {
+   fetch(apiUrl, {
       method: stickeris ? "PATCH" : "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: Header,
       body: JSON.stringify({ finalsticker }),
     })
-      .then((response) => response.json())
+      .then((response) => await response.json())
       .then((data) => {
         console.log("성공", data);
-        console.log("스티커 아이디", data.result.visitor_sticker_id);
+        console.log(
+          "방문자",
+          whatType == "visitor" ? data.result.visitor_sticker_id : data
+        );
+        if (whatType === "visitor") {
+          dispatch(setVisitorId(data.result.visitor_sticker_id));
+          setVId(data.result.visitor_sticker_id);
+          dispatch(setVisitorId(VID));
+          console.log("VID", VID);
+          console.log("방문자 아이디 저장", visitorId);
+        }
+
+        /*  console.log("스티커 아이디", data.result.visitor_sticker_id);
         dispatch(setVisitorId(data.result.visitor_sticker_id));
-        console.log("스티커아이디 저장 완료");
-      })
+        console.log("스티커아이디 저장 완료"); */
+  /* })
       .catch((error) => {
         console.error("실패:", error);
       });
+  }; */
+  const apiUrl = stickeris
+    ? `http://app.faceticker.site/${Id}/sticker/put`
+    : `http://app.faceticker.site/${Id}/sticker`;
+  console.log("api", apiUrl);
+
+  const PostOrPatch = async () => {
+    try {
+      const response = await fetch(apiUrl, {
+        method: stickeris ? "PATCH" : "POST",
+        headers: Header,
+        body: JSON.stringify(finalsticker),
+      });
+
+      const responseData = await response.json();
+      console.log(responseData);
+      if (whatType === "visitor") {
+        console.log(responseData.result.visitor_sticker_id);
+        dispatch(setVisitorId(responseData.result.visitor_sticker_id));
+        setTest(responseData.result.visitor_sticker_id);
+        console.log("dispatch id1", VID);
+      }
+    } catch (error) {
+      console.error("PATCH request failed:", error);
+    }
   };
 
+  useEffect(() => {
+    if (imageUrl) {
+      console.log("이미지 캡쳐 완료");
+      PostOrPatch();
+    }
+  }, [imageUrl]);
+
+  console.log("test2", test2);
+  useEffect(() => {
+    if (test2) {
+      console.log("test2", test2);
+      navigate("/stickername", { state: { test: test2 } });
+    }
+  }, [test2]);
+
   //방문자는 이미지 링크 redux로 저장해놓기
-
-  /*   const loginData = useSelector((state) => state.login);
-
+  /* const loginData = useSelector((state) => state.login);
   console.log("id", loginData.id);
   console.log("token", loginData.token);
  */
+  const stickernmae = () => {
+    setname(true);
+  };
   return (
     <div className={styles.background}>
       <div className={styles.line}></div>
@@ -242,7 +297,7 @@ const Select = ({ handleCaptureImg }) => {
         </button>
 
         {step == 5 && (
-          <button onClick={up2} className={styles.button}>
+          <button onClick={up} className={styles.button}>
             다음
           </button>
         )}
@@ -277,7 +332,7 @@ const Select = ({ handleCaptureImg }) => {
                   <button className={styles2.btnshadow}></button>
                 </div>
                 <div className={styles2.button2}>
-                  <button onClick={handlenickname} className={styles2.btn_red}>
+                  <button onClick={handlestatus} className={styles2.btn_red}>
                     좋아요
                   </button>
                   <button className={styles2.btnshadow}></button>
