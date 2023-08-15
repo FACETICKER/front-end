@@ -1,4 +1,5 @@
 import InitialSurveyList from "./InitialSurveyList.js";
+import Token from "../QnA/Token copy.js";
 import message from "../img/MainpageHost_img/ri_message-3-line (1).svg";
 import share from "../img/MainpageHost_img/share.svg";
 import download from "../img/MainpageHost_img/download.svg";
@@ -221,9 +222,8 @@ function MainpageHost() {
   const handleHoststicker = () => {
     navigate("/hoststicker");
   };
-  const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX2VtYWlsIjoiaW16emFuZzZ1QG5hdmVyLmNvbSIsImlhdCI6MTY5MjEwNzU3NiwiZXhwIjoxNjkyMTExMTc2fQ.aJ7ibeLsKzda_VMYoSp_v1JW7qolOXcwIOOhk15frxU";
   
-  
+  const JWT = Token()[1];
   const test1 = () => {
 
     const headers = {
@@ -231,7 +231,7 @@ function MainpageHost() {
         'Content-Type': 'application/json'
     };
     
-    fetch(`http://app.faceticker.site/3`, {
+    fetch(`http://app.faceticker.site/8`, {
         method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
         headers: headers,
       }) // 서버로 GET 요청을 보냄
@@ -244,7 +244,26 @@ function MainpageHost() {
         });
   }
   test1();
-  
+  const test2 = () => {
+
+    const headers = {
+        "x-access-token": JWT,
+        'Content-Type': 'application/json'
+    };
+    
+    fetch(`http://app.faceticker.site/8/sticker/message`, {
+        method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
+        headers: headers,
+      }) // 서버로 GET 요청을 보냄
+        .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((error) => {
+            console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
+        });
+  }
+  test2();
 
 
 

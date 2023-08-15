@@ -1,4 +1,5 @@
 import InitialSurveyList from "./InitialSurveyList.js";
+import Token from "../QnA/Token copy.js";
 import check from "../img/InitialSurvey_img/icon _check circled outline_ (2).svg";
 import down from "../img/InitialSurvey_img/chevron-down.png"
 import up from "../img/InitialSurvey_img/chevron-up (1).png"
@@ -45,6 +46,7 @@ function InitialSurvey() {
   const [condition5, setCondition5] = useState(false);
   const [condition6, setCondition6] = useState(false);
   const [name, setName] = useState(false);
+  const [initialdata,setInitialdata] = useState(null);
   const BackgroundWrap = styled.div`
     background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
   `;
@@ -228,7 +230,7 @@ function InitialSurvey() {
         }else{
           return
         }
-        setChooseNumber(input1 + input2 + input3 + input4);
+        setChooseNumber(parseInt(input1 + input2 + input3 + input4));
         handleInitialNumberChange();
         resultDiv2.style.display = "block";
         nameInput.className = "l5-1";
@@ -412,6 +414,8 @@ function InitialSurvey() {
   const handleNext = (() => {
     dispatch(setInitialImport(chooseImport));
     console.log(InitialSurveyList);
+    test1();
+    console.log('10');
     navigate("/makesticker");
   });
   const handleInitialNameChange = () => {
@@ -435,11 +439,13 @@ function InitialSurvey() {
     dispatch(setInitialImport(chooseImport));
     console.log(InitialSurveyList);    
   };
-  
-  
-  
-  const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX2VtYWlsIjoiaW16emFuZzZ1QG5hdmVyLmNvbSIsImlhdCI6MTY5MjEwNjIzMSwiZXhwIjoxNjkyMTA5ODMxfQ.eLcekWNUTMyg0Xjf9pFsxsde45ohh2y29NJMVxY-t_E";
-  
+  console.log(initialdata);
+  const API = initialdata == null ? "http://app.faceticker.site/8/poster" : "http://app.faceticker.site/8/poster/patch";
+  const method = initialdata == null   ? "POST" : "PATCH";
+  const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VyX2VtYWlsIjoiaW16emFuZzZ1QGdtYWlsLmNvbSIsImlhdCI6MTY5MjExNTcyNiwiZXhwIjoxNjkyMTE5MzI2fQ.naHocWYCfV9S8SZA4OZ6Qyb-7lwxt9QK2GeMsAxn9k8" ;
+  console.log(API);
+  console.log(method);
+  console.log(JWT);
   
   const test1 = () => {
 
@@ -448,8 +454,8 @@ function InitialSurvey() {
         'Content-Type': 'application/json'
     };
     
-    fetch(`http://app.faceticker.site/3/poster`, {
-        method: "POST", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
+    fetch(API, {
+        method: method, // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
         headers: headers,
         body: JSON.stringify({
           nickname: InitialSurveyList.Name_id,
@@ -458,7 +464,7 @@ function InitialSurvey() {
           date: InitialSurveyList.Day_id,
           important: InitialSurveyList.Import_id,
         },
-          ),
+        ),
       })
         .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
         .then((data) => {
@@ -468,28 +474,23 @@ function InitialSurvey() {
             console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
         });
   }
-  test1();
 
-  const test2 = () => {
+  
 
-    const headers = {
-        "x-access-token": JWT,
-        'Content-Type': 'application/json'
-    };
-    
-    fetch(`http://app.faceticker.site/3/poster/patch`, {
-        method: "PATCH", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
-        headers: headers,
-      }) // 서버로 GET 요청을 보냄
-        .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
-        .then((data) => {
-            console.log(data);
-        })
-        .catch((error) => {
-            console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
-        });
-  }
-  test2();
+  useEffect(() => {
+    fetch(`https:app.faceticker.site/8`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          console.log("성공", data.result.hostPoster[0]);
+          setInitialdata(data.result.hostPoster[0]);
+        } 
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
+
 
   return (
     <div className="BackgroundWrap">
