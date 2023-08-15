@@ -4,7 +4,7 @@ const InitialSurveyList = createSlice({
     initialState:{
         Name_id: '',
         Season_id: '',
-        Number_id: '',
+        Number_id: null,
         Day_id: '',
         Import_id: '',
         SetSticker_id: '',
