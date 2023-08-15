@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useGesture } from "react-use-gesture";
 import React, { useRef } from "react";
 import positionSlice from "./positionSlice";
+import Idtoken from "./Idtoken";
 
 //방문자가 자신의 스티커를 호스트 페이지에 붙이는 컴포넌트
 
@@ -95,9 +96,15 @@ export function TestBottom(props) {
 
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
 
-  const userId = "1";
+  /*  const userId = Idtoken()[0]; */ //호스트 아이디
+  const userId = 1;
   const ID = userId;
+  const jwt = Idtoken()[1]; //호스트 토큰
 
+  const headers = {
+    /*    "x-access-token": jwt, */
+    "Content-Type": "application/json",
+  };
   const VID = props.VID2;
   console.log("final", VID);
 
@@ -197,7 +204,6 @@ export function TestBottom(props) {
     }
   };
 
-  const VID3 = 134;
   const positionState = useSelector((state) => state.position);
   const finalPosition = {
     x: positionState.x,
@@ -206,6 +212,8 @@ export function TestBottom(props) {
   console.log("finalposition", finalPosition);
 
   console.log("완료", imagePosition);
+
+  const VID3 = 153;
   //이미지 PATCH
   useEffect(() => {
     if (isImageFixed) {

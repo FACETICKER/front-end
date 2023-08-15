@@ -143,6 +143,7 @@ const Icon3 = styled.img`
 
 export function VisitPut(props) {
   const VID2 = props.VID;
+  console.log("VID2", VID2);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [HostName, setHostName] = useState("호스트명");

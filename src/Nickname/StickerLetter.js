@@ -7,6 +7,7 @@ import backicon from "../img/Stickers_img/backIcon.png";
 import post from "../img/Stickers_img/post.png";
 import checkicon from "../img/Stickers_img/checkicon.png";
 import container from "../img/Stickers_img/container.png";
+import Idtoken from "../Stickers/Idtoken";
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
 //현재 뷰포트 높이 가져와서 쓰기(App.js App함수 return 위에 꼭 함수 추가해주기)
@@ -253,7 +254,7 @@ export function StickerLetter() {
   const saveLetter = (event) => {
     setLetterValue(event.target.value);
   };
-  const userId = "1";
+  const userId = 1; /* Idtoken()[0] */ //호스트 아이디
   const ID = userId;
   //방문록 입력하고 체크 아이콘 누르면 서버에 전송됨
 
