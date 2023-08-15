@@ -61,13 +61,12 @@ const Select = ({ handleCaptureImg }) => {
   const capture = (isEnabled) => {
     dispatch(setCaptureEnabled(isEnabled));
     setModalIsOpen(true);
-    PostOrPatch();
   };
 
   //방문자가 완료 누를 때
   const captureVisitor = (isEnabled) => {
     dispatch(setCaptureEnabled(isEnabled));
-    PostOrPatch();
+
     /*   navigate("/stickername", { state: { test: test2 } }); */
   };
 
@@ -239,7 +238,7 @@ const Select = ({ handleCaptureImg }) => {
       const response = await fetch(apiUrl, {
         method: stickeris ? "PATCH" : "POST",
         headers: Header,
-        body: JSON.stringify({ finalsticker }),
+        body: JSON.stringify(finalsticker),
       });
 
       const responseData = await response.json();
@@ -254,6 +253,14 @@ const Select = ({ handleCaptureImg }) => {
       console.error("PATCH request failed:", error);
     }
   };
+
+  useEffect(() => {
+    if (imageUrl) {
+      console.log("이미지 캡쳐 완료");
+      PostOrPatch();
+    }
+  }, [imageUrl]);
+
   console.log("test2", test2);
   useEffect(() => {
     if (test2) {
@@ -290,7 +297,7 @@ const Select = ({ handleCaptureImg }) => {
         </button>
 
         {step == 5 && (
-          <button onClick={up2} className={styles.button}>
+          <button onClick={up} className={styles.button}>
             다음
           </button>
         )}

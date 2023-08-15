@@ -10,16 +10,14 @@ const loginSlice = createSlice({
   name: "login",
   initialState,
   reducers: {
-    setLoginData: (state, action) => {
-      state.userId = action.payload.userId;
-      state.token = action.payload.token;
-      state.logintype = !state.logintype;
+    setId: (state, action) => {
+      state.userId = action.payload;
     },
-    setLogintype: (state) => {
-      state.logintype = !state.logintype;
+    setToken: (state, action) => {
+      state.token = action.payload;
     },
   },
 });
 
-export const { setLoginData, setLogintype } = loginSlice.actions;
+export const { setId, setToken } = loginSlice.actions;
 export default loginSlice.reducer;

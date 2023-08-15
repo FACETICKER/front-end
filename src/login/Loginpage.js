@@ -4,8 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogintype } from "./LoginSlice";
-/* import dotenv from "dotenv";
-dotenv.config(); */
+import STICKER from "../MakeSticker/STICKER";
 
 const G_CLIENT_ID = process.env.REACT_APP_G_CLIENT_ID;
 const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
@@ -20,50 +19,14 @@ const googleURL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=co
 const Loginpage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [k, setK] = useState(false);
-  const [g, setG] = useState(false);
-  const [what, setWhat] = useState();
-  const logintype = useSelector((state) => state.login.logintype);
-
-  const [Data, setData] = useState(null);
 
   const handleKakaoLogin = () => {
-    setK(true);
-
-    /*   console.log("1", logintype); */
+    window.location.href = kakaoURL;
   };
 
   const handleGoogleLogin = () => {
-    setG(true);
-
-    dispatch(setLogintype());
-
-    console.log("2", logintype);
+    window.location.href = googleURL;
   };
-
-  console.log("3", logintype);
-
-  const handleURL = () => {
-    if (logintype) {
-      window.location.href = kakaoURL;
-    } else {
-      window.location.href = googleURL;
-    }
-  };
-
-  useEffect(() => {
-    if (k) {
-      console.log("k", k);
-      console.log("g", g);
-
-      window.location.href = kakaoURL;
-    } else if (g) {
-      console.log("k", k);
-      console.log("g", g);
-
-      window.location.href = googleURL;
-    }
-  }, [k, g]);
 
   return (
     <div className="background">

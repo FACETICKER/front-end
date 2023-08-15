@@ -1,11 +1,12 @@
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import "../font/font.css";
-import { useDispatch, useSelector } from "react-redux";
-
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import backicon from "../img/Stickers_img/backIcon.png";
-
+import post from "../img/Stickers_img/post.png";
+import checkicon from "../img/Stickers_img/checkicon.png";
+import container from "../img/Stickers_img/container.png";
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
 //현재 뷰포트 높이 가져와서 쓰기(App.js App함수 return 위에 꼭 함수 추가해주기)
@@ -170,6 +171,7 @@ const Container = styled.img`
 const InputImg = styled.img`
   display: flex;
   object-fit: cover;
+  width: 100%;
 `;
 const InputWrap = styled.div`
   display: flex;
@@ -238,7 +240,7 @@ export function StickerLetter() {
   };
   //첫 번째 이전 버튼
   const handleFirstBack = () => {
-    navigate("/stickername"); //nickname으로 페이지 전환
+    navigate(-1); //nickname으로 페이지 전환
   };
 
   //두 번째 이전버튼
@@ -254,6 +256,7 @@ export function StickerLetter() {
   const userId = "1";
   const ID = userId;
   //방문록 입력하고 체크 아이콘 누르면 서버에 전송됨
+
   const handleLetterSubmit = () => {
     fetch(
       `https://app.faceticker.site/${ID}/sticker/visitor/message?id=${VID}`,
@@ -270,23 +273,23 @@ export function StickerLetter() {
       .catch((error) => {
         console.error("실패", error);
       });
-    /* navigate("/put"); */
+
+    navigate("/put", { state: { visitor: VID } });
   };
 
-  /*   //서버에서 방문록 받아오기
+  //서버에서 방문록 받아오기
   useEffect(() => {
-    fetch("https://faceticker.site/app/:1/sticker/message?type=visitor")
+    fetch(`http://app.faceticker.site/sticker/visitor/message?id=${VID}`)
       .then((response) => response.json())
       .then((data) => {
-        if (data.letter) {
-          setLetterValue(data.letter);
-        }
+        console.log("성공2", data.result[0].name);
+        setLetterValue(data.letter);
       })
       .catch((error) => {
         console.error("오류 발생", error);
       });
   }, []);
- */
+
   return (
     <BackgroundWrap>
       <Background>
@@ -313,7 +316,7 @@ export function StickerLetter() {
               {firstBottom && (
                 <Wrap>
                   <ImgWrap>
-                    <InputImg src="https://i.ibb.co/3vfvNYb/Post-it-4-3.png" />
+                    <InputImg src={post} />
                   </ImgWrap>
 
                   <HostImg src={imageUrl} />
@@ -331,11 +334,8 @@ export function StickerLetter() {
 
               {!firstBottom && (
                 <Wrap2>
-                  <CheckIcon
-                    onClick={handleLetterSubmit}
-                    src="https://i.ibb.co/PrmpgLr/Group-74.png"
-                  />
-                  <Container src="https://i.ibb.co/qnJKv4s/Group-69-1.png" />
+                  <CheckIcon onClick={handleLetterSubmit} src={checkicon} />
+                  <Container src={container} />
                 </Wrap2>
               )}
             </TotalWrap>

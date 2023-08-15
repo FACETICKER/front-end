@@ -202,10 +202,10 @@ export function StickerName() {
 
   const visitorId = useSelector((state) => state.visitorId);
   const imageUrl = useSelector((state) => state.capture.imageUrl);
-  console.log("이미지url ", imageUrl);
+  /*   console.log("이미지url ", imageUrl); */
   console.log("방문자id", visitorId);
   console.log("vid", VID);
-  console.log("url", imageUrl);
+  /*   console.log("url", imageUrl); */
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
     setStickerSize("50px");
@@ -261,19 +261,20 @@ export function StickerName() {
     navigate("/stickerletter", { state: { visitor: VID } });
   };
 
-  /*   //서버에서 닉네임 값 받아오기
+  //서버에서 닉네임 값 받아오기
   useEffect(() => {
-    fetch("https://faceticker.site/app/:user_id/sticker/message?type=visitor")
+    fetch(`https://app.faceticker.site/sticker/visitor/name?id=72`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          setNicknameValue(data);
+          console.log("성공", data.result[0].name);
+          setNicknameValue(data.result[0].name);
         }
       })
       .catch((error) => {
         console.error("오류 발생", error);
       });
-  }, []); */
+  }, []);
 
   return (
     <BackgroundWrap>
@@ -313,7 +314,7 @@ export function StickerName() {
                 onChange={saveNickname}
                 value={nicknameValue}
                 top={inputTop}
-                placeholder={nicknameValue}
+                placeholder="스티커 네임 입력 (15자 이내)"
               ></Input>
             </InputWrap>
           </Bottom>
