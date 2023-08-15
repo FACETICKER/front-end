@@ -4,7 +4,6 @@ import styled from "styled-components";
 import "../font/font.css";
 import { BarLoader } from "react-spinners";
 import { useDispatch, useSelector } from "react-redux";
-
 import { setId, setToken } from "./LoginSlice";
 import axios from "axios";
 
@@ -37,7 +36,7 @@ const Text1 = styled.div`
 `;
 
 export function KakaoRedirect() {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const code = new URL(window.location.href).searchParams.get("code"); //인가코드 추출
@@ -54,6 +53,12 @@ export function KakaoRedirect() {
         );
         const resdata = response.data;
         console.log(resdata);
+        
+        // 토큰, 아이디 저장
+        
+        dispatch(setId(resdata.result.user_id));
+        dispatch(setToken(resdata.result.jwt));
+
         navigate("/initial");
       } catch (error) {
         console.error("Error fetching data:", error);

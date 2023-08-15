@@ -6,6 +6,7 @@ import Del_top from './Del_top';
 import questionSlice from '../Slice/questionSlice';
 import AnswerSlice from '../Slice/AnswerSlice';
 import PageSlice from '../Slice/PageSlice';
+import Token from '../Token';
 
 function Del_page() {
 
@@ -31,19 +32,81 @@ function Del_page() {
     const remove = () => {
         if (!allChosen) {
             return; // 아무것도 삭제 선택 안했을 경우 클릭 안 됨
-        }        
+        }
+
+        // 백엔드 db 상에서 질문 삭제
+        
+        const ques_click_list_nqna = ques.filter(obj => obj.clicked === true).map(obj => obj.nQnA_id);
+        {ques_click_list_nqna.map((nqna_id) => (
+            Delquestion(nqna_id)
+        ))} 
+
+        // 프론트 redux 상에서 질문 삭제
         
         const ques_click_list = ques.filter(obj => obj.clicked === true).map(obj => obj.id);
         {ques_click_list.map((id) => (
             dispatch(questionSlice.actions.remove(id))
         ))} 
+
+        // 백엔드 db 상에서 답변 삭제
+
+        const ans_click_list_nqna = ans.filter(obj => obj.clicked === true).map(obj => obj.nQnA_id);
+        {ans_click_list_nqna.map((nqna_id) => (
+            Delanswer(nqna_id)
+        ))}
+
+        // 프론트 redux 상에서 답변 삭제
+        
         const ans_click_list = ans.filter(obj => obj.clicked === true).map(obj => obj.id);
         {ans_click_list.map((id) => (
             dispatch(AnswerSlice.actions.remove(id))
-        ))} // 선택된 항목 삭제
+        ))}
         dispatch(PageSlice.actions.host());
         dispatch(questionSlice.actions.off());
         dispatch(AnswerSlice.actions.off()); // 페이지 이동 후 클릭 초기화
+    }
+
+    const userID = Token()[0];
+    const JWT = Token()[1];
+
+    const Delquestion = (num) => {
+
+        const headers = {
+            "x-access-token": JWT,
+            'Content-Type': 'application/json',
+        };
+
+        fetch(`http://app.faceticker.site/${userID}/nqna/${num}/question`, {
+            method: "DELETE", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
+            headers: headers,
+        })
+            .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
+            });
+    }
+
+    const Delanswer = (num) => {
+
+        const headers = {
+            "x-access-token": JWT,
+            'Content-Type': 'application/json',
+        };
+
+        fetch(`http://app.faceticker.site/${userID}/nqna/${num}/answer`, {
+            method: "DELETE", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
+            headers: headers,
+        })
+            .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
+            });
     }
     
     return (
