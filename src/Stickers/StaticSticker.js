@@ -6,6 +6,7 @@ import { setIsImageFixed, setSelectedImageKey } from "./reducers";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setSelectedImage } from "./imageSlice";
+import Idtoken from "./Idtoken";
 
 //방문자 기록 컴포넌트
 
@@ -76,8 +77,10 @@ export function StaticSticker() {
   const [componentHeight, setComponentHeight] = useState(0);
   const navigate = useNavigate();
 
+  /*   const userId = Idtoken()[0]; */ //호스트 아이디
   const userId = 1;
   const ID = userId;
+  const jwt = Idtoken()[1]; //호스트 토큰
 
   const dispatch = useDispatch();
 

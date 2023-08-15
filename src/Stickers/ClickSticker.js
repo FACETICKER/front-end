@@ -11,6 +11,7 @@ import trash from "../img/Stickers_img/trash.png";
 import post from "../img/Stickers_img/post.png";
 import backtext from "../img/Stickers_img/backtext.png";
 import visitprofile from "../img/Stickers_img/visitprofile.png";
+import Idtoken from "./Idtoken";
 /* import { StickerPageSlice } from "./StickerPageSlice";
 dispatch(NicknamePageSlice.actions.letter()); //letter로 페이지 전환 */
 
@@ -227,9 +228,6 @@ export function ClickSticker() {
   const [stickerImg, setStickerImg] = useState();
   const [name, setName] = useState();
 
-  const userId = 1;
-  const ID = userId;
-
   //클릭한 이미지 방문자 id
   const selectedImageKey = useSelector((state) => state.app.selectedImageKey);
 
@@ -256,6 +254,15 @@ export function ClickSticker() {
   const selectedImageId = useSelector((state) => state.image.selectedImageId);
 
   console.log("100", selectedImageId);
+
+  const userId = 1; /* Idtoken()[0]; */ //호스트 아이디
+  const ID = userId;
+  const jwt = Idtoken()[1]; //호스트 토큰
+
+  const headers = {
+    "x-access-token": jwt,
+    "Content-Type": "application/json",
+  };
 
   //방문록 받아오기
   useEffect(() => {
@@ -302,6 +309,7 @@ export function ClickSticker() {
       `http://app.faceticker.site/${ID}/sticker/visitor/${selectedImageId}`,
       {
         method: "DELETE",
+        headers: headers,
       }
     )
       .then((response) => response.json())

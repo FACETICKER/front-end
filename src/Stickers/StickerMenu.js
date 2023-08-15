@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import HostHeader from "../components/HostHeader";
 import { setSelectedImage } from "./imageSlice";
 import close from "../img/Header_img/close.png";
+import Idtoken from "./Idtoken";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -154,8 +155,9 @@ export function StickerMenu() {
   };
   const dispatch = useDispatch();
 
-  const userId = 1;
+  const userId = 1; /* Idtoken()[0] */ //호스트 아이디
   const ID = userId;
+  const jwt = Idtoken()[1]; //호스트 토큰
 
   //이미지들 불러오기
   useEffect(() => {

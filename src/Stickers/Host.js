@@ -145,6 +145,10 @@ export function Host() {
   const handleMenu = () => {
     navigate("/stickermenu");
   };
+
+  const UID = useSelector((state) => state.login.userId);
+  console.log("UID", UID);
+
   return (
     <BackgroundWrap>
       <Background>

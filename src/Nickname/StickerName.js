@@ -8,6 +8,7 @@ import inputImage from "../img/Stickers_img/inputimg.png";
 import checkicon from "../img/Stickers_img/checkicon.png";
 import backicon from "../img/Stickers_img/backIcon.png";
 import { setVisitorId } from "../MakeSticker/CaptureSlice";
+import Idtoken from "../Stickers/Idtoken";
 
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
@@ -234,8 +235,9 @@ export function StickerName() {
   };
 
   //저장된 아이디(호스트꺼) 불러오기
-  const hostID = "1";
-  const ID = hostID;
+
+  const userId = 1; /* Idtoken()[0]; */ //호스트 아이디
+  const ID = userId;
 
   const headers = {
     "Content-Type": "application/json",
@@ -263,7 +265,7 @@ export function StickerName() {
 
   //서버에서 닉네임 값 받아오기
   useEffect(() => {
-    fetch(`https://app.faceticker.site/sticker/visitor/name?id=72`)
+    fetch(`https://app.faceticker.site/sticker/visitor/name?id=${VID}`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {
