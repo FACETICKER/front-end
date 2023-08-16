@@ -77,7 +77,7 @@ function MainpageHost() {
   };
 
   const handleLinkDownload = () => {
-    const address = `http://localhost:3000/mainhost`;
+    const address = `http://www.faceticker.site/main/${user_id}`;
     navigator.clipboard
       .writeText(address)
       .then(() => {

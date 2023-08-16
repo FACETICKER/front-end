@@ -105,7 +105,7 @@ function MainpageVisit() {
     dispatch(PageSlice.actions.guest());
   };
   const handleMainHost = () => {
-    navigate(`/main/host/${user_id}`);
+    navigate(`/main/host/`);
   };
   const handleVisitorsticker = () => {
     navigate(`/sticker/${user_id}`);
