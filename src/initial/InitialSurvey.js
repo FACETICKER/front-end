@@ -442,7 +442,7 @@ function InitialSurvey() {
   console.log(initialdata);
   const API = initialdata == null ? "http://app.faceticker.site/8/poster" : "http://app.faceticker.site/8/poster/patch";
   const method = initialdata == null   ? "POST" : "PATCH";
-  const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VyX2VtYWlsIjoiaW16emFuZzZ1QGdtYWlsLmNvbSIsImlhdCI6MTY5MjExNTcyNiwiZXhwIjoxNjkyMTE5MzI2fQ.naHocWYCfV9S8SZA4OZ6Qyb-7lwxt9QK2GeMsAxn9k8" ;
+  const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VyX2VtYWlsIjoiaW16emFuZzZ1QGdtYWlsLmNvbSIsImlhdCI6MTY5MjE3MTM5NiwiZXhwIjoxNjkyMTc0OTk2fQ.qzxQzSsJYum4eep51RxvxSHyVkYYOQuBBb5FAgBQH1g";
   console.log(API);
   console.log(method);
   console.log(JWT);
