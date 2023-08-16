@@ -505,7 +505,6 @@ function InitialSurvey() {
           } else if (data.result.hostPoster[0].q_season == "가을"){
             handleSeasonButtonClick("가을")
           }
-          handleShowFourNumber();
           setChooseNumber(data.result.hostPoster[0].q_number);
           opendate.style.display = "block";
           setChooseDay(data.result.hostPoster[0].q_date);
