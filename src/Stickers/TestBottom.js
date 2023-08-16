@@ -213,11 +213,12 @@ export function TestBottom(props) {
 
   console.log("완료", imagePosition);
 
-  const VID3 = 153;
+  const VisitorId = useSelector((state) => state.capture.visitorId);
+
   //이미지 PATCH
   useEffect(() => {
     if (isImageFixed) {
-      fetch(`http://app.faceticker.site/${ID}/sticker/attach?id=${VID3}`, {
+      fetch(`http://app.faceticker.site/${ID}/sticker/attach?id=${VisitorId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

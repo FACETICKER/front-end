@@ -101,9 +101,9 @@ const Select = ({ handleCaptureImg }) => {
   //수정하기 userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
 
   const jwt = Idtoken()[1]; //호스트 토큰
-  /*   const userId = Idtoken()[0]; */ //호스트 아이디
-  const userId = null; //호스트 아이디
-  const HostId = 1; //방문자가 가지고 온 호스트 아이디
+  const userId = Idtoken()[0]; //호스트 아이디
+  //호스트 아이디
+  const HostId = null; //방문자가 가지고 온 호스트 아이디
 
   //jwt가 없으면 visitor, jwt 있으면 host
   const whatType = HostId == null ? "host" : "visitor";
@@ -192,7 +192,7 @@ const Select = ({ handleCaptureImg }) => {
   console.log("stickeris", stickeris);
 
   const apiUrl = stickeris
-    ? `http://app.faceticker.site/${Id}/sticker/put`
+    ? `http://app.faceticker.site/${Id}/sticker/patch`
     : `http://app.faceticker.site/${Id}/sticker`;
   console.log("api", apiUrl);
 
@@ -205,7 +205,7 @@ const Select = ({ handleCaptureImg }) => {
       });
 
       const responseData = await response.json();
-      console.log(responseData);
+      console.log("성공", responseData);
       if (whatType === "visitor") {
         console.log(responseData.result.visitor_sticker_id);
         dispatch(setVisitorId(responseData.result.visitor_sticker_id));
