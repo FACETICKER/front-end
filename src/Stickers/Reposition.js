@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsImageFixed } from "./reducers";
+import { setIsImageFixed, setIsImageFixed2, setChange } from "./reducers";
 
 import { TestBottom } from "./TestBottom";
 import { useState } from "react";
@@ -15,6 +15,7 @@ import complete from "../img/Stickers_img/complete.png";
 import { useNavigate } from "react-router-dom";
 import RepositionSticker from "./RepositionSticker";
 import middle from "../img/Stickers_img/Middle.png";
+import Idtoken from "./Idtoken";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -155,9 +156,28 @@ const Middle = styled.img`
 export function Reposition() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userId = Idtoken()[0]; //호스트 아이디
+  const ID = userId;
+  const jwt = Idtoken()[1]; //호스트 토큰
+
   const handleBack = () => {
-    navigate("/hoststicker");
+    /*   */
+    dispatch(setIsImageFixed2(true));
   };
+
+  /*   const handleChange = () => {
+    /*   */
+  /*     dispatch(setChange(true));
+    console.log(changelocation);
+  }; */
+
+  const isImageFixed2 = useSelector((state) => state.app.isImageFixed2);
+
+  useEffect(() => {
+    if (isImageFixed2) {
+      navigate(`/sticker/host/${userId}`);
+    }
+  }, [isImageFixed2]);
 
   return (
     <BackgroundWrap>

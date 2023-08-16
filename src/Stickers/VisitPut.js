@@ -14,6 +14,8 @@ import changeIcon from "../img/Stickers_img/changeIcon.png";
 import putcomplete from "../img/Stickers_img/putcomplete.png";
 import mysticker from "../img/Stickers_img/mysticker.png";
 import goqna from "../img/Stickers_img/goqna.png";
+import Idtoken from "./Idtoken";
+import PageSlice from "../QnA/Slice/PageSlice";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -149,13 +151,18 @@ export function VisitPut(props) {
   const [HostName, setHostName] = useState("호스트명");
   const [change, setChange] = useState(false);
 
+  /*   const userId = Idtoken()[0]; */ //호스트 아이디
+  const userId = 1;
+  const ID = userId;
+  const jwt = Idtoken()[1]; //호스트 토큰
+
   const handleButtonClick = () => {
     dispatch(setIsImageFixed(true)); // "Check" 버튼 클릭 시, 스티커 고정
     setChange(true);
   };
 
   const handleQnA = () => {
-    navigate("/qna");
+    dispatch(PageSlice.actions.guest());
   };
 
   //처음 이전 아이콘
@@ -179,15 +186,13 @@ export function VisitPut(props) {
     if (change) {
       const timer = setTimeout(() => {
         // 5초 후에 페이지 이동
-        navigate("/mainvisit"); // 메인페이지로
+        navigate(`/main/${ID}`); // 메인페이지로
       }, 5000);
 
       return () => clearTimeout(timer); // 컴포넌트가 언마운트될 때 타이머 제거
     }
   }, [change]);
 
-  const userId = "1";
-  const ID = userId;
   //호스트 닉네임 불러오기
   useEffect(() => {
     fetch(`http://app.faceticker.site/${ID}`)

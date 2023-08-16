@@ -240,10 +240,10 @@ export function ClickSticker() {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate("/hoststicker");
+    navigate(`/sticker/host/${userId}`);
   };
   const handleTrashClick = () => {
-    navigate("/hoststicker");
+    navigate(`/sticker/host/${userId}`);
   };
   /*     const handleProfileClick = (item) => {
   //visior id 받아와서 해당 main으로 이동

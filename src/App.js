@@ -41,14 +41,14 @@ function App() {
           {/*kakao Redirect 화면 */}
           {<Route path="/auth" element={<GoogleRedirect />} />}
           {/*kakao Redirect 화면 */}
-          {<Route path="/newuserflow" element={<NewUserFlow />} />}
+          {<Route path="/welcome" element={<NewUserFlow />} />}
           {/*신규 가입자 플로우 */}
           <Route path="/initial" element={<InitialSurvey />} />
           {/* 초기 설정 */}
-          <Route path="/mainvisit" element={<MainpageVisit />} />
+          <Route path="/main/:userId" element={<MainpageVisit />} />
           {/*방문자 메인페이지 */}
-          <Route path="/mainhost" element={<MainpageHost />} />
-          {/*방문자 메인페이지 */}
+          <Route path="/main/host/:userId" element={<MainpageHost />} />
+          {/*호스트 메인페이지 */}
           <Route path="/stickername" element={<StickerName />} />
           {/* 방문자 스티커 네임 설정 */}
           <Route path="/stickerletter" element={<StickerLetter />} />
@@ -61,15 +61,18 @@ function App() {
           {/*질문답변 */}
           <Route path="put" element={<PutPage />} />
           {/*스티커 붙이기 방문자 */}
-          <Route path="visitorsticker" element={<VisitorSticker />} />
+          <Route path="sticker/:userId" element={<VisitorSticker />} />
           {/*스티커 방문자 */}
-          <Route path="hoststicker" element={<StickerMainHost />} />
+          <Route path="sticker/host/:userId" element={<StickerMainHost />} />
           {/*스티커 호스트 */}
-          <Route path="clicksticker" element={<ClickSticker />} />
+          <Route path="sticker/host/:userId/click" element={<ClickSticker />} />
           {/*호스트가 스티커 클릭할 때 */}
-          <Route path="/stickermenu" element={<StickerMenu />} />
+          <Route path="/sticker/host/:userId/menu" element={<StickerMenu />} />
           {/*스티커 메뉴 */}
-          <Route path="/repositionsticker" element={<Reposition />} />
+          <Route
+            path="/sticker/host/:userId/reposition"
+            element={<Reposition />}
+          />
           {/*스티커 재배치 */}
         </Routes>
       </BrowserRouter>

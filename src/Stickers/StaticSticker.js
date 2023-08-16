@@ -86,7 +86,7 @@ export function StaticSticker() {
 
   const handleStickerClick = (item) => {
     dispatch(setSelectedImage(item.visitor_sticker_id)); // 클릭한 이미지의 alt 값을 dispatch로 저장
-    navigate("/clicksticker");
+    navigate(`/sticker/host/${userId}/click`);
   };
 
   //컴포넌트 높이, 너비

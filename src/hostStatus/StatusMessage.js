@@ -198,7 +198,7 @@ export function StatusMessage() {
       .catch((error) => {
         console.error("호스트 상태메시지실패", error);
       });
-    /* navigate("/mainhost"); */ //호스트 메인페이지로 이동 */
+    navigate(`/main/host/${userId}`); //호스트 메인페이지로 이동 */
   };
 
   //서버에서 값 받아오기

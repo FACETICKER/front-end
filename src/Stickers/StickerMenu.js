@@ -209,12 +209,12 @@ export function StickerMenu() {
 
   const handleClickSticker = (imageId) => {
     dispatch(setSelectedImage(imageId));
-    navigate("/clicksticker");
+    navigate(`/sticker/host/${userId}/click`);
   };
   const selectedImageId = useSelector((state) => state.image.selectedImageId);
 
   const handleClose = () => {
-    navigate("/hoststicker");
+    navigate(`/sticker/host/${userId}`);
   };
 
   return (
