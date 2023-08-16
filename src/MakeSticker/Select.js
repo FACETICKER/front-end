@@ -87,7 +87,7 @@ const Select = ({ handleCaptureImg }) => {
     dispatch(StickerSlice.actions.stepcontrol(false));
   };
   const handleMain = () => {
-    navigate("/mainhost");
+    navigate(`/main/host/${userId}`);
   };
 
   const handlestatus = () => {
@@ -103,6 +103,7 @@ const Select = ({ handleCaptureImg }) => {
   const jwt = Idtoken()[1]; //호스트 토큰
   const userId = Idtoken()[0]; //호스트 아이디
   //호스트 아이디
+  /*   const userId = Idtoken()[0]; */
   const HostId = null; //방문자가 가지고 온 호스트 아이디
 
   //jwt가 없으면 visitor, jwt 있으면 host

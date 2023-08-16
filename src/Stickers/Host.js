@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import menu from "../img/Stickers_img/menu.png";
 import reposition from "../img/Stickers_img/change.png";
 import middle from "../img/Stickers_img/Middle.png";
+import Idtoken from "./Idtoken";
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
   background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
@@ -138,12 +139,17 @@ const Middle = styled.img`
 export function Host() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const userId = Idtoken()[0]; //호스트 아이디
+
+  const jwt = Idtoken()[1]; //호스트 토큰
+
   const handleReposition = () => {
-    navigate("/repositionsticker");
+    navigate(`/sticker/host/${userId}/reposition`);
   };
 
   const handleMenu = () => {
-    navigate("/stickermenu");
+    navigate(`/sticker/host/${userId}/menu`);
   };
 
   const UID = useSelector((state) => state.login.userId);
