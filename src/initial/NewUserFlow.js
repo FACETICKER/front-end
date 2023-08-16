@@ -1,3 +1,4 @@
+import NextLoginList , { update } from "./NextLoginList";
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -8,15 +9,27 @@ import mini1 from "../img/NewUserFlow_img/mini1.png";
 import mini2 from "../img/NewUserFlow_img/mini2.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import PageSlice from "../QnA/Slice/PageSlice";
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
 
 function NewUserFlow() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const NextLoginList = useSelector(state => {return state.nextLoginList;});
+  const Next1 = useSelector(state => {return state.nextLoginList.stickeris;});
+  const Next2 = useSelector(state => {return state.nextLoginList.questionis;});
+  
   const handleButtonClick = () => {
-    navigate("/initial");
+    if (Next1){
+      navigate("/makesticker");  
+    } else if  (Next2) {
+      dispatch(PageSlice.actions.guest());
+    } else {
+      navigate("/initial");
+    }
   };
+  console.log(NextLoginList)
+
 
   return (
     <div className="BackgroundWrap-4">

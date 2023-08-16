@@ -46,7 +46,10 @@ function InitialSurvey() {
   const [condition5, setCondition5] = useState(false);
   const [condition6, setCondition6] = useState(false);
   const [name, setName] = useState(false);
+  const [inputValues, setInputValues] = useState([]);
   const [initialdata,setInitialdata] = useState(null);
+  const [Month, setMonth] = useState(false);
+  const [Date, setDate] = useState(false);
   const BackgroundWrap = styled.div`
     background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
   `;
@@ -154,7 +157,9 @@ function InitialSurvey() {
       nameInput2.style.position='relative';
       nameInput2.style.top='10%';
       nameInput2.style.left='-35%';
-      setChooseDay(valueGroups["Month"] + " " + valueGroups["Days"]);
+      setChooseDay(selectedValue["month"] + " " + selectedValue["day"]);
+      setMonth(valueGroups["Month"]);
+      setDate(valueGroups["Days"]);
       handleInitialDayChange();
       toggleBodyOverflow(false);
       if (resultDiv4.style.width < "285px") {
@@ -440,9 +445,10 @@ function InitialSurvey() {
     console.log(InitialSurveyList);    
   };
   console.log(initialdata);
-  const API = initialdata == null ? "http://app.faceticker.site/8/poster" : "http://app.faceticker.site/8/poster/patch";
+  const user_id = Token()[0];
+  const API = initialdata == null ? `http://app.faceticker.site/${user_id}/poster` : `http://app.faceticker.site/${user_id}/poster/patch`;
   const method = initialdata == null   ? "POST" : "PATCH";
-  const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VyX2VtYWlsIjoiaW16emFuZzZ1QGdtYWlsLmNvbSIsImlhdCI6MTY5MjE3MTM5NiwiZXhwIjoxNjkyMTc0OTk2fQ.qzxQzSsJYum4eep51RxvxSHyVkYYOQuBBb5FAgBQH1g";
+  const JWT = Token()[1];
   console.log(API);
   console.log(method);
   console.log(JWT);
@@ -461,29 +467,54 @@ function InitialSurvey() {
           nickname: InitialSurveyList.Name_id,
           season: InitialSurveyList.Season_id,
           number: InitialSurveyList.Number_id,
-          date: InitialSurveyList.Day_id,
+          date: selectedValue["month"] + " " + selectedValue["day"],
           important: InitialSurveyList.Import_id,
         },
         ),
       })
         .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
         .then((data) => {
-            console.log("성공", data);
+            console.log("PATCH성공", data.result[0]);
         })
         .catch((error) => {
             console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
         });
   }
-
-  
+  useEffect(() => {
+    const digits = chooseNumber.toString().split('').map(Number);
+    setInputValues(digits);
+  }, []);
 
   useEffect(() => {
-    fetch(`https:app.faceticker.site/8`)
+    const nameInput = document.getElementById("name");
+    const seasonInput = document.getElementById("chooseSeason");
+    const opendate = document.getElementById("result3");
+    const openImport = document.getElementById("result4");
+    fetch(`https:app.faceticker.site/${user_id}`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {
           console.log("성공", data.result.hostPoster[0]);
           setInitialdata(data.result.hostPoster[0]);
+          nameInput.value=(data.result.hostPoster[0].nickname);
+          handleNameInput();
+          if (data.result.hostPoster[0].q_season =="여름") {
+            handleSeasonButtonClick("여름")
+          } else if (data.result.hostPoster[0].q_season == "봄"){
+            handleSeasonButtonClick("봄")
+          } else if (data.result.hostPoster[0].q_season == "가을"){
+            handleSeasonButtonClick("가을")
+          }
+          handleShowFourNumber();
+          setChooseNumber(data.result.hostPoster[0].q_number);
+          opendate.style.display = "block";
+          setChooseDay(data.result.hostPoster[0].q_date);
+          openImport.style.display = "block";
+          if (data.result.hostPoster[0].q_important=='사랑'){
+            handleImportButtonClick("사랑");
+          } else if (data.result.hostPoster[0].q_important=='우정'){
+            handleImportButtonClick("우정");
+          }
         } 
       })
       .catch((error) => {
@@ -491,6 +522,45 @@ function InitialSurvey() {
       });
   }, []);
 
+  useEffect(() => {
+    if (chooseNumber !== "" && !isNaN(parseInt(chooseNumber))) {
+      setInput1(chooseNumber.toString()[0]);
+      setInput2(chooseNumber.toString()[1]);
+      setInput3(chooseNumber.toString()[2]);
+      setInput4(chooseNumber.toString()[3]);
+    }
+  }, [chooseNumber]);
+
+
+
+  const months = ["January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",];
+  const days = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, '0'));
+
+  const [selectedValue, setSelectedValue] = useState({
+    month: months[0],
+    day: days[0]
+  });
+
+  const handleValueChange = (key, value) => {
+    setSelectedValue(prevValues => ({ ...prevValues, [key]: value }));
+  };
+  console.log('100');
+  console.log(InitialSurveyList.Name_id,
+    InitialSurveyList.Season_id,
+    InitialSurveyList.Number_id,
+    selectedValue["month"] + " " + selectedValue["day"],
+    InitialSurveyList.Import_id,);
 
   return (
     <div className="BackgroundWrap">
@@ -710,10 +780,9 @@ function InitialSurvey() {
                   style={{ display: "none", height: "200px" }}
                 >
                   <Picker
-                    ref={pickerRef}
-                    optionGroups={optionGroups}
-                    valueGroups={valueGroups}
-                    onChange={handleChange}
+                    optionGroups={{ month: months, day: days }}
+                    valueGroups={selectedValue}
+                    onChange={handleValueChange}
                   />
                 </div>
               </div>

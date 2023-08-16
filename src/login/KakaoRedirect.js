@@ -59,7 +59,7 @@ export function KakaoRedirect() {
         dispatch(setId(resdata.result.user_id));
         dispatch(setToken(resdata.result.jwt));
 
-        navigate("/newuserflow");
+        navigate("/welcome");
       } catch (error) {
         console.error("Error fetching data:", error);
       }

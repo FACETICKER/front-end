@@ -3,9 +3,8 @@ import {createSlice} from '@reduxjs/toolkit';
 const NextLoginList = createSlice({
   name: 'nextLoginList',
   initialState: {
-      stickeris: 0,
-      questionis: 0,
-      nothing: 0,
+      stickeris: false,
+      questionis: false,
   },
   reducers: {
     setStickeris: (state, action) => {
@@ -14,16 +13,12 @@ const NextLoginList = createSlice({
     setQuestionis: (state, action) => {
       state.questionis = action.payload;
     },
-    setNothing: (state, action) => {
-      state.nothing = action.payload;
-    },
   },
 });
 
 export const {
   setStickeris,
   setQuestionis,
-  setNothing
 } = NextLoginList.actions;
 export const { update } = NextLoginList.actions;
 

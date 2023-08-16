@@ -11,6 +11,7 @@ import edit from "../img/MainpageHost_img/square-edit.svg";
 import recordpage from "../img/MainpageHost_img/3users.svg";
 import close from "../img/MainpageHost_img/close-x.svg";
 import React, { useState, useEffect } from "react";
+import PageSlice from "../QnA/Slice/PageSlice";
 import html2canvas from "html2canvas";
 import "./MainpageHost.css";
 import ReactDOM from "react-dom";
@@ -32,6 +33,7 @@ const Div = styled.div`
   position: absolute;
   left: 30%;
 `;
+
 
 function MainpageHost() {
   const navigate = useNavigate();
@@ -75,7 +77,7 @@ function MainpageHost() {
   };
 
   const handleLinkDownload = () => {
-    const address = "http://localhost:3000/mainhost";
+    const address = `http://localhost:3000/mainhost`;
     navigator.clipboard
       .writeText(address)
       .then(() => {
@@ -144,21 +146,7 @@ function MainpageHost() {
   const handleWinter = () => {
     setSeason("WIN 겨울 TER");
   };
-  useEffect(() => {
-    const handleSelleckSeason = () => {
-      if (InitialSurveyList.Season_id === '봄') {
-        handleSpring();
-      } else if (InitialSurveyList.Season_id === '여름') {
-        handleSummer();
-      } else if (InitialSurveyList.Season_id === '가을') {
-        handleAutumn();
-      } else if (InitialSurveyList.Season_id === '겨울') {
-        handleWinter();
-      }
-    };
-
-    handleSelleckSeason();
-  }, []);
+  
   useEffect(()=> {
     const handleSelleckName = () => {
       setName(InitialSurveyList.Name_id)
@@ -213,32 +201,31 @@ function MainpageHost() {
     navigate("/stickerletter");
   };
 
-  const handleStickerPage = () => { 
-    navigate("/hoststicker");
-  };
+
   const handleQna = () => {
-    navigate("/qna");
+    dispatch(PageSlice.actions.host());
   };
   const handleHoststicker = () => {
-    navigate("/hoststicker");
+    navigate(`/sticker/host/${user_id}`);
   };
   
-  const JWT ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VyX2VtYWlsIjoiaW16emFuZzZ1QGdtYWlsLmNvbSIsImlhdCI6MTY5MjE3MjM1NSwiZXhwIjoxNjkyMTc1OTU1fQ.3YdMkqanMd-UIj-T4JDhF_Xg7nWYrQlqliwxmrVmsYM";
+  const JWT =Token()[1];
+  const user_id = Token()[0];
   const [messagedata,setMessagedata] =useState(null);
   const test2 = () => {
-
     const headers = {
         "x-access-token": JWT,
         'Content-Type': 'application/json'
     };
     
-    fetch(`http://app.faceticker.site/8/sticker/message`, {
+    fetch(`http://app.faceticker.site/${user_id}/sticker/message`, {
         method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
         headers: headers,
       }) // 서버로 GET 요청을 보냄
         .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
         .then((data) => {
-            console.log("성공",data);
+            console.log("성공",data.result[0].message);
+            setMessage(data.result[0].message);
         })
         .catch((error) => {
             console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
@@ -246,21 +233,36 @@ function MainpageHost() {
   }
   test2();
   useEffect(() => {
-    fetch(`https:app.faceticker.site/8`)
+    fetch(`https:app.faceticker.site/${user_id}`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          console.log("성공", data);
-          setMessagedata(data);
+          console.log("성공", data.result.hostPoster[0]);
+          setMessagedata(data.result.hostPoster[0]);
+          setChinese(data.result.hostPoster[0].chinese);
+          setName(data.result.hostPoster[0].nickname);
+          setMean(data.result.hostPoster[0].meaning);
+          setKorean(data.result.hostPoster[0].pronunciation);
+          const handleSelleckSeason = () => {
+            if (data.result.hostPoster[0].q_season === '봄') {
+              handleSpring();
+            } else if (data.result.hostPoster[0].q_season === '여름') {
+              handleSummer();
+            } else if (data.result.hostPoster[0].q_season === '가을') {
+              handleAutumn();
+            } else if (data.result.hostPoster[0].q_season === '겨울') {
+              handleWinter();
+            }
+          };
+          handleSelleckSeason();
+          setDay(data.result.hostPoster[0].q_date)
         } 
       })
       .catch((error) => {
         console.error("오류 발생", error);
       });
   }, []);
-
-
-
+  
 
   return (
     <div className="BackgroundWarp">

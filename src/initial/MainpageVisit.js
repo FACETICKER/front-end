@@ -1,3 +1,5 @@
+import InitialSurveyList from "./InitialSurveyList.js";
+import Token from "../QnA/Token copy.js";
 import NextLoginList , { update } from "./NextLoginList";
 import message from "../img/MainpageVisit_img/ri_message-3-line.png";
 import Vector from "../img/MainpageVisit_img/Group 157 1.png";
@@ -9,6 +11,8 @@ import recordpage from "../img/MainpageVisit_img/3users.svg";
 import styled from "styled-components";
 import React, { useState,useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import PageSlice from "../QnA/Slice/PageSlice";
+
 
 import "./MainpageVisit.css";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +20,6 @@ import { useNavigate } from "react-router-dom";
 import {
   setStickeris,
   setQuestionis,
-  setNothing,
 } from './NextLoginList.js'; // 경로는 실제 파일 경로에 맞게 수정해주세요
 
 
@@ -30,6 +33,15 @@ function MainpageVisit() {
   const [showModal3, setShowModal3] = useState(false);
   const [stickerInput, setStickerInput] = useState(false);
   const [stickerInput2, setStickerInput2] = useState(false);
+  const [Korean, setKorean] = useState("");
+  const [Chinese, setChinese] = useState("");
+  const [Mean, setMean] = useState("");
+  const [Season, setSeason] = useState("");
+  const [Name, setName] = useState("");
+  const [Number, setNumber] = useState("");
+  const [Day, setDay] = useState("");
+  const [Message, setMessage] = useState("");
+
 
   const BackgroundWrap = styled.div`
     background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
@@ -90,16 +102,16 @@ function MainpageVisit() {
     console.log(NextLoginList);
   };
   const handleQna = () => {
-    navigate("/qna");
+    dispatch(PageSlice.actions.guest());
   };
   const handleMainHost = () => {
-    navigate("/mainhost");
+    navigate(`/main/host/${user_id}`);
   };
   const handleVisitorsticker = () => {
-    navigate("/visitorsticker");
+    navigate(`/sticker/${user_id}`);
   };
-  const [count1, setCount1] = useState(0);
-  const [count2, setCount2] = useState(0);
+  const [count1, setCount1] = useState(false);
+  const [count2, setCount2] = useState(false);
 
   {/*const handleStickerLogin = () => {
     stickerLogin();
@@ -141,42 +153,47 @@ function MainpageVisit() {
     setStickerInput2(100)
   };
 */}
-const dispatchNothing = () => {
-  dispatch(setNothing(1));
-}
+const handleSpring = () => {
+  setSeason("SPR 봄 ING");
+};
+const handleSummer = () => {
+  setSeason("SUM 여름 MER");
+};
+const handleAutumn = () => {
+  setSeason("AUT 가을 UMN");
+};
+const handleWinter = () => {
+  setSeason("WIN 겨울 TER");
+};
 
 const handleStickerLogin = () => {
-  console.log(count1);
-  setCount1(count1+1);
-  console.log(count1);
-  handleYes();
+  dispatch(setStickeris(true));
+  setCount1(true);
 };
-const dispatchSticker = () => {
-  dispatch(setStickeris(1));
-}
 useEffect(() => {
-  if (count1){
-    dispatchSticker();
-    console.log(NextLoginList);
+  if(count1) {
+    dispatch(setQuestionis(false));
+    dispatch(setStickeris(true));
+    navigate("/");
   }
 }, [count1]);
 
 const handleQuestionLogin = () => {
-  setCount2(count2+1);
-  handleYes();
+  dispatch(setStickeris(false));
+  dispatch(setQuestionis(true));
+  setCount2(true);
 };
-const dispatchQuestion = () =>{
-  dispatch(setQuestionis(1));
-}
 useEffect(() => {
   if (count2) {
-    dispatchQuestion();
-    console.log(NextLoginList);
+    navigate("/");
   }
 }, [count2]);
-const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX2VtYWlsIjoiaW16emFuZzZ1QG5hdmVyLmNvbSIsImlhdCI6MTY5MjEwMzI5NiwiZXhwIjoxNjkyMTA2ODk2fQ.11fvOad-CvkH7YGY30NkD5fg568_S9nIFxosEJkgHCY";
-  
-  
+
+
+const JWT =Token()[1];
+const user_id = 3;  
+const [messagedata,setMessagedata] =useState(null);
+
   const test1 = () => {
 
     const headers = {
@@ -198,7 +215,57 @@ const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX2VtYW
   }
   test1();
 
+  useEffect(() => {
+    fetch(`https:app.faceticker.site/${user_id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          console.log("성공", data.result.hostPoster[0]);
+          setMessagedata(data.result.hostPoster[0]);
+          setChinese(data.result.hostPoster[0].chinese);
+          setName(data.result.hostPoster[0].nickname);
+          setMean(data.result.hostPoster[0].meaning);
+          setKorean(data.result.hostPoster[0].pronunciation);
+          setNumber(data.result.hostPoster[0].q_number);
+          const handleSelleckSeason = () => {
+            if (data.result.hostPoster[0].q_season === '봄') {
+              handleSpring();
+            } else if (data.result.hostPoster[0].q_season === '여름') {
+              handleSummer();
+            } else if (data.result.hostPoster[0].q_season === '가을') {
+              handleAutumn();
+            } else if (data.result.hostPoster[0].q_season === '겨울') {
+              handleWinter();
+            }
+          };
+          handleSelleckSeason();
+          setDay(data.result.hostPoster[0].q_date);
+        } 
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
 
+  const test2 = () => {
+    const headers = {
+        'Content-Type': 'application/json'
+    };
+    
+    fetch(`http://app.faceticker.site/${user_id}/sticker/message`, {
+        method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
+        headers: headers,
+      }) // 서버로 GET 요청을 보냄
+        .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
+        .then((data) => {
+            console.log("성공",data.result[0].message);
+            setMessage(data.result[0].message);
+        })
+        .catch((error) => {
+            console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
+        });
+  }
+  test2();
 
 
   return (
@@ -272,24 +339,24 @@ const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX2VtYW
                 <div id="ment" className="l22">
                   <div className="l23">
                     <p id="" className="l3">
-                      어서옵쇼 다들 스티커 붙여주세요..!
+                    {Message || "어서옵쇼 다들 스티커 붙여주세요..!"}
                     </p>
                   </div>
                 </div>
                 <div style={{ width: "390px", height: "100px" }}>
                   <div style={{ float: "left" }} name="이름">
                     <p id="" className="l4">
-                      수진님
+                      {Name || "수민님"}
                     </p>
                   </div>
                   <div style={{ float: "left" }} name="숫자">
                     <p id="" className="l5">
-                      #28
+                      {Number || "#128"}
                     </p>
                   </div>
                   <div style={{ float: "left" }} name="날짜">
                     <p id="" className="l6">
-                      JUNE, 28
+                      {Day || "JUNE, 28"}
                     </p>
                   </div>
                 </div>
@@ -325,17 +392,17 @@ const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX2VtYW
                       ></div>
                     </div>
                     <p id="" className="l7">
-                      오매불망
+                    {Korean || "오매불망"}
                     </p>
                   </div>
                   <div name="한자">
                     <p id="" className="l8">
-                      寤寐不忘
+                    {Chinese || "寤寐不忘"}
                     </p>
                   </div>
                   <div name="뜻">
                     <p id="" className="l9">
-                      자나깨나 잊지 못함
+                    {Mean || "자나깨나 잊지 못함"}
                     </p>
                   </div>
                 </div>
