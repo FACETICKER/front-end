@@ -53,13 +53,13 @@ export function KakaoRedirect() {
         );
         const resdata = response.data;
         console.log(resdata);
-        
+
         // 토큰, 아이디 저장
-        
+
         dispatch(setId(resdata.result.user_id));
         dispatch(setToken(resdata.result.jwt));
 
-        navigate("/initial");
+        navigate("/newuserflow");
       } catch (error) {
         console.error("Error fetching data:", error);
       }

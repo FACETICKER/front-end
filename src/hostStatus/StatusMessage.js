@@ -7,6 +7,7 @@ import inputimg from "../img/Stickers_img/inputimg.png";
 import backicon from "../img/Stickers_img/backIcon.png";
 import checkicon from "../img/Stickers_img/checkicon.png";
 import letter from "../img/Stickers_img/letter.png";
+import Idtoken from "../Stickers/Idtoken";
 
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
@@ -176,9 +177,9 @@ export function StatusMessage() {
   const saveStatus = (event) => {
     setStatusValue(event.target.value);
   };
-  const userId = "1";
-  const jwt =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkxOTg0NjgyLCJleHAiOjE2OTE5ODgyODJ9.aoFSEQAOfdBNxA4CNYkkaBVHfXRThGZRMuHSb_oq3iI";
+  const jwt = Idtoken()[1]; //호스트 토큰
+  const userId = Idtoken()[0]; //호스트 아이디
+  /*   console.log("토큰", jwt); */
   const headers = {
     "x-access-token": jwt,
     "Content-Type": "application/json",
@@ -192,27 +193,28 @@ export function StatusMessage() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("성공", data);
+        console.log("호스트 상태메시지 성공", data);
       })
       .catch((error) => {
-        console.error("실패", error);
+        console.error("호스트 상태메시지실패", error);
       });
-    navigate("/mainhost"); //호스트 메인페이지로 이동 */
+    /* navigate("/mainhost"); */ //호스트 메인페이지로 이동 */
   };
 
   //서버에서 값 받아오기
-  /*  useEffect(() => {
-    fetch("https://faceticker.site/app/3/sticker/message?type=host")
+  useEffect(() => {
+    fetch(`https://app.faceticker.site/${userId}/sticker/message`, {
+      headers: headers,
+    })
       .then((response) => response.json())
       .then((data) => {
-        if (data.status) {
-          setStatusValue(data.status);
-        }
+        console.log("get", data.result[0].message);
+        setStatusValue(data.result[0].message);
       })
       .catch((error) => {
         console.error("오류 발생", error);
       });
-  }, []); */
+  }, []);
 
   const handleClickInput = () => {
     setHideImg(false);
