@@ -223,27 +223,8 @@ function MainpageHost() {
     navigate("/hoststicker");
   };
   
-  const JWT = Token()[1];
-  const test1 = () => {
-
-    const headers = {
-        "x-access-token": JWT,
-        'Content-Type': 'application/json'
-    };
-    
-    fetch(`http://app.faceticker.site/8`, {
-        method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
-        headers: headers,
-      }) // 서버로 GET 요청을 보냄
-        .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
-        .then((data) => {
-            console.log(data);
-        })
-        .catch((error) => {
-            console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
-        });
-  }
-  test1();
+  const JWT ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VyX2VtYWlsIjoiaW16emFuZzZ1QGdtYWlsLmNvbSIsImlhdCI6MTY5MjE3MjM1NSwiZXhwIjoxNjkyMTc1OTU1fQ.3YdMkqanMd-UIj-T4JDhF_Xg7nWYrQlqliwxmrVmsYM";
+  const [messagedata,setMessagedata] =useState(null);
   const test2 = () => {
 
     const headers = {
@@ -257,13 +238,27 @@ function MainpageHost() {
       }) // 서버로 GET 요청을 보냄
         .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
         .then((data) => {
-            console.log(data);
+            console.log("성공",data);
         })
         .catch((error) => {
             console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
         });
   }
   test2();
+  useEffect(() => {
+    fetch(`https:app.faceticker.site/8`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          console.log("성공", data);
+          setMessagedata(data);
+        } 
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
+
 
 
 
