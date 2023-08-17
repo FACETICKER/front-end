@@ -19,18 +19,9 @@ const QnApage = () => {
     return state.page;
   });
 
-  const click = () => {
-    {
-      page === "host"
-        ? dispatch(PageSlice.actions.guest())
-        : dispatch(PageSlice.actions.host());
-    }
-    dispatch(FirstSlice.actions.change());
-  };
-
   const [getques, setgetques] = useState(''); // 페이지 로드 시 api에서 n문n답 조회
 
-  const test2 = () => {
+  const Getinfo = () => {
 
     const headers = {
         "x-access-token": JWT,
@@ -57,7 +48,7 @@ const QnApage = () => {
   const JWT = Token()[1];
 
   useEffect(() => {
-    test2();
+    Getinfo();
   }, []);
 
   useEffect(() => {
@@ -82,7 +73,6 @@ const QnApage = () => {
 
   return (
     <div className={styles.dream}>
-      <button onClick={click}>host / visitor 전환</button>
       {page === "host" && <QnApage_host />}
       {page === "guest" && <QnApage_guest />}
       {page === "basic" && <Basic_Choice />}
