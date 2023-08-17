@@ -70,6 +70,12 @@ export function Visitor() {
   const handlesticker = () => {
     navigate("/makesticker");
   };
+
+  const currentURL = window.location.href;
+  const parts = currentURL.split("/");
+  const number = parts[parts.length - 1];
+
+  console.log(number);
   return (
     <BackgroundWrap>
       <Background>

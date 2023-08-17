@@ -227,6 +227,9 @@ export function ClickSticker() {
   const [letterValue, setLetterValue] = useState("");
   const [stickerImg, setStickerImg] = useState();
   const [name, setName] = useState();
+  const [length, setLength] = useState(null);
+
+  const [imageData, setImageData] = useState([]);
 
   //클릭한 이미지 방문자 id
   const selectedImageKey = useSelector((state) => state.app.selectedImageKey);
@@ -235,16 +238,13 @@ export function ClickSticker() {
     setIsFlipped(!isFlipped);
   };
 
-  const [imageData, setImageData] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleBackClick = () => {
     navigate(`/sticker/host/${userId}`);
   };
-  const handleTrashClick = () => {
-    navigate(`/sticker/host/${userId}`);
-  };
+
   /*     const handleProfileClick = (item) => {
   //visior id 받아와서 해당 main으로 이동
 
@@ -257,8 +257,9 @@ export function ClickSticker() {
 
   const userId = 1; /* Idtoken()[0]; */ //호스트 아이디
   const ID = userId;
-  const jwt = Idtoken()[1]; //호스트 토큰
-
+  /*   const jwt = Idtoken()[1];  */ //호스트 토큰
+  const jwt =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkyMTk0MjMzLCJleHAiOjE2OTIxOTc4MzN9.Z52SZXiN5MeNM7Z8I-IEIORn3O1a2_oUBUwMI_lMbTs";
   const headers = {
     "x-access-token": jwt,
     "Content-Type": "application/json",
@@ -296,64 +297,102 @@ export function ClickSticker() {
         setStickerImg(filteredData2[0].final_image_url);
         setName(filteredData2[0].name);
         console.log(filteredData2[0].name);
-        setImageData("name", filteredData2[0].final_image_url);
+        setImageData(filteredData);
+        setLength(filteredData.length);
       })
       .catch((error) => {
         console.error("오류 발생", error);
       });
   }, []);
 
-  //스티커 삭제
-  useEffect(() => {
-    fetch(
-      `http://app.faceticker.site/${ID}/sticker/visitor/${selectedImageId}`,
-      {
-        method: "DELETE",
-        headers: headers,
-      }
-    )
-      .then((response) => response.json())
+  console.log("개수", length);
 
-      .then((data) => {
-        console.log("특정 스티커 삭제", data);
-      })
-      .catch((error) => {
-        console.error("특정 스티커 삭제 오류 발생", error);
-      });
-  }, [handleTrashClick]);
+  //스티커 삭제
+  const handleTrashClick = async () => {
+    try {
+      const response = await fetch(
+        `http://app.faceticker.site/${ID}/sticker/visitor/${selectedImageId}`,
+        {
+          method: "DELETE",
+          headers: headers,
+        }
+      );
+
+      const responseData = await response.json();
+      console.log("특정 스티커 삭제 성공", responseData);
+
+      if (response.ok) {
+        navigate(`/sticker/host/${userId}`);
+      } else {
+        console.log("특정 스티커 삭제 실패");
+      }
+    } catch (error) {
+      console.error("특정 스티커 삭제 실패", error);
+    }
+  };
 
   return (
     <BackgroundWrap>
       <Background>
         <MainHeader />
         <Bottom>
-          {/* {idArray.length === 1 && (
-            <One>
-              <Second>
-                <TrashIcon onClick={handleTrashClick} src={trash} />
-                <Shadow />
-              </Second>
-              <Dot3>
-                <Dots />
-              </Dot3>
-              <Name>수진</Name>
-            </One>
+          {length == 1 && (
+            <div
+              className={`card ${isFlipped ? "flipped" : ""}`}
+              onClick={handleCardClick}
+            >
+              <div className="front">
+                <Second>
+                  <TrashIcon onClick={handleTrashClick} src={trash} />
+                  <Shadow />
+                  <StickerImg src={stickerImg} />
+                </Second>
+
+                <Dot3>
+                  <Dots />
+                </Dot3>
+                <Name>{name}</Name>
+              </div>
+              <div className="back">
+                <Back>
+                  <TrashIcon2 onClick={handleTrashClick} src={trash} />
+                  <BackImg src={post} />
+                  <LetterContent>{letterValue}</LetterContent>
+                  <StickerImg2 src={stickerImg} />
+                </Back>
+              </div>
+            </div>
           )}
-          {idArray.length === 2 && (
-            <One>
-              <Second>
-                <TrashIcon onClick={handleTrashClick} src={trash} />
-                <Shadow />
-              </Second>
-              <SecondShadow />
-              <Dot3>
-                <Dots />
-              </Dot3>
-              <Name>이름</Name>
-            </One>
+          {length == 2 && (
+            <div
+              className={`card ${isFlipped ? "flipped" : ""}`}
+              onClick={handleCardClick}
+            >
+              <div className="front">
+                <Second>
+                  <TrashIcon onClick={handleTrashClick} src={trash} />
+                  <Shadow />
+                  <StickerImg src={stickerImg} />
+                </Second>
+                <SecondShadow />
+
+                <Dot3>
+                  <Dots />
+                </Dot3>
+                <Name>{name}</Name>
+              </div>
+              <div className="back">
+                <Back>
+                  <TrashIcon2 onClick={handleTrashClick} src={trash} />
+                  <BackImg src={post} />
+                  <LetterContent>{letterValue}</LetterContent>
+                  <StickerImg2 src={stickerImg} />
+                </Back>
+                <SecondShadow />
+              </div>
+            </div>
           )}
- */}
-          {imageData && (
+          {length >= 3 && (
             <div
               className={`card ${isFlipped ? "flipped" : ""}`}
               onClick={handleCardClick}
