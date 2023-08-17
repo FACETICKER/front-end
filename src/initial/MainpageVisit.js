@@ -222,7 +222,7 @@ function MainpageVisit() {
   test1();
 
   useEffect(() => {
-    fetch(`https:app.faceticker.site/${user_id}`)
+    fetch(`https://app.faceticker.site/${user_id}`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {

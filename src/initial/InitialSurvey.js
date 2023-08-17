@@ -443,12 +443,12 @@ function InitialSurvey() {
     console.log(InitialSurveyList);
   };
   console.log(initialdata);
-
   const user_id = Token()[0];
   const API =
     initialdata == null
       ? `http://app.faceticker.site/${user_id}/poster`
       : `http://app.faceticker.site/${user_id}/poster/patch`;
+
   const method = initialdata == null ? "POST" : "PATCH";
   const JWT = Token()[1];
   console.log("API", API);
@@ -462,7 +462,7 @@ function InitialSurvey() {
     const seasonInput = document.getElementById("chooseSeason");
     const opendate = document.getElementById("result3");
     const openImport = document.getElementById("result4");
-    fetch(`https:app.faceticker.site/${user_id}`)
+    fetch(`https://app.faceticker.site/${user_id}`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {
@@ -492,6 +492,7 @@ function InitialSurvey() {
         console.error("get 오류 발생", error);
       });
   }, []);
+
   //post or patch
   const test1 = () => {
     const headers = {
@@ -512,6 +513,13 @@ function InitialSurvey() {
     })
       .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
       .then((data) => {
+        console.log("data", {
+          nickname: InitialSurveyList.Name_id,
+          season: InitialSurveyList.Season_id,
+          number: InitialSurveyList.Number_id,
+          date: selectedValue["month"] + " " + selectedValue["day"],
+          important: InitialSurveyList.Import_id,
+        });
         console.log("Post / patch 성공", data);
       })
       .catch((error) => {
