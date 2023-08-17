@@ -1,6 +1,6 @@
 import InitialSurveyList from "./InitialSurveyList.js";
 import Token from "../QnA/Token copy.js";
-import NextLoginList , { update } from "./NextLoginList";
+import NextLoginList, { update } from "./NextLoginList";
 import message from "../img/MainpageVisit_img/ri_message-3-line.png";
 import Vector from "../img/MainpageVisit_img/Group 157 1.png";
 import threeboll from "../img/MainpageVisit_img/Group 77.svg";
@@ -9,24 +9,22 @@ import close from "../img/MainpageVisit_img/close-x.svg";
 import sticker from "../img/MainpageVisit_img/sticker.svg";
 import recordpage from "../img/MainpageVisit_img/3users.svg";
 import styled from "styled-components";
-import React, { useState,useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PageSlice from "../QnA/Slice/PageSlice";
-
 
 import "./MainpageVisit.css";
 import { useNavigate } from "react-router-dom";
 
-import {
-  setStickeris,
-  setQuestionis,
-} from './NextLoginList.js'; // 경로는 실제 파일 경로에 맞게 수정해주세요
-
+import { setStickeris, setQuestionis } from "./NextLoginList.js"; // 경로는 실제 파일 경로에 맞게 수정해주세요
+import { setHostId } from "../login/LoginSlice.js";
 
 function MainpageVisit() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const NextLoginList = useSelector(state => {return state.nextLoginList;});
+  const NextLoginList = useSelector((state) => {
+    return state.nextLoginList;
+  });
   const [showFooter, setShowFooter] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
@@ -42,6 +40,13 @@ function MainpageVisit() {
   const [Day, setDay] = useState("");
   const [Message, setMessage] = useState("");
 
+  //방문자가 가지고 온 호스트 아이디 추출
+  const currentURL = window.location.href;
+  const parts = currentURL.split("/");
+  const hostID = parts[parts.length - 1]; //방문자가 가지고 온 호스트 ID
+  console.log(hostID);
+  //호스트 아이디 저장
+  dispatch(setHostId(hostID));
 
   const BackgroundWrap = styled.div`
     background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
@@ -113,7 +118,8 @@ function MainpageVisit() {
   const [count1, setCount1] = useState(false);
   const [count2, setCount2] = useState(false);
 
-  {/*const handleStickerLogin = () => {
+  {
+    /*const handleStickerLogin = () => {
     stickerLogin();
     console.log(NextLoginList);
     handleYes();
@@ -152,67 +158,66 @@ function MainpageVisit() {
     }
     setStickerInput2(100)
   };
-*/}
-const handleSpring = () => {
-  setSeason("SPR 봄 ING");
-};
-const handleSummer = () => {
-  setSeason("SUM 여름 MER");
-};
-const handleAutumn = () => {
-  setSeason("AUT 가을 UMN");
-};
-const handleWinter = () => {
-  setSeason("WIN 겨울 TER");
-};
+*/
+  }
+  const handleSpring = () => {
+    setSeason("SPR 봄 ING");
+  };
+  const handleSummer = () => {
+    setSeason("SUM 여름 MER");
+  };
+  const handleAutumn = () => {
+    setSeason("AUT 가을 UMN");
+  };
+  const handleWinter = () => {
+    setSeason("WIN 겨울 TER");
+  };
 
-const handleStickerLogin = () => {
-  dispatch(setStickeris(true));
-  setCount1(true);
-};
-useEffect(() => {
-  if(count1) {
-    dispatch(setQuestionis(false));
+  const handleStickerLogin = () => {
     dispatch(setStickeris(true));
-    navigate("/");
-  }
-}, [count1]);
+    setCount1(true);
+  };
+  useEffect(() => {
+    if (count1) {
+      dispatch(setQuestionis(false));
+      dispatch(setStickeris(true));
+      navigate("/");
+    }
+  }, [count1]);
 
-const handleQuestionLogin = () => {
-  dispatch(setStickeris(false));
-  dispatch(setQuestionis(true));
-  setCount2(true);
-};
-useEffect(() => {
-  if (count2) {
-    navigate("/");
-  }
-}, [count2]);
+  const handleQuestionLogin = () => {
+    dispatch(setStickeris(false));
+    dispatch(setQuestionis(true));
+    setCount2(true);
+  };
+  useEffect(() => {
+    if (count2) {
+      navigate("/");
+    }
+  }, [count2]);
 
-
-const JWT =Token()[1];
-const user_id = 3;  
-const [messagedata,setMessagedata] =useState(null);
+  const JWT = Token()[1];
+  const user_id = 3;
+  const [messagedata, setMessagedata] = useState(null);
 
   const test1 = () => {
-
     const headers = {
-        "x-access-token": JWT,
-        'Content-Type': 'application/json'
+      "x-access-token": JWT,
+      "Content-Type": "application/json",
     };
-    
+
     fetch(`http://app.faceticker.site/3`, {
-        method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
-        headers: headers,
-      }) // 서버로 GET 요청을 보냄
-        .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
-        .then((data) => {
-            console.log(data);
-        })
-        .catch((error) => {
-            console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
-        });
-  }
+      method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
+      headers: headers,
+    }) // 서버로 GET 요청을 보냄
+      .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
+      });
+  };
   test1();
 
   useEffect(() => {
@@ -228,19 +233,19 @@ const [messagedata,setMessagedata] =useState(null);
           setKorean(data.result.hostPoster[0].pronunciation);
           setNumber(data.result.hostPoster[0].q_number);
           const handleSelleckSeason = () => {
-            if (data.result.hostPoster[0].q_season === '봄') {
+            if (data.result.hostPoster[0].q_season === "봄") {
               handleSpring();
-            } else if (data.result.hostPoster[0].q_season === '여름') {
+            } else if (data.result.hostPoster[0].q_season === "여름") {
               handleSummer();
-            } else if (data.result.hostPoster[0].q_season === '가을') {
+            } else if (data.result.hostPoster[0].q_season === "가을") {
               handleAutumn();
-            } else if (data.result.hostPoster[0].q_season === '겨울') {
+            } else if (data.result.hostPoster[0].q_season === "겨울") {
               handleWinter();
             }
           };
           handleSelleckSeason();
           setDay(data.result.hostPoster[0].q_date);
-        } 
+        }
       })
       .catch((error) => {
         console.error("오류 발생", error);
@@ -249,24 +254,23 @@ const [messagedata,setMessagedata] =useState(null);
 
   const test2 = () => {
     const headers = {
-        'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     };
-    
-    fetch(`http://app.faceticker.site/${user_id}/sticker/message`, {
-        method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
-        headers: headers,
-      }) // 서버로 GET 요청을 보냄
-        .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
-        .then((data) => {
-            console.log("성공",data.result[0].message);
-            setMessage(data.result[0].message);
-        })
-        .catch((error) => {
-            console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
-        });
-  }
-  test2();
 
+    fetch(`http://app.faceticker.site/${user_id}/sticker/message`, {
+      method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
+      headers: headers,
+    }) // 서버로 GET 요청을 보냄
+      .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
+      .then((data) => {
+        console.log("성공", data.result[0].message);
+        setMessage(data.result[0].message);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
+      });
+  };
+  test2();
 
   return (
     <div className="BackgroundWarp">
@@ -339,7 +343,7 @@ const [messagedata,setMessagedata] =useState(null);
                 <div id="ment" className="l22">
                   <div className="l23">
                     <p id="" className="l3">
-                    {Message || "어서옵쇼 다들 스티커 붙여주세요..!"}
+                      {Message || "어서옵쇼 다들 스티커 붙여주세요..!"}
                     </p>
                   </div>
                 </div>
@@ -392,17 +396,17 @@ const [messagedata,setMessagedata] =useState(null);
                       ></div>
                     </div>
                     <p id="" className="l7">
-                    {Korean || "오매불망"}
+                      {Korean || "오매불망"}
                     </p>
                   </div>
                   <div name="한자">
                     <p id="" className="l8">
-                    {Chinese || "寤寐不忘"}
+                      {Chinese || "寤寐不忘"}
                     </p>
                   </div>
                   <div name="뜻">
                     <p id="" className="l9">
-                    {Mean || "자나깨나 잊지 못함"}
+                      {Mean || "자나깨나 잊지 못함"}
                     </p>
                   </div>
                 </div>

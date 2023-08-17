@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userId: "",
   token: "",
+  hostid: "",
 };
 
 const loginSlice = createSlice({
@@ -15,8 +16,11 @@ const loginSlice = createSlice({
     setToken: (state, action) => {
       state.token = action.payload;
     },
+    setHostId: (state, action) => {
+      state.hostid = action.payload;
+    },
   },
 });
 
-export const { setId, setToken } = loginSlice.actions;
+export const { setId, setToken, setHostId } = loginSlice.actions;
 export default loginSlice.reducer;

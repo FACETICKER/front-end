@@ -152,11 +152,12 @@ export function MainHeader() {
   };
 
   const handleLogoClick = () => {
-    navigate(`/sticker/host/${userId}`);
+    navigate(`/main/host/${userId}`);
   };
 
   const handleChatClick = () => {
     dispatch(PageSlice.actions.host());
+    navigate("/qna");
   };
 
   const openModal = () => {
