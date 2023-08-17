@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Loginpage.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setLogintype } from "./LoginSlice";
-import STICKER from "../MakeSticker/STICKER";
-import { styled } from "styled-components";
+import GoogleLogo from '../img/loginImg/google.png'
+import KakaoLogo from '../img/loginImg/KakaoTalk.png'
 
 const G_CLIENT_ID = process.env.REACT_APP_G_CLIENT_ID;
 const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
@@ -35,19 +33,29 @@ const Loginpage = () => {
         <h1 className="logo">FACETICKER</h1>
       </div>
       <div className="buttons">
-        <button onClick={handleKakaoLogin} className="KakaoButton"></button>
-        <button onClick={handleGoogleLogin} className="GoogleButton"></button>
-        <p className="notice">
-          로그인시{" "}
-          <a className="noline" href="#">
-            이용약관
-          </a>{" "}
-          및{" "}
-          <a className="noline" href="#">
-            개인정보처리방침
-          </a>{" "}
-          동의로 간주됩니다.
-        </p>
+        <div className="buttonzone">
+          <button onClick={handleKakaoLogin} className="KakaoButton">
+            <img src={KakaoLogo}></img>
+            <p>카카오 계정으로 시작하기</p>
+          </button>
+          <button onClick={handleGoogleLogin} className="GoogleButton">
+            <img src={GoogleLogo}></img>
+            <p>구글 계정으로 시작하기</p>
+          </button>
+        </div>
+        <div className="textzone">
+          <p className="notice">
+            로그인시{" "}
+            <a className="noline" href="#">
+              이용약관
+            </a>{" "}
+            및{" "}
+            <a className="noline" href="#">
+              개인정보처리방침
+            </a>{" "}
+            동의로 간주됩니다.
+          </p>
+        </div>
       </div>
     </div>
   );
