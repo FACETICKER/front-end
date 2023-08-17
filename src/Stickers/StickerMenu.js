@@ -155,7 +155,7 @@ export function StickerMenu() {
   };
   const dispatch = useDispatch();
 
-  const userId = 1; /* Idtoken()[0] */ //호스트 아이디
+  const userId = Idtoken()[0]; //호스트 아이디
   const ID = userId;
   const jwt = Idtoken()[1]; //호스트 토큰
 

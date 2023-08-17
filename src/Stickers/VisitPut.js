@@ -151,10 +151,9 @@ export function VisitPut(props) {
   const [HostName, setHostName] = useState("호스트명");
   const [change, setChange] = useState(false);
 
-  /*   const userId = Idtoken()[0]; */ //호스트 아이디
-  const userId = 1;
-  const ID = userId;
-  const jwt = Idtoken()[1]; //호스트 토큰
+  //방문자가 가지고 온  호스트Id 가져오기
+  const hostid = useSelector((state) => state.login.hostid);
+  const ID = hostid;
 
   const handleButtonClick = () => {
     dispatch(setIsImageFixed(true)); // "Check" 버튼 클릭 시, 스티커 고정
@@ -163,6 +162,7 @@ export function VisitPut(props) {
 
   const handleQnA = () => {
     dispatch(PageSlice.actions.guest());
+    navigate("/qna");
   };
 
   //처음 이전 아이콘

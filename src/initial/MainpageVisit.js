@@ -17,7 +17,7 @@ import "./MainpageVisit.css";
 import { useNavigate } from "react-router-dom";
 
 import { setStickeris, setQuestionis } from "./NextLoginList.js"; // 경로는 실제 파일 경로에 맞게 수정해주세요
-import { setHostId } from "../login/LoginSlice.js";
+import { setGoMakesticker, setHostId } from "../login/LoginSlice.js";
 
 function MainpageVisit() {
   const navigate = useNavigate();
@@ -178,6 +178,7 @@ function MainpageVisit() {
     dispatch(setStickeris(true));
     setCount1(true);
   };
+
   useEffect(() => {
     if (count1) {
       dispatch(setQuestionis(false));

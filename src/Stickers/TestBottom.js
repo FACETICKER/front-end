@@ -96,13 +96,12 @@ export function TestBottom(props) {
 
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
 
-  /*  const userId = Idtoken()[0]; */ //호스트 아이디
-  const userId = 1;
-  const ID = userId;
-  const jwt = Idtoken()[1]; //호스트 토큰
+  // 방문자가 가지고 온  호스트Id 가져오기
+  const hostid = useSelector((state) => state.login.hostid);
+
+  const ID = hostid;
 
   const headers = {
-    /*    "x-access-token": jwt, */
     "Content-Type": "application/json",
   };
   const VID = props.VID2;
@@ -314,7 +313,7 @@ export function TestBottom(props) {
               src={item.final_image_url}
               style={{
                 position: "absolute",
-                top: `${(item.location_y * componentHeight) / 100}px`,
+                top: `${(item.location_y * componentHeight) / 100 + 110}px`,
                 left: `${(item.location_x * componentWidth) / 100}px`,
                 zIndex: 9999,
                 maxWidth: "100px",

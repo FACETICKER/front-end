@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   selectedImageId: null,
   images: [],
+  selectedImageId2: null,
 };
 
 const imageSlice = createSlice({
