@@ -33,7 +33,10 @@ const questionSlice = createSlice({
             const openTochange = action.payload[1];
             const questionTochange = state.find(question => question.id === Number(idTochange));
             questionTochange.open = openTochange;
-        }  
+        },
+        reset: (state, action) => {
+            return [];
+        }
     }
 });
 export default questionSlice;
