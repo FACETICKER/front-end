@@ -16,7 +16,7 @@ import html2canvas from "html2canvas";
 import "./MainpageHost.css";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux"; 
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import {
   setInitialName,
@@ -27,18 +27,19 @@ import {
   setInitialSetSticker,
   setInitialMessage,
   Season_id,
-} from './InitialSurveyList.js'; // 경로는 실제 파일 경로에 맞게 수정해주세요
+} from "./InitialSurveyList.js"; // 경로는 실제 파일 경로에 맞게 수정해주세요
 
 const Div = styled.div`
   position: absolute;
   left: 30%;
 `;
 
-
 function MainpageHost() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const InitialSurveyList = useSelector(state => {return state.initialList;});
+  const InitialSurveyList = useSelector((state) => {
+    return state.initialList;
+  });
   const [showFooter, setShowFooter] = useState(false);
   const [showModal1, setShowModal1] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
@@ -54,7 +55,6 @@ function MainpageHost() {
   const [Number, setNumber] = useState("");
   const [Day, setDay] = useState("");
   const [Message, setMessage] = useState("");
-  
 
   const toggleFooter = () => {
     setShowFooter(!showFooter);
@@ -158,26 +158,25 @@ function MainpageHost() {
   const handleWinter = () => {
     setSeason("WIN 겨울 TER");
   };
-  
-  useEffect(()=> {
+
+  useEffect(() => {
     const handleSelleckName = () => {
-      setName(InitialSurveyList.Name_id)
+      setName(InitialSurveyList.Name_id);
     };
     handleSelleckName();
-  },[]);
-  useEffect(()=> {
+  }, []);
+  useEffect(() => {
     const handleSelleckNumber = () => {
-      setNumber(InitialSurveyList.Number_id)
+      setNumber(InitialSurveyList.Number_id);
     };
     handleSelleckNumber();
-  },[]);
-  useEffect(()=> {
+  }, []);
+  useEffect(() => {
     const handleSelleckDay = () => {
-      setDay(InitialSurveyList.Day_id)
+      setDay(InitialSurveyList.Day_id);
     };
     handleSelleckDay();
-  },[]);
-  
+  }, []);
 
   const handleNoneProfile = () => {
     const resultDiv1 = document.getElementById("ment");
@@ -213,7 +212,6 @@ function MainpageHost() {
     navigate("/stickerletter");
   };
 
-
   const handleQna = () => {
     dispatch(PageSlice.actions.host());
     navigate(`/qna`);
@@ -221,32 +219,33 @@ function MainpageHost() {
   const handleHoststicker = () => {
     navigate(`/sticker/host/${user_id}`);
   };
-  
-  const JWT =Token()[1];
+
+  const JWT = Token()[1];
   const user_id = Token()[0];
   const [messagedata,setMessagedata] =useState(null);
   const [stickerdata,setStickerdata] =useState(null);
   const test2 = () => {
     const headers = {
-        "x-access-token": JWT,
-        'Content-Type': 'application/json'
+      "x-access-token": JWT,
+      "Content-Type": "application/json",
     };
-    
+
     fetch(`http://app.faceticker.site/${user_id}/sticker/message`, {
-        method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
-        headers: headers,
-      }) // 서버로 GET 요청을 보냄
-        .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
-        .then((data) => {
-            console.log("성공",data.result[0].message);
-            setMessage(data.result[0].message);
-        })
-        .catch((error) => {
-            console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
-        });
-  }
+      method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
+      headers: headers,
+    }) // 서버로 GET 요청을 보냄
+      .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
+      .then((data) => {
+        console.log("성공", data.result[0].message);
+        setMessage(data.result[0].message);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
+      });
+  };
   test2();
   useEffect(() => {
+    fetch(`https://app.faceticker.site/${user_id}`)
     fetch(`https://app.faceticker.site/${user_id}`)
       .then((response) => response.json())
       .then((data) => {
@@ -258,13 +257,13 @@ function MainpageHost() {
           setMean(data.result.hostPoster[0].meaning);
           setKorean(data.result.hostPoster[0].pronunciation);
           const handleSelleckSeason = () => {
-            if (data.result.hostPoster[0].q_season === '봄') {
+            if (data.result.hostPoster[0].q_season === "봄") {
               handleSpring();
-            } else if (data.result.hostPoster[0].q_season === '여름') {
+            } else if (data.result.hostPoster[0].q_season === "여름") {
               handleSummer();
-            } else if (data.result.hostPoster[0].q_season === '가을') {
+            } else if (data.result.hostPoster[0].q_season === "가을") {
               handleAutumn();
-            } else if (data.result.hostPoster[0].q_season === '겨울') {
+            } else if (data.result.hostPoster[0].q_season === "겨울") {
               handleWinter();
             }
           };
@@ -282,11 +281,11 @@ function MainpageHost() {
   return (
     <div className="BackgroundWarp">
       <div className="Background">
-        <div className="l29-2" style={{position:'relative'}}>
+        <div className="l29-2" style={{ position: "relative" }}>
           <header
             style={{
               float: "down",
-              width:'320px',
+              width: "320px",
               height: "70px",
               position: "relative",
               top: "0px",
@@ -295,12 +294,25 @@ function MainpageHost() {
               justifyContent: 'space-between'
             }}
           >
-            <div style={{width:'30px', height:'30px' , position: "relative",  top: "35%", left:'-3%' }} >
+            <div
+              style={{
+                width: "30px",
+                height: "30px",
+                position: "relative",
+                top: "35%",
+                left: "-3%",
+              }}
+            >
               <button
                 style={{ border: "none", backgroundColor: "transparent" }}
                 onClick={toggleModal1}
               >
-                <img src={setting} className="l1-2" alt="setting" onClick={toggleModal1}/>
+                <img
+                  src={setting}
+                  className="l1-2"
+                  alt="setting"
+                  onClick={toggleModal1}
+                />
               </button>
             </div>
             <div style={{ float: "left" }}>
@@ -310,21 +322,32 @@ function MainpageHost() {
                 <p className="l12-2">FACETICKER</p>
               </button>
             </div>
-            <div style={{ width:'26px', height:'26px' ,float: "left", position: "relative", top: "35%", left:'-3%' }}>
+            <div
+              style={{
+                width: "26px",
+                height: "26px",
+                float: "left",
+                position: "relative",
+                top: "35%",
+                left: "-3%",
+              }}
+            >
               <button
-                style={{ border: "none", backgroundColor: "transparent" }} onClick={handleQna}
+                style={{ border: "none", backgroundColor: "transparent" }}
+                onClick={handleQna}
               >
                 <img src={message} className="l1-2" alt="message" />
               </button>
               <div
                 id="countMessageDiv"
                 className="l14-2"
-                style={{ display: "none"}}
+                style={{ display: "none" }}
               >
                 <p id="countMessage" className="l15-2">
                   {chattingNumber || "0"}
                 </p>
-              </div>{/*
+              </div>
+              {/*
               <button
                 style={{
                   width: "20px",
@@ -421,9 +444,7 @@ function MainpageHost() {
                     ></div>
                   </div>
                   <div className="l7-2">
-                    <p id="" >
-                    {Korean || "오매불망"}
-                    </p>
+                    <p id="">{Korean || "오매불망"}</p>
                   </div>
                 </div>
                 <div name="한자">
@@ -500,10 +521,7 @@ function MainpageHost() {
               </div>
               <Div style={{position:'absolute',top:'88%',left:'34%'}}>
                 <button className="l10-2" onClick={handleHoststicker}>
-                  <img
-                    src={recordpage}
-                    alt="recordpage"
-                  />
+                  <img src={recordpage} alt="recordpage" />
                 </button>
                 <button className="l10-2" onClick={handleLinkDownload}>
                   <img src={share} alt="share" />
@@ -563,49 +581,74 @@ function MainpageHost() {
           )}
           {showModal1 && (
             <div className="Modal">
-                <div style={{width: '294px', height:'52px' ,position:'relative', display:'flex', justifyContent: 'center'}}><img src={edit} /></div>
-                <button
-                  style={{
-                    border: "none",
-                    backgroundColor: "transparent",
-                    position: "absolute",
-                    top: "3%",
-                    left: "85%",
-                  }}
-                  name="close"
-                  onClick={toggleModal1}
-                >
-                  <img src={close}></img>
+              <div
+                style={{
+                  width: "294px",
+                  height: "52px",
+                  position: "relative",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <img src={edit} />
+              </div>
+              <button
+                style={{
+                  border: "none",
+                  backgroundColor: "transparent",
+                  position: "absolute",
+                  top: "3%",
+                  left: "85%",
+                }}
+                name="close"
+                onClick={toggleModal1}
+              >
+                <img src={close}></img>
+              </button>
+              <div
+                style={{
+                  padding: "24px 0 0 0",
+                  width: "294px",
+                  height: "250px",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                }}
+              >
+                <button className="l24-2" onClick={handleInitial}>
+                  포스터 정보 수정
                 </button>
-                <div style={{padding:'24px 0 0 0', width: '294px', height:'250px', display:'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
-                  <button className="l24-2" onClick={handleInitial}>포스터 정보 수정</button>
-                  <button className="l24-2" onClick={handleMakeSticker}>스티커 수정</button>
-                  <button className="l24-2" onClick={handleStickerLetter}>상태메시지 수정</button>
-                </div>
+                <button className="l24-2" onClick={handleMakeSticker}>
+                  스티커 수정
+                </button>
+                <button className="l24-2" onClick={handleStickerLetter}>
+                  상태메시지 수정
+                </button>
+              </div>
             </div>
           )}
           {showModal4 && (
             <div className="ModalContent">
-            <div className="Close"
-              
-              src="https://i.ibb.co/Cw1y11J/close-x.png"
-            />
-            <img src="https://i.ibb.co/LNBGHHr/square-edit.png" />
-            <div className="EditButtons">
-              <div className="EditButton"
-                
-                src="https://i.ibb.co/7QPq765/Group-190.png"
+              <div
+                className="Close"
+                src="https://i.ibb.co/Cw1y11J/close-x.png"
               />
-              <div className="EditButton"
-                
-                src="https://i.ibb.co/TMWMM0g/Group-191.png"
-              />
-              <div className="EditButton"
-                
-                src="https://i.ibb.co/Qkm8sPF/Group-192.png"
-              />
+              <img src="https://i.ibb.co/LNBGHHr/square-edit.png" />
+              <div className="EditButtons">
+                <div
+                  className="EditButton"
+                  src="https://i.ibb.co/7QPq765/Group-190.png"
+                />
+                <div
+                  className="EditButton"
+                  src="https://i.ibb.co/TMWMM0g/Group-191.png"
+                />
+                <div
+                  className="EditButton"
+                  src="https://i.ibb.co/Qkm8sPF/Group-192.png"
+                />
+              </div>
             </div>
-          </div>
           )}
           {showModal2 && (
             <div className="Modal">

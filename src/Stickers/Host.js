@@ -126,15 +126,18 @@ const Icons = styled.div`
 const Icon1 = styled.img`
   display: flex;
   width: 22%;
+  max-height: 80px;
 `;
 const Icon2 = styled.img`
   display: flex;
   width: 72%;
+  max-height: 80px;
 `;
 const Middle = styled.img`
   display: flex;
+  width: 40%;
   position: absolute;
-  top: -26%;
+  top: -28%;
 `;
 export function Host() {
   const navigate = useNavigate();
