@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogintype } from "./LoginSlice";
 import STICKER from "../MakeSticker/STICKER";
+import { styled } from "styled-components";
 
 const G_CLIENT_ID = process.env.REACT_APP_G_CLIENT_ID;
 const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;

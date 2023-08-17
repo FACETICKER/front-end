@@ -254,8 +254,10 @@ export function StickerLetter() {
   const saveLetter = (event) => {
     setLetterValue(event.target.value);
   };
-  const userId = 1; /* Idtoken()[0] */ //호스트 아이디
-  const ID = userId;
+  // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
+  const hostid = useSelector((state) => state.login.hostid);
+
+  const ID = hostid;
   //방문록 입력하고 체크 아이콘 누르면 서버에 전송됨
 
   const handleLetterSubmit = () => {

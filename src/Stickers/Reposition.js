@@ -161,15 +161,8 @@ export function Reposition() {
   const jwt = Idtoken()[1]; //호스트 토큰
 
   const handleBack = () => {
-    /*   */
     dispatch(setIsImageFixed2(true));
   };
-
-  /*   const handleChange = () => {
-    /*   */
-  /*     dispatch(setChange(true));
-    console.log(changelocation);
-  }; */
 
   const isImageFixed2 = useSelector((state) => state.app.isImageFixed2);
 
