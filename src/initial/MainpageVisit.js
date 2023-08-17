@@ -114,7 +114,7 @@ function MainpageVisit() {
     navigate(`/main/host/`);
   };
   const handleVisitorsticker = () => {
-    navigate(`/sticker/${user_id}`);
+    navigate(`/sticker/${hostID}`);
   };
   const [count1, setCount1] = useState(false);
   const [count2, setCount2] = useState(false);
@@ -199,8 +199,8 @@ function MainpageVisit() {
   }, [count2]);
 
   const JWT = Token()[1];
-  const user_id = 3;
   const [messagedata, setMessagedata] = useState(null);
+  const [stickerdata,setStickerdata] =useState(null);
 
   const test1 = () => {
     const headers = {
@@ -223,7 +223,7 @@ function MainpageVisit() {
   test1();
 
   useEffect(() => {
-    fetch(`https:app.faceticker.site/${user_id}`)
+    fetch(`https://app.faceticker.site/${hostID}`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {
@@ -247,6 +247,7 @@ function MainpageVisit() {
           };
           handleSelleckSeason();
           setDay(data.result.hostPoster[0].q_date);
+          setStickerdata(data.result.hostSticker[0].final_image_url);
         }
       })
       .catch((error) => {
@@ -259,7 +260,7 @@ function MainpageVisit() {
       "Content-Type": "application/json",
     };
 
-    fetch(`http://app.faceticker.site/${user_id}/sticker/message`, {
+    fetch(`http://app.faceticker.site/${hostID}/sticker/message`, {
       method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
       headers: headers,
     }) // 서버로 GET 요청을 보냄
@@ -281,12 +282,13 @@ function MainpageVisit() {
           <header
             style={{
               float: "down",
-              width: "320px",
+              width:'320px',
               height: "70px",
               position: "relative",
               top: "0px",
-              display: "flex",
-              justifyContent: "space-between",
+              left:"-5px",
+              display:'flex',
+              justifyContent: 'space-between'
             }}
           >
             <div
@@ -330,98 +332,185 @@ function MainpageVisit() {
               </button>
             </div>
           </header>
-          <div style={{ position: "relative", top: "0px" }}>
-            <div id="PrtSc" className="l2">
-              <div
-                style={{ position: "relative", left: "18%", top: "35%" }}
-                name="사진"
-              >
-                <img src={Vector} alt="Vector" />
-              </div>
-              <div style={{ position: "relative", top: "-300px" }}>
-                <div>
-                  <p className="l13">WIN 겨울 TER</p>
+          <div style={{ width:'366px',
+            height:'124%',
+            position: "relative",
+            top: "-5px" ,
+            left:"-7px",
+            border: '3px solid var(--unnamed, #12151C)',
+            borderRadius: '20px',
+            boxShadow: '2px 2px 10px 0px rgba(0, 0, 0, 0.25',
+            }}>
+            <div id="PrtSc" style={{ width: "338px", height: "88%", position:'relative', left:'4%'}}>
+              <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
+                <div
+                  style={{ position: "absolute", left: "6%", top: "27%" , zIndex:'3'}}
+                  name="사진"
+                >
+                  <img src={stickerdata} alt="Vector" />
                 </div>
-                <div id="ment" className="l22">
-                  <div className="l23">
-                    <p id="" className="l3">
+                <div id="ifSpring">
+                  <p className="l13-2">{Season || "WIN 겨울 TER"}</p>
+                </div>
+                <div id="ment" className="l22-2">
+                  <div className="l23-2">
+                    <p id="" className="l3-2">
                       {Message || "어서옵쇼 다들 스티커 붙여주세요..!"}
                     </p>
                   </div>
                 </div>
                 <div style={{ width: "390px", height: "100px" }}>
                   <div style={{ float: "left" }} name="이름">
-                    <p id="" className="l4">
+                    <p id="" className="l4-2">
                       {Name || "수민님"}
                     </p>
                   </div>
                   <div style={{ float: "left" }} name="숫자">
-                    <p id="" className="l5">
+                    <p id="" className="l5-2">
                       {Number || "#128"}
                     </p>
                   </div>
                   <div style={{ float: "left" }} name="날짜">
-                    <p id="" className="l6">
+                    <p id="" className="l6-2">
                       {Day || "JUNE, 28"}
                     </p>
                   </div>
                 </div>
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "155%",
-                    width: "338px",
-                    height: "400px",
-                  }}
-                >
-                  <div name="사자성어">
+              </div>
+              <div
+                id="outyellow1"
+                style={{
+                  position: "absolute",
+                  width: "338px",
+                  height: "140px",
+                  top:"77%",
+                }}
+              >
+                <div name="사자성어">
+                  <div>
                     <div
-                      name="threeboll"
-                      style={{
-                        width: "100px",
-                        position: "absolute",
-                        left: "0%",
-                        top: "70%",
-                      }}
-                    >
-                      <div
-                        className="l24"
-                        style={{ backgroundColor: "#FF6D00" }}
-                      ></div>
-                      <div
-                        className="l24"
-                        style={{ backgroundColor: "#FFE14F" }}
-                      ></div>
-                      <div
-                        className="l24"
-                        style={{ backgroundColor: "#FEFAEF" }}
-                      ></div>
-                    </div>
-                    <p id="" className="l7">
-                      {Korean || "오매불망"}
-                    </p>
+                      className="l28-2"
+                      style={{ backgroundColor: "#FF6D00" }}
+                    ></div>
+                    <div
+                      className="l28-2"
+                      style={{ backgroundColor: "#FFE14F" }}
+                    ></div>
+                    <div
+                      className="l28-2"
+                      style={{ backgroundColor: "#FEFAEF" }}
+                    ></div>
                   </div>
-                  <div name="한자">
-                    <p id="" className="l8">
-                      {Chinese || "寤寐不忘"}
-                    </p>
-                  </div>
-                  <div name="뜻">
-                    <p id="" className="l9">
-                      {Mean || "자나깨나 잊지 못함"}
+                  <div className="l7-2">
+                    <p id="" >
+                    {Korean || "오매불망"}
                     </p>
                   </div>
                 </div>
-                <Div>
-                  <button className="l10" onClick={handleVisitorsticker}>
-                    <img src={recordpage} alt="recordpage" />
-                  </button>
-                  <button className="l10" onClick={toggleModal}>
-                    <img src={sticker} alt="sticker" />
-                  </button>
-                </Div>
+                <div name="한자">
+                  <p id="" className="l8-2">
+                    {Chinese || "寤寐不忘"}
+                  </p>
+                </div>
+                <div name="뜻">
+                  <p id="" className="l9-2">
+                    {Mean || "자나깨나 잊지 못함"}
+                  </p>
+                </div>
+              </div>
+              <div
+                id="outyellow2"
+                style={{
+                  position: "relative",
+                  width: "338px",
+                  height: "140px",
+                  display: "none",
+                }}
+              >
+                <div name="threeboll">
+                  <div className="l28-2"></div>
+                </div>
+                <div name="프로필 생성 제안">
+                  <p id="" className="ll6-2">
+                    프로필이 아직 없다면
+                  </p>
+                </div>
+                <div name="링크">
+                  <p id="" className="l17-2">
+                    <a onClick={toggleModal3} className="l18-2">
+                      여기
+                    </a>
+                    를 클릭하세요
+                  </p>
+                </div>
               </div>
             </div>
+            <div>
+              <div style={{ float: "left" }}>
+                {/* <div
+                  id="countRecordDiv"
+                  className="l14-2"
+                  style={{ display: "none", top: "-80px", left: "40px" }}
+                >
+                  <p id="countRecord" className="l15-2">
+                    {recordNumber || "0"}
+                  </p>
+                </div> */}
+                {/*  <button
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    position: "relative",
+                    top: "130px",
+                  }}
+                  onClick={handlePlusRecord}
+                >
+                  +1
+                </button>
+                <button
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    position: "relative",
+                    top: "130px",
+                  }}
+                  onClick={handleMinusRecord}
+                >
+                  -1
+                </button> */}
+              </div>
+              <Div>
+                <button className="l10" onClick={handleVisitorsticker}>
+                  <img src={recordpage} alt="recordpage" />
+                </button>
+                <button className="l10" onClick={toggleModal}>
+                  <img src={sticker} alt="sticker" />
+                </button>
+              </Div>
+
+              {/* <div style={{ float: "left" }}>
+                <button className="l10-2" onClick={handleLinkDownload}>
+                  <img src={share} alt="share" />
+                </button>
+              </div> */}
+              {/* <div>
+                <button className="l10-2" onClick={handleDownload}>
+                  <img src={download} alt="download" />
+                </button>
+              </div> */}
+            </div>
+            {/* <div
+              style={{ width: "200px", height: "100px", position: "relative" }}
+            >
+              <button>사랑선택</button>
+              <button>우정선택</button>
+              <button onClick={handleSpring}>봄선택</button>
+              <button onClick={handleSummer}>여름선택</button>
+              <button onClick={handleAutumn}>가을선택</button>
+              <button onClick={handleWinter}>겨울선택</button>
+              <button onClick={handleNoneProfile}>프로필 생성 안함</button>
+              <button onClick={handleHaveProfile}>프로필 생성 함</button>
+            </div> */}
           </div>
           {showFooter && (
             <footer className="FixedFooter">

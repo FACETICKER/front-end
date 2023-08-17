@@ -47,9 +47,10 @@ function NewUserFlow() {
           <div className="l7-4">
             <div className="l2-4">
               <p>
-                나만의 페이스티커를 통해 자신을 표현하고 친구들에게 궁금한 점을
-                묻고 답하며 자유롭게 소통해보세요.
+                나만의 페이스티커를 통해
               </p>
+              <p style={{position:'absolute',top:'40%'}}>자신을 표현하고 친구들에게 궁금한 점을</p>
+              <p style={{position:'absolute',top:'140%'}}>묻고 답하며 자유롭게 소통해보세요.</p>
             </div>
             <div>
               <div className="l3-4">
