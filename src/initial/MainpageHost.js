@@ -204,6 +204,7 @@ function MainpageHost() {
 
   const handleQna = () => {
     dispatch(PageSlice.actions.host());
+    navigate(`/qna`);
   };
   const handleHoststicker = () => {
     navigate(`/sticker/host/${user_id}`);
