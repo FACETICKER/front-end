@@ -445,6 +445,7 @@ function InitialSurvey() {
     console.log(InitialSurveyList);    
   };
   console.log(initialdata);
+  console.log('1000');
   const user_id = Token()[0];
   const API = initialdata == null ? `http://app.faceticker.site/${user_id}/poster` : `http://app.faceticker.site/${user_id}/poster/patch`;
   const method = initialdata == null   ? "POST" : "PATCH";
@@ -474,7 +475,7 @@ function InitialSurvey() {
       })
         .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
         .then((data) => {
-            console.log("PATCH성공", data.result[0]);
+            console.log("PATCH성공", data);
         })
         .catch((error) => {
             console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
