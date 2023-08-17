@@ -14,7 +14,7 @@ function Quesinput() {
         return state.idcounter.value;
     });
 
-    const userID = Token()[0];
+    const hostID = Token()[2];
     const JWT = Token()[1];
 
     const postQuestion = () => {
@@ -24,7 +24,7 @@ function Quesinput() {
             'Content-Type': 'application/json',
         };
 
-        fetch(`http://app.faceticker.site/${userID}/nqna/question/visitor`, {
+        fetch(`http://app.faceticker.site/${hostID}/nqna/question/visitor`, {
             method: "POST", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
             headers: headers,
             body: JSON.stringify({question: question})

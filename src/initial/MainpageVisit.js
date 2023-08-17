@@ -108,6 +108,7 @@ function MainpageVisit() {
   };
   const handleQna = () => {
     dispatch(PageSlice.actions.guest());
+    navigate('/qna');
   };
   const handleMainHost = () => {
     navigate(`/main/host/`);
