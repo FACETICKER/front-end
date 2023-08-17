@@ -48,6 +48,8 @@ const QnApage = () => {
   const JWT = Token()[1];
 
   useEffect(() => {
+    dispatch(questionSlice.actions.reset());
+    dispatch(AnswerSlice.actions.reset());
     Getinfo();
   }, []);
 

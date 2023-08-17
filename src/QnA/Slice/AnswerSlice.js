@@ -33,6 +33,9 @@ const AnswerSlice = createSlice({
             const openTochange = action.payload[1];
             const answerTochange = state.find(answer => answer.id === idTochange);
             answerTochange.open = openTochange;
+        },
+        reset: (state, action) => {
+            return [];
         }
     }
 });
