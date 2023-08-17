@@ -418,32 +418,25 @@ function InitialSurvey() {
     dispatch(setInitialImport(chooseImport));
     console.log(InitialSurveyList);
     test1();
-    console.log("10");
     navigate("/makesticker");
   };
   const handleInitialNameChange = () => {
     const nameInput = document.getElementById("name");
     dispatch(setInitialName(nameInput.value));
-    console.log(InitialSurveyList);
   };
   const handleInitialSeasonChange = () => {
     dispatch(setInitialSeason(chooseSeason));
-    console.log(InitialSurveyList);
   };
   const handleInitialNumberChange = () => {
     dispatch(setInitialNumber(chooseNumber));
-    console.log(InitialSurveyList);
   };
   const handleInitialDayChange = () => {
     dispatch(setInitialDay(chooseDay));
-    console.log(InitialSurveyList);
   };
   const handleInitialImportChange = () => {
     dispatch(setInitialImport(chooseImport));
-    console.log(InitialSurveyList);
   };
   console.log(initialdata);
-
   const user_id = Token()[0];
   const API =
     initialdata == null
@@ -452,10 +445,6 @@ function InitialSurvey() {
 
   const method = initialdata == null ? "POST" : "PATCH";
   const JWT = Token()[1];
-  console.log("API", API);
-  console.log("method", method);
-  console.log("토큰", JWT);
-  console.log("userid", user_id);
 
   //get
   useEffect(() => {
@@ -568,14 +557,7 @@ function InitialSurvey() {
   const handleValueChange = (key, value) => {
     setSelectedValue((prevValues) => ({ ...prevValues, [key]: value }));
   };
-  console.log("100");
-  console.log(
-    InitialSurveyList.Name_id,
-    InitialSurveyList.Season_id,
-    InitialSurveyList.Number_id,
-    selectedValue["month"] + " " + selectedValue["day"],
-    InitialSurveyList.Import_id
-  );
+  
 
   return (
     <div className="BackgroundWrap">
@@ -599,7 +581,7 @@ function InitialSurvey() {
                 height: "120px",
                 position: "absolute",
                 top: "76px",
-                left: "3%",
+                left: "6%",
                 display: "flex",
                 flexWrap: "wrap",
               }}

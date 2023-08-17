@@ -88,6 +88,18 @@ function MainpageHost() {
         alert("클립보드 복사에 실패했습니다. 수동으로 복사해주세요.");
       });
   };
+  const handleDownload2 = () => {
+    const targetElement = document.getElementById("PrtSc"); // 캡처할 대상 div의 id
+        if (targetElement) {
+        html2canvas(targetElement).then((canvas) => {
+        const link = document.createElement("a");
+        link.href = canvas.toDataURL("image/png");
+        link.download = "capture.png";
+        link.click();
+        });
+        }
+        alert("다운로드 성공");
+  };
 
   const handleDownload = () => {
     const targetElement = document.getElementById("PrtSc"); // 캡처할 대상 div의 id
@@ -210,7 +222,8 @@ function MainpageHost() {
 
   const JWT = Token()[1];
   const user_id = Token()[0];
-  const [messagedata, setMessagedata] = useState(null);
+  const [messagedata,setMessagedata] =useState(null);
+  const [stickerdata,setStickerdata] =useState(null);
   const test2 = () => {
     const headers = {
       "x-access-token": JWT,
@@ -233,10 +246,11 @@ function MainpageHost() {
   test2();
   useEffect(() => {
     fetch(`https://app.faceticker.site/${user_id}`)
+    fetch(`https://app.faceticker.site/${user_id}`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          console.log("성공", data.result.hostPoster[0]);
+          console.log("성공", data.result);
           setMessagedata(data.result.hostPoster[0]);
           setChinese(data.result.hostPoster[0].chinese);
           setName(data.result.hostPoster[0].nickname);
@@ -255,12 +269,14 @@ function MainpageHost() {
           };
           handleSelleckSeason();
           setDay(data.result.hostPoster[0].q_date);
-        }
+          setStickerdata(data.result.hostSticker[0].final_image_url);
+        } 
       })
       .catch((error) => {
         console.error("오류 발생", error);
       });
   }, []);
+  console.log(stickerdata);
 
   return (
     <div className="BackgroundWarp">
@@ -273,8 +289,9 @@ function MainpageHost() {
               height: "70px",
               position: "relative",
               top: "0px",
-              display: "flex",
-              justifyContent: "space-between",
+              left:"-5px",
+              display:'flex',
+              justifyContent: 'space-between'
             }}
           >
             <div
@@ -357,16 +374,24 @@ function MainpageHost() {
             </div>
           </header>
 
-          <div style={{ position: "relative", top: "0px" }}>
-            <div id="PrtSc" style={{ width: "338px" }}>
+          <div style={{ width:'366px',
+            height:'124%',
+            position: "relative",
+            top: "-5px" ,
+            left:"-7px",
+            border: '3px solid var(--unnamed, #12151C)',
+            borderRadius: '20px',
+            boxShadow: '2px 2px 10px 0px rgba(0, 0, 0, 0.25',
+            }}>
+            <div id="PrtSc" style={{ width: "338px", height: "88%", position:'relative', left:'4%'}}>
               <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
                 <div
-                  style={{ position: "absolute", left: "20%", top: "35%" }}
+                  style={{ position: "absolute", left: "6%", top: "27%" , zIndex:'3'}}
                   name="사진"
                 >
-                  <img src={Vector} alt="Vector" />
+                  <img src={stickerdata} alt="Vector" />
                 </div>
-                <div>
+                <div id="ifSpring">
                   <p className="l13-2">{Season || "WIN 겨울 TER"}</p>
                 </div>
                 <div id="ment" className="l22-2">
@@ -397,9 +422,10 @@ function MainpageHost() {
               <div
                 id="outyellow1"
                 style={{
-                  position: "relative",
+                  position: "absolute",
                   width: "338px",
                   height: "140px",
+                  top:"77%",
                 }}
               >
                 <div name="사자성어">
@@ -493,14 +519,14 @@ function MainpageHost() {
                   -1
                 </button> */}
               </div>
-              <Div>
+              <Div style={{position:'absolute',top:'88%',left:'34%'}}>
                 <button className="l10-2" onClick={handleHoststicker}>
                   <img src={recordpage} alt="recordpage" />
                 </button>
                 <button className="l10-2" onClick={handleLinkDownload}>
                   <img src={share} alt="share" />
                 </button>
-                <button className="l10-2" onClick={handleDownload}>
+                <button className="l10-2" onClick={handleDownload2}>
                   <img src={download} alt="download" />
                 </button>
               </Div>
