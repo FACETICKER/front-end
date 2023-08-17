@@ -452,6 +452,8 @@ function InitialSurvey() {
     const seasonInput = document.getElementById("chooseSeason");
     const opendate = document.getElementById("result3");
     const openImport = document.getElementById("result4");
+    const closecheck1 = document.getElementById("check2-1");
+    const closecheck2 = document.getElementById("check5-1");
     fetch(`https://app.faceticker.site/${user_id}`)
       .then((response) => response.json())
       .then((data) => {
@@ -467,6 +469,7 @@ function InitialSurvey() {
           } else if (data.result.hostPoster[0].q_season == "가을") {
             handleSeasonButtonClick("가을");
           }
+          closecheck1.style.display="none";
           setChooseNumber(data.result.hostPoster[0].q_number);
           opendate.style.display = "block";
           setChooseDay(data.result.hostPoster[0].q_date);
@@ -476,6 +479,7 @@ function InitialSurvey() {
           } else if (data.result.hostPoster[0].q_important == "우정") {
             handleImportButtonClick("우정");
           }
+          closecheck2.style.display="none";
         }
       })
       .catch((error) => {
@@ -497,7 +501,7 @@ function InitialSurvey() {
         nickname: InitialSurveyList.Name_id,
         season: InitialSurveyList.Season_id,
         number: InitialSurveyList.Number_id,
-        date: selectedValue["month"] + " " + selectedValue["day"],
+        date: selectedValue["month"] + ", " + selectedValue["day"],
         important: InitialSurveyList.Import_id,
       }),
     })
@@ -507,7 +511,7 @@ function InitialSurvey() {
           nickname: InitialSurveyList.Name_id,
           season: InitialSurveyList.Season_id,
           number: InitialSurveyList.Number_id,
-          date: selectedValue["month"] + " " + selectedValue["day"],
+          date: selectedValue["month"] + ", " + selectedValue["day"],
           important: InitialSurveyList.Import_id,
         });
         console.log("Post / patch 성공", data);
@@ -532,18 +536,18 @@ function InitialSurvey() {
   }, [chooseNumber]);
 
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "JANUARY",
+    "FEBRUARY",
+    "MARCH",
+    "APRIL",
+    "MAY",
+    "JUNE",
+    "JULY",
+    "AUGUST",
+    "SEPTEMBER",
+    "OCTOBER",
+    "NOVEMBER",
+    "DECEMBER",
   ];
   const days = Array.from({ length: 31 }, (_, i) =>
     String(i + 1).padStart(2, "0")
