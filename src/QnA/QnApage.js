@@ -54,6 +54,9 @@ const QnApage = () => {
     dispatch(questionSlice.actions.reset());
     dispatch(AnswerSlice.actions.reset());
     Getinfo();
+    console.log(windowHeight);
+    console.log(documentHeight);
+    console.log('bottom', bottom);
   }, []);
 
   useEffect(() => {
@@ -74,7 +77,18 @@ const QnApage = () => {
     }
   }, [getques]);
 
+  const windowHeight = window.innerHeight;
+  const documentHeight = Math.max(
+    document.body.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.clientHeight,
+    document.documentElement.scrollHeight,
+    document.documentElement.offsetHeight
+  );
 
+  const bottom = documentHeight - windowHeight;
+
+  
 
   return (
     <div className={styles.dream}>
