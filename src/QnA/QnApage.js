@@ -28,7 +28,9 @@ const QnApage = () => {
         'Content-Type': 'application/json'
     };
 
-    fetch(`http://app.faceticker.site/${userID}/nqna`, {
+    const chooseID = page === 'host' ? userID : hostID;
+
+    fetch(`http://app.faceticker.site/${chooseID}/nqna`, {
         method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
         headers: headers,
       }) // 서버로 GET 요청을 보냄
@@ -46,11 +48,15 @@ const QnApage = () => {
 
   const userID = Token()[0];
   const JWT = Token()[1];
+  const hostID = Token()[2];
 
   useEffect(() => {
     dispatch(questionSlice.actions.reset());
     dispatch(AnswerSlice.actions.reset());
     Getinfo();
+    console.log(windowHeight);
+    console.log(documentHeight);
+    console.log('bottom', bottom);
   }, []);
 
   useEffect(() => {
@@ -71,7 +77,18 @@ const QnApage = () => {
     }
   }, [getques]);
 
+  const windowHeight = window.innerHeight;
+  const documentHeight = Math.max(
+    document.body.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.clientHeight,
+    document.documentElement.scrollHeight,
+    document.documentElement.offsetHeight
+  );
 
+  const bottom = documentHeight - windowHeight;
+
+  
 
   return (
     <div className={styles.dream}>

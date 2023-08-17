@@ -60,7 +60,6 @@ function Del_btn(props) {
                 <img src={`${click ? Check : NoneCheck}`} className={styles.check_img}></img>
                 <button className={classNames} id={props.id} type={props.type} data-open={props.open}>
                     <span className={styles.buttontext}>{props.text}</span>
-                    <img src={New_mark} className={`${styles.new} ${hasMatchingId || type === 'basic_question' ? styles.hidden : ''}`}></img>
                 </button>
             </div>
             {hasMatchingId && (

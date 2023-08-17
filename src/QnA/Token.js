@@ -8,7 +8,10 @@ function Token() {
     const JWT = useSelector(state=>{
         return state.login.token;
     });
-    return [userID, JWT];
+    const hostID = useSelector(state=>{
+        return state.login.hostid;
+    });
+    return [userID, JWT, hostID];
 }
 
 export default Token;
