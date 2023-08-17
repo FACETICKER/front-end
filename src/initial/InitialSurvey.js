@@ -443,7 +443,7 @@ function InitialSurvey() {
     console.log(InitialSurveyList);
   };
   console.log(initialdata);
-
+  console.log('1000');
   const user_id = Token()[0];
   const API =
     initialdata == null
