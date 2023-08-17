@@ -77,10 +77,26 @@ export function StaticSticker() {
   const [componentHeight, setComponentHeight] = useState(0);
   const navigate = useNavigate();
 
-  /*   const userId = Idtoken()[0]; */ //호스트 아이디
-  const userId = 1;
-  const ID = userId;
+  // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
+  const hostid = useSelector((state) => state.login.hostid);
   const jwt = Idtoken()[1]; //호스트 토큰
+  const userId = Idtoken()[0]; //호스트 아이디
+
+  const whatType = hostid == null ? "host" : "visitor";
+
+  //헤더
+  const headers = {
+    "x-access-token": jwt,
+    "Content-Type": "application/json",
+  };
+
+  const VisitorHeader = {
+    "Content-Type": "application/json",
+  };
+  const Header = whatType == "host" ? headers : VisitorHeader;
+  console.log("header", whatType);
+  const ID = whatType == "host" ? userId : hostid;
+  console.log("id", ID);
 
   const dispatch = useDispatch();
 

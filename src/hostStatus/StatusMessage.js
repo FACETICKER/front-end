@@ -179,6 +179,7 @@ export function StatusMessage() {
   };
   const jwt = Idtoken()[1]; //호스트 토큰
   const userId = Idtoken()[0]; //호스트 아이디
+
   /*   console.log("토큰", jwt); */
   const headers = {
     "x-access-token": jwt,

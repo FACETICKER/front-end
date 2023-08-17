@@ -8,7 +8,7 @@ import { TestBottom } from "./TestBottom";
 import { useState } from "react";
 import { useEffect } from "react";
 import StaticSticker from "./StaticSticker";
-import MainHeader from "../components/HostHeader";
+import MainHeader from "../components/VisitorHeader";
 import { MainText } from "./MainText";
 import { useNavigate } from "react-router-dom";
 import visitorbutton from "../img/Stickers_img/visitorbutton.png";
@@ -71,11 +71,6 @@ export function Visitor() {
     navigate("/makesticker");
   };
 
-  const currentURL = window.location.href;
-  const parts = currentURL.split("/");
-  const number = parts[parts.length - 1];
-
-  console.log(number);
   return (
     <BackgroundWrap>
       <Background>

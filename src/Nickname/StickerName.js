@@ -234,10 +234,12 @@ export function StickerName() {
     setNicknameValue(event.target.value);
   };
 
-  //저장된 아이디(호스트꺼) 불러오기
+  // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
+  const hostid = useSelector((state) => state.login.hostid);
+  const jwt = Idtoken()[1]; //호스트 토큰
+  const userId = Idtoken()[0]; //호스트 아이디
 
-  const userId = 1; /* Idtoken()[0]; */ //호스트 아이디
-  const ID = userId;
+  const ID = hostid;
 
   const headers = {
     "Content-Type": "application/json",

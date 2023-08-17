@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userId: "",
-  token: "",
-  hostid: "",
+  userId: null,
+  token: null,
+  hostid: null,
+  gomakesticker: false,
+  goqna: false,
 };
 
 const loginSlice = createSlice({
@@ -19,8 +21,15 @@ const loginSlice = createSlice({
     setHostId: (state, action) => {
       state.hostid = action.payload;
     },
+    setGoMakesticker: (state, action) => {
+      state.gomakesticker = action.payload;
+    },
+    setGoQna: (state, action) => {
+      state.goqna = action.payload;
+    },
   },
 });
 
-export const { setId, setToken, setHostId } = loginSlice.actions;
+export const { setGoMakesticker, setGoQna, setId, setToken, setHostId } =
+  loginSlice.actions;
 export default loginSlice.reducer;

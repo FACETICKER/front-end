@@ -1,4 +1,4 @@
-import NextLoginList , { update } from "./NextLoginList";
+import NextLoginList, { update } from "./NextLoginList";
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -15,21 +15,27 @@ import PageSlice from "../QnA/Slice/PageSlice";
 function NewUserFlow() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const NextLoginList = useSelector(state => {return state.nextLoginList;});
-  const Next1 = useSelector(state => {return state.nextLoginList.stickeris;});
-  const Next2 = useSelector(state => {return state.nextLoginList.questionis;});
-  
+  const NextLoginList = useSelector((state) => {
+    return state.nextLoginList;
+  });
+  const Next1 = useSelector((state) => {
+    return state.nextLoginList.stickeris;
+  });
+  const Next2 = useSelector((state) => {
+    return state.nextLoginList.questionis;
+  });
+
   const handleButtonClick = () => {
-    if (Next1){
-      navigate("/makesticker");  
-    } else if  (Next2) {
+    if (Next1) {
+      navigate("/makesticker");
+    } else if (Next2) {
       dispatch(PageSlice.actions.guest());
     } else {
       navigate("/initial");
     }
   };
-  console.log(NextLoginList)
-
+  console.log(NextLoginList);
+  console.log(NextLoginList);
 
   return (
     <div className="BackgroundWrap-4">

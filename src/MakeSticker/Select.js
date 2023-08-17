@@ -49,6 +49,14 @@ const Select = ({ handleCaptureImg }) => {
   const dispatch = useDispatch();
   const [test2, setTest] = useState(null);
 
+  // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
+  const hostid = useSelector((state) => state.login.hostid);
+
+  const jwt = Idtoken()[1]; //호스트 토큰
+  const userId = Idtoken()[0]; //호스트 아이디
+  console.log("아이디", userId);
+  console.log("토큰", jwt);
+
   const VID = useSelector((state) => state.visitorId);
   const openModal = () => {
     setModalIsOpen(true);
@@ -98,16 +106,7 @@ const Select = ({ handleCaptureImg }) => {
   const stickerState = useSelector((state) => state.sticker);
   console.log("StickerSlice Value:", stickerState);
 
-  //수정하기 userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
-
-  const jwt = Idtoken()[1]; //호스트 토큰
-  const userId = Idtoken()[0]; //호스트 아이디
-  //호스트 아이디
-  /*   const userId = Idtoken()[0]; */
-  const HostId = null; //방문자가 가지고 온 호스트 아이디
-
-  //jwt가 없으면 visitor, jwt 있으면 host
-  const whatType = HostId == null ? "host" : "visitor";
+  const whatType = hostid == null ? "host" : "visitor";
   console.log("what", whatType);
 
   //완료 누르고 버튼 지정
@@ -125,7 +124,7 @@ const Select = ({ handleCaptureImg }) => {
   };
   const Header = whatType == "host" ? headers : VisitorHeader;
   console.log("header", Header);
-  const Id = whatType == "host" ? userId : HostId;
+  const Id = whatType == "host" ? userId : hostid;
   console.log("id", Id);
 
   //sticker 없을 때 post, 있으면 patch
@@ -138,7 +137,7 @@ const Select = ({ handleCaptureImg }) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("성공", data);
+          console.log("호스트 캐릭터 get 성공", data);
           dispatch(
             StickerSlice.actions.update(["face", data.result[0].face_id])
           );
@@ -168,7 +167,7 @@ const Select = ({ handleCaptureImg }) => {
         })
 
         .catch((error) => {
-          console.error("실패", error);
+          console.error("호스트 캐릭터 get 실패", error);
         });
     }
   }, [whatType]);

@@ -231,9 +231,6 @@ export function ClickSticker() {
 
   const [imageData, setImageData] = useState([]);
 
-  //클릭한 이미지 방문자 id
-  const selectedImageKey = useSelector((state) => state.app.selectedImageKey);
-
   const handleCardClick = () => {
     setIsFlipped(!isFlipped);
   };
@@ -255,11 +252,10 @@ export function ClickSticker() {
 
   console.log("100", selectedImageId);
 
-  const userId = 1; /* Idtoken()[0]; */ //호스트 아이디
+  const userId = Idtoken()[0]; //호스트 아이디
   const ID = userId;
-  /*   const jwt = Idtoken()[1];  */ //호스트 토큰
-  const jwt =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2VtYWlsIjoic3UxMGppbjExQGhhbm1haWwubmV0IiwiaWF0IjoxNjkyMTk0MjMzLCJleHAiOjE2OTIxOTc4MzN9.Z52SZXiN5MeNM7Z8I-IEIORn3O1a2_oUBUwMI_lMbTs";
+  const jwt = Idtoken()[1]; //호스트 토큰
+
   const headers = {
     "x-access-token": jwt,
     "Content-Type": "application/json",

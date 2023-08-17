@@ -5,10 +5,22 @@ import Light from "./image/light.png";
 import StickerSlice from "./StickerSlice";
 import PopupSlice from "./PopupSlice";
 import { useNavigate } from "react-router-dom";
+import Idtoken from "../Stickers/Idtoken";
 
 // 팝업창 띄우기 버튼(전등), faceticker, 나만의 스티커를 만들어보세요, 얼굴형~악세사리 글자 표현 컴포넌트
 
 const Top = () => {
+  // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
+  const hostid = useSelector((state) => state.login.hostid);
+  const jwt = Idtoken()[1]; //호스트 토큰
+  const userId = Idtoken()[0]; //호스트 아이디
+
+  const whatType = hostid == null ? "host" : "visitor";
+
+  const ID = whatType == "host" ? userId : hostid;
+  const Main = whatType == "host" ? `/main/host/${userId}` : `/main${hostid}`;
+  console.log("id", ID);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -47,7 +59,7 @@ const Top = () => {
   };
   const faceticker = () => {
     //방문자, 호스트에 따라 바꾸기
-    navigate("/mainvisit");
+    navigate(Main);
   };
   return (
     <div className={styles.background}>
