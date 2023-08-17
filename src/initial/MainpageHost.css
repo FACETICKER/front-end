@@ -321,6 +321,7 @@
   border-radius: 50%;
   border: 2px solid #f26b79;
   transform: rotate(-7deg);
+  z-index: 2;
 }
 
 .l24-2 {
