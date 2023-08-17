@@ -327,6 +327,7 @@ function MainpageVisit() {
             >
               <button
                 style={{ border: "none", backgroundColor: "transparent" }}
+                onClick={handleQna}
               >
                 <img src={message} className="l1" alt="message" />
               </button>
@@ -371,7 +372,7 @@ function MainpageVisit() {
                     </p>
                   </div>
                   <div style={{ float: "left" }} name="날짜">
-                    <p id="" className="l6-2">
+                    <p id="" className="l6-2" style={{zIndex:'4'}}>
                       {Day || "JUNE, 28"}
                     </p>
                   </div>
@@ -479,7 +480,7 @@ function MainpageVisit() {
                   -1
                 </button> */}
               </div>
-              <Div>
+              <Div style={{position:'absolute',top:'4%',left:'36%'}}>
                 <button className="l10" onClick={handleVisitorsticker}>
                   <img src={recordpage} alt="recordpage" />
                 </button>
@@ -523,7 +524,7 @@ function MainpageVisit() {
             </footer>
           )}
           {showModal && (
-            <div className="Modal">
+            <div className="Modal" style={{zIndex:'100'}}>
               <div>
                 <div style={{}}>
                   <div className="l17">!</div>
@@ -565,14 +566,14 @@ function MainpageVisit() {
                     onMouseOver={handleDragBtnYes}
                     onMouseLeave={handleOutBtnYes}
                   >
-                    YES스티커
+                    YES
                   </button>
                 </div>
               </div>
             </div>
           )}
           {showModal3 && (
-            <div className="Modal">
+            <div className="Modal" style={{zIndex:'100'}}>
               <div>
                 <div style={{}}>
                   <div className="l17">!</div>
@@ -614,14 +615,14 @@ function MainpageVisit() {
                     onMouseOver={handleDragBtnYes}
                     onMouseLeave={handleOutBtnYes}
                   >
-                    YES질문
+                    YES
                   </button>
                 </div>
               </div>
             </div>
           )}
           {showModal2 && (
-            <div className="Modal">
+            <div className="Modal" style={{zIndex:'1000'}}>
               <div>
                 <div className="l17">!</div>
                 <button id="close" className="l18" onClick={toggleModal2}>

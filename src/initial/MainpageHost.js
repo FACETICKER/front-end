@@ -395,7 +395,7 @@ function MainpageHost() {
                   <p className="l13-2">{Season || "WIN 겨울 TER"}</p>
                 </div>
                 <div id="ment" className="l22-2">
-                  <div className="l23-2">
+                  <div className="l23-2" style={{zIndex:'2'}}>
                     <p id="" className="l3-2">
                       {Message || "어서옵쇼 다들 스티커 붙여주세요..!"}
                     </p>
@@ -412,8 +412,8 @@ function MainpageHost() {
                       {Number || "#128"}
                     </p>
                   </div>
-                  <div style={{ float: "left" }} name="날짜">
-                    <p id="" className="l6-2">
+                  <div style={{ float: "left"}} name="날짜">
+                    <p id="" className="l6-2" style={{zIndex:'4'}}>
                       {Day || "JUNE, 28"}
                     </p>
                   </div>
@@ -580,7 +580,7 @@ function MainpageHost() {
             </footer>
           )}
           {showModal1 && (
-            <div className="Modal">
+            <div className="Modal" style={{zIndex:'100'}}>
               <div
                 style={{
                   width: "294px",
