@@ -60,8 +60,9 @@ const Icon = styled.img`
 `;
 const Middle = styled.img`
   display: flex;
+  width: 40%;
   position: absolute;
-  top: -26%;
+  top: -28%;
 `;
 export function Visitor() {
   const navigate = useNavigate();

@@ -132,7 +132,7 @@ const Mouth = () => {
       ></img>
       <img
         src={Mouth3}
-        className={`${styles.mousth35} 
+        className={`${styles.mouth35} 
         ${face === 5 && mouth === 3 ? "" : styles.hidden}`}
       ></img>
       <img
@@ -185,7 +185,7 @@ const Mouth = () => {
       {/* 
             입5
         */}
-      
+
       <img
         src={Mouth5}
         className={`${styles.mouth52} 
@@ -226,7 +226,7 @@ const Mouth = () => {
       {/* 
             입6
         */}
-      
+
       <img
         src={Mouth6}
         className={`${styles.mouth62} 
