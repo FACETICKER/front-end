@@ -1,4 +1,5 @@
 import InitialSurveyList from "./InitialSurveyList.js";
+import { setChangeInitial } from "../components/SettingSllice.js";
 import Token from "../QnA/Token copy.js";
 import check from "../img/InitialSurvey_img/icon _check circled outline_ (2).svg";
 import down from "../img/InitialSurvey_img/chevron-down.png";
@@ -19,6 +20,7 @@ import {
   setInitialImport,
 } from "./InitialSurveyList.js"; // 경로는 실제 파일 경로에 맞게 수정해주세요
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
+
 
 function InitialSurvey() {
   const navigate = useNavigate();
@@ -48,6 +50,10 @@ function InitialSurvey() {
   const [name, setName] = useState(false);
   const [inputValues, setInputValues] = useState([]);
   const [initialdata, setInitialdata] = useState(null);
+  const [seasonCheck, setSeasonCheck] = useState("");
+  const [numberCheck, setNumberCheck] = useState("");
+  const [dateCheck, setDateCheck] = useState("");
+  const [importCheck, setImportCheck] = useState("");
   const [Month, setMonth] = useState(false);
   const [Date, setDate] = useState(false);
   const BackgroundWrap = styled.div`
@@ -63,6 +69,8 @@ function InitialSurvey() {
     position: relative;
     left: 100px;
   `;
+  const changeinitial = useSelector((state) => state.setting.changeinitial);
+  dispatch(setChangeInitial(true));
 
   const handleNameInput = (event) => {
     const nameInput = document.getElementById("name");
@@ -87,21 +95,15 @@ function InitialSurvey() {
     const resultDiv1 = document.getElementById("result2");
     const resultDiv2 = document.getElementById("gauge");
     const resultDiv3 = document.getElementById("result1-1");
-    const resultDiv4 = document.getElementById("check2-2");
-    const resultDiv5 = document.getElementById("check2-3");
     setChooseSeason(season); // 선택한 계절을 상태에 저장
     handleInitialSeasonChange();
+    setSeasonCheck(check);
     resultDiv1.style.display = "block";
     if (resultDiv2.style.width < "171px") {
       resultDiv2.style.width = "171px";
     }
     resultDiv3.style.display = "none";
-    if ((resultDiv5.style.display = "none")) {
-      resultDiv4.style.display = "none";
-      resultDiv5.style.display = "block";
-    } else {
-      return;
-    }
+    
     nameInput.className = "l5-1";
     nameInput2.style.position = "relative";
     nameInput2.style.top = "10%";
@@ -115,13 +117,9 @@ function InitialSurvey() {
     const resultDiv3 = document.getElementById("check2-2");
     const resultDiv4 = document.getElementById("check2-3");
     resultDiv.style.display = "block";
+    setSeasonCheck(up);
     nameInput.className = "l21-1";
-    if ((resultDiv4.style.display = "none")) {
-      resultDiv2.style.display = "none";
-      resultDiv3.style.display = "block";
-    } else {
-      return;
-    }
+    
   };
 
   const handleShowTextbox = (evant) => {
@@ -132,38 +130,26 @@ function InitialSurvey() {
     const resultDiv3 = document.getElementById("result4");
     const resultDiv4 = document.getElementById("gauge");
     const resultDiv5 = document.getElementById("check4-1");
-    const resultDiv6 = document.getElementById("check4-2");
-    const resultDiv7 = document.getElementById("check4-3");
     if (resultDiv1.style.display == "none") {
       resultDiv1.style.display = "block";
-      if ((resultDiv7.style.display = "none")) {
-        resultDiv5.style.display = "none";
-        resultDiv6.style.display = "block";
-      } else {
-        return;
-      }
+      setDateCheck(up);
       toggleBodyOverflow(showThirdTextbox);
       nameInput.className = "l21-1";
     } else {
       resultDiv1.style.display = "none";
-      if ((resultDiv7.style.display = "none")) {
-        resultDiv6.style.display = "none";
-        resultDiv7.style.display = "block";
-      } else {
-        return;
-      }
       resultDiv3.style.display = "block";
       nameInput.className = "l5-1";
       nameInput2.style.position = "relative";
-      nameInput2.style.top = "10%";
-      nameInput2.style.left = "-35%";
+      nameInput2.style.top = "8%";
+      nameInput2.style.left = "-30%";
       setChooseDay(selectedValue["month"] + " " + selectedValue["day"]);
+      setDateCheck(check);
       setMonth(valueGroups["Month"]);
       setDate(valueGroups["Days"]);
       handleInitialDayChange();
       toggleBodyOverflow(false);
       if (resultDiv4.style.width < "285px") {
-        resultDiv4.style.width = "285px";
+        resultDiv4.style.width = "285px"; 
       }
     }
   };
@@ -172,16 +158,9 @@ function InitialSurvey() {
     const nameInput = document.getElementById("import");
     const resultDiv = document.getElementById("result4-1");
     const resultDiv2 = document.getElementById("check5-1");
-    const resultDiv3 = document.getElementById("check5-2");
-    const resultDiv4 = document.getElementById("check5-3");
     resultDiv.style.display = "block";
     nameInput.className = "l21-1";
-    if ((resultDiv4.style.display = "none")) {
-      resultDiv2.style.display = "none";
-      resultDiv3.style.display = "block";
-    } else {
-      return;
-    }
+    setImportCheck(up);
   };
 
   const handleImportButtonClick = (evant) => {
@@ -189,9 +168,8 @@ function InitialSurvey() {
     const nameInput2 = document.getElementById("chooseImport");
     const resultDiv1 = document.getElementById("result5");
     const resultDiv2 = document.getElementById("gauge");
-    const resultDiv3 = document.getElementById("result4-1");
-    const resultDiv4 = document.getElementById("check5-2");
-    const resultDiv5 = document.getElementById("check5-3");
+    const resultDiv3 = document.getElementById("result4-1")
+    const resultDiv6 = document.getElementById("l16-1");
     setChooseImport(evant); // 선택한 계절을 상태에 저장
     setShowThirdTextbox(true);
     handleInitialImportChange();
@@ -202,12 +180,8 @@ function InitialSurvey() {
     resultDiv1.style.display = "block";
     resultDiv2.style.width = "342px";
     resultDiv3.style.display = "none";
-    if ((resultDiv5.style.display = "none")) {
-      resultDiv4.style.display = "none";
-      resultDiv5.style.display = "block";
-    } else {
-      return;
-    }
+    resultDiv6.style.height = "380px";
+    setImportCheck(check);
   };
 
   const [inputValue, setInputValue] = useState("");
@@ -223,38 +197,27 @@ function InitialSurvey() {
     const resultDiv = document.getElementById("result2-1");
     const resultDiv2 = document.getElementById("result3");
     const resultDiv3 = document.getElementById("gauge");
-    const resultDiv4 = document.getElementById("check3-1");
-    const resultDiv5 = document.getElementById("check3-2");
-    const resultDiv6 = document.getElementById("check3-3");
+
     if (resultDiv.style.display == "block") {
       if (input1 != "" || input2 != "" || input3 != "" || input4 != "") {
-        resultDiv.style.display = "none";
-        if ((resultDiv6.style.display = "none")) {
-          resultDiv5.style.display = "none";
-          resultDiv6.style.display = "block";
-        } else {
-          return;
-        }
         setChooseNumber(parseInt(input1 + input2 + input3 + input4));
         handleInitialNumberChange();
+        setNumberCheck(check);
+        resultDiv.style.display ="none";
         resultDiv2.style.display = "block";
         nameInput.className = "l5-1";
         nameInput2.style.position = "relative";
-        nameInput2.style.top = "10%";
-        nameInput2.style.left = "-30%";
+        nameInput2.style.top = "8%";
+        nameInput2.style.left = "-42%";
         if (resultDiv3.style.width < "228px") {
           resultDiv3.style.width = "228px";
         }
       }
     } else {
       nameInput.className = "l21-1";
-      if ((resultDiv6.style.display = "none")) {
-        resultDiv4.style.display = "none";
-        resultDiv5.style.display = "block";
-      } else {
-        return;
-      }
       resultDiv.style.display = "block"; // 닫혀있는 경우 열기
+      setNumberCheck(up);
+      
     }
   };
 
@@ -337,6 +300,41 @@ function InitialSurvey() {
   const toggleBodyOverflow = (shouldLockScrolling) => {
     document.body.style.overflow = shouldLockScrolling ? "hidden" : "auto";
   };
+
+  useEffect(() => {
+    const springO = document.getElementById("봄");
+    const summerO = document.getElementById("여름");
+    const autumnO = document.getElementById("가을");
+    const winterO = document.getElementById("겨울");
+    const orangeSeason = document.getElementById(chooseSeason);
+    if (chooseImport) {
+      springO.style.backgroundColor="white";
+    summerO.style.backgroundColor="white";
+    autumnO.style.backgroundColor="white";
+    winterO.style.backgroundColor="white";
+    springO.style.color="#767676";
+    summerO.style.color="#767676";
+    autumnO.style.color="#767676";
+    winterO.style.color="#767676";
+    console.log(orangeSeason);
+    orangeSeason.style.backgroundColor= "var(--unnamed, #FF6D00)";
+    orangeSeason.style.color= "#FFF";
+    }
+  },[chooseSeason])
+  useEffect(() => {
+    if (chooseImport) {
+      const sarang = document.getElementById("사랑");
+      const wjung = document.getElementById("우정");
+      const orangeImport = document.getElementById(chooseImport);
+      sarang.style.backgroundColor="white";
+      sarang.style.color="#767676";
+      wjung.style.backgroundColor="white";
+      wjung.style.color="#767676";
+      orangeImport.style.backgroundColor= "var(--unnamed, #FF6D00)";
+      orangeImport.style.color= "#FFF";
+    }
+  }, [chooseImport])
+
 
   const [input1, setInput1] = useState("");
   const [input2, setInput2] = useState("");
@@ -446,7 +444,6 @@ function InitialSurvey() {
   const method = initialdata == null ? "POST" : "PATCH";
   const JWT = Token()[1];
   
-
   //get
   useEffect(() => {
     const nameInput = document.getElementById("name");
@@ -475,27 +472,26 @@ function InitialSurvey() {
             handleSeasonButtonClick("봄");
           } else if (data.result.hostPoster[0].q_season == "가을") {
             handleSeasonButtonClick("가을");
+          } else if (data.result.hostPoster[0].q_season == "겨울") {
+            handleSeasonButtonClick("겨울");
           }
-          closecheck1.style.display="none";
           //handleShowFourNumber();
           setChooseNumber(data.result.hostPoster[0].q_number);
-          numberCheckDown.style.display="none";
-          numberCheckDone.style.display="block";
-          numberState.style.left="-42%";
-          numberState.style.top="10%";
+          setNumberCheck(check);
+          numberState.style.top = "8%";
+          numberState.style.left = "-42%";
           opendate.style.display = "block";
           setChooseDay(data.result.hostPoster[0].q_date);
-          dayCheckDown.style.display="none";
-          dayCheckDone.style.display="block";
-          dateState.style.left="-27%";
-          dateState.style.top="10%";
+          setDateCheck(check);
+          dateState.style.top = "8%";
+          dateState.style.left = "-30%";
           openImport.style.display = "block";
           if (data.result.hostPoster[0].q_important == "사랑") {
             handleImportButtonClick("사랑");
           } else if (data.result.hostPoster[0].q_important == "우정") {
             handleImportButtonClick("우정");
           }
-          closecheck2.style.display="none";
+          setImportCheck(check);
         }
       })
       .catch((error) => {
@@ -573,7 +569,6 @@ function InitialSurvey() {
     month: months[0],
     day: days[0],
   });
-
   const handleValueChange = (key, value) => {
     setSelectedValue((prevValues) => ({ ...prevValues, [key]: value }));
   };
@@ -583,14 +578,10 @@ function InitialSurvey() {
     if (method == "PATCH") {
       postorpatch.textContent="프로필로 돌아가기";
     }
-  }, [])
+  }, [method])
+
   
 
-  //if (method==="PATCH") {
-    //const resultDiv1 = document.getElementById("chooseNumber");
-    //const count1= 1;
-    //if ()
-  //}
 
   return (
     <div className="BackgroundWrap">
@@ -625,17 +616,17 @@ function InitialSurvey() {
               >
                 FACETICKER에서
               </div>
-              <div className="l3-1">사용할 프로필 포스터 정보를</div>
+              <div className="l3-1" style={{position:'relative',top:'-10%'}}>사용할 프로필 포스터 정보를</div>
               <div
                 className="l3-1"
-                style={{ position: "relative", left: "0%" }}
+                style={{ position: "relative", left: "0%" ,top:'-20%'}}
               >
                 등록해주세요.
               </div>
             </div>
           </div>
           <div style={{ width: "342px" }}>
-            <div className="l16-1">
+            <div id="l16-1" className="l16-1">
               <div style={{ padding: "10px 0 0 0" }}>
                 <input
                   className="l5-1"
@@ -644,20 +635,20 @@ function InitialSurvey() {
                   name="name"
                   minLength="2"
                   maxLength="7"
-                  placeholder="닉네임 (최대 15자)"
-                  style={{ width: "335px" }}
+                  placeholder="닉네임 (최대 7자)"
+                  style={{ width: "313px" }}
                   onInput={handleNameInput}
                 />
                 <img
                   src={check}
                   id="check1"
                   className="l15-1"
-                  style={{ display: "none", left: "88%", top: "-55px" }}
+                  style={{ display: "none", left: "85%", top: "-50px" }}
                 ></img>
               </div>
               <div
                 id="result1"
-                style={{ display: "none", padding: "0 0 30px 0" }}
+                style={{ display: "none", padding: "0 0 20px 0" }}
               >
                 <button
                   id="season"
@@ -671,7 +662,7 @@ function InitialSurvey() {
                   >
                     {chooseSeason || "좋아하는 계절을 선택하세요"}
                   </p>
-                  <img src={down} id="check2-1" className="l15-1"></img>
+                  <img src={seasonCheck || down} id="check2-1" className="l15-1"></img>
                   <img
                     src={up}
                     id="check2-2"
@@ -692,41 +683,41 @@ function InitialSurvey() {
                 >
                   <button
                     className="l8-1"
-                    id="spring"
+                    id="봄"
                     name="spring"
                     onClick={() => handleSeasonButtonClick("봄")}
                   >
-                    <p>봄</p>
+                    <p style={{position:'relative',top:'-5px'}}>봄</p>
                   </button>
                   <button
                     className="l8-1"
-                    id="summer"
+                    id="여름"
                     name="summer"
                     onClick={() => handleSeasonButtonClick("여름")}
                   >
-                    <p>여름</p>
+                    <p style={{position:'relative',top:'-5px'}}>여름</p>
                   </button>
                   <button
                     className="l8-1"
-                    id="autumn"
+                    id="가을"
                     name="autumn"
                     onClick={() => handleSeasonButtonClick("가을")}
                   >
-                    <p>가을</p>
+                    <p style={{position:'relative',top:'-5px'}}>가을</p>
                   </button>
                   <button
                     className="l8-1"
-                    id="winter"
+                    id="겨울"
                     name="winter"
                     onClick={() => handleSeasonButtonClick("겨울")}
                   >
-                    <p>겨울</p>
+                    <p style={{position:'relative',top:'-5px'}}>겨울</p>
                   </button>
                 </div>
               </div>
               <div
                 id="result2"
-                style={{ display: "none", padding: "0 0 30px 0" }}
+                style={{ display: "none", padding: "0 0 20px 0" }}
               >
                 <button
                   id="number"
@@ -740,7 +731,7 @@ function InitialSurvey() {
                   >
                     {chooseNumber || "좋아하는 숫자는?"}
                   </p>
-                  <img src={down} id="check3-1" className="l15-1"></img>
+                  <img src={numberCheck || down} id="check3-1" className="l15-1"></img>
                   <img
                     src={up}
                     id="check3-2"
@@ -838,7 +829,7 @@ function InitialSurvey() {
                 id="result3"
                 style={{
                   display: showFifthTextbox ? "block" : "none",
-                  padding: "0 0 30px 0",
+                  padding: "0 0 20px 0",
                 }}
               >
                 <button
@@ -853,7 +844,7 @@ function InitialSurvey() {
                   >
                     {chooseDay || "본인에게 의미있는 날은?"}
                   </p>
-                  <img src={down} id="check4-1" className="l15-1"></img>
+                  <img src={dateCheck || down} id="check4-1" className="l15-1"></img>
                   <img
                     src={up}
                     id="check4-2"
@@ -870,18 +861,26 @@ function InitialSurvey() {
                 <div
                   id="result3-1"
                   className="l22-1"
-                  style={{ display: "none", height: "200px" }}
+                  style={{ display: "none", height: "150px" }}
                 >
                   <Picker
+                  
                     optionGroups={{ month: months, day: days }}
                     valueGroups={selectedValue}
                     onChange={handleValueChange}
+                    className="l24-1"
+                    style={{
+                      // Picker 컴포넌트의 스타일을 수정
+                      ".picker-container .picker-highlight:after": {
+                        backgroundColor: "blue", // picker-highlight의 배경색 변경
+                        // 다른 스타일 속성들도 여기에 추가할 수 있음
+                      },}}
                   />
                 </div>
               </div>
               <div
                 id="result4"
-                style={{ display: "none", padding: "0 0 30px 0" }}
+                style={{ display: "none", padding: "0 0 20px 0" }}
               >
                 <button
                   id="import"
@@ -895,7 +894,7 @@ function InitialSurvey() {
                   >
                     {chooseImport || "내게 더 중요한 것은?"}
                   </p>
-                  <img src={down} id="check5-1" className="l15-1"></img>
+                  <img src={importCheck || down} id="check5-1" className="l15-1"></img>
                   <img
                     src={up}
                     id="check5-2"
@@ -916,24 +915,20 @@ function InitialSurvey() {
                 >
                   <div>
                     <button
-                      id="love"
+                      id="사랑"
                       name="love"
                       className="l10-1"
                       onClick={() => handleImportButtonClick("사랑")}
-                      onMouseOver={() => handleOverMouse("love")}
-                      onMouseLeave={() => handleLeaveMouse("love")}
                     >
                       <p>{"사랑"}</p>
                     </button>
                   </div>
                   <div>
                     <button
-                      id="friend"
+                      id="우정"
                       name="friend"
                       className="l10-1"
                       onClick={() => handleImportButtonClick("우정")}
-                      onMouseOver={() => handleOverMouse("friend")}
-                      onMouseLeave={() => handleLeaveMouse("friend")}
                     >
                       <p>{"우정"}</p>
                     </button>
@@ -952,7 +947,7 @@ function InitialSurvey() {
               <div className="l19-1" />
               <div>
                 <button onClick={handleNext} id="set_sticker" className="l6-1">
-                  <p id="postorpatch">스티커 만들기</p>
+                  <p id="postorpatch" style={{position:'relative',top:'-10%'}}>스티커 만들기</p>
                 </button>
               </div>
             </div>
