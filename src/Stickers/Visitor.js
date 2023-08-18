@@ -13,6 +13,7 @@ import { MainText } from "./MainText";
 import { useNavigate } from "react-router-dom";
 import visitorbutton from "../img/Stickers_img/visitorbutton.png";
 import middle from "../img/Stickers_img/Middle.png";
+import VisitorSticker from "./VisitorSticker";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -77,7 +78,7 @@ export function Visitor() {
       <Background>
         <MainHeader />
         <MainText />
-        <StaticSticker />
+        <VisitorSticker />
         <ButtonWrap>
           <Middle src={middle} />
 

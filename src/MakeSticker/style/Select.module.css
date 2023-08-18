@@ -36,7 +36,7 @@
   background: rgba(255, 197, 51, 1);
 }
 
-.line {
+/* .line {
   width: 30px;
   height: 5px;
   background: #bdbdbd;
@@ -44,7 +44,7 @@
   position: absolute;
   left: 48%;
   top: 8%;
-}
+} */
 
 .blackline {
   width: 134px;

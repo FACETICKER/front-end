@@ -11,7 +11,6 @@ import Accessory4 from "../image/accessory_image/accessory4-1.png";
 import Accessory5 from "../image/accessory_image/accessory5-1.png";
 import Accessory6 from "../image/accessory_image/accessory6-1.png";
 
-
 const Btn_accessory = () => {
   const accessory = useSelector((state) => {
     return state.sticker.accessory;
@@ -24,7 +23,14 @@ const Btn_accessory = () => {
   const accessory5 = { img: Accessory5, index: 5 };
   const accessory6 = { img: Accessory6, index: 6 };
 
-  const array = [accessory1, accessory2, accessory3, accessory4, accessory5, accessory6];
+  const array = [
+    accessory1,
+    accessory2,
+    accessory3,
+    accessory4,
+    accessory5,
+    accessory6,
+  ];
 
   const dispatch = useDispatch();
 
@@ -45,13 +51,19 @@ const Btn_accessory = () => {
           }`}
           onClick={() => onclick(item.index)}
         >
-          <img src={item.img} className={styles.element}></img>
           <img
-            src={Check} style={{width:'25px',height:'25px'}}
+            src={item.img}
+            className={`${styles.element} ${
+              item.img === Accessory2 ? styles.element3 : ""
+            }`}
+          />
+          <img
+            src={Check}
+            style={{ width: "25px", height: "25px" }}
             className={`${styles.check} ${
               accessory === item.index ? "" : styles.hidden
             }`}
-          ></img>
+          />
         </button>
       ))}
     </div>

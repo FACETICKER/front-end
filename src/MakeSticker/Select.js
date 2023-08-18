@@ -10,7 +10,7 @@ import styles1 from "./style/Popup.module.css";
 import styles2 from "./Modal_jh.module.css";
 import Close from "../img/QnA_img/close-x.png";
 import Dots from "../components/Dots";
-import { setCaptureEnabled, setVisitorId } from "./CaptureSlice";
+import { setCaptureEnabled, setImageUrl, setVisitorId } from "./CaptureSlice";
 import axios from "axios";
 import StickerName from "../Nickname/StickerName";
 import Idtoken from "../Stickers/Idtoken";
@@ -71,6 +71,22 @@ const Select = ({ handleCaptureImg }) => {
 
   //호스트가 완료 누를 때
   const capture = (isEnabled) => {
+    if (
+      //호스트가 아무것도 선택 안 했으면 기본 이미지 넘기기
+      stickerState.face === 0 &&
+      stickerState.eyes === 0 &&
+      stickerState.nose === 0 &&
+      stickerState.mouth === 0 &&
+      stickerState.hand === 0 &&
+      stickerState.foot === 0 &&
+      stickerState.accessory === 0
+    ) {
+      if (changesticker) {
+        navigate(`/main/host/${userId}`);
+      } else {
+        setModalIsOpen(true);
+      }
+    }
     dispatch(setCaptureEnabled(isEnabled));
     if (changesticker) {
       navigate(`/main/host/${userId}`);
@@ -81,7 +97,20 @@ const Select = ({ handleCaptureImg }) => {
 
   //방문자가 완료 누를 때
   const captureVisitor = (isEnabled) => {
-    dispatch(setCaptureEnabled(isEnabled));
+    if (
+      //방문자가 아무것도 선택 안 했으면 캡쳐 하지 말고 기본 이미지 저장
+      stickerState.face === 0 &&
+      stickerState.eyes === 0 &&
+      stickerState.nose === 0 &&
+      stickerState.mouth === 0 &&
+      stickerState.hand === 0 &&
+      stickerState.foot === 0 &&
+      stickerState.accessory === 0
+    ) {
+      dispatch(setImageUrl("https://i.ibb.co/3yhK7VW/1-2.png"));
+    } else {
+      dispatch(setCaptureEnabled(isEnabled));
+    }
 
     /*   navigate("/stickername", { state: { test: test2 } }); */
   };
@@ -169,6 +198,7 @@ const Select = ({ handleCaptureImg }) => {
               data.result[0].accessory_id,
             ])
           );
+          dispatch(StickerSlice.actions.update(["step", 6]));
           console.log("stickeris1", stickeris);
           setStickeris(true);
         })
@@ -183,6 +213,7 @@ const Select = ({ handleCaptureImg }) => {
   //sticker 보낼 거
   const imageUrl = useSelector((state) => state.capture.imageUrl);
   const visitorId = useSelector((state) => state.visitorId);
+
   const finalsticker = {
     face: stickerState.face,
     eyes: stickerState.eyes,
