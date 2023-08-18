@@ -109,7 +109,8 @@ function Choice_Modal(props) {
             border: '2px solid rgba(245, 245, 245, 1)',
             padding: '0px',
             margin: '0px',
-            boxShadow: '0px 2px 10px 0px rgba(0, 0, 0, 0.1)',
+            boxShadow: '0px 2px 10px 0px rgba(67, 0, 209, 0.10)',
+            borderRadius: '20px',
             position: 'absolute',
             top: position.top,
             left: position.left
