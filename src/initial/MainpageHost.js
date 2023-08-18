@@ -136,7 +136,9 @@ function MainpageHost() {
 
 
   const handleSpring = () => {
+    const resultDiv1 = document.getElementById("ifSpring");
     setSeason("SPR 봄 ING");
+    resultDiv1.style.left="18%";
   };
   const handleSummer = () => {
     setSeason("SUM 여름 MER");
@@ -280,13 +282,17 @@ function MainpageHost() {
     }
   }, [recordNumber]);
   useEffect(() => {
-    const count = document.getElementById("Sticker")
-    if (stickerdata) {
-      setStickerdata(normalSticker);
-      count.style.width="266px";
-      count.styyl.height="246px";
+    const Sticker = document.getElementById("Sticker")
+    const Photo = document.getElementById("Photo")
+    if (Sticker.src == "http://localhost:3000/static/media/%EA%B8%B0%EB%B3%B8%20%EC%BA%90%EB%A6%AD%201.484d8e0ea830f8eeff94.png") {
+      Sticker.style.width="80%";
+      Sticker.style.height="80%"
+      Photo.style.top="48%";
+      Photo.style.left="15%";
+    }else{
+      return;
     }
-  }, []);
+  }, [stickerdata]);
   
 
   return (
@@ -414,12 +420,12 @@ function MainpageHost() {
                     top: "27%",
                     zIndex: "3",
                   }}
-                  name="사진"
+                  name="사진" id="Photo"
                 >
-                  <img id="Sticker" src={stickerdata} alt="Vector" />
+                  <img id="Sticker" src={stickerdata || normalSticker} alt="Vector" />
                 </div>
-                <div id="ifSpring">
-                  <p className="l13-2">{Season || ""}</p>
+                <div >
+                  <p id="ifSpring" className="l13-2">{Season || ""}</p>
                 </div>
                 <div id="ment" className="l22-2">
                   <div className="l23-2" style={{ zIndex: "2" }}>

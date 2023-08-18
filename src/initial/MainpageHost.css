@@ -60,7 +60,7 @@
 }
 
 .l6-2 {
-  width: 400px;
+  width: 250px;
   transform: rotate(90deg);
   color: #191919;
   text-align: center;
@@ -71,8 +71,8 @@
   line-height: 22px; /* 68.75% */
   letter-spacing: -0.408px;
   position: absolute;
-  top: 27%;
-  left: 35%;
+  top: 30%;
+  left: 55%;
   z-index: 1;
 }
 
