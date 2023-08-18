@@ -28,6 +28,7 @@ import {
   setInitialMessage,
   Season_id,
 } from "./InitialSurveyList.js"; // 경로는 실제 파일 경로에 맞게 수정해주세요
+import HostHeader from "../components/HostHeader.js";
 
 const Div = styled.div`
   position: absolute;
@@ -90,15 +91,15 @@ function MainpageHost() {
   };
   const handleDownload2 = () => {
     const targetElement = document.getElementById("PrtSc"); // 캡처할 대상 div의 id
-        if (targetElement) {
-        html2canvas(targetElement).then((canvas) => {
+    if (targetElement) {
+      html2canvas(targetElement).then((canvas) => {
         const link = document.createElement("a");
         link.href = canvas.toDataURL("image/png");
         link.download = "capture.png";
         link.click();
-        });
-        }
-        alert("다운로드 성공");
+      });
+    }
+    alert("다운로드 성공");
   };
 
   const handleDownload = () => {
@@ -222,8 +223,8 @@ function MainpageHost() {
 
   const JWT = Token()[1];
   const user_id = Token()[0];
-  const [messagedata,setMessagedata] =useState(null);
-  const [stickerdata,setStickerdata] =useState(null);
+  const [messagedata, setMessagedata] = useState(null);
+  const [stickerdata, setStickerdata] = useState(null);
   const test2 = () => {
     const headers = {
       "x-access-token": JWT,
@@ -245,7 +246,7 @@ function MainpageHost() {
   };
   test2();
   useEffect(() => {
-    fetch(`https://app.faceticker.site/${user_id}`)
+    fetch(`https://app.faceticker.site/${user_id}`);
     fetch(`https://app.faceticker.site/${user_id}`)
       .then((response) => response.json())
       .then((data) => {
@@ -270,7 +271,7 @@ function MainpageHost() {
           handleSelleckSeason();
           setDay(data.result.hostPoster[0].q_date);
           setStickerdata(data.result.hostSticker[0].final_image_url);
-        } 
+        }
       })
       .catch((error) => {
         console.error("오류 발생", error);
@@ -289,9 +290,9 @@ function MainpageHost() {
               height: "70px",
               position: "relative",
               top: "0px",
-              left:"-5px",
-              display:'flex',
-              justifyContent: 'space-between'
+              left: "-5px",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
             <div
@@ -374,19 +375,35 @@ function MainpageHost() {
             </div>
           </header>
 
-          <div style={{ width:'366px',
-            height:'124%',
-            position: "relative",
-            top: "-5px" ,
-            left:"-7px",
-            border: '3px solid var(--unnamed, #12151C)',
-            borderRadius: '20px',
-            boxShadow: '2px 2px 10px 0px rgba(0, 0, 0, 0.25',
-            }}>
-            <div id="PrtSc" style={{ width: "338px", height: "88%", position:'relative', left:'4%'}}>
+          <div
+            style={{
+              width: "366px",
+              height: "124%",
+              position: "relative",
+              top: "-5px",
+              left: "-7px",
+              border: "3px solid var(--unnamed, #12151C)",
+              borderRadius: "20px",
+              boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",
+            }}
+          >
+            <div
+              id="PrtSc"
+              style={{
+                width: "338px",
+                height: "88%",
+                position: "relative",
+                left: "4%",
+              }}
+            >
               <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
                 <div
-                  style={{ position: "absolute", left: "6%", top: "27%" , zIndex:'3'}}
+                  style={{
+                    position: "absolute",
+                    left: "6%",
+                    top: "27%",
+                    zIndex: "3",
+                  }}
                   name="사진"
                 >
                   <img src={stickerdata} alt="Vector" />
@@ -395,7 +412,7 @@ function MainpageHost() {
                   <p className="l13-2">{Season || "WIN 겨울 TER"}</p>
                 </div>
                 <div id="ment" className="l22-2">
-                  <div className="l23-2" style={{zIndex:'2'}}>
+                  <div className="l23-2" style={{ zIndex: "2" }}>
                     <p id="" className="l3-2">
                       {Message || "어서옵쇼 다들 스티커 붙여주세요..!"}
                     </p>
@@ -412,8 +429,8 @@ function MainpageHost() {
                       {Number || "#128"}
                     </p>
                   </div>
-                  <div style={{ float: "left"}} name="날짜">
-                    <p id="" className="l6-2" style={{zIndex:'4'}}>
+                  <div style={{ float: "left" }} name="날짜">
+                    <p id="" className="l6-2" style={{ zIndex: "4" }}>
                       {Day || "JUNE, 28"}
                     </p>
                   </div>
@@ -425,7 +442,7 @@ function MainpageHost() {
                   position: "absolute",
                   width: "338px",
                   height: "140px",
-                  top:"77%",
+                  top: "77%",
                 }}
               >
                 <div name="사자성어">
@@ -519,7 +536,7 @@ function MainpageHost() {
                   -1
                 </button> */}
               </div>
-              <Div style={{position:'absolute',top:'88%',left:'34%'}}>
+              <Div style={{ position: "absolute", top: "88%", left: "34%" }}>
                 <button className="l10-2" onClick={handleHoststicker}>
                   <img src={recordpage} alt="recordpage" />
                 </button>
@@ -580,7 +597,7 @@ function MainpageHost() {
             </footer>
           )}
           {showModal1 && (
-            <div className="Modal" style={{zIndex:'100'}}>
+            <div className="Modal" style={{ zIndex: "100" }}>
               <div
                 style={{
                   width: "294px",
@@ -627,6 +644,7 @@ function MainpageHost() {
               </div>
             </div>
           )}
+
           {showModal4 && (
             <div className="ModalContent">
               <div
