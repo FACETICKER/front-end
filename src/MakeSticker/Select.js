@@ -66,10 +66,17 @@ const Select = ({ handleCaptureImg }) => {
     setModalIsOpen(false);
   };
 
+  //호스트 설정에서 스티커 변경하려고 온 유저는 모달창 X 바로 메인
+  const changesticker = useSelector((state) => state.setting.changesticker);
+
   //호스트가 완료 누를 때
   const capture = (isEnabled) => {
     dispatch(setCaptureEnabled(isEnabled));
-    setModalIsOpen(true);
+    if (changesticker) {
+      navigate(`/main/host/${userId}`);
+    } else {
+      setModalIsOpen(true);
+    }
   };
 
   //방문자가 완료 누를 때
@@ -237,9 +244,11 @@ const Select = ({ handleCaptureImg }) => {
   console.log("id", loginData.id);
   console.log("token", loginData.token);
  */
+
   const stickernmae = () => {
     setname(true);
   };
+
   return (
     <div className={styles.background}>
       <div className={styles.line}></div>

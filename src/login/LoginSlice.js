@@ -6,6 +6,7 @@ const initialState = {
   hostid: null,
   gomakesticker: false,
   goqna: false,
+  alreadyuser: false,
 };
 
 const loginSlice = createSlice({
@@ -27,9 +28,19 @@ const loginSlice = createSlice({
     setGoQna: (state, action) => {
       state.goqna = action.payload;
     },
+    //이미 가입한 유저
+    setAlreadyuser: (state, action) => {
+      state.alreadyuser = action.payload;
+    },
   },
 });
 
-export const { setGoMakesticker, setGoQna, setId, setToken, setHostId } =
-  loginSlice.actions;
+export const {
+  setAlreadyuser,
+  setGoMakesticker,
+  setGoQna,
+  setId,
+  setToken,
+  setHostId,
+} = loginSlice.actions;
 export default loginSlice.reducer;

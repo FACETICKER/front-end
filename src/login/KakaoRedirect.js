@@ -4,7 +4,7 @@ import styled from "styled-components";
 import "../font/font.css";
 import { BarLoader } from "react-spinners";
 import { useDispatch, useSelector } from "react-redux";
-import { setId, setToken } from "./LoginSlice";
+import { setAlreadyuser, setId, setToken } from "./LoginSlice";
 import axios from "axios";
 
 const BackgroundWrap = styled.div`
@@ -52,7 +52,10 @@ export function KakaoRedirect() {
           `http://app.faceticker.site/login/kakao?code=${code}`
         );
         const resdata = response.data;
-        console.log(resdata);
+        console.log(resdata.message);
+        if (resdata.message == "이미 가입된 사용자입니다") {
+          dispatch(setAlreadyuser(true));
+        }
 
         // 토큰, 아이디 저장
 

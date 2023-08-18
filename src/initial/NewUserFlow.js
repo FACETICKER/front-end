@@ -10,6 +10,7 @@ import mini2 from "../img/NewUserFlow_img/mini2.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import PageSlice from "../QnA/Slice/PageSlice";
+import Token from "./Token";
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
 
 function NewUserFlow() {
@@ -25,11 +26,13 @@ function NewUserFlow() {
     return state.nextLoginList.questionis;
   });
 
+  //이미 가입된 사용자면 바로 메인페이지로
+  const alreadyUser = useSelector((state) => state.login.alreadyuser);
+  //userid
+  const userId = Token()[0];
   const handleButtonClick = () => {
-    if (Next1) {
-      navigate("/makesticker");
-    } else if (Next2) {
-      dispatch(PageSlice.actions.guest());
+    if (alreadyUser) {
+      navigate(`/main/host/${userId}`);
     } else {
       navigate("/initial");
     }
@@ -46,11 +49,13 @@ function NewUserFlow() {
           </div>
           <div className="l7-4">
             <div className="l2-4">
-              <p>
-                나만의 페이스티커를 통해
+              <p>나만의 페이스티커를 통해</p>
+              <p style={{ position: "absolute", top: "40%" }}>
+                자신을 표현하고 친구들에게 궁금한 점을
               </p>
-              <p style={{position:'absolute',top:'40%'}}>자신을 표현하고 친구들에게 궁금한 점을</p>
-              <p style={{position:'absolute',top:'140%'}}>묻고 답하며 자유롭게 소통해보세요.</p>
+              <p style={{ position: "absolute", top: "140%" }}>
+                묻고 답하며 자유롭게 소통해보세요.
+              </p>
             </div>
             <div>
               <div className="l3-4">
