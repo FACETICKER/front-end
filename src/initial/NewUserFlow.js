@@ -57,7 +57,7 @@ function NewUserFlow() {
                 묻고 답하며 자유롭게 소통해보세요.
               </p>
             </div>
-            <div>
+            <div className="l8-4">
               <div className="l3-4">
                 <img className="l3-4" src={mini1}></img>
               </div>
@@ -69,7 +69,9 @@ function NewUserFlow() {
           <div>
             <div className="l6-4"></div>
             <button className="l5-4" onClick={handleButtonClick}>
-              <p>시작하기</p>
+              <p style={{position:'relative',top:'-3px'}}>
+                시작하기
+              </p>
             </button>
           </div>
         </div>
