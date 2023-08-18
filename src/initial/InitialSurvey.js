@@ -241,7 +241,7 @@ function InitialSurvey() {
         nameInput.className = "l5-1";
         nameInput2.style.position = "relative";
         nameInput2.style.top = "10%";
-        nameInput2.style.left = "-40%";
+        nameInput2.style.left = "-30%";
         if (resultDiv3.style.width < "228px") {
           resultDiv3.style.width = "228px";
         }
@@ -445,6 +445,7 @@ function InitialSurvey() {
 
   const method = initialdata == null ? "POST" : "PATCH";
   const JWT = Token()[1];
+  
 
   //get
   useEffect(() => {
@@ -454,6 +455,12 @@ function InitialSurvey() {
     const openImport = document.getElementById("result4");
     const closecheck1 = document.getElementById("check2-1");
     const closecheck2 = document.getElementById("check5-1");
+    const numberState= document.getElementById("chooseNumber");
+    const numberCheckDown = document.getElementById("check3-1");
+    const numberCheckDone = document.getElementById("check3-3");
+    const dateState= document.getElementById("chooseDay");
+    const dayCheckDown = document.getElementById("check4-1");
+    const dayCheckDone = document.getElementById("check4-3");
     fetch(`https://app.faceticker.site/${user_id}`)
       .then((response) => response.json())
       .then((data) => {
@@ -470,9 +477,18 @@ function InitialSurvey() {
             handleSeasonButtonClick("가을");
           }
           closecheck1.style.display="none";
+          //handleShowFourNumber();
           setChooseNumber(data.result.hostPoster[0].q_number);
+          numberCheckDown.style.display="none";
+          numberCheckDone.style.display="block";
+          numberState.style.left="-42%";
+          numberState.style.top="10%";
           opendate.style.display = "block";
           setChooseDay(data.result.hostPoster[0].q_date);
+          dayCheckDown.style.display="none";
+          dayCheckDone.style.display="block";
+          dateState.style.left="-27%";
+          dateState.style.top="10%";
           openImport.style.display = "block";
           if (data.result.hostPoster[0].q_important == "사랑") {
             handleImportButtonClick("사랑");
@@ -562,6 +578,13 @@ function InitialSurvey() {
     setSelectedValue((prevValues) => ({ ...prevValues, [key]: value }));
   };
   
+  
+
+  //if (method==="PATCH") {
+    //const resultDiv1 = document.getElementById("chooseNumber");
+    //const count1= 1;
+    //if ()
+  //}
 
   return (
     <div className="BackgroundWrap">
@@ -614,7 +637,7 @@ function InitialSurvey() {
                   id="name"
                   name="name"
                   minLength="2"
-                  maxLength="15"
+                  maxLength="7"
                   placeholder="닉네임 (최대 15자)"
                   style={{ width: "335px" }}
                   onInput={handleNameInput}

@@ -16,6 +16,7 @@ import PageSlice from "../QnA/Slice/PageSlice";
 import html2canvas from "html2canvas";
 import "./MainpageHost.css";
 import ReactDOM from "react-dom";
+import { setChangeSticker } from "../components/SettingSllice.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -194,6 +195,7 @@ function MainpageHost() {
     setDay("JUNE, 28");
   };
   const handleMakeSticker = () => {
+    dispatch(setChangeSticker(true));
     navigate("/makesticker");
   };
   const handleInitial = () => {
