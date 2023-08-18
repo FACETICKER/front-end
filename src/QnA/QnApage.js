@@ -24,7 +24,7 @@ const QnApage = () => {
   const Getinfo = () => {
 
     const headers = {
-        "x-access-token": JWT,
+        "x-access-token": '',
         'Content-Type': 'application/json'
     };
 
@@ -54,9 +54,10 @@ const QnApage = () => {
     dispatch(questionSlice.actions.reset());
     dispatch(AnswerSlice.actions.reset());
     Getinfo();
-    console.log(windowHeight);
-    console.log(documentHeight);
-    console.log('bottom', bottom);
+    console.log(userID);
+    console.log(hostID);
+    console.log(JWT);
+    console.log(page);
   }, []);
 
   useEffect(() => {

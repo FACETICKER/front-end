@@ -16,7 +16,7 @@ function setScreenSize() {
 
 //BackgroundWrap : 가로 길어졌을 때 Background는 고정. 나머지 영역에 보이게 할 색/이미지 설정
 const BackgroundWrap = styled.div`
-  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  background: #F6E4F2;
 `;
 //Background : 모바일로 보이는 영역
 const Background = styled.div`
