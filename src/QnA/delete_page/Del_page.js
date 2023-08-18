@@ -118,7 +118,6 @@ function Del_page() {
             <div className={styles.remover} onClick={remove}>
                 <p className={`${styles.remover_p} ${allChosen && styles.remover_p_red}`}>삭제</p>
             </div>
-            <div className={styles.blackline}></div>
         </div>
     );
 };
