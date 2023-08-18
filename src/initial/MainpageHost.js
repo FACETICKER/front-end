@@ -56,6 +56,7 @@ function MainpageHost() {
   const [Number, setNumber] = useState("");
   const [Day, setDay] = useState("");
   const [Message, setMessage] = useState("");
+  const [count,setCount] = useState("");
 
   const toggleFooter = () => {
     setShowFooter(!showFooter);
@@ -131,21 +132,7 @@ function MainpageHost() {
     }
   };
 
-  const handlePlusRecord = () => {
-    setRecordNumber((prevNumber1) => prevNumber1 + 1);
-    const resultDiv1 = document.getElementById("countRecordDiv");
-    resultDiv1.style.display = "block";
-  };
-  const handleMinusRecord = () => {
-    const resultDiv1 = document.getElementById("countRecordDiv");
-    if (recordNumber <= "1") {
-      setRecordNumber(0);
-      resultDiv1.style.display = "none";
-    } else {
-      setRecordNumber((prevNumber1) => prevNumber1 - 1);
-      resultDiv1.style.display = "block";
-    }
-  };
+
 
   const handleSpring = () => {
     setSeason("SPR 봄 ING");
@@ -237,7 +224,7 @@ function MainpageHost() {
     }) // 서버로 GET 요청을 보냄
       .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
       .then((data) => {
-        console.log("성공", data.result[0].message);
+        console.log("성공", data.result[0]);
         setMessage(data.result[0].message);
       })
       .catch((error) => {
@@ -252,11 +239,14 @@ function MainpageHost() {
       .then((data) => {
         if (data) {
           console.log("성공", data.result);
+          setRecordNumber(data.result.hostnewSticer[0].count.toString());
           setMessagedata(data.result.hostPoster[0]);
           setChinese(data.result.hostPoster[0].chinese);
           setName(data.result.hostPoster[0].nickname);
           setMean(data.result.hostPoster[0].meaning);
           setKorean(data.result.hostPoster[0].pronunciation);
+          setNumber(data.result.hostPoster[0].q_number);
+          setDay(data.result.hostPoster[0].q_date);
           const handleSelleckSeason = () => {
             if (data.result.hostPoster[0].q_season === "봄") {
               handleSpring();
@@ -269,7 +259,6 @@ function MainpageHost() {
             }
           };
           handleSelleckSeason();
-          setDay(data.result.hostPoster[0].q_date);
           setStickerdata(data.result.hostSticker[0].final_image_url);
         }
       })
@@ -277,7 +266,19 @@ function MainpageHost() {
         console.error("오류 발생", error);
       });
   }, []);
-  console.log(stickerdata);
+  useEffect(() => {
+    const handleSelleckName = () => {
+      setName(InitialSurveyList.Name_id);
+    };
+    handleSelleckName();
+  }, []);
+  useEffect(() => {
+    const count = document.getElementById("countRecordDiv")
+    if (recordNumber == "0") {
+      count.style.display="none";
+    }
+  }, [recordNumber]);
+  
 
   return (
     <div className="BackgroundWarp">
@@ -409,7 +410,7 @@ function MainpageHost() {
                   <img src={stickerdata} alt="Vector" />
                 </div>
                 <div id="ifSpring">
-                  <p className="l13-2">{Season || "WIN 겨울 TER"}</p>
+                  <p className="l13-2">{Season || ""}</p>
                 </div>
                 <div id="ment" className="l22-2">
                   <div className="l23-2" style={{ zIndex: "2" }}>
@@ -421,17 +422,17 @@ function MainpageHost() {
                 <div style={{ width: "390px", height: "100px" }}>
                   <div style={{ float: "left" }} name="이름">
                     <p id="" className="l4-2">
-                      {Name || "수민님"}
+                      {Name || ""}
                     </p>
                   </div>
                   <div style={{ float: "left" }} name="숫자">
                     <p id="" className="l5-2">
-                      {Number || "#128"}
+                      {Number || ""}
                     </p>
                   </div>
                   <div style={{ float: "left" }} name="날짜">
                     <p id="" className="l6-2" style={{ zIndex: "4" }}>
-                      {Day || "JUNE, 28"}
+                      {Day || ""}
                     </p>
                   </div>
                 </div>
@@ -461,17 +462,17 @@ function MainpageHost() {
                     ></div>
                   </div>
                   <div className="l7-2">
-                    <p id="">{Korean || "오매불망"}</p>
+                    <p id="">{Korean || ""}</p>
                   </div>
                 </div>
                 <div name="한자">
                   <p id="" className="l8-2">
-                    {Chinese || "寤寐不忘"}
+                    {Chinese || ""}
                   </p>
                 </div>
                 <div name="뜻">
                   <p id="" className="l9-2">
-                    {Mean || "자나깨나 잊지 못함"}
+                    {Mean || ""}
                   </p>
                 </div>
               </div>
@@ -504,15 +505,15 @@ function MainpageHost() {
             </div>
             <div>
               <div style={{ float: "left" }}>
-                {/* <div
+                 <div
                   id="countRecordDiv"
                   className="l14-2"
-                  style={{ display: "none", top: "-80px", left: "40px" }}
+                  style={{position:'absolute' ,display: "block", top: "88%", left: "50%" ,zIndex:'1'}}
                 >
                   <p id="countRecord" className="l15-2">
-                    {recordNumber || "0"}
+                    {recordNumber || ""}
                   </p>
-                </div> */}
+                </div> 
                 {/*  <button
                   style={{
                     width: "20px",
