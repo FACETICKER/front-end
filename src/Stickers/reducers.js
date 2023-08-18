@@ -7,6 +7,7 @@ const appSlice = createSlice({
     isImageFixed2: false,
     imagevisible: false,
     change: true,
+    reset: false,
   },
   reducers: {
     setIsImageFixed(state, action) {
@@ -21,10 +22,14 @@ const appSlice = createSlice({
     setIsImageVisible(state, action) {
       state.imagevisible = action.payload;
     },
+    setreset(state, action) {
+      state.reset = action.payload;
+    },
   },
 });
 
 export const {
+  setreset,
   setIsImageFixed,
   setIsImageVisible,
   setIsImageFixed2,

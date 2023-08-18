@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsImageFixed, setSelectedImageKey } from "./reducers";
+import { setIsImageFixed, setSelectedImageKey, setreset } from "./reducers";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -216,7 +216,7 @@ export function RepositionSticker() {
   };
 
   const isImageFixed2 = useSelector((state) => state.app.isImageFixed2);
-
+  const reset = useSelector((state) => state.app.reset);
   console.log("VID", VID);
   //이미지 PATCH
 
@@ -238,6 +238,16 @@ export function RepositionSticker() {
         });
     }
   }, [isImageFixed2]);
+
+  useEffect(() => {
+    if (reset) {
+      setlogoPos({
+        x: first.x,
+        y: first.y,
+      });
+      dispatch(setreset(false));
+    }
+  }, [reset]);
 
   return (
     <BottomWrap>
@@ -271,13 +281,10 @@ export function RepositionSticker() {
             <div
               {...bindLogoPos()}
               style={{
-                /*MODIFIED!*/ position: "relative",
+                position: "relative",
 
                 top: `${(logoPos.y * componentHeight) / 100}px`,
                 left: `${(logoPos.x * componentWidth) / 100}px`,
-                /* ...(location
-                  ? { top: first.y, left: first.x } // location이 true인 경우 top과 left를 10px로 설정
-                  : {}), */
               }}
             >
               <Move src={move} />
