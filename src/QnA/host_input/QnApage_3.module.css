@@ -1,11 +1,3 @@
-@font-face {
-  font-family: "Pretendard";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-
 .open_spell {
   font-family: Actor;
   font-size: 16px;
@@ -90,8 +82,6 @@
 }
 .pencil_p {
   margin-left: 15px;
-  font-family: Pretendard;
-  color: #767676;
 }
 
 .trash {
@@ -103,8 +93,6 @@
 
 .trash_p {
   margin-left: 15px;
-  font-family: Pretendard;
-  color: #767676;
 }
 
 .ctn {

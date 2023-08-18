@@ -42,8 +42,6 @@ const EditQues_Modal = () => {
 
   const [quesopen, setquesopen] = useState(first_ques_open); // 초기 비공개값 설정 완료
 
-  const screenwidth = window.innerWidth;
-
   const modalStyle = {
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.1)",
@@ -63,7 +61,6 @@ const EditQues_Modal = () => {
       position: "absolute",
       top: "75%",
       left: "50%",
-      left: screenwidth >= 500 ? "50%" : "52.5%",
       transform: "translate(-50%, -50%)",
       overflow: "auto",
       dipslay: "flex",

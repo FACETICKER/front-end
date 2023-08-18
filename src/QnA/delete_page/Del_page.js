@@ -136,8 +136,7 @@ function Del_page() {
           삭제
         </p>
       </div>
+      <div className={styles.blackline}></div>
     </div>
   );
 }
-
-export default Del_page;
