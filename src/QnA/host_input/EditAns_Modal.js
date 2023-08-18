@@ -27,6 +27,8 @@ const EditAns_Modal = () => {
 
     const ID = ans.filter(obj => obj.clicked === true).map(obj => obj.id)[0]; // 클릭한 답변 아이디
 
+    const screenwidth = window.innerWidth;
+
     const modalStyle = {
         overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.1)',
@@ -45,7 +47,7 @@ const EditAns_Modal = () => {
             margin: '0px',
             position: 'absolute',
             top: '75%',
-            left: '50%',
+            left: screenwidth >= 500 ? '50%' : '52.5%',
             transform: 'translate(-50%, -50%)',
             overflow: 'auto',
             dipslay: 'flex',
