@@ -54,10 +54,6 @@ const QnApage = () => {
     dispatch(questionSlice.actions.reset());
     dispatch(AnswerSlice.actions.reset());
     Getinfo();
-    console.log(userID);
-    console.log(hostID);
-    console.log(JWT);
-    console.log(page);
   }, []);
 
   useEffect(() => {
