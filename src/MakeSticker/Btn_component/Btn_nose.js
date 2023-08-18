@@ -11,7 +11,6 @@ import Nose4 from "../image/nose_image/nose4-1.png";
 import Nose5 from "../image/nose_image/nose5-1.png";
 import Nose6 from "../image/nose_image/nose6-1.png";
 
-
 const Btn_nose = () => {
   const nose = useSelector((state) => {
     return state.sticker.nose;
@@ -47,7 +46,8 @@ const Btn_nose = () => {
         >
           <img src={item.img} className={styles.element}></img>
           <img
-            src={Check} style={{width:'25px',height:'25px'}}
+            src={Check}
+            style={{ width: "25px", height: "25px" }}
             className={`${styles.check} ${
               nose === item.index ? "" : styles.hidden
             }`}

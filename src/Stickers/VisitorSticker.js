@@ -69,13 +69,15 @@ const ZoomButton = styled.button`
   cursor: pointer;
 `;
 
-export function StaticSticker() {
+export function VisitorSticker() {
   const [hostImageUrl, setHostImageUrl] = useState(null);
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
   const [imageData, setImageData] = useState([]);
   const [componentWidth, setComponentWidth] = useState(0);
   const [componentHeight, setComponentHeight] = useState(0);
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
   const hostid = useSelector((state) => state.login.hostid);
@@ -97,13 +99,6 @@ export function StaticSticker() {
   console.log("header", whatType);
   const ID = whatType == "host" ? userId : hostid;
   console.log("id", ID);
-
-  const dispatch = useDispatch();
-
-  const handleStickerClick = (item) => {
-    dispatch(setSelectedImage(item.visitor_sticker_id)); // 클릭한 이미지의 alt 값을 dispatch로 저장
-    navigate(`/sticker/host/${userId}/click`);
-  };
 
   //컴포넌트 높이, 너비
   const componentRef = useRef(null);
@@ -164,7 +159,6 @@ export function StaticSticker() {
           {imageData &&
             imageData.map((item) => (
               <img
-                onClick={() => handleStickerClick(item)}
                 key={item.visitor_sticker_id}
                 src={item.final_image_url}
                 style={{
@@ -188,4 +182,4 @@ export function StaticSticker() {
   );
 }
 
-export default StaticSticker;
+export default VisitorSticker;

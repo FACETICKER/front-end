@@ -18,7 +18,7 @@ const Top = () => {
   const whatType = hostid == null ? "host" : "visitor";
 
   const ID = whatType == "host" ? userId : hostid;
-  const Main = whatType == "host" ? `/main/host/${userId}` : `/main${hostid}`;
+  const Main = whatType == "host" ? `/main/host/${userId}` : `/main/${hostid}`;
   console.log("id", ID);
 
   const dispatch = useDispatch();
