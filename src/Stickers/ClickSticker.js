@@ -422,7 +422,7 @@ export function ClickSticker() {
         <Footer>
           <Icons>
             <Icon onClick={handleBackClick} src={backtext} />
-            <Icon /* onClick={handleProfileClick} */ src={visitprofile} />
+            <Icon src={visitprofile} />
           </Icons>
         </Footer>
       </Background>
