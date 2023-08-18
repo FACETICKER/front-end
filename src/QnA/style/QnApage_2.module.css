@@ -50,32 +50,35 @@
 }
 
 .buttontext {
-  font-size: 16px;
-  display: inline-block;
-  width: 85%; /* 버튼의 너비를 90%로 설정하여 텍스트에 맞게 조정 */
-  box-sizing: border-box; /* padding을 포함한 전체 너비로 설정 */
-  word-break: break-all;
-  font-family: Pretendard;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    font-size: 16px;
+    display: inline-block;
+    width: auto; /* 버튼의 너비를 90%로 설정하여 텍스트에 맞게 조정 */
+    box-sizing: border-box; /* padding을 포함한 전체 너비로 설정 */
+    word-break: break-all;
+    font-family: Pretendard;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    white-space: normal; /* 줄바꿈 허용 */
 }
 
 .buttonArray {
-  min-width: 100px;
-  max-width: 65%;
-  min-height: 62px;
-  max-height: 100%;
-  gap: 10px;
-  box-shadow: 0px 4px 10px 0px rgba(67, 0, 209, 0.1);
-  background-color: rgba(255, 255, 255, 1);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 22px;
-  letter-spacing: -0.025em;
-  flex-shrink: 0;
-  z-index: 2;
-  border: none;
-  position: relative;
+    min-width: 100px;
+    max-width: 73%;
+    min-height: 62px;
+    max-height: 100%;
+    gap: 10px;
+    box-shadow: 0px 4px 10px 0px rgba(67, 0, 209, 0.1);
+    background-color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: -0.025em;
+    flex-shrink: 0;
+    z-index: 2;
+    border: none;
+    position: relative;
 }
 
 .radius_L {
@@ -245,32 +248,35 @@
 }
 
 .answertext {
-  display: inline-block;
-  font-size: 16px;
-  width: 90%; /* 버튼의 너비를 80%로 설정하여 텍스트에 맞게 조정 */
-  box-sizing: border-box; /* padding을 포함한 전체 너비로 설정 */
-  word-break: break-all;
-  font-family: Pretendard;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    display: inline-block;
+    font-size: 16px;
+    width: auto; /* 버튼의 너비를 80%로 설정하여 텍스트에 맞게 조정 */
+    box-sizing: border-box; /* padding을 포함한 전체 너비로 설정 */
+    word-break: break-all;
+    font-family: Pretendard;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    white-space: normal; /* 줄바꿈 허용 */
 }
 
-.button_answer {
-  margin-right: 5%;
-  min-width: 100px;
-  max-width: 65%;
-  min-height: 62px;
-  max-height: 100%;
-  border: none;
-  gap: 10px;
-  background-color: rgba(255, 155, 76, 1);
-  color: white;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 22px;
-  letter-spacing: -0.025em;
-  flex-shrink: 0;
-  z-index: 2;
+.button_answer{
+    margin-right: 5%;
+    min-width: 100px;
+    max-width: 73%;
+    min-height: 62px;
+    max-height: 100%;
+    border: none;
+    gap: 10px;
+    background-color: rgba(255, 155, 76, 1);
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: -0.025em;
+    flex-shrink: 0;
+    z-index: 2;
 }
 
 @media (min-width: 768px) {

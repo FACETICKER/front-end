@@ -20,18 +20,21 @@
 .buttontext {
     font-size: 16px;
     display: inline-block;
-    width: 90%; /* 버튼의 너비를 100%로 설정하여 텍스트에 맞게 조정 */
+    width: auto; /* 버튼의 너비를 100%로 설정하여 텍스트에 맞게 조정 */
     box-sizing: border-box; /* padding을 포함한 전체 너비로 설정 */
     word-break: break-all;
     font-family: Pretendard;
     margin-top: 10px;
     margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    white-space: normal; /* 줄바꿈 허용 */
 }
 
 .buttonArray {
     margin-right: 5%;
     min-width: 100px;
-    max-width: 65%;
+    max-width: 73%;
     min-height: 62px;
     max-height: 100%;
     border-radius: 100px;
@@ -68,7 +71,7 @@
 .button_answer {
     position: relative;
     min-width: 100px;
-    max-width: 65%;
+    max-width: 73%;
     min-height: 62px;
     max-height: 100%;
     border: none;

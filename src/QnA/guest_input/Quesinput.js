@@ -15,7 +15,7 @@ function Quesinput() {
     });
 
     const hostID = Token()[2];
-    const JWT = Token()[1];
+    const JWT = Token()[1] === null ? '' : Token()[1];
 
     const postQuestion = () => {
 
