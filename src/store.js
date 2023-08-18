@@ -21,7 +21,7 @@ import StickerSlice from "./MakeSticker/StickerSlice";
 import MS_PopupSlice from "./MakeSticker/PopupSlice";
 import imageReducer from "./Stickers/imageSlice";
 import captureReducer from "./MakeSticker/CaptureSlice";
-
+import settingReducer from "./components/SettingSllice";
 import loginReducer from "./login/LoginSlice";
 
 import InitialSurveyList from "./initial/InitialSurveyList";
@@ -59,6 +59,7 @@ const store = configureStore({
     sticker: StickerSlice.reducer, //  총 저장소
     popup: MS_PopupSlice.reducer, // 팝업창 onoff 저장소
     capture: captureReducer,
+    setting: settingReducer,
 
     login: loginReducer,
   },
