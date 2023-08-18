@@ -25,7 +25,7 @@ const Background = styled.div`
   margin: 0px auto;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  background: #f6e4f2;
   z-index: -1;
 `;
 

@@ -227,6 +227,8 @@
 .l15-2 {
   color: white;
   text-align: center;
+  position: relative;
+  top:-80%;
 }
 
 .l16-2 {
