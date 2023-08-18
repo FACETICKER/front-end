@@ -5,6 +5,7 @@ import share from "../img/MainpageHost_img/share.svg";
 import download from "../img/MainpageHost_img/download.svg";
 import Vector from "../img/MainpageHost_img/Group 157 1.png";
 import threeboll from "../img/MainpageHost_img/Group 77.svg";
+import normalSticker from "../img/MainpageHost_img/기본 캐릭 1.png";
 import styled from "styled-components";
 import setting from "../img/MainpageHost_img/gear-settings.svg";
 import edit from "../img/MainpageHost_img/square-edit.svg";
@@ -275,9 +276,17 @@ function MainpageHost() {
   useEffect(() => {
     const count = document.getElementById("countRecordDiv")
     if (recordNumber == "0") {
-      count.style.display="none";
+      count.style.display="none"; 
     }
   }, [recordNumber]);
+  useEffect(() => {
+    const count = document.getElementById("Sticker")
+    if (stickerdata) {
+      setStickerdata(normalSticker);
+      count.style.width="266px";
+      count.styyl.height="246px";
+    }
+  }, []);
   
 
   return (
@@ -407,7 +416,7 @@ function MainpageHost() {
                   }}
                   name="사진"
                 >
-                  <img src={stickerdata} alt="Vector" />
+                  <img id="Sticker" src={stickerdata} alt="Vector" />
                 </div>
                 <div id="ifSpring">
                   <p className="l13-2">{Season || ""}</p>
