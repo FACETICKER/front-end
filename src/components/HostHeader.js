@@ -14,6 +14,7 @@ import setting from "../img/Header_img/setting.png";
 import PageSlice from "../QnA/Slice/PageSlice";
 import Idtoken from "../Stickers/Idtoken";
 import { useDispatch } from "react-redux";
+import { setChangeSticker } from "./SettingSllice";
 
 //호스트 헤더
 
@@ -145,6 +146,7 @@ export function MainHeader() {
     navigate("/initial");
   };
   const handleSecondClick = () => {
+    dispatch(setChangeSticker(true));
     navigate("/makesticker");
   };
   const handleThirdClick = () => {
