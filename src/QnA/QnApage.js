@@ -53,9 +53,6 @@ const QnApage = () => {
     dispatch(questionSlice.actions.reset());
     dispatch(AnswerSlice.actions.reset());
     Getinfo();
-    console.log(windowHeight);
-    console.log(documentHeight);
-    console.log("bottom", bottom);
     console.log(userID);
     console.log(hostID);
     console.log(JWT);
