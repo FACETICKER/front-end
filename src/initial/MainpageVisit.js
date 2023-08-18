@@ -323,7 +323,7 @@ function MainpageVisit() {
                 top: "35%",
                 left: "-3%",
               }}
-              onClick={toggleModal3}
+              onClick={handleQna}
             >
               <button
                 style={{ border: "none", backgroundColor: "transparent" }}
@@ -484,7 +484,7 @@ function MainpageVisit() {
                 <button className="l10" onClick={handleVisitorsticker}>
                   <img src={recordpage} alt="recordpage" />
                 </button>
-                <button className="l10" onClick={toggleModal}>
+                <button className="l10" onClick={handleNo}>
                   <img src={sticker} alt="sticker" />
                 </button>
               </Div>

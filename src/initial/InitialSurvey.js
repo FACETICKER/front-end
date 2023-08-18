@@ -577,7 +577,13 @@ function InitialSurvey() {
   const handleValueChange = (key, value) => {
     setSelectedValue((prevValues) => ({ ...prevValues, [key]: value }));
   };
-  
+
+  useEffect(()=> {
+    const postorpatch = document.getElementById("postorpatch");
+    if (method == "PATCH") {
+      postorpatch.textContent="프로필로 돌아가기";
+    }
+  }, [])
   
 
   //if (method==="PATCH") {
@@ -946,7 +952,7 @@ function InitialSurvey() {
               <div className="l19-1" />
               <div>
                 <button onClick={handleNext} id="set_sticker" className="l6-1">
-                  <p>스티커 만들기</p>
+                  <p id="postorpatch">스티커 만들기</p>
                 </button>
               </div>
             </div>
