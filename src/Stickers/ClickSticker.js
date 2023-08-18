@@ -105,22 +105,23 @@ const Shadow = styled.div`
 
 const Dot3 = styled.div`
   position: absolute;
-  bottom: 5%;
+  bottom: 6%;
   left: 10%;
+  display: flex;
 `;
 
 const Name = styled.div`
   position: absolute;
-  bottom: 5%;
+  bottom: 3%;
   right: 10%;
-  width: 30%;
+  width: 100%;
   color: #191919;
   text-align: right;
   font-family: Cafe24Shiningstar;
   font-size: 36px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 66.667% */
+  line-height: 24px;
 `;
 const SecondShadow = styled.div`
   position: absolute;
@@ -181,7 +182,7 @@ const Back = styled.div`
 
 const BackImg = styled.img`
   display: flex;
-  width: 83%;
+  width: 85%;
   height: 72%;
   position: absolute;
   top: 10px;
@@ -194,9 +195,8 @@ const LetterContent = styled.div`
   position: absolute;
   align-items: center;
   justify-content: center;
-
-  width: 75%;
-  bottom: 53%;
+  width: 70%;
+  bottom: 50%;
   color: #191919;
   text-align: center;
   font-family: Pretendard;
@@ -209,16 +209,15 @@ const StickerImg = styled.img`
   display: flex;
   width: 65%;
   position: absolute;
-  bottom: 18%;
-
+  bottom: 12%;
   object-fit: cover;
 `;
 
 const StickerImg2 = styled.img`
   display: flex;
-  width: 17%;
+  width: 20%;
   position: absolute;
-  bottom: 8%;
+  bottom: 5%;
   object-fit: cover;
 `;
 

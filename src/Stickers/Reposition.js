@@ -2,7 +2,12 @@ import styled from "styled-components";
 
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsImageFixed, setIsImageFixed2, setChange } from "./reducers";
+import {
+  setIsImageFixed,
+  setIsImageFixed2,
+  setChange,
+  setreset,
+} from "./reducers";
 
 import { TestBottom } from "./TestBottom";
 import { useState } from "react";
@@ -161,11 +166,15 @@ export function Reposition() {
   const ID = userId;
   const jwt = Idtoken()[1]; //호스트 토큰
 
+  const handlereset = () => {
+    dispatch(setreset(true));
+  };
   const handleBack = () => {
     dispatch(setIsImageFixed2(true));
   };
 
   const isImageFixed2 = useSelector((state) => state.app.isImageFixed2);
+  const reset = useSelector((state) => state.app.reset);
 
   useEffect(() => {
     if (isImageFixed2) {
@@ -186,7 +195,7 @@ export function Reposition() {
           <Middle src={middle} />
           <Footer>
             <Icons>
-              <Icon1 src={change} />
+              <Icon1 onClick={handlereset} src={change} />
               <Icon2 onClick={handleBack} src={complete} />
             </Icons>
           </Footer>

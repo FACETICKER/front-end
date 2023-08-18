@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsImageFixed } from "./reducers";
+import { setIsImageFixed, setIsImageFixed2 } from "./reducers";
 
 import { TestBottom } from "./TestBottom";
 import { useState } from "react";
@@ -148,7 +148,8 @@ export function Host() {
   const jwt = Idtoken()[1]; //호스트 토큰
 
   const handleReposition = () => {
-    navigate(`/sticker/host/${userId}/reposition`);
+    dispatch(setIsImageFixed2(false));
+    navigate(`reposition`);
   };
 
   const handleMenu = () => {
