@@ -31,8 +31,9 @@
 
 .Arrow_left {
     position: absolute;
-    left: 20px;
-    top: 40%;
+    left: 30px;
+    top: 50%;
+    transform: translate(-50%, -50%);
     width: 28px;
     height: 28px;
 }
