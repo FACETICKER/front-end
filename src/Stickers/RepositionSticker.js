@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsImageFixed } from "./reducers";
+import { setIsImageFixed, setSelectedImageKey, setreset } from "./reducers";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import zoom from "../img/Stickers_img/zoom.png";
+import { setSelectedImage, setSelectedImage2 } from "./imageSlice";
+import Idtoken from "./Idtoken";
+import { useDrag } from "react-use-gesture";
 
 //방문자 기록 컴포넌트
 
@@ -25,8 +27,8 @@ const HostImg = styled.img`
   display: flex;
   position: absolute;
   transform: translate(-40%, -50%);
-  top: 45%;
-  left: 50%;
+  top: 48%;
+  left: 48%;
 `;
 
 const BottomWrap = styled.div`
@@ -67,6 +69,9 @@ const ZoomButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
 `;
+const Move = styled.img`
+  max-width: 100px;
+`;
 
 export function RepositionSticker() {
   const [hostImageUrl, setHostImageUrl] = useState(null);
@@ -74,6 +79,32 @@ export function RepositionSticker() {
   const [imageData, setImageData] = useState([]);
   const [componentWidth, setComponentWidth] = useState(0);
   const [componentHeight, setComponentHeight] = useState(0);
+  const navigate = useNavigate();
+  const [move, setMove] = useState();
+  const [logoPos, setlogoPos] = useState({ x: null, y: null });
+  const [xy, setXY] = useState({ x: null, y: null });
+  const [VID, setVID] = useState(null);
+  const [first, setFirst] = useState({ x: null, y: null });
+
+  const location = useSelector((state) => state.app.change);
+
+  const bindLogoPos = useDrag((params) => {
+    setlogoPos({
+      x: params.offset[0],
+      y: params.offset[1] - 20,
+    });
+  });
+
+  const userId = Idtoken()[0]; //호스트 아이디
+
+  const ID = userId;
+  const jwt = Idtoken()[1]; //호스트 토큰
+
+  const dispatch = useDispatch();
+
+  const handleStickerClick = (item) => {
+    dispatch(setSelectedImage2(item.visitor_sticker_id)); // 클릭한 이미지의 alt 값을 dispatch로 저장
+  };
 
   //컴포넌트 높이, 너비
   const componentRef = useRef(null);
@@ -87,29 +118,22 @@ export function RepositionSticker() {
       setComponentHeight(h);
     }
   }, []);
+  const selectedImageId = useSelector((state) => state.image.selectedImageId2);
+  console.log(selectedImageId);
 
-  //host image 받아오기
+  //이미지들 불러오기
   useEffect(() => {
-    fetch("http://localhost:3012/user/1")
+    fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        if (data.url) {
-          setHostImageUrl(data.url);
-        }
-      })
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []);
+        console.log(data);
+        setHostImageUrl(data.result.userStickerResult[0].final_image_url);
+        const filteredData = data.result.visitorStickerResult.filter(
+          (item) => item.location_x !== null
+        );
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+        console.log("00", filteredData);
 
-  useEffect(() => {
-    fetch("http://localhost:3012/user")
-      .then((response) => response.json())
-      .then((data) => {
-        const filteredData = data.filter((item) => item.id !== 1);
         setImageData(filteredData);
       })
       .catch((error) => {
@@ -117,11 +141,62 @@ export function RepositionSticker() {
       });
   }, []);
 
+  //이미지들 불러오기
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}/sticker/all`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setHostImageUrl(data.result.userStickerResult[0].final_image_url);
+        const filteredData = data.result.visitorStickerResult.filter(
+          (item) => item.location_x !== null
+        );
+
+        console.log("00", filteredData);
+
+        setImageData(filteredData);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, [selectedImageId]);
+
+  //선택한 캐릭터 불러오기
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}/sticker/all`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+
+        const filteredData2 = data.result.visitorStickerResult.filter(
+          (item) => item.visitor_sticker_id == selectedImageId
+        ); //선택한 캐릭터
+
+        console.log("01", filteredData2);
+        setFirst({
+          x: parseInt(filteredData2[0].location_x),
+          y: parseInt(filteredData2[0].location_y),
+        });
+        setlogoPos({
+          x: parseInt(filteredData2[0].location_x),
+          y: parseInt(filteredData2[0].location_y),
+        });
+        setMove(filteredData2[0].final_image_url);
+        setVID(filteredData2[0].visitor_sticker_id);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, [selectedImageId]);
+
+  console.log(move);
+  console.log("222", first);
+  console.log("111", logoPos);
   const [zoomLevel, setZoomLevel] = useState(1);
   const minZoomLevel = 0.5;
   const maxZoomLevel = 2;
 
-  // 줌 인 함수
+  /*   // 줌 인 함수
   const zoomIn = () => {
     if (zoomLevel < maxZoomLevel) {
       setZoomLevel((prevZoom) => prevZoom + 0.1);
@@ -133,113 +208,88 @@ export function RepositionSticker() {
     if (zoomLevel > minZoomLevel) {
       setZoomLevel((prevZoom) => prevZoom - 0.1);
     }
+  }; */
+
+  const handleOuterClick = (event) => {
+    // bottomWrap의 영역을 제외한 다른 영역 클릭 시 드래그 이벤트 전파를 막음
+    event.stopPropagation();
   };
 
-  const [selectedImageId, setSelectedImageId] = useState(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-  const [ImagePosition, setImagePosition] = useState(null);
+  const isImageFixed2 = useSelector((state) => state.app.isImageFixed2);
+  const reset = useSelector((state) => state.app.reset);
+  console.log("VID", VID);
+  //이미지 PATCH
 
-  const handleImageMouseDown = (event, itemId) => {
-    setSelectedImageId(itemId);
-    setIsDragging(true);
-    const offsetX = event.nativeEvent.offsetX;
-    const offsetY = event.nativeEvent.offsetY;
-    setDragOffset({ x: offsetX, y: offsetY });
-  };
-
-  const handleMouseMove = (event) => {
-    if (isDragging && selectedImageId !== null) {
-      const sidePosition = {
-        // 클릭한 엘리먼트의 절대좌표
-        // .getBoundingClientRect().left 뷰포트 기준 X값 top은 Y 값
-        X: Math.floor(event.target.getBoundingClientRect().left),
-        Y: Math.floor(event.target.getBoundingClientRect().top),
-      };
-
-      const clickPosition = {
-        X: Math.floor(event.clientX),
-        Y: Math.floor(event.clientY),
-      };
-
-      const ratio = {
-        X: clickPosition.X - sidePosition.X,
-        Y: clickPosition.Y - sidePosition.Y,
-      };
-
-      // 상대 좌표
-      /* const XPer = (ratio.X / componentWidth) * 100;
-      const YPer = (ratio.Y / componentHeight) * 100; */
-      // 소수점 둘째 자리까지 반올림
-      /*   const xyPer = { XPer: XPer.toFixed(2), YPer: YPer.toFixed(2) };
-      setImagePosition(xyPer); */
-
-      const offsetX = event.nativeEvent.offsetX;
-      const offsetY = event.nativeEvent.offsetY;
-
-      setImageData((prevImageData) =>
-        prevImageData.map((item) =>
-          item.id === selectedImageId
-            ? {
-                ...item,
-                imgposition: {
-                  XPer: (ratio.X / componentWidth) * 100,
-                  YPer: (ratio.Y / componentHeight) * 100,
-                },
-              }
-            : item
-        )
-      );
+  useEffect(() => {
+    if (isImageFixed2) {
+      fetch(`http://app.faceticker.site/${ID}/sticker/attach?id=${VID}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(logoPos),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("patch 성공", data);
+        })
+        .catch((error) => {
+          console.error("patch 오류", error);
+        });
     }
-  };
+  }, [isImageFixed2]);
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    setSelectedImageId(null);
-  };
+  useEffect(() => {
+    if (reset) {
+      setlogoPos({
+        x: first.x,
+        y: first.y,
+      });
+      dispatch(setreset(false));
+    }
+  }, [reset]);
+
   return (
     <BottomWrap>
-      <Bottoms>
+      <Bottoms onClick={handleOuterClick}>
         <Bottom ref={componentRef} style={{ transform: `scale(${zoomLevel})` }}>
           <HostImg src={hostImageUrl} />
 
-          {imageData.map((item) => (
-            <img
-              key={item.id}
-              src={item.url}
+          {imageData &&
+            imageData.map((item) => {
+              if (item.visitor_sticker_id !== selectedImageId) {
+                return (
+                  <img
+                    onClick={() => handleStickerClick(item)}
+                    key={item.visitor_sticker_id}
+                    src={item.final_image_url}
+                    style={{
+                      position: "absolute",
+                      top: `${(item.location_y * componentHeight) / 100}px`,
+                      left: `${(item.location_x * componentWidth) / 100}px`,
+                      zIndex: 9999,
+                      maxWidth: "100px",
+                    }}
+                    alt={item.visitor_sticker_id}
+                  />
+                );
+              }
+              return null; // 클릭된 visitor_sticker_id에 해당하는 이미지를 렌더링하지 않음
+            })}
+
+          {Move && (
+            <div
+              {...bindLogoPos()}
               style={{
-                position: "absolute",
-                top: (item.imgposition.YPer * componentHeight) / 100,
-                left: `${(item.imgposition.XPer * componentWidth) / 100}px`,
-                zIndex: 9999,
-                maxWidth: "100px",
-                cursor: selectedImageId === item.id ? "grabbing" : "grab",
+                position: "relative",
+
+                top: `${(logoPos.y * componentHeight) / 100}px`,
+                left: `${(logoPos.x * componentWidth) / 100}px`,
               }}
-              alt={`Image ${item.id}`}
-              onMouseDown={(event) => handleImageMouseDown(event, item.id)}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-            />
-          ))}
-          {imageData.map((item) => (
-            <img
-              key={item.id}
-              src={zoom}
-              style={{
-                position: "absolute",
-                width: "20px",
-                top: `${
-                  -10 + (item.imgposition.YPer * componentHeight) / 100
-                }px`,
-                left: `${
-                  90 + (item.imgposition.XPer * componentWidth) / 100
-                }px`,
-                zIndex: 9999,
-                maxWidth: "100px",
-              }}
-              alt={`Image ${item.id}`}
-            />
-          ))}
+            >
+              <Move src={move} />
+            </div>
+          )}
         </Bottom>
       </Bottoms>
 

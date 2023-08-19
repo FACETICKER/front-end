@@ -2,7 +2,12 @@ import styled from "styled-components";
 
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsImageFixed } from "./reducers";
+import {
+  setIsImageFixed,
+  setIsImageFixed2,
+  setChange,
+  setreset,
+} from "./reducers";
 
 import { TestBottom } from "./TestBottom";
 import { useState } from "react";
@@ -15,6 +20,7 @@ import complete from "../img/Stickers_img/complete.png";
 import { useNavigate } from "react-router-dom";
 import RepositionSticker from "./RepositionSticker";
 import middle from "../img/Stickers_img/Middle.png";
+import Idtoken from "./Idtoken";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -149,15 +155,32 @@ const Text = styled.div`
 `;
 const Middle = styled.img`
   display: flex;
+  width: 40%;
   position: absolute;
-  top: -26%;
+  top: -28%;
 `;
 export function Reposition() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleBack = () => {
-    navigate("/hoststicker");
+  const userId = Idtoken()[0]; //호스트 아이디
+  const ID = userId;
+  const jwt = Idtoken()[1]; //호스트 토큰
+
+  const handlereset = () => {
+    dispatch(setreset(true));
   };
+  const handleBack = () => {
+    dispatch(setIsImageFixed2(true));
+  };
+
+  const isImageFixed2 = useSelector((state) => state.app.isImageFixed2);
+  const reset = useSelector((state) => state.app.reset);
+
+  useEffect(() => {
+    if (isImageFixed2) {
+      navigate(`/sticker/host/${userId}`);
+    }
+  }, [isImageFixed2]);
 
   return (
     <BackgroundWrap>
@@ -172,7 +195,7 @@ export function Reposition() {
           <Middle src={middle} />
           <Footer>
             <Icons>
-              <Icon1 src={change} />
+              <Icon1 onClick={handlereset} src={change} />
               <Icon2 onClick={handleBack} src={complete} />
             </Icons>
           </Footer>

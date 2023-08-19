@@ -39,11 +39,14 @@ function Btn(props) {
         dispatch(ID_answerSlice.actions.up(props.id)); // answer id가 현재 질문 id와 같게 설정 (원래 e.target.id)
         dispatch(ChoiceSlice.actions.reset()); // choice를 off
         dispatch(questionSlice.actions.edit(props.id)); // question 버튼의 clicked가 on/off 바뀌게 설정
-        
+
+
+        const windowHeight = window.innerHeight - 95;
         const buttonRect = e.target.getBoundingClientRect();
         const modalTop = buttonRect.bottom + 10;
         const modalLeft = buttonRect.left + (buttonRect.width / 2);
-        dispatch(ModalpositionSlice.actions.up({top: modalTop, left: modalLeft}));
+        const choose = Math.min(windowHeight, modalTop);
+        dispatch(ModalpositionSlice.actions.up({top: choose, left: modalLeft}));
     }
 
     const [hasMatchingId, setHasMatchingId] = useState(false); // 질문과 같은 id를 가진 답변이 존재하는지 여부

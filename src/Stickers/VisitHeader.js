@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import backicon from "../img/Stickers_img/backIcon.png";
 
 const HeaderWrap = styled.div`
   height: 10%;
@@ -51,7 +52,7 @@ export function VisitHeader() {
   return (
     <HeaderWrap>
       <FirstHeader>
-        <BackIcon src="https://i.ibb.co/bKVJZtD/arrow-left-1.png" />
+        <BackIcon src={backicon} />
       </FirstHeader>
       <TextHeader>
         <Text1>스티커를 붙여보세요!</Text1>

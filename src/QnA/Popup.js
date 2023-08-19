@@ -9,6 +9,7 @@ import Basic_questionSlice from './Slice/Basic_questionSlice';
 import questionSlice from './Slice/questionSlice';
 import IDSlice from './Slice/IDSlice'
 import PageSlice from './Slice/PageSlice';
+import Token from './Token';
 
 // 팝업창 띄우기 버튼(전등), faceticker, 나만의 스티커를 만들어보세요, 얼굴형~악세사리 글자 표현 컴포넌트
 
@@ -57,12 +58,37 @@ const Popup = (props) => {
     });
 
     const add = () => {
-        dispatch(Basic_questionSlice.actions.del(text))
-        dispatch(Popup_QnA_Slice.actions.close());
-        dispatch(IDSlice.actions.up(1));
-        dispatch(questionSlice.actions.up({text: text, id: ID, type: "basic_question", open: true, clicked: false}))
-        dispatch(PageSlice.actions.host());
+        postDefaultQuestion();
     } // 기본 질문 제거 후 창 닫기
+
+    const userID = Token()[0];
+    const JWT = Token()[1];
+
+    const postDefaultQuestion = () => {
+
+        const headers = {
+            "x-access-token": JWT,
+            'Content-Type': 'application/json',
+        };
+
+        fetch(`http://app.faceticker.site/${userID}/nqna/question/default`, {
+            method: "POST", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
+            headers: headers,
+            body: JSON.stringify({question: text})
+        })
+            .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
+            .then((data) => {
+                console.log(data);
+                dispatch(Basic_questionSlice.actions.del(text));
+                dispatch(Popup_QnA_Slice.actions.close());
+                dispatch(IDSlice.actions.up(1));
+                dispatch(questionSlice.actions.up({text: text, id: ID, type: "basic_question", open: true, clicked: false, nQnA_id: data.result}));
+                dispatch(PageSlice.actions.host());
+            })
+            .catch((error) => {
+                console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
+            });
+    }
 
     return (
         <Modal isOpen={view} style={modalStyle}>

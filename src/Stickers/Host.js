@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsImageFixed } from "./reducers";
+import { setIsImageFixed, setIsImageFixed2 } from "./reducers";
 
 import { TestBottom } from "./TestBottom";
 import { useState } from "react";
@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import menu from "../img/Stickers_img/menu.png";
 import reposition from "../img/Stickers_img/change.png";
 import middle from "../img/Stickers_img/Middle.png";
+import Idtoken from "./Idtoken";
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
   background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
@@ -125,26 +126,39 @@ const Icons = styled.div`
 const Icon1 = styled.img`
   display: flex;
   width: 22%;
+  max-height: 80px;
 `;
 const Icon2 = styled.img`
   display: flex;
   width: 72%;
+  max-height: 80px;
 `;
 const Middle = styled.img`
   display: flex;
+  width: 40%;
   position: absolute;
-  top: -26%;
+  top: -28%;
 `;
 export function Host() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const userId = Idtoken()[0]; //호스트 아이디
+
+  const jwt = Idtoken()[1]; //호스트 토큰
+
   const handleReposition = () => {
-    navigate("/repositionsticker");
+    dispatch(setIsImageFixed2(false));
+    navigate(`reposition`);
   };
 
   const handleMenu = () => {
-    navigate("/stickermenu");
+    navigate(`/sticker/host/${userId}/menu`);
   };
+
+  const UID = useSelector((state) => state.login.userId);
+  console.log("UID", UID);
+
   return (
     <BackgroundWrap>
       <Background>

@@ -30,8 +30,7 @@
 
 @font-face {
   font-family: "JHaebaragi"; /* 폰트 이름 지정 (임의의 이름으로 설정 가능) */
-  src: url("../font/Sunflower-Medium.ttf")
-    format("woff"); /* 폰트 파일 경로 지정 */
+  src: url("../font/Sunflower-Medium.ttf") format("woff"); /* 폰트 파일 경로 지정 */
 }
 .l4 {
   transform: rotate(-90deg);

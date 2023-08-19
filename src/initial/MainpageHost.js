@@ -1,19 +1,36 @@
+import InitialSurveyList from "./InitialSurveyList.js";
+import Token from "../QnA/Token copy.js";
 import message from "../img/MainpageHost_img/ri_message-3-line (1).svg";
 import share from "../img/MainpageHost_img/share.svg";
 import download from "../img/MainpageHost_img/download.svg";
 import Vector from "../img/MainpageHost_img/Group 157 1.png";
 import threeboll from "../img/MainpageHost_img/Group 77.svg";
+import normalSticker from "../img/MainpageHost_img/기본 캐릭 1.png";
 import styled from "styled-components";
 import setting from "../img/MainpageHost_img/gear-settings.svg";
 import edit from "../img/MainpageHost_img/square-edit.svg";
 import recordpage from "../img/MainpageHost_img/3users.svg";
 import close from "../img/MainpageHost_img/close-x.svg";
 import React, { useState, useEffect } from "react";
+import PageSlice from "../QnA/Slice/PageSlice";
 import html2canvas from "html2canvas";
 import "./MainpageHost.css";
+import ReactDOM from "react-dom";
+import { setChangeSticker } from "../components/SettingSllice.js";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {
+  setInitialName,
+  setInitialSeason,
+  setInitialNumber,
+  setInitialDay,
+  setInitialImport,
+  setInitialSetSticker,
+  setInitialMessage,
+  Season_id,
+} from "./InitialSurveyList.js"; // 경로는 실제 파일 경로에 맞게 수정해주세요
+import HostHeader from "../components/HostHeader.js";
 
 const Div = styled.div`
   position: absolute;
@@ -23,6 +40,9 @@ const Div = styled.div`
 function MainpageHost() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const InitialSurveyList = useSelector((state) => {
+    return state.initialList;
+  });
   const [showFooter, setShowFooter] = useState(false);
   const [showModal1, setShowModal1] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
@@ -30,6 +50,7 @@ function MainpageHost() {
   const [showModal4, setShowModal4] = useState(false);
   const [chattingNumber, setChattingNumber] = useState(0);
   const [recordNumber, setRecordNumber] = useState(0);
+  const [messageNumber, setMessageNumber] =useState(0);
   const [Korean, setKorean] = useState("");
   const [Chinese, setChinese] = useState("");
   const [Mean, setMean] = useState("");
@@ -37,6 +58,8 @@ function MainpageHost() {
   const [Name, setName] = useState("");
   const [Number, setNumber] = useState("");
   const [Day, setDay] = useState("");
+  const [Message, setMessage] = useState("");
+  const [count,setCount] = useState("");
 
   const toggleFooter = () => {
     setShowFooter(!showFooter);
@@ -59,7 +82,7 @@ function MainpageHost() {
   };
 
   const handleLinkDownload = () => {
-    const address = "http://localhost:3000/mainhost";
+    const address = `http://www.faceticker.site/main/${user_id}`;
     navigator.clipboard
       .writeText(address)
       .then(() => {
@@ -69,6 +92,18 @@ function MainpageHost() {
         console.error("클립보드 복사 실패:", error);
         alert("클립보드 복사에 실패했습니다. 수동으로 복사해주세요.");
       });
+  };
+  const handleDownload2 = () => {
+    const targetElement = document.getElementById("PrtSc"); // 캡처할 대상 div의 id
+    if (targetElement) {
+      html2canvas(targetElement).then((canvas) => {
+        const link = document.createElement("a");
+        link.href = canvas.toDataURL("image/png");
+        link.download = "capture.png";
+        link.click();
+      });
+    }
+    alert("다운로드 성공");
   };
 
   const handleDownload = () => {
@@ -100,24 +135,12 @@ function MainpageHost() {
     }
   };
 
-  const handlePlusRecord = () => {
-    setRecordNumber((prevNumber1) => prevNumber1 + 1);
-    const resultDiv1 = document.getElementById("countRecordDiv");
-    resultDiv1.style.display = "block";
-  };
-  const handleMinusRecord = () => {
-    const resultDiv1 = document.getElementById("countRecordDiv");
-    if (recordNumber <= "1") {
-      setRecordNumber(0);
-      resultDiv1.style.display = "none";
-    } else {
-      setRecordNumber((prevNumber1) => prevNumber1 - 1);
-      resultDiv1.style.display = "block";
-    }
-  };
+
 
   const handleSpring = () => {
+    const resultDiv1 = document.getElementById("ifSpring");
     setSeason("SPR 봄 ING");
+    resultDiv1.style.left="24 %";
   };
   const handleSummer = () => {
     setSeason("SUM 여름 MER");
@@ -128,6 +151,25 @@ function MainpageHost() {
   const handleWinter = () => {
     setSeason("WIN 겨울 TER");
   };
+
+  useEffect(() => {
+    const handleSelleckName = () => {
+      setName(InitialSurveyList.Name_id);
+    };
+    handleSelleckName();
+  }, []);
+  useEffect(() => {
+    const handleSelleckNumber = () => {
+      setNumber(InitialSurveyList.Number_id);
+    };
+    handleSelleckNumber();
+  }, []);
+  useEffect(() => {
+    const handleSelleckDay = () => {
+      setDay(InitialSurveyList.Day_id);
+    };
+    handleSelleckDay();
+  }, []);
 
   const handleNoneProfile = () => {
     const resultDiv1 = document.getElementById("ment");
@@ -154,45 +196,150 @@ function MainpageHost() {
     setDay("JUNE, 28");
   };
   const handleMakeSticker = () => {
+    dispatch(setChangeSticker(true));
     navigate("/makesticker");
   };
   const handleInitial = () => {
     navigate("/initial");
   };
   const handleStickerLetter = () => {
-    navigate("/stickerletter");
+    navigate("/status");
   };
 
-  const handleStickerPage = () => {
-    navigate("/hoststicker");
-  };
   const handleQna = () => {
-    navigate("/qna");
+    dispatch(PageSlice.actions.host());
+    navigate(`/qna`);
   };
   const handleHoststicker = () => {
-    navigate("/hoststicker");
+    navigate(`/sticker/host/${user_id}`);
   };
+
+  const JWT = Token()[1];
+  const user_id = Token()[0];
+  const [messagedata, setMessagedata] = useState(null);
+  const [stickerdata, setStickerdata] = useState(null);
+  const test2 = () => {
+    const headers = {
+      "x-access-token": JWT,
+      "Content-Type": "application/json",
+    };
+
+    fetch(`http://app.faceticker.site/${user_id}/sticker/message`, {
+      method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
+      headers: headers,
+    }) // 서버로 GET 요청을 보냄
+      .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
+      .then((data) => {
+        console.log("성공", data.result[0]);
+        setMessage(data.result[0].message);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
+      });
+  };
+  test2();
+  useEffect(() => {
+    fetch(`https://app.faceticker.site/${user_id}`);
+    fetch(`https://app.faceticker.site/${user_id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          console.log("성공", data.result);
+          setRecordNumber(data.result.hostnewSticer[0].count.toString());
+          setMessageNumber(data.result.howtnewQuestion[0].emptyanswer.toString());
+          setMessagedata(data.result.hostPoster[0]);
+          setChinese(data.result.hostPoster[0].chinese);
+          setName(data.result.hostPoster[0].nickname);
+          setMean(data.result.hostPoster[0].meaning);
+          setKorean(data.result.hostPoster[0].pronunciation);
+          setNumber(data.result.hostPoster[0].q_number);
+          setDay(data.result.hostPoster[0].q_date);
+          const handleSelleckSeason = () => {
+            if (data.result.hostPoster[0].q_season === "봄") {
+              handleSpring();
+            } else if (data.result.hostPoster[0].q_season === "여름") {
+              handleSummer();
+            } else if (data.result.hostPoster[0].q_season === "가을") {
+              handleAutumn();
+            } else if (data.result.hostPoster[0].q_season === "겨울") {
+              handleWinter();
+            }
+          };
+          handleSelleckSeason();
+          setStickerdata(data.result.hostSticker[0].final_image_url);
+        }
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
+  useEffect(() => {
+    const handleSelleckName = () => {
+      setName(InitialSurveyList.Name_id);
+    };
+    handleSelleckName();
+  }, []);
+  useEffect(() => {
+    const count = document.getElementById("countRecordDiv")
+    if (recordNumber == "0") {
+      count.style.display="none"; 
+    }
+  }, [recordNumber]);
+  useEffect(() => {
+    const count = document.getElementById("countMessageDiv")
+    if (messageNumber == "0") {
+      count.style.display="none"; 
+    }
+  }, [messageNumber]);
+  useEffect(() => {
+    const Sticker = document.getElementById("Sticker")
+    const Photo = document.getElementById("Photo")
+    if (Sticker.src == "http://localhost:3000/static/media/%EA%B8%B0%EB%B3%B8%20%EC%BA%90%EB%A6%AD%201.484d8e0ea830f8eeff94.png") {
+      Sticker.style.width="80%";
+      Sticker.style.height="80%"
+      Photo.style.top="48%";
+      Photo.style.left="15%";
+    }else{
+      return;
+    }
+  }, [stickerdata]);
+  
+
   return (
     <div className="BackgroundWarp">
       <div className="Background">
-        <div className="l29-2" style={{position:'relative'}}>
+        <div className="l29-2" style={{ position: "relative" }}>
           <header
             style={{
               float: "down",
-              width:'320px',
+              width: "320px",
               height: "70px",
               position: "relative",
               top: "0px",
-              display:'flex',
-              justifyContent: 'space-between'
+              left: "-5px",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            <div style={{width:'30px', height:'30px' , position: "relative",  top: "35%", left:'-3%' }} >
+            <div
+              style={{
+                width: "30px",
+                height: "30px",
+                position: "relative",
+                top: "35%",
+                left: "-3%",
+              }}
+            >
               <button
                 style={{ border: "none", backgroundColor: "transparent" }}
                 onClick={toggleModal1}
               >
-                <img src={setting} className="l1-2" alt="setting" onClick={toggleModal1}/>
+                <img
+                  src={setting}
+                  className="l1-2"
+                  alt="setting"
+                  onClick={toggleModal1}
+                />
               </button>
             </div>
             <div style={{ float: "left" }}>
@@ -202,21 +349,32 @@ function MainpageHost() {
                 <p className="l12-2">FACETICKER</p>
               </button>
             </div>
-            <div style={{ width:'26px', height:'26px' ,float: "left", position: "relative", top: "35%", left:'-3%' }}>
+            <div
+              style={{
+                width: "26px",
+                height: "26px",
+                float: "left",
+                position: "relative",
+                top: "35%",
+                left: "-3%",
+              }}
+            >
               <button
-                style={{ border: "none", backgroundColor: "transparent" }} onClick={handleQna}
+                style={{ border: "none", backgroundColor: "transparent" }}
+                onClick={handleQna}
               >
                 <img src={message} className="l1-2" alt="message" />
               </button>
               <div
-                id="countMessageDiv"
-                className="l14-2"
-                style={{ display: "none"}}
-              >
-                <p id="countMessage" className="l15-2">
-                  {chattingNumber || "0"}
-                </p>
-              </div>{/*
+                  id="countMessageDiv"
+                  className="l14-2"
+                  style={{position:'absolute' , top: "-50%", left: "69%" ,zIndex:'1'}}
+                >
+                  <p id="countRecord" className="l15-2">
+                    {messageNumber || ""}
+                  </p>
+                </div> 
+              {/*
               <button
                 style={{
                   width: "20px",
@@ -243,39 +401,63 @@ function MainpageHost() {
             </div>
           </header>
 
-          <div style={{ position: "relative", top: "0px" }}>
-            <div id="PrtSc" style={{ width: "338px" }}>
+          <div
+            style={{
+              width: "335px",
+              height: "125%",
+              position: "relative",
+              top: "-5px",
+              left: "-7px",
+              border: "3px solid var(--unnamed, #12151C)",
+              borderRadius: "20px",
+              boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",
+            }}
+          >
+            <div
+              id="PrtSc"
+              style={{
+                width: "310px",
+                height: "87%",
+                position: "relative",
+                left: "4%",
+              }}
+            >
               <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
                 <div
-                  style={{ position: "absolute", left: "20%", top: "35%" }}
-                  name="사진"
+                  style={{
+                    position: "absolute",
+                    left: "20%",
+                    top: "50%",
+                    zIndex: "3",
+                  }}
+                  name="사진" id="Photo"
                 >
-                  <img src={Vector} alt="Vector" />
+                  <img id="Sticker" src={stickerdata || normalSticker} alt="Vector" />
                 </div>
-                <div>
-                  <p className="l13-2">{Season || "WIN 겨울 TER"}</p>
+                <div >
+                  <p id="ifSpring" className="l13-2">{Season || ""}</p>
                 </div>
                 <div id="ment" className="l22-2">
-                  <div className="l23-2">
+                  <div className="l23-2" style={{ zIndex: "2" }}>
                     <p id="" className="l3-2">
-                      어서옵쇼 다들 스티커 붙여주세요..!
+                      {Message || "어서옵쇼 다들 스티커 붙여주세요..!"}
                     </p>
                   </div>
                 </div>
                 <div style={{ width: "390px", height: "100px" }}>
                   <div style={{ float: "left" }} name="이름">
                     <p id="" className="l4-2">
-                      {Name || "수민님"}
+                      {Name || ""}
                     </p>
                   </div>
                   <div style={{ float: "left" }} name="숫자">
                     <p id="" className="l5-2">
-                      {Number || "#128"}
+                      {Number || ""}
                     </p>
                   </div>
                   <div style={{ float: "left" }} name="날짜">
-                    <p id="" className="l6-2">
-                      {Day || "JUNE, 28"}
+                    <p id="" className="l6-2" style={{ zIndex: "4" }}>
+                      {Day || ""}
                     </p>
                   </div>
                 </div>
@@ -283,13 +465,14 @@ function MainpageHost() {
               <div
                 id="outyellow1"
                 style={{
-                  position: "relative",
+                  position: "absolute",
                   width: "338px",
                   height: "140px",
+                  top: "73%",
                 }}
               >
                 <div name="사자성어">
-                  <div>
+                  <div style={{position:'relative',top:'20px',left:'2%'}}>
                     <div
                       className="l28-2"
                       style={{ backgroundColor: "#FF6D00" }}
@@ -304,19 +487,17 @@ function MainpageHost() {
                     ></div>
                   </div>
                   <div className="l7-2">
-                    <p id="" >
-                    {Korean || "오매불망"}
-                    </p>
+                    <p id="">{Korean || ""}</p>
                   </div>
                 </div>
                 <div name="한자">
                   <p id="" className="l8-2">
-                    {Chinese || "寤寐不忘"}
+                    {Chinese || ""}
                   </p>
                 </div>
                 <div name="뜻">
                   <p id="" className="l9-2">
-                    {Mean || "자나깨나 잊지 못함"}
+                    {Mean || ""}
                   </p>
                 </div>
               </div>
@@ -349,15 +530,7 @@ function MainpageHost() {
             </div>
             <div>
               <div style={{ float: "left" }}>
-                {/* <div
-                  id="countRecordDiv"
-                  className="l14-2"
-                  style={{ display: "none", top: "-80px", left: "40px" }}
-                >
-                  <p id="countRecord" className="l15-2">
-                    {recordNumber || "0"}
-                  </p>
-                </div> */}
+                 
                 {/*  <button
                   style={{
                     width: "20px",
@@ -381,17 +554,23 @@ function MainpageHost() {
                   -1
                 </button> */}
               </div>
-              <Div>
+              <Div style={{ position: "absolute", top: "87%", left: "34%" }}>
                 <button className="l10-2" onClick={handleHoststicker}>
-                  <img
-                    src={recordpage}
-                    alt="recordpage"
-                  />
+                  <img src={recordpage} alt="recordpage" />
                 </button>
+                <div
+                  id="countRecordDiv"
+                  className="l14-2"
+                  style={{position:'absolute' , top: "9%", left: "29%" ,zIndex:'1'}}
+                >
+                  <p id="countRecord" className="l15-2">
+                    {recordNumber || ""}
+                  </p>
+                </div> 
                 <button className="l10-2" onClick={handleLinkDownload}>
                   <img src={share} alt="share" />
                 </button>
-                <button className="l10-2" onClick={handleDownload}>
+                <button className="l10-2" onClick={handleDownload2}>
                   <img src={download} alt="download" />
                 </button>
               </Div>
@@ -445,50 +624,76 @@ function MainpageHost() {
             </footer>
           )}
           {showModal1 && (
-            <div className="Modal">
-                <div style={{width: '294px', height:'52px' ,position:'relative', display:'flex', justifyContent: 'center'}}><img src={edit} /></div>
-                <button
-                  style={{
-                    border: "none",
-                    backgroundColor: "transparent",
-                    position: "absolute",
-                    top: "3%",
-                    left: "85%",
-                  }}
-                  name="close"
-                  onClick={toggleModal1}
-                >
-                  <img src={close}></img>
+            <div className="Modal" style={{ zIndex: "100" }}>
+              <div
+                style={{
+                  width: "294px",
+                  height: "52px",
+                  position: "relative",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <img src={edit} />
+              </div>
+              <button
+                style={{
+                  border: "none",
+                  backgroundColor: "transparent",
+                  position: "absolute",
+                  top: "3%",
+                  left: "85%",
+                }}
+                name="close"
+                onClick={toggleModal1}
+              >
+                <img src={close}></img>
+              </button>
+              <div
+                style={{
+                  padding: "24px 0 0 0",
+                  width: "294px",
+                  height: "250px",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                }}
+              >
+                <button className="l24-2" onClick={handleInitial}>
+                  포스터 정보 수정
                 </button>
-                <div style={{padding:'24px 0 0 0', width: '294px', height:'250px', display:'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
-                  <button className="l24-2" onClick={handleInitial}>포스터 정보 수정</button>
-                  <button className="l24-2" onClick={handleMakeSticker}>스티커 수정</button>
-                  <button className="l24-2" onClick={handleStickerLetter}>상태메시지 수정</button>
-                </div>
+                <button className="l24-2" onClick={handleMakeSticker}>
+                  스티커 수정
+                </button>
+                <button className="l24-2" onClick={handleStickerLetter}>
+                  상태메시지 수정
+                </button>
+              </div>
             </div>
           )}
+
           {showModal4 && (
             <div className="ModalContent">
-            <div className="Close"
-              
-              src="https://i.ibb.co/Cw1y11J/close-x.png"
-            />
-            <img src="https://i.ibb.co/LNBGHHr/square-edit.png" />
-            <div className="EditButtons">
-              <div className="EditButton"
-                
-                src="https://i.ibb.co/7QPq765/Group-190.png"
+              <div
+                className="Close"
+                src="https://i.ibb.co/Cw1y11J/close-x.png"
               />
-              <div className="EditButton"
-                
-                src="https://i.ibb.co/TMWMM0g/Group-191.png"
-              />
-              <div className="EditButton"
-                
-                src="https://i.ibb.co/Qkm8sPF/Group-192.png"
-              />
+              <img src="https://i.ibb.co/LNBGHHr/square-edit.png" />
+              <div className="EditButtons">
+                <div
+                  className="EditButton"
+                  src="https://i.ibb.co/7QPq765/Group-190.png"
+                />
+                <div
+                  className="EditButton"
+                  src="https://i.ibb.co/TMWMM0g/Group-191.png"
+                />
+                <div
+                  className="EditButton"
+                  src="https://i.ibb.co/Qkm8sPF/Group-192.png"
+                />
+              </div>
             </div>
-          </div>
           )}
           {showModal2 && (
             <div className="Modal">

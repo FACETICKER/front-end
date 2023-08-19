@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsImageFixed } from "./reducers";
+import { setIsImageFixed, setSelectedImageKey } from "./reducers";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { setSelectedImage } from "./imageSlice";
+import Idtoken from "./Idtoken";
 
 //방문자 기록 컴포넌트
 
@@ -24,8 +26,8 @@ const HostImg = styled.img`
   display: flex;
   position: absolute;
   transform: translate(-40%, -50%);
-  top: 45%;
-  left: 50%;
+  top: 48%;
+  left: 48%;
 `;
 
 const BottomWrap = styled.div`
@@ -73,6 +75,35 @@ export function StaticSticker() {
   const [imageData, setImageData] = useState([]);
   const [componentWidth, setComponentWidth] = useState(0);
   const [componentHeight, setComponentHeight] = useState(0);
+  const navigate = useNavigate();
+
+  // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
+  const hostid = useSelector((state) => state.login.hostid);
+  const jwt = Idtoken()[1]; //호스트 토큰
+  const userId = Idtoken()[0]; //호스트 아이디
+
+  const whatType = hostid == null ? "host" : "visitor";
+
+  //헤더
+  const headers = {
+    "x-access-token": jwt,
+    "Content-Type": "application/json",
+  };
+
+  const VisitorHeader = {
+    "Content-Type": "application/json",
+  };
+  const Header = whatType == "host" ? headers : VisitorHeader;
+  console.log("header", whatType);
+  const ID = whatType == "host" ? userId : hostid;
+  console.log("id", ID);
+
+  const dispatch = useDispatch();
+
+  const handleStickerClick = (item) => {
+    dispatch(setSelectedImage(item.visitor_sticker_id)); // 클릭한 이미지의 alt 값을 dispatch로 저장
+    navigate(`/sticker/host/${userId}/click`);
+  };
 
   //컴포넌트 높이, 너비
   const componentRef = useRef(null);
@@ -87,28 +118,18 @@ export function StaticSticker() {
     }
   }, []);
 
-  //host image 받아오기
+  //이미지들 불러오기
   useEffect(() => {
-    fetch("http://localhost:3012/user/1")
+    fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        if (data.url) {
-          setHostImageUrl(data.url);
-        }
-      })
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []);
+        console.log(data);
+        setHostImageUrl(data.result.userStickerResult[0].final_image_url);
+        const filteredData = data.result.visitorStickerResult.filter(
+          (item) => item.location_x !== null
+        );
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    fetch("http://localhost:3012/user")
-      .then((response) => response.json())
-      .then((data) => {
-        const filteredData = data.filter((item) => item.id !== 1);
+        console.log("00", filteredData);
         setImageData(filteredData);
       })
       .catch((error) => {
@@ -116,9 +137,6 @@ export function StaticSticker() {
       });
   }, []);
 
-  const handleStickerClick = (item) => {
-    navigate("/clicksticker"); //페이지 전환
-  };
   const [zoomLevel, setZoomLevel] = useState(1);
   const minZoomLevel = 0.5;
   const maxZoomLevel = 2;
@@ -143,21 +161,22 @@ export function StaticSticker() {
         <Bottom ref={componentRef} style={{ transform: `scale(${zoomLevel})` }}>
           <HostImg src={hostImageUrl} />
 
-          {imageData.map((item) => (
-            <img
-              onClick={() => handleStickerClick(item)}
-              key={item.id}
-              src={item.url}
-              style={{
-                position: "absolute",
-                top: `${(item.imgposition.YPer * componentHeight) / 100}px`,
-                left: `${(item.imgposition.XPer * componentWidth) / 100}px`,
-                zIndex: 9999,
-                maxWidth: "100px",
-              }}
-              alt={`Image ${item.id}`}
-            />
-          ))}
+          {imageData &&
+            imageData.map((item) => (
+              <img
+                onClick={() => handleStickerClick(item)}
+                key={item.visitor_sticker_id}
+                src={item.final_image_url}
+                style={{
+                  position: "absolute",
+                  top: `${(item.location_y * componentHeight) / 100}px`,
+                  left: `${(item.location_x * componentWidth) / 100}px`,
+                  zIndex: 9999,
+                  maxWidth: "100px",
+                }}
+                alt={item.visitor_sticker_id}
+              />
+            ))}
         </Bottom>
       </Bottoms>
 

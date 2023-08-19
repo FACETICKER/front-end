@@ -1,9 +1,13 @@
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import "../font/font.css";
-import { useDispatch } from "react-redux";
-
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import backicon from "../img/Stickers_img/backIcon.png";
+import post from "../img/Stickers_img/post.png";
+import checkicon from "../img/Stickers_img/checkicon.png";
+import container from "../img/Stickers_img/container.png";
+import Idtoken from "../Stickers/Idtoken";
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
 //현재 뷰포트 높이 가져와서 쓰기(App.js App함수 return 위에 꼭 함수 추가해주기)
@@ -51,6 +55,12 @@ const HeaderIcon = styled.div`
   width: 20%;
   justify-content: center;
   align-item: center;
+  display: flex;
+`;
+
+const Back = styled.img`
+  max-width: 38%;
+  height: auto;
   display: flex;
 `;
 
@@ -162,6 +172,7 @@ const Container = styled.img`
 const InputImg = styled.img`
   display: flex;
   object-fit: cover;
+  width: 100%;
 `;
 const InputWrap = styled.div`
   display: flex;
@@ -215,6 +226,14 @@ export function StickerLetter() {
   const [letterValue, setLetterValue] = useState("");
   const [inputHeight, setInputHeight] = useState("20%");
 
+  const { state } = useLocation();
+  console.log("State", state.visitor);
+  const VID = state.visitor;
+
+  //방문자 스티커
+  const imageUrl = useSelector((state) => state.capture.imageUrl);
+  //방문자 스티커 id
+  const visitorId = useSelector((state) => state.visitorId);
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
     setFirstBottom(false);
@@ -222,7 +241,7 @@ export function StickerLetter() {
   };
   //첫 번째 이전 버튼
   const handleFirstBack = () => {
-    navigate("/stickername"); //nickname으로 페이지 전환
+    navigate(-1); //nickname으로 페이지 전환
   };
 
   //두 번째 이전버튼
@@ -231,32 +250,25 @@ export function StickerLetter() {
     setInputHeight("20%");
   };
 
-  //host 이미지 url 받아오기
-  useEffect(() => {
-    fetch("http://localhost:3012/user/1")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.url) {
-          setHostImg(data.url);
-        }
-      })
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []);
-
   //방문록 저장
   const saveLetter = (event) => {
     setLetterValue(event.target.value);
   };
+  // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
+  const hostid = useSelector((state) => state.login.hostid);
 
+  const ID = hostid;
   //방문록 입력하고 체크 아이콘 누르면 서버에 전송됨
+
   const handleLetterSubmit = () => {
-    fetch("https://faceticker.site/app/:1/sticker/message?type=visitor", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ letter: letterValue }),
-    })
+    fetch(
+      `https://app.faceticker.site/${ID}/sticker/visitor/message?id=${VID}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: letterValue }),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("성공", data);
@@ -264,17 +276,17 @@ export function StickerLetter() {
       .catch((error) => {
         console.error("실패", error);
       });
-    navigate("/put");
+
+    navigate("/put", { state: { visitor: VID } });
   };
 
   //서버에서 방문록 받아오기
   useEffect(() => {
-    fetch("https://faceticker.site/app/:1/sticker/message?type=visitor")
+    fetch(`http://app.faceticker.site/sticker/visitor/message?id=${VID}`)
       .then((response) => response.json())
       .then((data) => {
-        if (data.letter) {
-          setLetterValue(data.letter);
-        }
+        console.log("성공2", data.result[0].name);
+        setLetterValue(data.letter);
       })
       .catch((error) => {
         console.error("오류 발생", error);
@@ -287,21 +299,9 @@ export function StickerLetter() {
         <HeaderWrap>
           <Header>
             <HeaderIcon>
-              {firstBottom && (
-                <img
-                  onClick={handleFirstBack}
-                  style={style}
-                  src="https://i.ibb.co/rdqkHHs/arrow-left.png"
-                  alt="setting-icon"
-                />
-              )}
+              {firstBottom && <Back onClick={handleFirstBack} src={backicon} />}
               {!firstBottom && (
-                <img
-                  onClick={handleSecondBack}
-                  style={style}
-                  src="https://i.ibb.co/rdqkHHs/arrow-left.png"
-                  alt="setting-icon"
-                />
+                <Back onClick={handleSecondBack} src={backicon} />
               )}
             </HeaderIcon>
           </Header>
@@ -319,10 +319,10 @@ export function StickerLetter() {
               {firstBottom && (
                 <Wrap>
                   <ImgWrap>
-                    <InputImg src="https://i.ibb.co/3vfvNYb/Post-it-4-3.png" />
+                    <InputImg src={post} />
                   </ImgWrap>
 
-                  <HostImg src={HostImgurl} />
+                  <HostImg src={imageUrl} />
                 </Wrap>
               )}
               <InputWrap height={inputHeight}>
@@ -337,11 +337,8 @@ export function StickerLetter() {
 
               {!firstBottom && (
                 <Wrap2>
-                  <CheckIcon
-                    onClick={handleLetterSubmit}
-                    src="https://i.ibb.co/PrmpgLr/Group-74.png"
-                  />
-                  <Container src="https://i.ibb.co/qnJKv4s/Group-69-1.png" />
+                  <CheckIcon onClick={handleLetterSubmit} src={checkicon} />
+                  <Container src={container} />
                 </Wrap2>
               )}
             </TotalWrap>

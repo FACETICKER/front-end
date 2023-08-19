@@ -11,6 +11,10 @@ import chat from "../img/Header_img/chat.png";
 import close from "../img/Header_img/close.png";
 import pencil from "../img/Header_img/pencil.png";
 import setting from "../img/Header_img/setting.png";
+import PageSlice from "../QnA/Slice/PageSlice";
+import Idtoken from "../Stickers/Idtoken";
+import { useDispatch } from "react-redux";
+import { setChangeSticker } from "./SettingSllice";
 
 //호스트 헤더
 
@@ -132,12 +136,17 @@ const Close = styled.img`
 export function MainHeader() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const userId = Idtoken()[0]; //호스트 아이디
+  const jwt = Idtoken()[1]; //호스트 토큰
 
   //설정
   const handleFirstClick = () => {
     navigate("/initial");
   };
   const handleSecondClick = () => {
+    dispatch(setChangeSticker(true));
     navigate("/makesticker");
   };
   const handleThirdClick = () => {
@@ -145,10 +154,11 @@ export function MainHeader() {
   };
 
   const handleLogoClick = () => {
-    navigate("/mainhost");
+    navigate(`/main/host/${userId}`);
   };
 
   const handleChatClick = () => {
+    dispatch(PageSlice.actions.host());
     navigate("/qna");
   };
 

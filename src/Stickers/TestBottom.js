@@ -2,10 +2,13 @@ import styled from "styled-components";
 
 import { useSelector, useDispatch } from "react-redux";
 import { setIsImageFixed } from "./reducers";
+import { setIsImageVisible } from "./reducers";
 import { useDrag } from "react-use-gesture";
 import { useEffect, useState } from "react";
 import { useGesture } from "react-use-gesture";
 import React, { useRef } from "react";
+import positionSlice from "./positionSlice";
+import Idtoken from "./Idtoken";
 
 //방문자가 자신의 스티커를 호스트 페이지에 붙이는 컴포넌트
 
@@ -78,7 +81,9 @@ const ZoomButton = styled.button`
   cursor: pointer;
 `;
 
-export function TestBottom() {
+export function TestBottom(props) {
+  const [xvalue, setX] = useState(0);
+  const [yvalue, setY] = useState(0);
   const [imageUrl, setImageUrl] = useState(null);
   const [imagePosition, setImagePosition] = useState(null);
   const [isImageVisible, setIsImageVisible] = useState(false);
@@ -87,15 +92,34 @@ export function TestBottom() {
   const [componentHeight, setComponentHeight] = useState(0);
   const [bottomWidth, setBottomWidth] = useState("100%");
   const [bottomHeight, setBottomHeight] = useState("100%");
+  const [imageData, setImageData] = useState();
 
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
+
+  // 방문자가 가지고 온  호스트Id 가져오기
+  const hostid = useSelector((state) => state.login.hostid);
+
+  const ID = hostid;
+
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  const VID = props.VID2;
+  console.log("final", VID);
+
+  //이미지들 불러오기
   useEffect(() => {
-    fetch("http://localhost:3012/user/1")
+    fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        if (data.url) {
-          setHostImageUrl(data.url);
-        }
+        console.log(data);
+        /* console.log("111", data.result.userStickerResult[0].final_image_url); */
+        setHostImageUrl(data.result.userStickerResult[0].final_image_url);
+        const filteredData = data.result.visitorStickerResult.filter(
+          (item) => item.location_x !== null
+        );
+        console.log("00", filteredData);
+        setImageData(filteredData);
       })
       .catch((error) => {
         console.error("오류 발생", error);
@@ -117,18 +141,23 @@ export function TestBottom() {
     }
   }, []);
 
-  const handleFetchImageAndImageClick = async (event) => {
-    try {
-      const response = await fetch("http://localhost:3012/user/2");
-      const data = await response.json();
-      setImageUrl(data.url);
+  const imageUrl2 = useSelector((state) => state.capture.imageUrl);
+  /*   const visible = useSelector((state) => state.reducers.imagevisible); */
+  console.log("put");
+  console.log("보낼 값", { x: xvalue, y: yvalue });
+  console.log("x", xvalue);
 
+  const handlePut = async (event) => {
+    try {
+      setImageUrl(imageUrl2);
+      console.log("set");
       const sidePosition = {
         // 클릭한 엘리먼트의 절대좌표
         // .getBoundingClientRect().left 뷰포트 기준 X값 top은 Y 값
         X: Math.floor(event.target.getBoundingClientRect().left),
         Y: Math.floor(event.target.getBoundingClientRect().top),
       };
+      console.log("1", sidePosition);
 
       const clickPosition = {
         X: Math.floor(event.clientX),
@@ -139,33 +168,86 @@ export function TestBottom() {
         X: clickPosition.X - sidePosition.X,
         Y: clickPosition.Y - sidePosition.Y,
       };
+      console.log("2", ratio);
 
       // 상대 좌표
       const XPer = (ratio.X / componentWidth) * 100;
       const YPer = (ratio.Y / componentHeight) * 100;
-      // 소수점 둘째 자리까지 반올림
-      const xyPer = { XPer: XPer.toFixed(2), YPer: YPer.toFixed(2) };
-      setImagePosition(xyPer);
+      console.log("2", ratio);
 
-      console.log(imagePosition);
+      const xyPer = {
+        x: XPer,
+        y: YPer,
+      };
+      /*  const xyPer = {
+        x: XPer.toFixed(2),
+        y: YPer.toFixed(2),
+      }; */
+      console.log("3", xyPer);
+
+      setImagePosition(xyPer);
+      console.log(XPer.toFixed(2));
+      setX(XPer.toFixed(2));
+      setY(YPer.toFixed(2));
+      console.log("imageposition", imagePosition);
+      dispatch(positionSlice.actions.update(["x", XPer]));
+      dispatch(positionSlice.actions.update(["y", YPer]));
       setIsImageVisible(true);
-      dispatch(setIsImageFixed(false)); // 이미지 클릭 시, 스티커 고정 상태를 해제
+      console.log("topost", { x: xvalue, y: yvalue });
+      dispatch(setIsImageVisible(true));
+
+      console.log("2");
+      dispatch(setIsImageFixed(false)); // 스티커 고정 상태를 해제
     } catch (error) {
       console.error("이미지 URL 가져오기 오류:", error);
     }
   };
 
+  const positionState = useSelector((state) => state.position);
+  const finalPosition = {
+    x: positionState.x,
+    y: positionState.y - 40,
+  };
+  console.log("finalposition", finalPosition);
+
+  console.log("완료", imagePosition);
+
+  const VisitorId = useSelector((state) => state.capture.visitorId);
+
+  //이미지 PATCH
   useEffect(() => {
     if (isImageFixed) {
-      fetch("http://localhost:3012/user", {
-        method: "POST",
+      fetch(`http://app.faceticker.site/${ID}/sticker/attach?id=${VisitorId}`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ imgposition: imagePosition }),
+        body: JSON.stringify(finalPosition),
       })
         .then((response) => response.json())
+        .then((data) => {
+          console.log("patch 성공", data);
+        })
+        .catch((error) => {
+          console.error("patch 오류", error);
+        });
+    }
+  }, [isImageFixed]);
 
+  //이미지들 한 번 더 불러오기
+  useEffect(() => {
+    if (isImageFixed) {
+      fetch(`http://app.faceticker.site/${ID}/sticker/all`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+
+          const filteredData = data.result.visitorStickerResult.filter(
+            (item) => item.location_x !== null
+          );
+          console.log("모든 방문자 스티커", filteredData);
+          setImageData(filteredData);
+        })
         .catch((error) => {
           console.error("오류 발생", error);
         });
@@ -175,7 +257,7 @@ export function TestBottom() {
   const [zoomLevel, setZoomLevel] = useState(1);
   const minZoomLevel = 0.5;
   const maxZoomLevel = 2;
-
+  /* 
   // 줌 인 함수
   const zoomIn = () => {
     if (zoomLevel < maxZoomLevel) {
@@ -189,6 +271,7 @@ export function TestBottom() {
       setZoomLevel((prevZoom) => prevZoom - 0.1);
     }
   };
+ */
 
   return (
     <BottomWrap>
@@ -202,7 +285,7 @@ export function TestBottom() {
                 width: "85%",
                 height: "85%",
               }}
-              onClick={handleFetchImageAndImageClick}
+              onClick={handlePut}
             ></div>
           )}
           <HostImg src={hostImageUrl} />
@@ -215,13 +298,29 @@ export function TestBottom() {
                 display: "flex",
                 maxWidth: "100px",
                 position: "absolute",
-                top: `${(imagePosition.YPer * componentHeight) / 100}px`,
-                left: `${(imagePosition.XPer * componentWidth) / 100}px`,
+                top: `${(imagePosition.y * componentHeight) / 100}px`,
+                left: `${(imagePosition.x * componentWidth) / 100}px`,
                 zIndex: 9999,
               }}
             />
           )}
         </Bottom>
+
+        {imageData &&
+          imageData.map((item) => (
+            <img
+              key={item.visitor_sticker_id}
+              src={item.final_image_url}
+              style={{
+                position: "absolute",
+                top: `${(item.location_y * componentHeight) / 100 + 110}px`,
+                left: `${(item.location_x * componentWidth) / 100}px`,
+                zIndex: 9999,
+                maxWidth: "100px",
+              }}
+              alt={`Image ${item.id}`}
+            />
+          ))}
       </Bottoms>
       {/*   <ZoomButtons>
         <ZoomButton onClick={zoomIn}>Zoom In</ZoomButton>
