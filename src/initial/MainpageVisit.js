@@ -509,7 +509,7 @@ function MainpageVisit() {
                   -1
                 </button> */}
               </div>
-              <Div style={{position:'absolute',top:'0%',left:'32%'}}>
+              <Div style={{position:'absolute',top:'87%',left:'56%'}}>
                 <button className="l10" onClick={handleVisitorsticker}>
                   <img src={recordpage} alt="recordpage" />
                 </button>
