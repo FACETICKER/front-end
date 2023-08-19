@@ -12,7 +12,7 @@ const code = new URL(window.location.href).searchParams.get("code");
 
 const googleRedirectUrl = `https://faceticker.site/auth/google/callback`;
 const googleURL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${G_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${googleRedirectUrl}`;
-
+//22
 const Loginpage = () => {
   console.log(K_REST_API_KEY);
   const navigate = useNavigate();
