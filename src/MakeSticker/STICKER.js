@@ -14,6 +14,7 @@ import {
   setVisitorImageUrl,
   setImageUrl,
 } from "./CaptureSlice";
+import html2canvas from "html2canvas";
 
 const STICKER = () => {
   const containerRef = useRef(null);
@@ -31,7 +32,7 @@ const STICKER = () => {
           console.log("넘어온", dataUrl);
           /* dispatch(setVisitorImageUrl(dataUrl)); */
 
-          /*   downloadImage(dataUrl); // 이미지를 파일로 다운로드하는 함수 호출 */
+          //downloadImage(dataUrl); //
           /*    console.log(dataUrl); */
         })
         .catch(function (error) {

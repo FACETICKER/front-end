@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import inputImage from "../img/Stickers_img/inputimg.png";
 import checkicon from "../img/Stickers_img/checkicon.png";
 import backicon from "../img/Stickers_img/backIcon.png";
-import { setVisitorId } from "../MakeSticker/CaptureSlice";
+import { setNext, setVisitorId } from "../MakeSticker/CaptureSlice";
 import Idtoken from "../Stickers/Idtoken";
 
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
@@ -195,17 +195,17 @@ export function StickerName() {
   const [inputTop, setInputTop] = useState("-2%");
   const [nicknameValue, setNicknameValue] = useState("");
 
-  const { state } = useLocation();
+  /*  const { state } = useLocation();
   console.log("State", state.test);
   const VID = state.test;
-
+ */
   //방문자 스티커
 
   const visitorId = useSelector((state) => state.visitorId);
   const imageUrl = useSelector((state) => state.capture.imageUrl);
   /*   console.log("이미지url ", imageUrl); */
   console.log("방문자id", visitorId);
-  console.log("vid", VID);
+
   /*   console.log("url", imageUrl); */
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
@@ -217,7 +217,7 @@ export function StickerName() {
   };
   //처음 back은 누르면 이전 페이지
   const handleFirstBack = () => {
-    navigate(-1);
+    navigate("/makesticker");
   };
   //이전 누르면 state 이전값으로 바뀜
   const handleSecondBack = () => {
@@ -248,13 +248,16 @@ export function StickerName() {
   //닉네임 입력하고 다음 아이콘 누르면 서버에 전송됨
   const handleNicknameSubmit = () => {
     console.log(visitorId);
-    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/name?id=${VID}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: nicknameValue }),
-    })
+    fetch(
+      `http://app.faceticker.site/${ID}/sticker/visitor/name?id=${visitorId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: nicknameValue }),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("성공", data);
@@ -262,12 +265,12 @@ export function StickerName() {
       .catch((error) => {
         console.error("실패", error);
       });
-    navigate("/stickerletter", { state: { visitor: VID } });
+    navigate("/stickerletter" /* , { state: { visitor: VID } } */);
   };
 
   //서버에서 닉네임 값 받아오기
   useEffect(() => {
-    fetch(`https://app.faceticker.site/sticker/visitor/name?id=${VID}`)
+    fetch(`https://app.faceticker.site/sticker/visitor/name?id=${visitorId}`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {
@@ -278,6 +281,10 @@ export function StickerName() {
       .catch((error) => {
         console.error("오류 발생", error);
       });
+  }, []);
+
+  useEffect(() => {
+    dispatch(setNext(false));
   }, []);
 
   return (
