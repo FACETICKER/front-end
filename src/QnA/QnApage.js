@@ -46,7 +46,7 @@ const QnApage = () => {
   /* userID와 토큰 정의 */
 
   const userID = Token()[0];
-  const JWT = Token()[1];
+  const JWT = Token()[1] === null ? '' : Token()[1];
   const hostID = Token()[2];
 
   useEffect(() => {
