@@ -293,18 +293,7 @@
   transform: rotate(-7deg);
 }
 
-.BackgroundWrap {
-  background: #f8f8fa;
-}
 
-.Background {
-  height: calc(var(--vh) * 100);
-  max-width: 37.5rem;
-  margin: 0px auto;
-  display: flex;
-  flex-direction: column;
-  background: #f8f8fa;
-}
 
 
 .l24 {
@@ -427,4 +416,14 @@
   font-style: normal;
   font-weight: 600;
   line-height: 20px; /* 125% */
+}
+
+.l28{
+  color: #767676;
+text-align: center;
+font-family: 'Pretendard';
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 28px; /* 155.556% */
 }
