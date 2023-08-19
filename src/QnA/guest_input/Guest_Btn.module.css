@@ -9,10 +9,10 @@
     position: relative;
     width: 100%;
     min-height: 62px;
-    max-height: 174px;
+    max-height: 180px;
     margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     display: flex;
     justify-content: flex-end;
 }
@@ -104,9 +104,14 @@
     position: relative;
     width: 100%;
     min-height: 62px;
-    max-height: 174px;
+    max-height: 180px;
     margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     display: flex;
+}
+
+.ansAndques {
+    display: flex;
+    flex-direction: column;
 }
