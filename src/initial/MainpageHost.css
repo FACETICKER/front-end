@@ -59,12 +59,17 @@
   left: 7%;
 }
 
+@font-face {
+  font-family: "LINE Seed Sans"; /* 폰트 이름 지정 (임의의 이름으로 설정 가능) */
+  src: url("../font/LINE_Seed_Sans_KR/Webfont/WOFF/LINESeedKR-Bd.woff")
+    format("woff"); /* 폰트 파일 경로 지정 */
+}
 .l6-2 {
   width: 250px;
   transform: rotate(90deg);
   color: #191919;
   text-align: center;
-  font-family: LINE Seed Sans;
+  font-family: 'LINE Seed Sans';
   font-size: 28px;
   font-style: normal;
   font-weight: 700;
@@ -164,7 +169,7 @@
 }
 
 .Modal {
-  position: fixed;
+  position: flex;
   top: 50%;
   left: 44.5%;
   transform: translate(-50%, -50%);
@@ -257,6 +262,9 @@
   font-style: normal;
   font-weight: 500;
   line-height: 36px;
+  position: relative;
+  top:-13px;
+  left:10%
 }
 
 .l18-2 {
