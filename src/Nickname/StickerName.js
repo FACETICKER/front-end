@@ -195,10 +195,10 @@ export function StickerName() {
   const [inputTop, setInputTop] = useState("-2%");
   const [nicknameValue, setNicknameValue] = useState("");
 
-  /*  const { state } = useLocation();
+  const { state } = useLocation();
   console.log("State", state.test);
   const VID = state.test;
- */
+
   //방문자 스티커
 
   const visitorId = useSelector((state) => state.visitorId);
@@ -248,16 +248,13 @@ export function StickerName() {
   //닉네임 입력하고 다음 아이콘 누르면 서버에 전송됨
   const handleNicknameSubmit = () => {
     console.log(visitorId);
-    fetch(
-      `http://app.faceticker.site/${ID}/sticker/visitor/name?id=${visitorId}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: nicknameValue }),
-      }
-    )
+    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/name?id=${VID}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: nicknameValue }),
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log("성공", data);
@@ -265,12 +262,12 @@ export function StickerName() {
       .catch((error) => {
         console.error("실패", error);
       });
-    navigate("/stickerletter" /* , { state: { visitor: VID } } */);
+    navigate("/stickerletter", { state: { visitor: VID } });
   };
 
   //서버에서 닉네임 값 받아오기
   useEffect(() => {
-    fetch(`https://app.faceticker.site/sticker/visitor/name?id=${visitorId}`)
+    fetch(`https://app.faceticker.site/sticker/visitor/name?id=${VID}`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {

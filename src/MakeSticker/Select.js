@@ -93,7 +93,7 @@ const Select = ({ handleCaptureImg }) => {
         setSetting(true);
       } else setModalIsOpen(true);
     }
-    dispatch(setCaptureEnabled(isEnabled));
+    dispatch(setCaptureEnabled(true));
     if (changesticker) {
       setSetting(true);
     } else {
@@ -102,7 +102,7 @@ const Select = ({ handleCaptureImg }) => {
   };
 
   //방문자가 완료 누를 때
-  const captureVisitor = (isEnabled) => {
+  const captureVisitor = () => {
     if (
       //방문자가 아무것도 선택 안 했으면 캡쳐 하지 말고 기본 이미지 저장
       stickerState.face === 0 &&
@@ -115,7 +115,7 @@ const Select = ({ handleCaptureImg }) => {
     ) {
       dispatch(setImageUrl("https://i.ibb.co/3yhK7VW/1-2.png"));
     } else {
-      dispatch(setCaptureEnabled(isEnabled));
+      dispatch(setCaptureEnabled(true));
     }
 
     /*   navigate("/stickername", { state: { test: test2 } }); */

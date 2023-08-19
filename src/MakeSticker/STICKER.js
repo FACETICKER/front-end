@@ -51,6 +51,7 @@ const STICKER = () => {
   useEffect(() => {
     if (captureEnabled) {
       handleCaptureImg();
+      dispatch(setCaptureEnabled(false));
     }
   }, [captureEnabled]);
 

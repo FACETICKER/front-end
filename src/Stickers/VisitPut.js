@@ -126,7 +126,8 @@ const Footer = styled.div`
   flex-direction: row;
 `;
 const Icon = styled.img`
-  max-height: 48%;
+  max-width: 80%;
+  max-height: 65%;
   display: flex;
 `;
 
@@ -230,7 +231,6 @@ export function VisitPut(props) {
               <img src={middle} />
             </MiddleImg>
             <Footer>
-              <Icon onClick={reset} src={changeIcon} />
               <Icon onClick={handleButtonClick} src={putcomplete} />
             </Footer>
           </ButtonWrap>
