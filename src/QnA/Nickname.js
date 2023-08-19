@@ -13,7 +13,10 @@ const Nickname = (props) => {
     const [name, setname] = useState("questicker");
 
     const goBack = () => {
-        navigate(-1); // 이전 페이지로 이동
+        if (props.page === 'guest') {
+            navigate(-1); // 이전 페이지로 이동
+        }
+        navigate(-1);
     };
 
     return (
