@@ -386,7 +386,7 @@ function MainpageHost() {
               <div
                   id="countMessageDiv"
                   className="l14-2"
-                  style={{position:'absolute' , top: "-50%", left: "69%" ,zIndex:'1'}}
+                  style={{position:'absolute' , top: "-50%", left: "69%" ,zIndex:'1', display:'block'}}
                 >
                   <p id="countRecord" className="l15-2">
                     {messageNumber || ""}
@@ -582,7 +582,7 @@ function MainpageHost() {
                 <div
                   id="countRecordDiv"
                   className="l14-2"
-                  style={{position:'absolute' , top: "9%", left: "29%" ,zIndex:'1'}}
+                  style={{position:'absolute' , top: "9%", left: "29%" ,zIndex:'1', display:'block'}}
                 >
                   <p id="countRecord" className="l15-2">
                     {recordNumber || ""}
