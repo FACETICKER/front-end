@@ -42,8 +42,8 @@
 }
 
 .controlzone {
-  width: 370px;
-  height: 140px;
+  width: 94.8%;
+  aspect-ratio: 370 / 140;
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   border-radius: 10px;
@@ -52,8 +52,8 @@
 }
 
 .closezone {
-  width: 370px;
-  height: 60px;
+  width: 94.8%;
+  aspect-ratio: 370 / 60;
   margin-top: 10px;
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
   border-radius: 10px;

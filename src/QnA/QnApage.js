@@ -23,7 +23,7 @@ const QnApage = () => {
 
   const Getinfo = () => {
     const headers = {
-      "x-access-token": "",
+      "x-access-token": JWT,
       "Content-Type": "application/json",
     };
 
