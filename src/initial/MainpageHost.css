@@ -4,8 +4,8 @@
   flex-shrink: 0;
 }
 .l2-2 {
-  width: 338px;
-  height: 400px;
+  width: 310px;
+  height: 380px;
   flex-shrink: 0;
   border-radius: 20px;
   background: #ffd25d;
@@ -32,25 +32,25 @@
   transform: rotate(-90deg);
   color: #3f3f3f;
   font-family: "JHaebaragi";
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: 36px; /* 180% */
   position: absolute;
   top: 45%;
-  left: -23%;
+  left: -26%;
 }
 
 @font-face {
   font-family: "Cafe24Shiningstar"; /* 폰트 이름 지정 (임의의 이름으로 설정 가능) */
-  src: url("../font/Cafe24Shiningstar-v2.0/webfont/Cafe24Shiningstar-v2.0.woff")
+  src: url("../font/Cafe24Shiningstar.ttf")
     format("woff"); /* 폰트 파일 경로 지정 */
 }
 .l5-2 {
   transform: rotate(-90deg);
   color: #191919;
   font-family: Cafe24Shiningstar;
-  font-size: 48px;
+  font-size: 45px;
   font-style: normal;
   font-weight: 400;
   line-height: 36px; /* 75% */
@@ -65,29 +65,32 @@
   color: #191919;
   text-align: center;
   font-family: LINE Seed Sans;
-  font-size: 32px;
+  font-size: 28px;
   font-style: normal;
   font-weight: 700;
   line-height: 22px; /* 68.75% */
   letter-spacing: -0.408px;
   position: absolute;
   top: 30%;
-  left: 55%;
+  left: 53%;
   z-index: 1;
 }
-
+@font-face {
+  font-family: "KIMM_Light"; /* 폰트 이름 지정 (임의의 이름으로 설정 가능) */
+  src: url("../font/한국기계연구원_Light.ttf") format("woff"); /* 폰트 파일 경로 지정 */
+}
 .l7-2 {
-  width: 100px;
+  width: 140px;
   color: rgba(51, 51, 51, 0.8);
   text-align: center;
   font-family: "KIMM_Light";
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
   position: relative;
-  left: 73%;
-  top: -25px;
+  left: 51%;
+  top: 22px;
 }
 @font-face {
   font-family: "TmonMonsori"; /* 폰트 이름 지정 (임의의 이름으로 설정 가능) */
@@ -96,13 +99,13 @@
 .l8-2 {
   color: #767676;
   font-family: "TmonMonsori";
-  font-size: 70px;
+  font-size: 60px;
   font-style: normal;
   font-weight: 900;
   line-height: 36px; /* 51.429% */
   position: absolute;
-  top: -10px;
-  left: 22%;
+  top: 10px;
+  left: 26%;
   float: right;
 }
 
@@ -110,18 +113,18 @@
   color: rgba(0, 0, 0, 0.25);
   text-align: center;
   font-family: "Pretendard";
-  font-size: 16px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   position: absolute;
-  top: 62%;
-  left: 23%;
+  top: 73%;
+  left: 27%;
 }
 
 .l10-2 {
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   flex-shrink: 0;
   fill: var(--unnamed, #12151c);
   background-color: #12151c;
@@ -129,7 +132,7 @@
   border: 0;
   position: relative;
   margin: 0 10px 0 0;
-  top: 20%;
+  top: 5px;
   left: 10%;
 }
 
@@ -163,7 +166,7 @@
 .Modal {
   position: fixed;
   top: 50%;
-  left: 50%;
+  left: 46%;
   transform: translate(-50%, -50%);
   width: 294px;
   height: 322px;
@@ -201,17 +204,20 @@
   line-height: 20px; /* 83.333% */
 }
 
+@font-face {
+  font-family: "Cafe24 Ohsquare"; /* 폰트 이름 지정 (임의의 이름으로 설정 가능) */
+  src: url("../font/Cafe24Ohsquare-v2.0/webfont/Cafe24Ohsquare-v2.0.woff2") format("woff"); /* 폰트 파일 경로 지정 */
+}
 .l13-2 {
   color: #333;
   text-align: center;
   font-family: "Cafe24 Ohsquare";
-  font-size: 40px;
+  font-size: 30px;
   font-style: normal;
-  font-weight: 700;
   line-height: 22px; /* 55% */
   position: absolute;
-  top: -7%;
-  left: 9%;
+  top: -6%;
+  left: 19%;
 }
 
 .l14-2 {
@@ -385,12 +391,12 @@
 }
 
 .l28-2 {
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   border: 1px solid #767676;
   float: left;
-  margin: 6px;
+  margin: 3px;
 }
 
 .HeaderWarp {

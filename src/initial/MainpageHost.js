@@ -202,7 +202,7 @@ function MainpageHost() {
     navigate("/initial");
   };
   const handleStickerLetter = () => {
-    navigate("/stickerletter");
+    navigate("/status");
   };
 
   const handleQna = () => {
@@ -395,8 +395,8 @@ function MainpageHost() {
 
           <div
             style={{
-              width: "366px",
-              height: "124%",
+              width: "335px",
+              height: "125%",
               position: "relative",
               top: "-5px",
               left: "-7px",
@@ -460,11 +460,11 @@ function MainpageHost() {
                   position: "absolute",
                   width: "338px",
                   height: "140px",
-                  top: "77%",
+                  top: "72%",
                 }}
               >
                 <div name="사자성어">
-                  <div>
+                  <div style={{position:'relative',top:'20px',left:'2%'}}>
                     <div
                       className="l28-2"
                       style={{ backgroundColor: "#FF6D00" }}
@@ -554,7 +554,7 @@ function MainpageHost() {
                   -1
                 </button> */}
               </div>
-              <Div style={{ position: "absolute", top: "88%", left: "34%" }}>
+              <Div style={{ position: "absolute", top: "87%", left: "34%" }}>
                 <button className="l10-2" onClick={handleHoststicker}>
                   <img src={recordpage} alt="recordpage" />
                 </button>
