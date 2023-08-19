@@ -52,7 +52,7 @@ function Guest_Btn(props) {
     }, [ques]); // 질문 추가 시 끝까지 아래로 스크롤
 
     return (
-        <div>
+        <div className={styles2.ansAndques}>
             <div className={styles2.buttonbackground}>
                 <button className={classNames} id={props.id} type={props.type} data-open={props.open}>
                     <span className={styles2.buttontext}>{open && (props.text)}</span>
