@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { VisitPut } from "../Stickers/VisitPut";
+import { useLocation } from "react-router-dom";
 
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
@@ -32,10 +33,13 @@ const Background = styled.div`
 `;
 
 export function PutPage() {
+  const { state } = useLocation();
+  console.log("State", state.visitor);
+  const VID = state.visitor;
   return (
     <BackgroundWrap>
       <Background>
-        <VisitPut />
+        <VisitPut id={VID} />
       </Background>
     </BackgroundWrap>
   );

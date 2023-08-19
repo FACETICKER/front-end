@@ -6,6 +6,9 @@ const IDSlice = createSlice({
     reducers:{
         up:(state, action)=>{
             state.value =  state.value + action.payload;
+        },
+        set:(state, action)=>{
+            state.value = action.payload;
         }
     }
 });

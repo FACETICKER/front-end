@@ -3,7 +3,7 @@ import styled from "styled-components";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsImageFixed } from "./reducers";
-
+import { setIsImageVisible } from "./reducers";
 import { TestBottom } from "./TestBottom";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -14,6 +14,8 @@ import changeIcon from "../img/Stickers_img/changeIcon.png";
 import putcomplete from "../img/Stickers_img/putcomplete.png";
 import mysticker from "../img/Stickers_img/mysticker.png";
 import goqna from "../img/Stickers_img/goqna.png";
+import Idtoken from "./Idtoken";
+import PageSlice from "../QnA/Slice/PageSlice";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -40,12 +42,13 @@ const HeaderWrap = styled.div`
 const FirstHeader = styled.div`
   height: 30%;
   display: flex;
-
+  align-item: center;
   justify-content: flex-start;
   padding-left: 10px;
 `;
 const BackIcon = styled.img`
-  max-width: 50px;
+  max-width: 10%;
+  height: 100%;
   padding-top: 3%;
 `;
 const TextHeader = styled.div`
@@ -140,11 +143,17 @@ const Icon3 = styled.img`
   width: 60%;
 `;
 
-export function VisitPut() {
+export function VisitPut(props) {
+  const VID2 = props.VID;
+  console.log("VID2", VID2);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [HostName, useHostName] = useState("호스트명");
+  const [HostName, setHostName] = useState("호스트명");
   const [change, setChange] = useState(false);
+
+  //방문자가 가지고 온  호스트Id 가져오기
+  const hostid = useSelector((state) => state.login.hostid);
+  const ID = hostid;
 
   const handleButtonClick = () => {
     dispatch(setIsImageFixed(true)); // "Check" 버튼 클릭 시, 스티커 고정
@@ -152,6 +161,7 @@ export function VisitPut() {
   };
 
   const handleQnA = () => {
+    dispatch(PageSlice.actions.guest());
     navigate("/qna");
   };
 
@@ -176,13 +186,30 @@ export function VisitPut() {
     if (change) {
       const timer = setTimeout(() => {
         // 5초 후에 페이지 이동
-        navigate("/mainvisit"); // 메인페이지로
+        navigate(`/main/${ID}`); // 메인페이지로
       }, 5000);
 
       return () => clearTimeout(timer); // 컴포넌트가 언마운트될 때 타이머 제거
     }
   }, [change]);
 
+  //호스트 닉네임 불러오기
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("호스트 성공", data);
+        console.log("호스트명", data.result.userNickname);
+        setHostName(data.result.userNickname);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
+
+  const reset = () => {
+    dispatch(setIsImageVisible(false));
+  };
   return (
     <BackgroundWrap>
       {!change && (
@@ -196,14 +223,14 @@ export function VisitPut() {
               <Text2>부착된 스티커는 호스트 외 삭제할 수 없습니다.</Text2>
             </TextHeader>
           </HeaderWrap>
-          <TestBottom />
+          <TestBottom id={VID2} />
 
           <ButtonWrap>
             <MiddleImg>
               <img src={middle} />
             </MiddleImg>
             <Footer>
-              <Icon src={changeIcon} />
+              <Icon onClick={reset} src={changeIcon} />
               <Icon onClick={handleButtonClick} src={putcomplete} />
             </Footer>
           </ButtonWrap>

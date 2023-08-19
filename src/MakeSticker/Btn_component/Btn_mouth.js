@@ -44,13 +44,19 @@ const Btn_mouth = () => {
           }`}
           onClick={() => onclick(item.index)}
         >
-          <img src={item.img} className={styles.element}></img>
           <img
-            src={Check} style={{width:'25px',height:'25px'}}
+            src={item.img}
+            className={`${styles.element} ${
+              item.img === Mouth2 ? styles.element2 : ""
+            }`}
+          />
+          <img
+            src={Check}
+            style={{ width: "25px", height: "25px" }}
             className={`${styles.check} ${
               mouth === item.index ? "" : styles.hidden
             }`}
-          ></img>
+          />
         </button>
       ))}
     </div>

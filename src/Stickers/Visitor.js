@@ -8,11 +8,12 @@ import { TestBottom } from "./TestBottom";
 import { useState } from "react";
 import { useEffect } from "react";
 import StaticSticker from "./StaticSticker";
-import MainHeader from "../components/HostHeader";
+import MainHeader from "../components/VisitorHeader";
 import { MainText } from "./MainText";
 import { useNavigate } from "react-router-dom";
 import visitorbutton from "../img/Stickers_img/visitorbutton.png";
 import middle from "../img/Stickers_img/Middle.png";
+import VisitorSticker from "./VisitorSticker";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -60,8 +61,9 @@ const Icon = styled.img`
 `;
 const Middle = styled.img`
   display: flex;
+  width: 40%;
   position: absolute;
-  top: -26%;
+  top: -28%;
 `;
 export function Visitor() {
   const navigate = useNavigate();
@@ -70,12 +72,13 @@ export function Visitor() {
   const handlesticker = () => {
     navigate("/makesticker");
   };
+
   return (
     <BackgroundWrap>
       <Background>
         <MainHeader />
         <MainText />
-        <StaticSticker />
+        <VisitorSticker />
         <ButtonWrap>
           <Middle src={middle} />
 

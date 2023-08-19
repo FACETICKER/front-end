@@ -1,33 +1,36 @@
 import {createSlice} from '@reduxjs/toolkit';
-
 const InitialSurveyList = createSlice({
-    name:'stickerslice',
+    name:'initialList',
     initialState:{
-        Name: '',
-        Season: '',
-        Number: '',
-        Day: '',
-        Import: '',
-        SetSticker: ''
+        Name_id: '',
+        Season_id: '',
+        Number_id: null,
+        Day_id: '',
+        Import_id: '',
+        SetSticker_id: '',
+        Message_id: '',
     },
     reducers: {
         setInitialName: (state, action) => {
-          state.Name = action.payload;
+          state.Name_id = action.payload;
         },
         setInitialSeason: (state, action) => {
-          state.Season = action.payload;
+          state.Season_id = action.payload;
         },
         setInitialNumber: (state, action) => {
-          state.Number = action.payload;
+          state.Number_id = action.payload;
         },
         setInitialDay: (state, action) => {
-          state.Day = action.payload;
+          state.Day_id = action.payload;
         },
         setInitialImport: (state, action) => {
-          state.Import = action.payload;
+          state.Import_id = action.payload;
         },
         setInitialSetSticker: (state, action) => {
-          state.Import = action.payload;
+          state.Import_id = action.payload;
+        },
+        setInitialMessage: (state, action) => {
+          state.Import_id = action.payload;
         },
     },
 });
@@ -38,7 +41,9 @@ export const {
     setInitialNumber,
     setInitialDay,
     setInitialImport,
-    SetSticker
+    setInitialSetSticker,
+    setInitialMessage,
+    Season_id,
   } = InitialSurveyList.actions;
-export default InitialSurveyList.reducer;
+export default InitialSurveyList;
 // 변수 저장소

@@ -14,13 +14,19 @@ import FirstSlice from "./QnA/Slice/FirstSlice";
 import PageSlice from "./QnA/Slice/PageSlice";
 import Basic_questionSlice from "./QnA/Slice/Basic_questionSlice";
 import Popup_QnA_Slice from "./QnA/Slice/Popup_QnA_Slice";
-import ShareOrNotSlice from "./QnA/Slice/ShareOrNotSlice"; 
+import ShareOrNotSlice from "./QnA/Slice/ShareOrNotSlice";
 
 import appReducer from "./Stickers/reducers";
 import StickerSlice from "./MakeSticker/StickerSlice";
 import MS_PopupSlice from "./MakeSticker/PopupSlice";
 import imageReducer from "./Stickers/imageSlice";
 import captureReducer from "./MakeSticker/CaptureSlice";
+import settingReducer from "./components/SettingSllice";
+import loginReducer from "./login/LoginSlice";
+
+import InitialSurveyList from "./initial/InitialSurveyList";
+import NextLoginList from "./initial/NextLoginList";
+import positionSlice from "./Stickers/positionSlice";
 
 const store = configureStore({
   reducer: {
@@ -41,14 +47,21 @@ const store = configureStore({
     popup_QnA: Popup_QnA_Slice.reducer, // 기본 질문 팝업창 관리
     share: ShareOrNotSlice.reducer, // 질문 비공개 공개 설정
 
+    initialList: InitialSurveyList.reducer, // 프로필 저장소
+    nextLoginList: NextLoginList.reducer, // 로그인 후 경로 구분하는 역할
+
     app: appReducer, //Stickers
     image: imageReducer,
+    position: positionSlice.reducer,
 
     /* 아이디, 토큰 추가 */
 
     sticker: StickerSlice.reducer, //  총 저장소
     popup: MS_PopupSlice.reducer, // 팝업창 onoff 저장소
     capture: captureReducer,
+    setting: settingReducer,
+
+    login: loginReducer,
   },
 });
 export default store;

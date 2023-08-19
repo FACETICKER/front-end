@@ -11,6 +11,7 @@ import trash from "../img/Stickers_img/trash.png";
 import post from "../img/Stickers_img/post.png";
 import backtext from "../img/Stickers_img/backtext.png";
 import visitprofile from "../img/Stickers_img/visitprofile.png";
+import Idtoken from "./Idtoken";
 /* import { StickerPageSlice } from "./StickerPageSlice";
 dispatch(NicknamePageSlice.actions.letter()); //letter로 페이지 전환 */
 
@@ -79,10 +80,18 @@ const Second = styled.div`
 const TrashIcon = styled.img`
   display: flex;
   position: absolute;
-  width: 26%;
+  width: 24%;
   right: -2%;
-  top: -8%;
+  top: -9%;
 `;
+const TrashIcon2 = styled.img`
+  display: flex;
+  position: absolute;
+  width: 21%;
+  right: 2%;
+  top: -5%;
+`;
+
 const Shadow = styled.div`
   width: 80%;
   border-radius: 100%;
@@ -96,22 +105,23 @@ const Shadow = styled.div`
 
 const Dot3 = styled.div`
   position: absolute;
-  bottom: 7%;
+  bottom: 6%;
   left: 10%;
+  display: flex;
 `;
 
 const Name = styled.div`
   position: absolute;
-  bottom: 5%;
+  bottom: 3%;
   right: 10%;
-  width: 30%;
+  width: 100%;
   color: #191919;
   text-align: right;
   font-family: Cafe24Shiningstar;
   font-size: 36px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 66.667% */
+  line-height: 24px;
 `;
 const SecondShadow = styled.div`
   position: absolute;
@@ -173,7 +183,7 @@ const Back = styled.div`
 const BackImg = styled.img`
   display: flex;
   width: 85%;
-  height: 70%;
+  height: 72%;
   position: absolute;
   top: 10px;
   z-index: -1;
@@ -183,7 +193,9 @@ const BackImg = styled.img`
 const LetterContent = styled.div`
   display: flex;
   position: absolute;
-  width: 75%;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
   bottom: 50%;
   color: #191919;
   text-align: center;
@@ -195,17 +207,17 @@ const LetterContent = styled.div`
 `;
 const StickerImg = styled.img`
   display: flex;
-  width: 50%;
+  width: 65%;
   position: absolute;
-  bottom: 22%;
+  bottom: 12%;
   object-fit: cover;
 `;
 
 const StickerImg2 = styled.img`
   display: flex;
-  width: 17%;
+  width: 20%;
   position: absolute;
-  bottom: 8%;
+  bottom: 5%;
   object-fit: cover;
 `;
 
@@ -213,102 +225,189 @@ export function ClickSticker() {
   const [isFlipped, setIsFlipped] = useState(false);
   const [letterValue, setLetterValue] = useState("");
   const [stickerImg, setStickerImg] = useState();
+  const [name, setName] = useState();
+  const [length, setLength] = useState(null);
+
+  const [imageData, setImageData] = useState([]);
 
   const handleCardClick = () => {
     setIsFlipped(!isFlipped);
   };
 
-  const [imageData, setImageData] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch("http://localhost:3012/user")
-      .then((response) => response.json())
-      .then((data) => {
-        const filteredData = data.filter((item) => item.id !== 1);
-        setImageData(filteredData);
-        console.log(imageData);
-      })
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []);
-
   const handleBackClick = () => {
-    navigate("/hoststicker");
+    navigate(`/sticker/host/${userId}`);
   };
-  const handleTrashClick = () => {
-    navigate("/hoststicker");
-  };
+
   /*     const handleProfileClick = (item) => {
   //visior id 받아와서 해당 main으로 이동
 
     navigate("/"); //클릭한 해당 스티커 프로필로 
   };  */
-  const idArray = imageData.map((item) => item.id);
+  /*   const idArray = imageData.map((item) => item.id); */
   const selectedImageId = useSelector((state) => state.image.selectedImageId);
-  console.log(selectedImageId);
-  //서버에서 방문록 받아오기
+
+  console.log("100", selectedImageId);
+
+  const userId = Idtoken()[0]; //호스트 아이디
+  const ID = userId;
+  const jwt = Idtoken()[1]; //호스트 토큰
+
+  const headers = {
+    "x-access-token": jwt,
+    "Content-Type": "application/json",
+  };
+
+  //스티커 읽음 처리
+  console.log("9", ID, selectedImageId, jwt);
   useEffect(() => {
-    fetch("http://localhost:3012/user/1")
+    fetch(
+      `http://app.faceticker.site/${ID}/visitor/sticker/seen?id=${selectedImageId}`,
+      {
+        headers: headers,
+        method: "POST",
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
-        if (data.letter) {
-          setLetterValue(data.letter);
-        }
+        console.log("읽음 처리", data);
+      })
+      .catch((error) => {
+        console.error("읽음 처리 오류", error);
+      });
+  }, []);
+
+  //방문록 받아오기
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${selectedImageId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("특정 스티커", data);
+        console.log("방문록", data.result.message);
+        setLetterValue(data.result.message);
       })
       .catch((error) => {
         console.error("오류 발생", error);
       });
   }, []);
 
-  //host 이미지 url 받아오기
+  //이미지, 닉네임불러오기
   useEffect(() => {
-    fetch("http://localhost:3012/user/2")
+    fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        if (data.url) {
-          setStickerImg(data.url);
-        }
+        console.log("이미지, 닉네임 불러오기 성공", data);
+
+        const filteredData = data.result.visitorStickerResult.filter(
+          (item) => item.location_x !== null
+        );
+        const filteredData2 = data.result.visitorStickerResult.filter(
+          (item) => item.visitor_sticker_id == selectedImageId
+        ); //선택한 캐릭터
+
+        console.log("00", filteredData);
+        setStickerImg(filteredData2[0].final_image_url);
+        setName(filteredData2[0].name);
+
+        console.log(filteredData2[0].name);
+        setImageData(filteredData);
+        setLength(filteredData.length);
       })
       .catch((error) => {
         console.error("오류 발생", error);
       });
   }, []);
+
+  console.log("개수", length);
+
+  //스티커 삭제
+  const handleTrashClick = async () => {
+    try {
+      const response = await fetch(
+        `http://app.faceticker.site/${ID}/sticker/visitor/${selectedImageId}`,
+        {
+          method: "DELETE",
+          headers: headers,
+        }
+      );
+
+      const responseData = await response.json();
+      console.log("특정 스티커 삭제 성공", responseData);
+
+      if (response.ok) {
+        navigate(`/sticker/host/${userId}`);
+      } else {
+        console.log("특정 스티커 삭제 실패");
+      }
+    } catch (error) {
+      console.error("특정 스티커 삭제 실패", error);
+    }
+  };
 
   return (
     <BackgroundWrap>
       <Background>
         <MainHeader />
         <Bottom>
-          {idArray.length === 1 && (
-            <One>
-              <Second>
-                <TrashIcon onClick={handleTrashClick} src={trash} />
-                <Shadow />
-              </Second>
-              <Dot3>
-                <Dots />
-              </Dot3>
-              <Name>수진</Name>
-            </One>
-          )}
-          {idArray.length === 2 && (
-            <One>
-              <Second>
-                <TrashIcon onClick={handleTrashClick} src={trash} />
-                <Shadow />
-              </Second>
-              <SecondShadow />
-              <Dot3>
-                <Dots />
-              </Dot3>
-              <Name>이름</Name>
-            </One>
-          )}
+          {length == 1 && (
+            <div
+              className={`card ${isFlipped ? "flipped" : ""}`}
+              onClick={handleCardClick}
+            >
+              <div className="front">
+                <Second>
+                  <TrashIcon onClick={handleTrashClick} src={trash} />
+                  <Shadow />
+                  <StickerImg src={stickerImg} />
+                </Second>
 
-          {idArray.length >= 3 && (
+                <Dot3>
+                  <Dots />
+                </Dot3>
+                <Name>{name}</Name>
+              </div>
+              <div className="back">
+                <Back>
+                  <TrashIcon2 onClick={handleTrashClick} src={trash} />
+                  <BackImg src={post} />
+                  <LetterContent>{letterValue}</LetterContent>
+                  <StickerImg2 src={stickerImg} />
+                </Back>
+              </div>
+            </div>
+          )}
+          {length == 2 && (
+            <div
+              className={`card ${isFlipped ? "flipped" : ""}`}
+              onClick={handleCardClick}
+            >
+              <div className="front">
+                <Second>
+                  <TrashIcon onClick={handleTrashClick} src={trash} />
+                  <Shadow />
+                  <StickerImg src={stickerImg} />
+                </Second>
+                <SecondShadow />
+
+                <Dot3>
+                  <Dots />
+                </Dot3>
+                <Name>{name}</Name>
+              </div>
+              <div className="back">
+                <Back>
+                  <TrashIcon2 onClick={handleTrashClick} src={trash} />
+                  <BackImg src={post} />
+                  <LetterContent>{letterValue}</LetterContent>
+                  <StickerImg2 src={stickerImg} />
+                </Back>
+                <SecondShadow />
+              </div>
+            </div>
+          )}
+          {length >= 3 && (
             <div
               className={`card ${isFlipped ? "flipped" : ""}`}
               onClick={handleCardClick}
@@ -324,11 +423,11 @@ export function ClickSticker() {
                 <Dot3>
                   <Dots />
                 </Dot3>
-                <Name>수진</Name>
+                <Name>{name}</Name>
               </div>
               <div className="back">
                 <Back>
-                  <TrashIcon onClick={handleTrashClick} src={trash} />
+                  <TrashIcon2 onClick={handleTrashClick} src={trash} />
                   <BackImg src={post} />
                   <LetterContent>{letterValue}</LetterContent>
                   <StickerImg2 src={stickerImg} />
@@ -343,7 +442,7 @@ export function ClickSticker() {
         <Footer>
           <Icons>
             <Icon onClick={handleBackClick} src={backtext} />
-            <Icon /* onClick={handleProfileClick} */ src={visitprofile} />
+            <Icon src={visitprofile} />
           </Icons>
         </Footer>
       </Background>
