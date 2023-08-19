@@ -14,6 +14,7 @@ import { setCaptureEnabled, setImageUrl, setVisitorId } from "./CaptureSlice";
 import axios from "axios";
 import StickerName from "../Nickname/StickerName";
 import Idtoken from "../Stickers/Idtoken";
+import { setChangeSticker } from "../components/SettingSllice";
 
 const modalStyle = {
   overlay: {
@@ -48,6 +49,8 @@ const Select = ({ handleCaptureImg }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [test2, setTest] = useState(null);
+  const [setting, setSetting] = useState(false);
+  const [settingcomplete, setSettingComplete] = useState(true);
 
   // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
   const hostid = useSelector((state) => state.login.hostid);
@@ -81,15 +84,13 @@ const Select = ({ handleCaptureImg }) => {
       stickerState.foot === 0 &&
       stickerState.accessory === 0
     ) {
-      if (changesticker) {
-        navigate(`/main/host/${userId}`);
-      } else {
-        setModalIsOpen(true);
-      }
+      if (changesticker == false) {
+        setSetting(true);
+      } else setModalIsOpen(true);
     }
     dispatch(setCaptureEnabled(isEnabled));
     if (changesticker) {
-      navigate(`/main/host/${userId}`);
+      setSetting(true);
     } else {
       setModalIsOpen(true);
     }
@@ -279,6 +280,13 @@ const Select = ({ handleCaptureImg }) => {
   const stickernmae = () => {
     setname(true);
   };
+
+  useEffect(() => {
+    if (setting && imageUrl) {
+      navigate(`/main/host/${userId}`);
+      dispatch(setChangeSticker(false));
+    }
+  }, [setting, imageUrl]);
 
   return (
     <div className={styles.background}>
