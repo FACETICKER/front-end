@@ -416,7 +416,11 @@ function InitialSurvey() {
     dispatch(setInitialImport(chooseImport));
     console.log(InitialSurveyList);
     test1();
-    navigate("/makesticker");
+    if (method == "PATCH") {
+      navigate(`/main/host/${user_id}`);
+    } else{
+      navigate("/makesticker");
+    }
   };
   const handleInitialNameChange = () => {
     const nameInput = document.getElementById("name");

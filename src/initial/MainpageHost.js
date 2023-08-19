@@ -50,6 +50,7 @@ function MainpageHost() {
   const [showModal4, setShowModal4] = useState(false);
   const [chattingNumber, setChattingNumber] = useState(0);
   const [recordNumber, setRecordNumber] = useState(0);
+  const [messageNumber, setMessageNumber] =useState(0);
   const [Korean, setKorean] = useState("");
   const [Chinese, setChinese] = useState("");
   const [Mean, setMean] = useState("");
@@ -139,7 +140,7 @@ function MainpageHost() {
   const handleSpring = () => {
     const resultDiv1 = document.getElementById("ifSpring");
     setSeason("SPR 봄 ING");
-    resultDiv1.style.left="18%";
+    resultDiv1.style.left="24 %";
   };
   const handleSummer = () => {
     setSeason("SUM 여름 MER");
@@ -245,6 +246,7 @@ function MainpageHost() {
         if (data) {
           console.log("성공", data.result);
           setRecordNumber(data.result.hostnewSticer[0].count.toString());
+          setMessageNumber(data.result.howtnewQuestion[0].emptyanswer.toString());
           setMessagedata(data.result.hostPoster[0]);
           setChinese(data.result.hostPoster[0].chinese);
           setName(data.result.hostPoster[0].nickname);
@@ -283,6 +285,12 @@ function MainpageHost() {
       count.style.display="none"; 
     }
   }, [recordNumber]);
+  useEffect(() => {
+    const count = document.getElementById("countMessageDiv")
+    if (messageNumber == "0") {
+      count.style.display="none"; 
+    }
+  }, [messageNumber]);
   useEffect(() => {
     const Sticker = document.getElementById("Sticker")
     const Photo = document.getElementById("Photo")
@@ -358,14 +366,14 @@ function MainpageHost() {
                 <img src={message} className="l1-2" alt="message" />
               </button>
               <div
-                id="countMessageDiv"
-                className="l14-2"
-                style={{ display: "none" }}
-              >
-                <p id="countMessage" className="l15-2">
-                  {chattingNumber || "0"}
-                </p>
-              </div>
+                  id="countMessageDiv"
+                  className="l14-2"
+                  style={{position:'absolute' , top: "-50%", left: "69%" ,zIndex:'1'}}
+                >
+                  <p id="countRecord" className="l15-2">
+                    {messageNumber || ""}
+                  </p>
+                </div> 
               {/*
               <button
                 style={{
@@ -408,8 +416,8 @@ function MainpageHost() {
             <div
               id="PrtSc"
               style={{
-                width: "338px",
-                height: "88%",
+                width: "310px",
+                height: "87%",
                 position: "relative",
                 left: "4%",
               }}
@@ -418,8 +426,8 @@ function MainpageHost() {
                 <div
                   style={{
                     position: "absolute",
-                    left: "6%",
-                    top: "27%",
+                    left: "20%",
+                    top: "50%",
                     zIndex: "3",
                   }}
                   name="사진" id="Photo"
@@ -460,7 +468,7 @@ function MainpageHost() {
                   position: "absolute",
                   width: "338px",
                   height: "140px",
-                  top: "72%",
+                  top: "73%",
                 }}
               >
                 <div name="사자성어">
@@ -522,15 +530,7 @@ function MainpageHost() {
             </div>
             <div>
               <div style={{ float: "left" }}>
-                 <div
-                  id="countRecordDiv"
-                  className="l14-2"
-                  style={{position:'absolute' ,display: "block", top: "88%", left: "50%" ,zIndex:'1'}}
-                >
-                  <p id="countRecord" className="l15-2">
-                    {recordNumber || ""}
-                  </p>
-                </div> 
+                 
                 {/*  <button
                   style={{
                     width: "20px",
@@ -558,6 +558,15 @@ function MainpageHost() {
                 <button className="l10-2" onClick={handleHoststicker}>
                   <img src={recordpage} alt="recordpage" />
                 </button>
+                <div
+                  id="countRecordDiv"
+                  className="l14-2"
+                  style={{position:'absolute' , top: "9%", left: "29%" ,zIndex:'1'}}
+                >
+                  <p id="countRecord" className="l15-2">
+                    {recordNumber || ""}
+                  </p>
+                </div> 
                 <button className="l10-2" onClick={handleLinkDownload}>
                   <img src={share} alt="share" />
                 </button>

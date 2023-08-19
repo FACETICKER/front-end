@@ -14,7 +14,7 @@
 }
 .l3-2 {
   color: var(--unnamed, #f26b79);
-  transform: rotate(7deg);
+  transform: rotate(5deg);
   text-align: center;
   font-family: "Pretendard";
   font-size: 14px;
@@ -166,7 +166,7 @@
 .Modal {
   position: fixed;
   top: 50%;
-  left: 46%;
+  left: 44.5%;
   transform: translate(-50%, -50%);
   width: 294px;
   height: 322px;
@@ -313,7 +313,7 @@
 }
 
 .l22-2 {
-  width: 287.721px;
+  width: 250px;
   height: 63.218px;
   border-radius: 50%;
   border: 2px solid #f26b79;
@@ -324,11 +324,14 @@
 }
 
 .l23-2 {
-  width: 261.845px;
+  width: 250px;
   height: 70.503px;
   border-radius: 50%;
   border: 2px solid #f26b79;
-  transform: rotate(-7deg);
+  transform: rotate(-5deg);
+  position: relative;
+  left:-2%;
+  top:-3px;
   z-index: 2;
 }
 
