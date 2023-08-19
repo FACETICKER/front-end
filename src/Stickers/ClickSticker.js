@@ -260,6 +260,25 @@ export function ClickSticker() {
     "Content-Type": "application/json",
   };
 
+  //스티커 읽음 처리
+  console.log("9", ID, selectedImageId, jwt);
+  useEffect(() => {
+    fetch(
+      `http://app.faceticker.site/${ID}/visitor/sticker/seen?id=${selectedImageId}`,
+      {
+        headers: headers,
+        method: "POST",
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("읽음 처리", data);
+      })
+      .catch((error) => {
+        console.error("읽음 처리 오류", error);
+      });
+  }, []);
+
   //방문록 받아오기
   useEffect(() => {
     fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${selectedImageId}`)
@@ -279,7 +298,7 @@ export function ClickSticker() {
     fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log("이미지, 닉네임 불러오기 성공", data);
 
         const filteredData = data.result.visitorStickerResult.filter(
           (item) => item.location_x !== null
@@ -291,6 +310,7 @@ export function ClickSticker() {
         console.log("00", filteredData);
         setStickerImg(filteredData2[0].final_image_url);
         setName(filteredData2[0].name);
+
         console.log(filteredData2[0].name);
         setImageData(filteredData);
         setLength(filteredData.length);

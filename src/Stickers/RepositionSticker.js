@@ -27,8 +27,8 @@ const HostImg = styled.img`
   display: flex;
   position: absolute;
   transform: translate(-40%, -50%);
-  top: 50%;
-  left: 50%;
+  top: 48%;
+  left: 48%;
 `;
 
 const BottomWrap = styled.div`
@@ -95,8 +95,8 @@ export function RepositionSticker() {
     });
   });
 
-  /*   const userId = Idtoken()[0]; */ //호스트 아이디
-  const userId = 1;
+  const userId = Idtoken()[0]; //호스트 아이디
+
   const ID = userId;
   const jwt = Idtoken()[1]; //호스트 토큰
 
