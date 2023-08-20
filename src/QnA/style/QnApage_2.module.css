@@ -131,6 +131,7 @@
   flex-direction: column;
   overflow-y: scroll;
   height: 75%;
+  position: relative;
 }
 
 .answering_open {
@@ -139,15 +140,16 @@
   flex-direction: column;
   overflow-y: scroll;
   height: 45%;
+  position: relative;
 }
 
 .original {
-  z-index: -1;
   display: flex;
   background: rgba(248, 248, 250, 1);
   flex-direction: column;
   overflow-y: scroll;
   height: 85%;
+  position: relative;
 }
 
 .hiddenscroll::-webkit-scrollbar {
@@ -308,19 +310,12 @@
   color: rgba(255, 116, 39, 1);
 }
 
-.basic_btn_background {
-  position: relative;
-  width: 90%;
-  height: 60px;
-  overflow: visible;
-  margin-top: 15px;
-}
-
 .basic_btn_img {
   position: absolute;
   width: 60px;
-  height: 100%;
-  right: -9%;
+  height: 60px;
+  bottom: 5%;
+  right: 5%;
 }
 
 .hidden {

@@ -42,6 +42,10 @@ function QnApage_host() {
         return state.opencheck;
     });
 
+    const view = useSelector(state=>{
+        return state.switch_question;
+    });
+
     const scrollRef = useRef();
 
     useEffect(() => {
@@ -63,10 +67,8 @@ function QnApage_host() {
             <Switchquestion/>
             <div className={`${!choice && styles2.original} ${choice && open && styles2.answering_open} ${choice && !open && styles2.answering} ${styles2.hiddenscroll}`}>
                 {ques.map((item, index) => (<Btn key={index} text={item.text} id={item.id} type={item.type} open={item.open} clicked={item.clicked}/>))}
-                {ques.length === 0 && (
-                    <div className={styles2.basic_btn_background}>
-                        <img src={Basicquestionbtn} className={styles2.basic_btn_img} onClick={Basic_Choice}></img>
-                    </div>
+                {!view && (
+                    <img src={Basicquestionbtn} className={styles2.basic_btn_img} onClick={Basic_Choice}></img>
                 )}
                 <div ref={scrollRef}></div>
             </div>
