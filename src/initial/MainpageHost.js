@@ -603,7 +603,7 @@ function MainpageHost() {
                   <img src={share} alt="share" />
                 </button>
                 </CopyToClipboard>
-                <button className="l10-2" onClick={handleDownload2}>
+                <button className="l10-2">
                   <img src={download} alt="download" />
                 </button>
               </Div>
