@@ -16,6 +16,7 @@ import PageSlice from "../QnA/Slice/PageSlice";
 import html2canvas from "html2canvas";
 import "./MainpageHost.css";
 import ReactDOM from "react-dom";
+import { CopyToClipboard } from "react-copy-to-clipboard/src";
 import { setChangeSticker } from "../components/SettingSllice.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -81,7 +82,12 @@ function MainpageHost() {
     setShowModal4(!showModal4);
   };
 
-
+  const [address2, setAddress2] = useState("");
+  useEffect(() => {
+    if (user_id) {
+      setAddress2(`http://www.faceticker.site/main/${user_id}`);
+    }
+  },[user_id])
   const handleLinkDownload = async () => {
     const address = `http://www.faceticker.site/main/${user_id}`;
     try {
@@ -592,9 +598,11 @@ function MainpageHost() {
                     {recordNumber || ""}
                   </p>
                 </div> 
-                <button className="l10-2" onClick={handleLinkDownload}>
+                <CopyToClipboard text={address2} onCopy={() => alert("클립보드에 복사되었습니다.")}>
+                <button className="l10-2">
                   <img src={share} alt="share" />
                 </button>
+                </CopyToClipboard>
                 <button className="l10-2" onClick={handleDownload2}>
                   <img src={download} alt="download" />
                 </button>

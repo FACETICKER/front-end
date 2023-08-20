@@ -200,7 +200,23 @@ function InitialSurvey() {
 
     if (resultDiv.style.display == "block") {
       if (input1 != "" || input2 != "" || input3 != "" || input4 != "") {
-        setChooseNumber(parseInt(input1 + input2 + input3 + input4));
+        if (input1 == 0) {
+          if (input2 == 0) {
+            if (input3 == 0) {
+              if (input4 == 0) {
+                setChooseNumber(parseInt("000" + input4));
+              }else{
+                setChooseNumber(parseInt("0000"));
+              }
+            }else {
+              setChooseNumber(parseInt("00"+ input3 + input4));
+            }
+          } else{
+            setChooseNumber(parseInt("0"+input2 + input3 + input4));
+          }
+        } else{
+          setChooseNumber(parseInt(input1 + input2 + input3 + input4));
+        }
         handleInitialNumberChange();
         setNumberCheck(check);
         resultDiv.style.display ="none";
