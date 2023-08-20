@@ -588,7 +588,7 @@ function InitialSurvey() {
 
 
   return (
-    <div className="BackgroundWrap">
+    <div className="BackgroundWrap" style={{background: '#F8F8FA'}}>
       <div className="Background">
         <div className="l20-1" style={{ position: "relative" }}>
           <div className="l17-1">
