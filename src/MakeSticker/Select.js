@@ -273,11 +273,11 @@ const Select = ({ handleCaptureImg }) => {
   console.log("test2", test2);
 
   useEffect(() => {
-    if (next) {
+    if (test2) {
       console.log("test2", test2);
       navigate("/stickername", { state: { test: test2 } });
     }
-  }, [next]);
+  }, [test2]);
 
   //방문자는 이미지 링크 redux로 저장해놓기
   /* const loginData = useSelector((state) => state.login);
