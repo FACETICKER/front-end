@@ -36,10 +36,10 @@ const Bottom = styled.div`
   position: relative;
 `;
 
-const CardWrap = styled.div`
+/* const CardWrap = styled.div`
   width: 85%;
   height: 87%;
-`;
+`; */
 
 const One = styled.div`
   border-radius: 20px;
@@ -226,7 +226,7 @@ const StickerImg2 = styled.img`
 `;
 
 export function Card() {
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(true);
   const [letterValue, setLetterValue] = useState("");
   const [stickerImg, setStickerImg] = useState();
   const [name, setName] = useState();
@@ -390,37 +390,73 @@ export function Card() {
         </div>
       )}
       {length >= 3 && (
-        <div
-          className={`card ${isFlipped ? "flipped" : ""}`}
-          onClick={handleCardClick}
-        >
-          <div className="front">
-            <Second>
-              <TrashIcon onClick={handleTrashClick} src={trash} />
-              <Shadow />
-              <StickerImg src={stickerImg} />
-            </Second>
-            <SecondShadow />
-            <Third />
-            <Dot3>
-              <Dots />
-            </Dot3>
-            <Name>{name}</Name>
-          </div>
-          <div className="back">
-            <Back>
-              <TrashIcon2 onClick={handleTrashClick} src={trash} />
-              <BackImg src={post} />
-              <LetterContent>{letterValue}</LetterContent>
-              <StickerImg2 src={stickerImg} />
-            </Back>
-            <SecondShadow />
-            <Third />
-          </div>
-        </div>
+        <CardWrap onClick={handleCardClick}>
+          {isFlipped && (
+            <FrontCard>
+              <Second>
+                <TrashIcon onClick={handleTrashClick} src={trash} />
+                <Shadow />
+                <StickerImg src={stickerImg} />
+              </Second>
+              <SecondShadow />
+              <Third />
+              <Dot3>
+                <Dots />
+              </Dot3>
+              <Name>{name}</Name>
+            </FrontCard>
+          )}
+          {!isFlipped && (
+            <BackCard>
+              <Back>
+                <TrashIcon2 onClick={handleTrashClick} src={trash} />
+                <BackImg src={post} />
+                <LetterContent>{letterValue}</LetterContent>
+                <StickerImg2 src={stickerImg} />
+              </Back>
+              <SecondShadow />
+              <Third />
+            </BackCard>
+          )}
+        </CardWrap>
       )}
     </Bottom>
   );
 }
 
 export default Card;
+
+const CardWrap = styled.div`
+  width: 85%;
+  height: 87%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+`;
+
+const FrontCard = styled.div`
+  position: absolute;
+  width: 95%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+`;
+const BackCard = styled.div`
+  position: absolute;
+  width: 95%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+`;
