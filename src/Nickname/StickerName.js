@@ -201,16 +201,12 @@ export function StickerName() {
   const [inputTop, setInputTop] = useState("-2%");
   const [nicknameValue, setNicknameValue] = useState("");
 
-  const { state } = useLocation();
-  console.log("State", state.test);
-  const VID = state.test;
+  const currentURL = window.location.href;
+  const parts = currentURL.split("/");
+  const visitorid = parseInt(parts[parts.length - 1]); //방문자가 가지고 온 호스트 ID
+  console.log("방문자 id", visitorid);
 
-  //방문자 스티커
-
-  const visitorId = useSelector((state) => state.visitorId);
   const imageUrl = useSelector((state) => state.capture.imageUrl);
-  /*   console.log("이미지url ", imageUrl); */
-  console.log("방문자id", visitorId);
 
   /*   console.log("url", imageUrl); */
   //입력 누르면 변하는 것들
@@ -252,30 +248,32 @@ export function StickerName() {
   };
 
   //방문자 이미지 불러오기
-  /*   useEffect(() => {
-    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${VID}`)
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${visitorid}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
 
-        const visitorImg = data.result.filter((item) => item.visitor_id == VID);
+        const visitorImg = data.result.final_image_url;
         setVisitorSticker(visitorImg);
       })
       .catch((error) => {
         console.error("오류 발생", error);
       });
-  }, []); */
+  }, []);
 
   //닉네임 입력하고 다음 아이콘 누르면 서버에 전송됨
   const handleNicknameSubmit = () => {
-    console.log(visitorId);
-    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/name?id=${VID}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: nicknameValue }),
-    })
+    fetch(
+      `http://app.faceticker.site/${ID}/sticker/visitor/name?id=${visitorid}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: nicknameValue }),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("성공", data);
@@ -283,12 +281,12 @@ export function StickerName() {
       .catch((error) => {
         console.error("실패", error);
       });
-    navigate("/stickerletter", { state: { visitor: VID } });
+    navigate(`/stickerletter/${visitorid}`);
   };
 
   //서버에서 닉네임 값 받아오기
   useEffect(() => {
-    fetch(`https://app.faceticker.site/sticker/visitor/name?id=${VID}`)
+    fetch(`https://app.faceticker.site/sticker/visitor/name?id=${visitorid}`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {
@@ -303,9 +301,7 @@ export function StickerName() {
 
   useEffect(() => {
     setVisitorSticker(imageUrl);
-
     dispatch(setVisitorImageUrl(imageUrl));
-
     /*    dispatch(StickerSlice.actions.update(["step", 0])); */
     dispatch(setNext(false));
     dispatch(setImageUrl(null));

@@ -33,13 +33,10 @@ const Background = styled.div`
 `;
 
 export function PutPage() {
-  const { state } = useLocation();
-  console.log("State", state.visitor);
-  const VID = state.visitor;
   return (
     <BackgroundWrap>
       <Background>
-        <VisitPut id={VID} />
+        <VisitPut />
       </Background>
     </BackgroundWrap>
   );

@@ -29,8 +29,8 @@ const HostImg = styled.img`
   max-height: 150px;
   display: flex;
   position: absolute;
-  transform: translate(-40%, 50%);
-  top: 40%;
+  transform: translate(-50%, 50%);
+  top: 30%;
   left: 50%;
 `;
 
@@ -58,8 +58,8 @@ const Bottoms = styled.div`
 `;
 
 const Bottom = styled.div`
-  width: 200%;
-  height: 200%;
+  width: 100%;
+  height: 145%;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -94,23 +94,38 @@ export function TestBottom(props) {
   const [bottomWidth, setBottomWidth] = useState("100%");
   const [bottomHeight, setBottomHeight] = useState("100%");
   const [imageData, setImageData] = useState();
+  const [visitorSticker, setVisitorSticker] = useState(null);
 
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
+
+  const currentURL = window.location.href;
+  const parts = currentURL.split("/");
+  const visitorid = parseInt(parts[parts.length - 1]); //방문자가 가지고 온 호스트 ID
+  console.log("방문자 id", visitorid);
 
   // 방문자가 가지고 온  호스트Id 가져오기
   const hostid = useSelector((state) => state.login.hostid);
 
   const ID = hostid;
+  //const VisitorId = useSelector((state) => state.capture.visitorId);
 
   const headers = {
     "Content-Type": "application/json",
   };
-  const VID = props.VID2;
-  console.log("final", VID);
+  //방문자 이미지 불러오기
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${visitorid}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
 
-  const { state } = useLocation();
-  console.log("State", state.visitor);
-  const VID2 = state.visitor;
+        const visitorImg = data.result.final_image_url;
+        setVisitorSticker(visitorImg);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
 
   //이미지들 불러오기
   useEffect(() => {
@@ -154,7 +169,7 @@ export function TestBottom(props) {
 
   const handlePut = async (event) => {
     try {
-      setImageUrl(imageUrl2);
+      setImageUrl(visitorSticker);
       console.log("set");
       const sidePosition = {
         // 클릭한 엘리먼트의 절대좌표
@@ -211,18 +226,16 @@ export function TestBottom(props) {
   const positionState = useSelector((state) => state.position);
   const finalPosition = {
     x: positionState.x,
-    y: positionState.y - 40,
+    y: positionState.y,
   };
   console.log("finalposition", finalPosition);
 
   console.log("완료", imagePosition);
 
-  const VisitorId = useSelector((state) => state.capture.visitorId);
-
   //이미지 PATCH
   useEffect(() => {
     if (isImageFixed) {
-      fetch(`http://app.faceticker.site/${ID}/sticker/attach?id=${VisitorId}`, {
+      fetch(`http://app.faceticker.site/${ID}/sticker/attach?id=${visitorid}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -252,6 +265,9 @@ export function TestBottom(props) {
           );
           console.log("모든 방문자 스티커", filteredData);
           setImageData(filteredData);
+          dispatch(positionSlice.actions.update(["x", 0]));
+          dispatch(positionSlice.actions.update(["y", 0]));
+          dispatch(setIsImageFixed(false));
         })
         .catch((error) => {
           console.error("오류 발생", error);
@@ -318,7 +334,7 @@ export function TestBottom(props) {
               src={item.final_image_url}
               style={{
                 position: "absolute",
-                top: `${(item.location_y * componentHeight) / 100 + 110}px`,
+                top: `${(item.location_y * componentHeight) / 100 + 80}px`,
                 left: `${(item.location_x * componentWidth) / 100}px`,
                 zIndex: 9999,
                 maxWidth: "100px",

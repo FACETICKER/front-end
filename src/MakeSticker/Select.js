@@ -56,6 +56,7 @@ const Select = ({ handleCaptureImg }) => {
   const [test2, setTest] = useState(null);
   const [setting, setSetting] = useState(false);
   const [settingcomplete, setSettingComplete] = useState(true);
+  const [vid, setvid] = useState(null);
 
   // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
   const hostid = useSelector((state) => state.login.hostid);
@@ -254,13 +255,14 @@ const Select = ({ handleCaptureImg }) => {
 
       if (whatType === "visitor") {
         console.log(responseData.result.visitor_sticker_id);
-        dispatch(setVisitorId(responseData.result.visitor_sticker_id));
+        setvid(responseData.result.visitor_sticker_id);
+        //dispatch(setVisitorId(responseData.result.visitor_sticker_id));
         setTest(responseData.result.visitor_sticker_id);
         console.log("dispatch id1", VID);
         dispatch(setNext(true));
 
         // 응답을 받은 후에 navigate 실행
-        await navigate("/stickername", { state: { test: test2 } }); // 목표 화면 이름으로 변경
+        // await navigate("/stickername", { state: { test: test2 } }); // 목표 화면 이름으로 변경
       }
     } catch (error) {
       console.error("PATCH request failed:", error);
@@ -300,6 +302,13 @@ const Select = ({ handleCaptureImg }) => {
       dispatch(setChangeSticker(false));
     }
   }, [setting, next]);
+
+  useEffect(() => {
+    if (test2) {
+      const visitorId = test2;
+      navigate(`/stickername/${visitorId}`);
+    }
+  }, [test2]);
 
   return (
     <div className={styles.background}>
