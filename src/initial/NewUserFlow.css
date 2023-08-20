@@ -89,8 +89,8 @@
   top:2%;
 }
 .l9-4{
-  height: 50%;
-  position: relative;
-  left:22%;
-  top:-50%;
+  position: absolute;
+  height:11%;
+  left:5%;
+  top: 85%;
 }

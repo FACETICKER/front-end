@@ -299,8 +299,8 @@ function MainpageHost() {
     if (Sticker.src == "http://localhost:3000/static/media/%EA%B8%B0%EB%B3%B8%20%EC%BA%90%EB%A6%AD%201.484d8e0ea830f8eeff94.png") {
       Sticker.style.width="80%";
       Sticker.style.height="80%"
-      Photo.style.top="48%";
-      Photo.style.left="15%";
+      //Photo.style.top="48%";
+      //Photo.style.left="15%";
     }else{
       return;
     }
@@ -652,10 +652,11 @@ function MainpageHost() {
             </footer>
           )}
           {showModal1 && (
+            <div><div className="modal-overlay"></div>
             <div className="Modal" style={{ zIndex: "100" }}>
               <div
                 style={{
-                  width: "294px",
+                  width: "250px",
                   height: "52px",
                   position: "relative",
                   display: "flex",
@@ -680,7 +681,7 @@ function MainpageHost() {
               <div
                 style={{
                   padding: "24px 0 0 0",
-                  width: "294px",
+                  width: "260px",
                   height: "250px",
                   display: "flex",
                   flexWrap: "wrap",
@@ -697,7 +698,7 @@ function MainpageHost() {
                   상태메시지 수정
                 </button>
               </div>
-            </div>
+            </div></div>
           )}
 
           {showModal4 && (

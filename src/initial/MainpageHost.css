@@ -169,12 +169,20 @@
 }
 
 .Modal {
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.50);
+  }
   position: absolute;
-  top: 350px;
+  top: 300px;
   left: 188px;
   transform: translate(-50%, -50%);
-  width: 294px;
-  height: 322px;
+  width: 250px;
+  height: 300px;
   flex-shrink: 0;
   background-color: white;
   padding: 20px;
@@ -182,7 +190,7 @@
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
-  justify-content: "center";
+  justify-content: center;
 }
 
 .Modal p {
@@ -191,6 +199,16 @@
 
 .Modal button {
   margin-right: 10px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.50);
+  z-index: 99; /* 조절 가능한 z-index 값 */
 }
 
 .l12-2 {
@@ -504,4 +522,21 @@
   position: relative;
   margin: 0px auto;
   justify-content: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080; /* 어두운 배경 색상 */
+  z-index: 100; /* 모달보다 낮은 z-index로 배치 */
+  display: none; /* 초기에는 숨김 처리 */
+}
+.Background .overlay {
+  display: block;
+}
+.Background .modal {
+  display: block;
 }
