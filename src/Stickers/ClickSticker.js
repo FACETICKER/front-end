@@ -105,9 +105,13 @@ export function ClickSticker() {
     "x-access-token": jwt,
     "Content-Type": "application/json",
   };
-  ///alert
+  ///3초 후 alert
   useEffect(() => {
-    alert("카드를 눌러보세요.");
+    const timer = setTimeout(() => {
+      alert("카드를 눌러보세요.");
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   //스티커 읽음 처리

@@ -72,6 +72,7 @@ const QnApage = () => {
             open: quesOpen,
             clicked: false,
             nQnA_id: item.nQnA_id,
+            visitor_id: item.visitor_id,
           })
         ); // type 수정 필요 벡에서 받은걸로
         if (item.answer) {
