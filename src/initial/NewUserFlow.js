@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import PageSlice from "../QnA/Slice/PageSlice";
 import Token from "./Token";
+import Btn from "../img/NewUserFlow_img/KakaoTalk_20230820_131353270.png"
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
 
 function NewUserFlow() {
@@ -67,12 +68,7 @@ function NewUserFlow() {
             </div>
           </div>
           <div>
-            <div className="l6-4"></div>
-            <button className="l5-4" onClick={handleButtonClick}>
-              <p style={{position:'relative',top:'-3px'}}>
-                시작하기
-              </p>
-            </button>
+            <img className="l9-4" src={Btn} onClick={handleButtonClick}></img>
           </div>
         </div>
       </div>
