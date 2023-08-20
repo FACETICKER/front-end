@@ -16,6 +16,7 @@ import mysticker from "../img/Stickers_img/mysticker.png";
 import goqna from "../img/Stickers_img/goqna.png";
 import Idtoken from "./Idtoken";
 import PageSlice from "../QnA/Slice/PageSlice";
+import { setImageUrl } from "../MakeSticker/CaptureSlice";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -159,6 +160,7 @@ export function VisitPut(props) {
   const handleButtonClick = () => {
     dispatch(setIsImageFixed(true)); // "Check" 버튼 클릭 시, 스티커 고정
     setChange(true);
+    dispatch(setImageUrl(null));
   };
 
   const handleQnA = () => {

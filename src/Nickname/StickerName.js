@@ -7,8 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import inputImage from "../img/Stickers_img/inputimg.png";
 import checkicon from "../img/Stickers_img/checkicon.png";
 import backicon from "../img/Stickers_img/backIcon.png";
-import { setNext, setVisitorId } from "../MakeSticker/CaptureSlice";
+import {
+  setImageUrl,
+  setNext,
+  setVisitorId,
+} from "../MakeSticker/CaptureSlice";
 import Idtoken from "../Stickers/Idtoken";
+import StickerSlice from "../MakeSticker/StickerSlice";
 
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
@@ -281,6 +286,7 @@ export function StickerName() {
   }, []);
 
   useEffect(() => {
+    /*    dispatch(StickerSlice.actions.update(["step", 0])); */
     dispatch(setNext(false));
   }, []);
 
