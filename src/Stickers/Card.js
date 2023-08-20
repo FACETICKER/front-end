@@ -63,28 +63,15 @@ const OneFlip = styled.div`
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
   z-index: 1000;
 `;
-const Second = styled.div`
-  border-radius: 20px;
-  position: absolute;
 
-  justify-content: center;
-  top: 10px;
-  display: flex;
-  border: 2px solid var(--unnamed, #12151c);
-  background: #fefaef;
-  width: 90%;
-  height: 85%;
-  flex-shrink: 0;
-  z-index: 10;
-`;
-const TrashIcon = styled.img`
+/* const TrashIcon = styled.img`
   display: flex;
   position: absolute;
   max-width: 24%;
   max-height: 20%;
   right: -2%;
   top: -9%;
-`;
+`; */
 const TrashIcon2 = styled.img`
   display: flex;
   position: absolute;
@@ -125,29 +112,6 @@ const Name = styled.div`
   font-weight: 400;
   line-height: 24px;
 `;
-const SecondShadow = styled.div`
-  position: absolute;
-  display: flex;
-  width: 90%;
-  bottom: -5%;
-  height: 100%;
-  border-radius: 20px;
-  background: rgba(244, 243, 249, 0.8);
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
-  z-index: -1;
-`;
-
-const Third = styled.div`
-  position: absolute;
-  display: flex;
-  width: 80%;
-  bottom: -10%;
-  height: 100%;
-  border-radius: 20px;
-  background: rgba(244, 243, 249, 0.8);
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
-  z-index: -2;
-`;
 
 const Footer = styled.div`
   height: 15%;
@@ -168,18 +132,6 @@ const Icons = styled.div`
 const Icon = styled.img`
   display: flex;
   width: 50%;
-`;
-
-const Back = styled.div`
-  border-radius: 20px;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-
-  display: flex;
-  background: #fff;
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
 `;
 
 const BackImg = styled.img`
@@ -333,7 +285,7 @@ export function Card() {
 
   return (
     <Bottom>
-      {length == 1 && (
+      {/* {length == 1 && (
         <div
           className={`card ${isFlipped ? "flipped" : ""}`}
           onClick={handleCardClick}
@@ -388,38 +340,38 @@ export function Card() {
             <SecondShadow />
           </div>
         </div>
-      )}
-      {length >= 3 && (
-        <CardWrap onClick={handleCardClick}>
-          {isFlipped && (
-            <FrontCard>
-              <Second>
-                <TrashIcon onClick={handleTrashClick} src={trash} />
-                <Shadow />
-                <StickerImg src={stickerImg} />
-              </Second>
-              <SecondShadow />
-              <Third />
-              <Dot3>
-                <Dots />
-              </Dot3>
-              <Name>{name}</Name>
-            </FrontCard>
-          )}
-          {!isFlipped && (
-            <BackCard>
-              <Back>
-                <TrashIcon2 onClick={handleTrashClick} src={trash} />
-                <BackImg src={post} />
-                <LetterContent>{letterValue}</LetterContent>
-                <StickerImg2 src={stickerImg} />
-              </Back>
-              <SecondShadow />
-              <Third />
-            </BackCard>
-          )}
-        </CardWrap>
-      )}
+      )} */}
+
+      {/* {length >= 3 && ( */}
+      <CardWrap onClick={handleCardClick}>
+        <TrashIcon onClick={handleTrashClick} src={trash} />
+        {isFlipped && (
+          <FrontCard>
+            <Second>
+              <Shadow />
+              <StickerImg src={stickerImg} />
+            </Second>
+            <SecondShadow />
+            <Third />
+            <Dot3>
+              <Dots />
+            </Dot3>
+            <Name>{name}</Name>
+          </FrontCard>
+        )}
+        {!isFlipped && (
+          <BackCard>
+            <Back>
+              <BackImg src={post} />
+              <LetterContent>{letterValue}</LetterContent>
+              <StickerImg2 src={stickerImg} />
+            </Back>
+            <SecondShadow />
+            <Third />
+          </BackCard>
+        )}
+      </CardWrap>
+      {/*  )} */}
     </Bottom>
   );
 }
@@ -427,31 +379,34 @@ export function Card() {
 export default Card;
 
 const CardWrap = styled.div`
-  width: 85%;
-  height: 87%;
+  width: 90%;
+  height: 100%;
   border-radius: 20px;
+
   display: flex;
   justify-content: center;
+  perspective: 1000px;
+  position: relative;
 `;
 
 const FrontCard = styled.div`
   position: absolute;
-  width: 95%;
-  height: 100%;
-
+  width: 90%;
+  height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 24px;
   border-radius: 20px;
   border: 1px solid #ccc;
-  background-color: #fff;
+  background-color: white;
+  z-index: 1;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
 `;
 const BackCard = styled.div`
   position: absolute;
-  width: 95%;
-  height: 100%;
-
+  width: 90%;
+  height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -459,4 +414,64 @@ const BackCard = styled.div`
   border-radius: 20px;
   border: 1px solid #ccc;
   background-color: #fff;
+  z-index: 3;
+`;
+
+const SecondShadow = styled.div`
+  position: absolute;
+  display: flex;
+  width: 90%;
+  bottom: -5%;
+  height: 95%;
+  border-radius: 20px;
+
+  background: rgba(244, 243, 249, 0.8);
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+`;
+
+const Third = styled.div`
+  position: absolute;
+  display: flex;
+  width: 80%;
+  bottom: -10%;
+  height: 100%;
+  border-radius: 20px;
+  background: rgba(244, 243, 249, 0.8);
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
+  z-index: -1;
+`;
+const Second = styled.div`
+  border-radius: 20px;
+  position: absolute;
+  justify-content: center;
+  top: 10px;
+  display: flex;
+  border: 2px solid var(--unnamed, #12151c);
+  background: #fefaef;
+  width: 90%;
+  height: 85%;
+  flex-shrink: 0;
+  z-index: 10;
+`;
+
+const Back = styled.div`
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+
+  display: flex;
+  background: #fff;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+`;
+const TrashIcon = styled.img`
+  display: flex;
+  position: absolute;
+  max-width: 20%;
+  max-height: 20%;
+  right: 5%;
+  top: -5%;
+  z-index: 12;
 `;
