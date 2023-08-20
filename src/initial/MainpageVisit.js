@@ -236,7 +236,7 @@ function MainpageVisit() {
           setName(data.result.hostPoster[0].nickname);
           setMean(data.result.hostPoster[0].meaning);
           setKorean(data.result.hostPoster[0].pronunciation);
-          setNumber(data.result.hostPoster[0].q_number);
+          setNumber("#"+data.result.hostPoster[0].q_number);
           const handleSelleckSeason = () => {
             if (data.result.hostPoster[0].q_season === "봄") {
               handleSpring();
