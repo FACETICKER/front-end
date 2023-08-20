@@ -23,7 +23,7 @@ const STICKER = () => {
   const imageUrl = useSelector((state) => state.capture.imageUrl);
   /*   console.log(imageUrl); */
 
-  const handleCaptureImg = () => {
+  /*   const handleCaptureImg = () => {
     if (containerRef.current) {
       domtoimage
         .toPng(containerRef.current)
@@ -32,13 +32,34 @@ const STICKER = () => {
           console.log("넘어온", dataUrl);
           /* dispatch(setVisitorImageUrl(dataUrl)); */
 
-          //downloadImage(dataUrl); //
-          /*    console.log(dataUrl); */
-        })
+  //downloadImage(dataUrl); //
+  /*    console.log(dataUrl); */
+  /*   })
         .catch(function (error) {
           console.error("이미지 캡처 오류:", error);
         });
     }
+  };
+ */
+  const handleCaptureImg = () => {
+    const backgroundColor = window.getComputedStyle(
+      containerRef.current
+    ).backgroundColor;
+
+    // Override background color to be transparent
+    /*     containerRef.current.style.backgroundColor = "transparent";
+     */
+    html2canvas(containerRef.current, { backgroundColor: null }).then(function (
+      canvas
+    ) {
+      // Restore original background color
+      /*       containerRef.current.style.backgroundColor = backgroundColor; */
+
+      // Convert canvas to image URL and set it in state
+      const capturedImageUrl = canvas.toDataURL();
+      dispatch(setImageUrl(capturedImageUrl));
+      console.log("넘어온", capturedImageUrl);
+    });
   };
 
   const downloadImage = (dataUrl) => {
