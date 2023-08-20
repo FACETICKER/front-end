@@ -5,6 +5,7 @@ const initialState = {
   captureEnabled: false,
   imageUrl: null,
   visitorimageUrl: null,
+  next: false,
 };
 
 const captureSlice = createSlice({
@@ -23,10 +24,14 @@ const captureSlice = createSlice({
     setVisitorId: (state, action) => {
       state.visitorId = action.payload;
     },
+    setNext: (state, action) => {
+      state.next = action.payload;
+    },
   },
 });
 
 export const {
+  setNext,
   setVisitorId,
   setCaptureEnabled,
   setImageUrl,
