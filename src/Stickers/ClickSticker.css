@@ -11,6 +11,8 @@
   border-radius: 20px;
   display: flex;
   justify-content: center;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 .front {
