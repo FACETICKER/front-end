@@ -81,18 +81,17 @@ function MainpageHost() {
     setShowModal4(!showModal4);
   };
 
-  const handleLinkDownload = () => {
+
+  const handleLinkDownload = async () => {
     const address = `http://www.faceticker.site/main/${user_id}`;
-    navigator.clipboard
-      .writeText(address)
-      .then(() => {
+    try {
+        await navigator.clipboard.writeText(address);
         alert("주소가 클립보드에 복사되었습니다.");
-      })
-      .catch((error) => {
-        console.error("클립보드 복사 실패:", error);
+    } catch (err) {
+        console.error("클립보드 복사 실패:", err); // 에러 객체의 이름이 err로 변경되었습니다.
         alert("클립보드 복사에 실패했습니다. 수동으로 복사해주세요.");
-      });
-  };
+    }
+  }
   const handleDownload2 = () => {
     const targetElement = document.getElementById("PrtSc"); // 캡처할 대상 div의 id
     if (targetElement) {
@@ -251,7 +250,7 @@ function MainpageHost() {
           setName(data.result.hostPoster[0].nickname);
           setMean(data.result.hostPoster[0].meaning);
           setKorean(data.result.hostPoster[0].pronunciation);
-          setNumber(data.result.hostPoster[0].q_number);
+          setNumber('#'+data.result.hostPoster[0].q_number);
           setDay(data.result.hostPoster[0].q_date);
           const handleSelleckSeason = () => {
             if (data.result.hostPoster[0].q_season === "봄") {
@@ -300,8 +299,8 @@ function MainpageHost() {
     if (Sticker.src == "http://localhost:3000/static/media/%EA%B8%B0%EB%B3%B8%20%EC%BA%90%EB%A6%AD%201.484d8e0ea830f8eeff94.png") {
       Sticker.style.width="80%";
       Sticker.style.height="80%"
-      Photo.style.top="48%";
-      Photo.style.left="15%";
+      //Photo.style.top="48%";
+      //Photo.style.left="15%";
     }else{
       return;
     }
@@ -328,9 +327,9 @@ function MainpageHost() {
 
 
   return (
-    <div className="BackgroundWarp">
+    <div className="BackgroundWarp" style={{background: '#FEFAEF'}}>
       <div className="Background">
-        <div className="l29-2" style={{ position: "relative" }}>
+        <div className="l29-2" style={{ position: "relative", background: '#FEFAEF' }}>
           <header
             style={{
               float: "down",
@@ -338,7 +337,6 @@ function MainpageHost() {
               height: "70px",
               position: "relative",
               top: "0px",
-              left: "-5px",
               display: "flex",
               justifyContent: "space-between",
             }}
@@ -388,9 +386,10 @@ function MainpageHost() {
                 <img src={message} className="l1-2" alt="message" />
               </button>
               <div
+              onClick={handleQna}
                   id="countMessageDiv"
                   className="l14-2"
-                  style={{position:'absolute' , top: "-50%", left: "69%" ,zIndex:'1', display:'block'}}
+                  style={{position:'absolute' , top: "-25%", left: "88%" ,zIndex:'1', display:'block'}}
                 >
                   <p id="countRecord" className="l15-2">
                     {messageNumber || ""}
@@ -429,7 +428,6 @@ function MainpageHost() {
               height: "125%",
               position: "relative",
               top: "-5px",
-              left: "-7px",
               border: "3px solid var(--unnamed, #12151C)",
               borderRadius: "20px",
               boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",
@@ -451,8 +449,9 @@ function MainpageHost() {
                     height: '300px',
                     position: "absolute",
                     display:'flex',
-                    left: "30px",
-                    top: "220px",
+                    left: "50%",
+                    top: "80%",
+                    transform: 'translate(-50%, -50%)',
                     zIndex: "3",
                   }}
                   name="사진" id="Photo"
@@ -652,10 +651,11 @@ function MainpageHost() {
             </footer>
           )}
           {showModal1 && (
+            <div><div className="modal-overlay"></div>
             <div className="Modal" style={{ zIndex: "100" }}>
               <div
                 style={{
-                  width: "294px",
+                  width: "250px",
                   height: "52px",
                   position: "relative",
                   display: "flex",
@@ -680,11 +680,12 @@ function MainpageHost() {
               <div
                 style={{
                   padding: "24px 0 0 0",
-                  width: "294px",
+                  width: "260px",
                   height: "250px",
                   display: "flex",
                   flexWrap: "wrap",
                   justifyContent: "center",
+                  alignContent: "center",
                 }}
               >
                 <button className="l24-2" onClick={handleInitial}>
@@ -697,7 +698,7 @@ function MainpageHost() {
                   상태메시지 수정
                 </button>
               </div>
-            </div>
+            </div></div>
           )}
 
           {showModal4 && (
@@ -740,24 +741,36 @@ function MainpageHost() {
             </div>
           )}
           {showModal3 && (
+            <div><div className="modal-overlay"></div>
             <div className="Modal">
               <div>
                 <div>
                   <div className="l26-2">
                     <p style={{ position: "relative", top: "-25px" }}>!</p>
                   </div>
-                  <button className="l27-2" name="close" onClick={toggleModal3}>
-                    <img src={close}></img>
-                  </button>
+                  <button
+                style={{
+                  border: "none",
+                  backgroundColor: "transparent",
+                  position: "absolute",
+                  top: "3%",
+                  left: "85%",
+                }}
+                name="close"
+                onClick={toggleModal3}
+              >
+                <img onClick={toggleModal3} src={close}></img>
+              </button>
                 </div>
                 <div style={{ clear: "left" }}>
                   <p className="l20-2">프로필을 입력하시겠어요?</p>
                   <p className="l21-2">프로필 정보 입력 페이지로 이동됩니다.</p>
-                  <button className="l19-2">
-                    <p style={{ color: "white", fontSize: "16px" }}>확인</p>
+                  <button onClick={handleInitial} className="l19-2">
+                    <p  style={{ color: "white", fontSize: "16px" }}>확인</p>
                   </button>
                 </div>
               </div>
+            </div>
             </div>
           )}
         </div>

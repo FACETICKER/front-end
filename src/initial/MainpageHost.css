@@ -170,11 +170,11 @@
 
 .Modal {
   position: absolute;
-  top: 350px;
-  left: 188px;
+  top: 300px;
+  left: 196px;
   transform: translate(-50%, -50%);
-  width: 294px;
-  height: 322px;
+  width: 250px;
+  height: 300px;
   flex-shrink: 0;
   background-color: white;
   padding: 20px;
@@ -182,7 +182,8 @@
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
-  justify-content: "center";
+  justify-content: center;
+  z-index: 100000;
 }
 
 .Modal p {
@@ -191,6 +192,16 @@
 
 .Modal button {
   margin-right: 10px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.50);
+  z-index: 99; /* 조절 가능한 z-index 값 */
 }
 
 .l12-2 {
@@ -227,19 +238,26 @@
 
 .l14-2 {
   background-color: #ff6d00;
-  width: 22px;
-  height: 22px;
+  width: 17px;
+  height: 17px;
   border-radius: 50%;
   position: relative;
   left: 90%;
   top: -230%;
+  color: #FFF;
+  text-align: center;
+  font-family: 'Pretendard';
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 183.333% */
 }
 
 .l15-2 {
   color: white;
   text-align: center;
   position: relative;
-  top:-80%;
+  top:-70%;
 }
 
 .l16-2 {
@@ -287,10 +305,11 @@
   gap: 10px;
   border-radius: 10px;
   border: 2px solid var(--unnamed, #12151c);
+  border-width: 10 0 0 0;
   background: var(--unnamed, #f26b79);
   position: relative;
-  top: 100px;
-  left: 8%;
+  top: 50px;
+  left: 2%;
 }
 
 .l20-2 {
@@ -306,6 +325,7 @@
   line-height: normal;
   position: relative;
   top: 20px;
+  left:-5%;
 }
 
 .l21-2 {
@@ -318,7 +338,7 @@
   line-height: 20px; /* 142.857% */
   position: relative;
   top: 20px;
-  left: 13%;
+  left: 9%;
 }
 
 .l22-2 {
@@ -392,7 +412,8 @@
   font-size: 32px;
   color: white;
   position: relative;
-  left: 120px;
+  left: 95px;
+  top:-30px;
 }
 
 .l27-2 {
@@ -496,4 +517,22 @@
   justify-content: center;
   position: relative;
   margin: 0px auto;
+  justify-content: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080; /* 어두운 배경 색상 */
+  z-index: 100; /* 모달보다 낮은 z-index로 배치 */
+  display: none; /* 초기에는 숨김 처리 */
+}
+.Background .overlay {
+  display: block;
+}
+.Background .modal {
+  display: block;
 }
