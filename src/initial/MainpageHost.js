@@ -81,18 +81,17 @@ function MainpageHost() {
     setShowModal4(!showModal4);
   };
 
-  const handleLinkDownload = () => {
+
+  const handleLinkDownload = async () => {
     const address = `http://www.faceticker.site/main/${user_id}`;
-    navigator.clipboard
-      .writeText(address)
-      .then(() => {
+    try {
+        await navigator.clipboard.writeText(address);
         alert("주소가 클립보드에 복사되었습니다.");
-      })
-      .catch((error) => {
-        console.error("클립보드 복사 실패:", error);
+    } catch (err) {
+        console.error("클립보드 복사 실패:", err); // 에러 객체의 이름이 err로 변경되었습니다.
         alert("클립보드 복사에 실패했습니다. 수동으로 복사해주세요.");
-      });
-  };
+    }
+  }
   const handleDownload2 = () => {
     const targetElement = document.getElementById("PrtSc"); // 캡처할 대상 div의 id
     if (targetElement) {
@@ -300,8 +299,8 @@ function MainpageHost() {
     if (Sticker.src == "http://localhost:3000/static/media/%EA%B8%B0%EB%B3%B8%20%EC%BA%90%EB%A6%AD%201.484d8e0ea830f8eeff94.png") {
       Sticker.style.width="80%";
       Sticker.style.height="80%"
-      Photo.style.top="48%";
-      Photo.style.left="15%";
+      //Photo.style.top="48%";
+      //Photo.style.left="15%";
     }else{
       return;
     }
@@ -328,9 +327,9 @@ function MainpageHost() {
 
 
   return (
-    <div className="BackgroundWarp">
+    <div className="BackgroundWarp" style={{background: '#FEFAEF'}}>
       <div className="Background">
-        <div className="l29-2" style={{ position: "relative" }}>
+        <div className="l29-2" style={{ position: "relative", background: '#FEFAEF' }}>
           <header
             style={{
               float: "down",
@@ -390,7 +389,7 @@ function MainpageHost() {
               <div
                   id="countMessageDiv"
                   className="l14-2"
-                  style={{position:'absolute' , top: "-50%", left: "69%" ,zIndex:'1', display:'block'}}
+                  style={{position:'absolute' , top: "-25%", left: "88%" ,zIndex:'1', display:'block'}}
                 >
                   <p id="countRecord" className="l15-2">
                     {messageNumber || ""}
@@ -451,8 +450,9 @@ function MainpageHost() {
                     height: '300px',
                     position: "absolute",
                     display:'flex',
-                    left: "30px",
-                    top: "220px",
+                    left: "50%",
+                    top: "80%",
+                    transform: 'translate(-50%, -50%)',
                     zIndex: "3",
                   }}
                   name="사진" id="Photo"
@@ -652,10 +652,11 @@ function MainpageHost() {
             </footer>
           )}
           {showModal1 && (
+            <div><div className="modal-overlay"></div>
             <div className="Modal" style={{ zIndex: "100" }}>
               <div
                 style={{
-                  width: "294px",
+                  width: "250px",
                   height: "52px",
                   position: "relative",
                   display: "flex",
@@ -680,7 +681,7 @@ function MainpageHost() {
               <div
                 style={{
                   padding: "24px 0 0 0",
-                  width: "294px",
+                  width: "260px",
                   height: "250px",
                   display: "flex",
                   flexWrap: "wrap",
@@ -697,7 +698,7 @@ function MainpageHost() {
                   상태메시지 수정
                 </button>
               </div>
-            </div>
+            </div></div>
           )}
 
           {showModal4 && (
