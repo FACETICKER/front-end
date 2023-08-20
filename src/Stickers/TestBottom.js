@@ -267,7 +267,6 @@ export function TestBottom(props) {
           setImageData(filteredData);
           dispatch(positionSlice.actions.update(["x", 0]));
           dispatch(positionSlice.actions.update(["y", 0]));
-          dispatch(setIsImageFixed(false));
         })
         .catch((error) => {
           console.error("오류 발생", error);
