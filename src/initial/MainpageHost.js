@@ -250,7 +250,7 @@ function MainpageHost() {
           setName(data.result.hostPoster[0].nickname);
           setMean(data.result.hostPoster[0].meaning);
           setKorean(data.result.hostPoster[0].pronunciation);
-          setNumber(data.result.hostPoster[0].q_number);
+          setNumber('#'+data.result.hostPoster[0].q_number);
           setDay(data.result.hostPoster[0].q_date);
           const handleSelleckSeason = () => {
             if (data.result.hostPoster[0].q_season === "봄") {
@@ -337,7 +337,6 @@ function MainpageHost() {
               height: "70px",
               position: "relative",
               top: "0px",
-              left: "-5px",
               display: "flex",
               justifyContent: "space-between",
             }}
@@ -387,6 +386,7 @@ function MainpageHost() {
                 <img src={message} className="l1-2" alt="message" />
               </button>
               <div
+              onClick={handleQna}
                   id="countMessageDiv"
                   className="l14-2"
                   style={{position:'absolute' , top: "-25%", left: "88%" ,zIndex:'1', display:'block'}}
@@ -428,7 +428,6 @@ function MainpageHost() {
               height: "125%",
               position: "relative",
               top: "-5px",
-              left: "-7px",
               border: "3px solid var(--unnamed, #12151C)",
               borderRadius: "20px",
               boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",
@@ -686,6 +685,7 @@ function MainpageHost() {
                   display: "flex",
                   flexWrap: "wrap",
                   justifyContent: "center",
+                  alignContent: "center",
                 }}
               >
                 <button className="l24-2" onClick={handleInitial}>
@@ -741,24 +741,36 @@ function MainpageHost() {
             </div>
           )}
           {showModal3 && (
+            <div><div className="modal-overlay"></div>
             <div className="Modal">
               <div>
                 <div>
                   <div className="l26-2">
                     <p style={{ position: "relative", top: "-25px" }}>!</p>
                   </div>
-                  <button className="l27-2" name="close" onClick={toggleModal3}>
-                    <img src={close}></img>
-                  </button>
+                  <button
+                style={{
+                  border: "none",
+                  backgroundColor: "transparent",
+                  position: "absolute",
+                  top: "3%",
+                  left: "85%",
+                }}
+                name="close"
+                onClick={toggleModal3}
+              >
+                <img onClick={toggleModal3} src={close}></img>
+              </button>
                 </div>
                 <div style={{ clear: "left" }}>
                   <p className="l20-2">프로필을 입력하시겠어요?</p>
                   <p className="l21-2">프로필 정보 입력 페이지로 이동됩니다.</p>
-                  <button className="l19-2">
-                    <p style={{ color: "white", fontSize: "16px" }}>확인</p>
+                  <button onClick={handleInitial} className="l19-2">
+                    <p  style={{ color: "white", fontSize: "16px" }}>확인</p>
                   </button>
                 </div>
               </div>
+            </div>
             </div>
           )}
         </div>
