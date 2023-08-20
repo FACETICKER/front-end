@@ -6,6 +6,7 @@
   transition: transform 0.6s;
   -webkit-transition: transform 0.6s;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   cursor: pointer;
   border-radius: 20px;
   display: flex;
@@ -22,6 +23,7 @@
   width: 95%;
   height: 100%;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden !important;
   display: flex;
   justify-content: center;
   align-items: center;
