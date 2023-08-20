@@ -308,7 +308,6 @@ function MainpageVisit() {
               height: "70px",
               position: "relative",
               top: "0px",
-              left:"-5px",
               display:'flex',
               justifyContent: 'space-between'
             }}
@@ -360,7 +359,6 @@ function MainpageVisit() {
               height: "125%",
               position: "relative",
               top: "-5px",
-              left: "-7px",
               border: "3px solid var(--unnamed, #12151C)",
               borderRadius: "20px",
               boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",
