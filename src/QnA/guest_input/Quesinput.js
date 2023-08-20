@@ -16,6 +16,7 @@ function Quesinput() {
 
     const hostID = Token()[2];
     const JWT = Token()[1] === null ? '' : Token()[1];
+    const UserID = Token()[0];
 
     const postQuestion = () => {
 
@@ -33,7 +34,7 @@ function Quesinput() {
             .then((data) => {
                 console.log(data);
                 dispatch(IDSlice.actions.up(1));
-                dispatch(questionSlice.actions.up({text: question, id: ID, type: "question", open: true, clicked: false, nQnA_id: data.result}));
+                dispatch(questionSlice.actions.up({text: question, id: ID, type: "question", open: true, clicked: false, nQnA_id: data.result, visitor_id: UserID}));
                 setquestion("");
             })
             .catch((error) => {

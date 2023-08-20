@@ -25,7 +25,7 @@ function QnApage_guest() {
         <div className={styles.background}>
             <Nickname page='guest'/>
             <div className={styles.buttons}>
-                {ques.map((item, index) => (<Guest_Btn key={index} text={item.text} id={item.id} type={item.type} open={item.open} clicked={item.clicked}/>))}
+                {ques.map((item, index) => (<Guest_Btn key={index} text={item.text} id={item.id} type={item.type} open={item.open} clicked={item.clicked} visitor_id={item.visitor_id}/>))}
             </div>
             <div className={styles.ans}>
                 <Quesinput/> 
