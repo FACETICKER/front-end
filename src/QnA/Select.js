@@ -13,12 +13,11 @@ const Select = () => {
     return (
         <div className={styles.background}>
             <div className={styles.Top}>
-                <p className={styles.Top_p}>여러가지 기본 질문 중 자유롭게 선택하세요.</p>
+                <p className={styles.Top_p}>60가지 기본 질문 중 자유롭게 선택하세요.</p>
             </div>
             <div className={styles.btnwrap}>
                 {basic.map((item) => (<Basic_btn text={item}/>))}
             </div>
-            <div className={styles.blackline}></div>
         </div>
     );
 };
