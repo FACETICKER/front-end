@@ -29,8 +29,8 @@ const HostImg = styled.img`
   max-height: 150px;
   display: flex;
   position: absolute;
-  transform: translate(-40%, 50%);
-  top: 40%;
+  transform: translate(-50%, 50%);
+  top: 30%;
   left: 50%;
 `;
 
@@ -58,8 +58,8 @@ const Bottoms = styled.div`
 `;
 
 const Bottom = styled.div`
-  width: 200%;
-  height: 200%;
+  width: 100%;
+  height: 145%;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -101,16 +101,11 @@ export function TestBottom(props) {
   const hostid = useSelector((state) => state.login.hostid);
 
   const ID = hostid;
+  const VisitorId = useSelector((state) => state.capture.visitorId);
 
   const headers = {
     "Content-Type": "application/json",
   };
-  const VID = props.VID2;
-  console.log("final", VID);
-
-  const { state } = useLocation();
-  console.log("State", state.visitor);
-  const VID2 = state.visitor;
 
   //이미지들 불러오기
   useEffect(() => {
@@ -211,13 +206,11 @@ export function TestBottom(props) {
   const positionState = useSelector((state) => state.position);
   const finalPosition = {
     x: positionState.x,
-    y: positionState.y - 40,
+    y: positionState.y,
   };
   console.log("finalposition", finalPosition);
 
   console.log("완료", imagePosition);
-
-  const VisitorId = useSelector((state) => state.capture.visitorId);
 
   //이미지 PATCH
   useEffect(() => {
@@ -318,7 +311,7 @@ export function TestBottom(props) {
               src={item.final_image_url}
               style={{
                 position: "absolute",
-                top: `${(item.location_y * componentHeight) / 100 + 110}px`,
+                top: `${(item.location_y * componentHeight) / 100 + 100}px`,
                 left: `${(item.location_x * componentWidth) / 100}px`,
                 zIndex: 9999,
                 maxWidth: "100px",

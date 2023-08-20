@@ -260,7 +260,7 @@ const Select = ({ handleCaptureImg }) => {
         dispatch(setNext(true));
 
         // 응답을 받은 후에 navigate 실행
-        await navigate("/stickername", { state: { test: test2 } }); // 목표 화면 이름으로 변경
+        // await navigate("/stickername", { state: { test: test2 } }); // 목표 화면 이름으로 변경
       }
     } catch (error) {
       console.error("PATCH request failed:", error);
@@ -300,6 +300,12 @@ const Select = ({ handleCaptureImg }) => {
       dispatch(setChangeSticker(false));
     }
   }, [setting, next]);
+
+  useEffect(() => {
+    if (test2) {
+      navigate("/stickername", { state: { test: test2 } });
+    }
+  }, [test2]);
 
   return (
     <div className={styles.background}>

@@ -229,9 +229,11 @@ export function StickerLetter() {
   const { state } = useLocation();
   console.log("State", state.visitor);
   const VID = state.visitor;
+  const test2 = VID;
 
   //방문자 스티커
   const imageUrl = useSelector((state) => state.capture.visitorimageUrl);
+  console.log("letter", imageUrl);
   //방문자 스티커 id
   const visitorId = useSelector((state) => state.visitorId);
   //입력 누르면 변하는 것들
@@ -241,7 +243,7 @@ export function StickerLetter() {
   };
   //첫 번째 이전 버튼
   const handleFirstBack = () => {
-    navigate(-1); //nickname으로 페이지 전환
+    navigate("/stickername", { state: { test: test2 } }); //nickname으로 페이지 전환
   };
 
   //두 번째 이전버튼
@@ -277,7 +279,7 @@ export function StickerLetter() {
         console.error("실패", error);
       });
 
-    navigate("/put", { state: { visitor: VID } });
+    navigate("/put");
   };
 
   //서버에서 방문록 받아오기

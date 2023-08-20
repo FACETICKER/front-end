@@ -156,6 +156,7 @@ export function VisitPut(props) {
   //방문자가 가지고 온  호스트Id 가져오기
   const hostid = useSelector((state) => state.login.hostid);
   const ID = hostid;
+  const VID = useSelector((state) => state.capture.visitorId);
 
   const handleButtonClick = () => {
     dispatch(setIsImageFixed(true)); // "Check" 버튼 클릭 시, 스티커 고정
@@ -170,7 +171,7 @@ export function VisitPut(props) {
 
   //처음 이전 아이콘
   const handlefirstBack = () => {
-    navigate(-1);
+    navigate("/stickerletter", { state: { visitor: VID } });
   };
 
   //두 번째 이전 아이콘
@@ -186,7 +187,7 @@ export function VisitPut(props) {
     navigate("/");
   };
 
-  useEffect(() => {
+  /*  useEffect(() => {
     if (change) {
       const timer = setTimeout(() => {
         // 5초 후에 페이지 이동
@@ -195,7 +196,7 @@ export function VisitPut(props) {
 
       return () => clearTimeout(timer); // 컴포넌트가 언마운트될 때 타이머 제거
     }
-  }, [change]);
+  }, [change]); */
 
   //호스트 닉네임 불러오기
   useEffect(() => {
