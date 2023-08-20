@@ -231,7 +231,7 @@ export function StickerLetter() {
   const VID = state.visitor;
 
   //방문자 스티커
-  const imageUrl = useSelector((state) => state.capture.imageUrl);
+  const imageUrl = useSelector((state) => state.capture.visitorimageUrl);
   //방문자 스티커 id
   const visitorId = useSelector((state) => state.visitorId);
   //입력 누르면 변하는 것들

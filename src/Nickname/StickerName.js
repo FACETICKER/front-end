@@ -7,8 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import inputImage from "../img/Stickers_img/inputimg.png";
 import checkicon from "../img/Stickers_img/checkicon.png";
 import backicon from "../img/Stickers_img/backIcon.png";
-import { setNext, setVisitorId } from "../MakeSticker/CaptureSlice";
+import {
+  setImageUrl,
+  setNext,
+  setVisitorId,
+  setVisitorImageUrl,
+} from "../MakeSticker/CaptureSlice";
 import Idtoken from "../Stickers/Idtoken";
+import StickerSlice from "../MakeSticker/StickerSlice";
 
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
@@ -189,7 +195,7 @@ export function StickerName() {
   const dispatch = useDispatch();
   const [stickerSize, setStickerSize] = useState("200px");
   const [Margin, setMargin] = useState("0%");
-  const [HostImgurl, setHostImg] = useState("");
+  const [visitorSticker, setVisitorSticker] = useState(null);
   const [clickname, setClickname] = useState(false);
   const [inputheight, setInputheight] = useState("30%");
   const [inputTop, setInputTop] = useState("-2%");
@@ -245,6 +251,21 @@ export function StickerName() {
     "Content-Type": "application/json",
   };
 
+  //방문자 이미지 불러오기
+  /*   useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${VID}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+
+        const visitorImg = data.result.filter((item) => item.visitor_id == VID);
+        setVisitorSticker(visitorImg);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []); */
+
   //닉네임 입력하고 다음 아이콘 누르면 서버에 전송됨
   const handleNicknameSubmit = () => {
     console.log(visitorId);
@@ -281,7 +302,13 @@ export function StickerName() {
   }, []);
 
   useEffect(() => {
+    setVisitorSticker(imageUrl);
+
+    dispatch(setVisitorImageUrl(imageUrl));
+
+    /*    dispatch(StickerSlice.actions.update(["step", 0])); */
     dispatch(setNext(false));
+    dispatch(setImageUrl(null));
   }, []);
 
   return (
@@ -312,7 +339,7 @@ export function StickerName() {
               <CheckIcon onClick={handleNicknameSubmit} src={checkicon} />
             )}
             <ImgWrap>
-              <HostImg size={stickerSize} style={style} src={imageUrl} />
+              <HostImg size={stickerSize} style={style} src={visitorSticker} />
             </ImgWrap>
 
             <InputWrap height={inputheight} onClick={handleClickInput}>
