@@ -298,7 +298,7 @@ function MainpageVisit() {
   },[Season])
 
   return (
-    <div className="BackgroundWarp">
+    <div className="BackgroundWarp" style={{background: '#FEFAEF'}}>
       <div className="Background">
         <div className="l25" style={{ position: "relative" }}>
           <header

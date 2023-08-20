@@ -99,7 +99,7 @@
 }
 @font-face {
   font-family: "TmonMonsori"; /* 폰트 이름 지정 (임의의 이름으로 설정 가능) */
-  src: url("../font/TMONBlack.ttf") format("woff"); /* 폰트 파일 경로 지정 */
+  src: url("../font/TMONBlack.ttf") format("ttf"); /* 폰트 파일 경로 지정 */
 }
 .l8-2 {
   color: #767676;
