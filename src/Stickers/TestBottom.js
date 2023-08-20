@@ -9,6 +9,7 @@ import { useGesture } from "react-use-gesture";
 import React, { useRef } from "react";
 import positionSlice from "./positionSlice";
 import Idtoken from "./Idtoken";
+import { useLocation } from "react-router-dom";
 
 //방문자가 자신의 스티커를 호스트 페이지에 붙이는 컴포넌트
 
@@ -107,6 +108,10 @@ export function TestBottom(props) {
   const VID = props.VID2;
   console.log("final", VID);
 
+  const { state } = useLocation();
+  console.log("State", state.visitor);
+  const VID2 = state.visitor;
+
   //이미지들 불러오기
   useEffect(() => {
     fetch(`http://app.faceticker.site/${ID}/sticker/all`)
@@ -141,7 +146,7 @@ export function TestBottom(props) {
     }
   }, []);
 
-  const imageUrl2 = useSelector((state) => state.capture.imageUrl);
+  const imageUrl2 = useSelector((state) => state.capture.visitorimageUrl);
   /*   const visible = useSelector((state) => state.reducers.imagevisible); */
   console.log("put");
   console.log("보낼 값", { x: xvalue, y: yvalue });

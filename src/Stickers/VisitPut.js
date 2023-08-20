@@ -176,6 +176,7 @@ export function VisitPut(props) {
   //두 번째 이전 아이콘
   const handleSecondBack = () => {
     setChange(false);
+    navigate(`/sticker/${ID}`);
   };
 
   //내 프로필 제작 누르면
