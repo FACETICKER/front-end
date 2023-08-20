@@ -105,6 +105,10 @@ export function ClickSticker() {
     "x-access-token": jwt,
     "Content-Type": "application/json",
   };
+  ///alert
+  useEffect(() => {
+    alert("카드를 눌러보세요.");
+  }, []);
 
   //스티커 읽음 처리
   console.log("9", ID, selectedImageId, jwt);

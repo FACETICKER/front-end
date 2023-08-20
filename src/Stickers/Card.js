@@ -36,51 +36,6 @@ const Bottom = styled.div`
   position: relative;
 `;
 
-/* const CardWrap = styled.div`
-  width: 85%;
-  height: 87%;
-`; */
-
-const One = styled.div`
-  border-radius: 20px;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  position: relative;
-  display: flex;
-  background: #fff;
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
-`;
-
-const OneFlip = styled.div`
-  border-radius: 20px;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  position: relative;
-  background: #fff;
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
-`;
-
-/* const TrashIcon = styled.img`
-  display: flex;
-  position: absolute;
-  max-width: 24%;
-  max-height: 20%;
-  right: -2%;
-  top: -9%;
-`; */
-const TrashIcon2 = styled.img`
-  display: flex;
-  position: absolute;
-  max-width: 21%;
-  max-height: 18%;
-  right: 2%;
-  top: -5%;
-`;
-
 const Shadow = styled.div`
   width: 80%;
   border-radius: 100%;
@@ -104,34 +59,14 @@ const Name = styled.div`
   bottom: 3%;
   right: 10%;
   width: 100%;
-  color: #191919;
+  color: black;
   text-align: right;
   font-family: Cafe24Shiningstar;
   font-size: 36px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-`;
-
-const Footer = styled.div`
-  height: 15%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-`;
-
-const Icons = styled.div`
-  height: 80%;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  display: flex;
-  width: 90%;
-`;
-
-const Icon = styled.img`
-  display: flex;
-  width: 50%;
+  z-index: 10000;
 `;
 
 const BackImg = styled.img`
@@ -285,93 +220,93 @@ export function Card() {
 
   return (
     <Bottom>
-      {/* {length == 1 && (
-        <div
-          className={`card ${isFlipped ? "flipped" : ""}`}
-          onClick={handleCardClick}
-        >
-          <div className="front">
-            <Second>
-              <TrashIcon onClick={handleTrashClick} src={trash} />
-              <Shadow />
-              <StickerImg src={stickerImg} />
-            </Second>
+      {length == 1 && (
+        <CardWrap onClick={handleCardClick}>
+          <TrashIcon onClick={handleTrashClick} src={trash} />
+          {isFlipped && (
+            <FrontCard>
+              <Second>
+                <Shadow />
+                <StickerImg src={stickerImg} />
+              </Second>
 
-            <Dot3>
-              <Dots />
-            </Dot3>
-            <Name>{name}</Name>
-          </div>
-          <div className="back">
-            <Back>
-              <TrashIcon2 onClick={handleTrashClick} src={trash} />
-              <BackImg src={post} />
-              <LetterContent>{letterValue}</LetterContent>
-              <StickerImg2 src={stickerImg} />
-            </Back>
-          </div>
-        </div>
+              <Dot3>
+                <Dots />
+              </Dot3>
+              <Name>{name}</Name>
+            </FrontCard>
+          )}
+          {!isFlipped && (
+            <BackCard>
+              <Back>
+                <BackImg src={post} />
+                <LetterContent>{letterValue}</LetterContent>
+                <StickerImg2 src={stickerImg} />
+              </Back>
+            </BackCard>
+          )}
+        </CardWrap>
       )}
       {length == 2 && (
-        <div
-          className={`card ${isFlipped ? "flipped" : ""}`}
-          onClick={handleCardClick}
-        >
-          <div className="front">
-            <Second>
-              <TrashIcon onClick={handleTrashClick} src={trash} />
-              <Shadow />
-              <StickerImg src={stickerImg} />
-            </Second>
-            <SecondShadow />
+        <CardWrap onClick={handleCardClick}>
+          <TrashIcon onClick={handleTrashClick} src={trash} />
+          {isFlipped && (
+            <FrontCard>
+              <Second>
+                <Shadow />
+                <StickerImg src={stickerImg} />
+              </Second>
+              <SecondShadow />
 
-            <Dot3>
-              <Dots />
-            </Dot3>
-            <Name>{name}</Name>
-          </div>
-          <div className="back">
-            <Back>
-              <TrashIcon2 onClick={handleTrashClick} src={trash} />
-              <BackImg src={post} />
-              <LetterContent>{letterValue}</LetterContent>
-              <StickerImg2 src={stickerImg} />
-            </Back>
-            <SecondShadow />
-          </div>
-        </div>
-      )} */}
+              <Dot3>
+                <Dots />
+              </Dot3>
+              <Name>{name}</Name>
+            </FrontCard>
+          )}
+          {!isFlipped && (
+            <BackCard>
+              <Back>
+                <BackImg src={post} />
+                <LetterContent>{letterValue}</LetterContent>
+                <StickerImg2 src={stickerImg} />
+              </Back>
+              <SecondShadow />
+            </BackCard>
+          )}
+        </CardWrap>
+      )}
 
-      {/* {length >= 3 && ( */}
-      <CardWrap onClick={handleCardClick}>
-        <TrashIcon onClick={handleTrashClick} src={trash} />
-        {isFlipped && (
-          <FrontCard>
-            <Second>
-              <Shadow />
-              <StickerImg src={stickerImg} />
-            </Second>
-            <SecondShadow />
-            <Third />
-            <Dot3>
-              <Dots />
-            </Dot3>
-            <Name>{name}</Name>
-          </FrontCard>
-        )}
-        {!isFlipped && (
-          <BackCard>
-            <Back>
-              <BackImg src={post} />
-              <LetterContent>{letterValue}</LetterContent>
-              <StickerImg2 src={stickerImg} />
-            </Back>
-            <SecondShadow />
-            <Third />
-          </BackCard>
-        )}
-      </CardWrap>
-      {/*  )} */}
+      {length >= 3 && (
+        <CardWrap onClick={handleCardClick}>
+          <TrashIcon onClick={handleTrashClick} src={trash} />
+          {isFlipped && (
+            <FrontCard>
+              <Second>
+                <Shadow />
+                <StickerImg src={stickerImg} />
+              </Second>
+              <SecondShadow />
+              <Third />
+              <Dot3>
+                <Dots />
+              </Dot3>
+              <Name>{name}</Name>
+            </FrontCard>
+          )}
+          {!isFlipped && (
+            <BackCard>
+              <Back>
+                <BackImg src={post} />
+                <LetterContent>{letterValue}</LetterContent>
+                <StickerImg2 src={stickerImg} />
+              </Back>
+              <SecondShadow />
+              <Third />
+            </BackCard>
+          )}
+        </CardWrap>
+      )}
     </Bottom>
   );
 }
