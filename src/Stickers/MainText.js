@@ -15,7 +15,7 @@ const TextWrap = styled.div`
 const Text = styled.div`
   color: #191919;
   text-align: center;
-  font-family: "TmonMonsori";
+  font-family: "Pretendard";
   font-size: 20px;
   font-style: normal;
   font-weight: 800;
@@ -61,7 +61,7 @@ export function MainText() {
 
   return (
     <TextWrap>
-      <Text>'{nicknameValue}'님의 你可昭綏</Text>
+      <Text>'{nicknameValue}'님의 프로필</Text>
       <Text>방문자를 확인해보세요.</Text>
     </TextWrap>
   );

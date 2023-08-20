@@ -431,6 +431,7 @@ function MainpageHost() {
               border: "3px solid var(--unnamed, #12151C)",
               borderRadius: "20px",
               boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",
+              background: "white",
             }}
           >
             <div

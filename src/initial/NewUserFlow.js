@@ -44,7 +44,7 @@ function NewUserFlow() {
   console.log(NextLoginList);
 
   return (
-    <div className="BackgroundWrap-4" >
+    <div className="BackgroundWrap-4" style={{height:'1024px'}}>
       <div className="Background-4">
         <div className="Container">
           <div className="l1-4">
