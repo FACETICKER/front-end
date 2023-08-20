@@ -7,6 +7,7 @@ import styles3 from './style/Basic_Choice.module.css';
 import styles4 from './style/QnApage.module.css';
 import Arrow_left from '../img/QnA_img/arrow-left.png'
 import PageSlice from './Slice/PageSlice';
+import Token from './Token';
 
 const Nickname = (props) => {
 
@@ -16,16 +17,18 @@ const Nickname = (props) => {
     
     const [name, setname] = useState("questicker");
 
+    const hostId = Token()[2];
+    const userID = Token()[0];
+
     const goBack = () => {
         if (props.page === 'guest') {
-            navigate(-1); // 이전 페이지로 이동
-            navigate(-1);
+            navigate(`/main/${hostId}`); // 이전 페이지로 이동
         }
         if (props.page === 'basic') {
             dispatch(PageSlice.actions.host());
         }
         if (props.page === 'host') {
-            navigate(-1);
+            navigate(`/main/host/${userID}`);
         }
     };
 
