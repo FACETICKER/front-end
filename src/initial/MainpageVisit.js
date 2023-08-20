@@ -389,8 +389,8 @@ function MainpageVisit() {
                   }}
                   name="사진" id="Photo"
                 >
-                  <img id="Sticker" style={{width:'200px', height:'240px' ,position:'relative', margin:'0 auto'}} src={stickerdata || normalSticker} alt="Vector" />
-                  <div className="l30"></div>
+                  <img id="Sticker" style={{width:'200px', height:'240px' ,position:'relative', margin:'0 auto',zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
+                  <div className="l30" style={{zIndex:"3"}}></div>
                 </div>
                 <div >
                   <p id="ifSpring" className="l13-2">{Season || ""}</p>
