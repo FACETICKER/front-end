@@ -299,7 +299,7 @@ function MainpageVisit() {
 
   return (
     <div className="BackgroundWarp" style={{background: '#FEFAEF'}}>
-      <div className="Background">
+      <div className="Background" style={{background: '#FEFAEF'}}>
         <div className="l25" style={{ position: "relative" }}>
           <header
             style={{
