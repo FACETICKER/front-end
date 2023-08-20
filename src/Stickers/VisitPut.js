@@ -195,6 +195,7 @@ export function VisitPut(props) {
       const timer = setTimeout(() => {
         // 5초 후에 페이지 이동
         navigate(`/main/${ID}`); // 메인페이지로
+        dispatch(setIsImageFixed(false)); //image고정 false
       }, 5000);
 
       return () => clearTimeout(timer); // 컴포넌트가 언마운트될 때 타이머 제거
