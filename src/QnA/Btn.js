@@ -88,7 +88,7 @@ function Btn(props) {
     // 답변 내역은 전부 보여주고, 미답변 내역에서는 답변이 있으면 div 숨기는 스타일 적용
 
     return (
-        <div>
+        <div className={styles2.ansAndques}>
             <div className={`${styles2.buttonbackground} ${!view && hasMatchingId ? styles2.hidden : ''} ${view && !hasMatchingId && !props.clicked ? styles2.hidden : ''}`}>
                 <button className={classNames} id={props.id} type={props.type} data-open={props.open} onClick={onclick}>
                     <span className={styles2.buttontext}>{props.text}</span>

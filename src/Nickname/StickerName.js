@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import inputImage from "../img/Stickers_img/inputimg.png";
 import checkicon from "../img/Stickers_img/checkicon.png";
 import backicon from "../img/Stickers_img/backIcon.png";
-import { setVisitorId } from "../MakeSticker/CaptureSlice";
+import { setNext, setVisitorId } from "../MakeSticker/CaptureSlice";
 import Idtoken from "../Stickers/Idtoken";
 
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
@@ -205,7 +205,7 @@ export function StickerName() {
   const imageUrl = useSelector((state) => state.capture.imageUrl);
   /*   console.log("이미지url ", imageUrl); */
   console.log("방문자id", visitorId);
-  console.log("vid", VID);
+
   /*   console.log("url", imageUrl); */
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
@@ -217,7 +217,7 @@ export function StickerName() {
   };
   //처음 back은 누르면 이전 페이지
   const handleFirstBack = () => {
-    navigate(-1);
+    navigate("/makesticker");
   };
   //이전 누르면 state 이전값으로 바뀜
   const handleSecondBack = () => {
@@ -278,6 +278,10 @@ export function StickerName() {
       .catch((error) => {
         console.error("오류 발생", error);
       });
+  }, []);
+
+  useEffect(() => {
+    dispatch(setNext(false));
   }, []);
 
   return (

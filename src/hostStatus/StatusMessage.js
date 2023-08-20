@@ -125,7 +125,7 @@ const ImgWrap = styled.div`
   display: flex;
 `;
 const Letter = styled.img`
-  width: 80%;
+  max-height: 100%;
 `;
 
 const InputWrap = styled.div`

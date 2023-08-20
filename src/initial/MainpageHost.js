@@ -140,7 +140,7 @@ function MainpageHost() {
   const handleSpring = () => {
     const resultDiv1 = document.getElementById("ifSpring");
     setSeason("SPR 봄 ING");
-    resultDiv1.style.left="24 %";
+    resultDiv1.style.left="24%";
   };
   const handleSummer = () => {
     setSeason("SUM 여름 MER");
@@ -303,7 +303,25 @@ function MainpageHost() {
       return;
     }
   }, [stickerdata]);
-  
+  useEffect(() => {
+    const messageCircle = document.getElementById("ment")
+    if (Message=="")   {
+      messageCircle.style.display = "none";
+    } else {
+      messageCircle.style.display = "block";
+    }
+  },[Message])
+  useEffect(() =>{
+    const makeProfile = document.getElementById("makeprofile")
+    if (Season=="") {
+      console.log(1);
+      makeProfile.style.display="block";
+    } else {
+      makeProfile.style.display="none";
+    }
+  },[Season])
+
+
 
   return (
     <div className="BackgroundWarp">
@@ -368,7 +386,7 @@ function MainpageHost() {
               <div
                   id="countMessageDiv"
                   className="l14-2"
-                  style={{position:'absolute' , top: "-50%", left: "69%" ,zIndex:'1'}}
+                  style={{position:'absolute' , top: "-50%", left: "69%" ,zIndex:'1', display:'block'}}
                 >
                   <p id="countRecord" className="l15-2">
                     {messageNumber || ""}
@@ -425,14 +443,17 @@ function MainpageHost() {
               <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
                 <div
                   style={{
+                    width:'250px',
+                    height: '300px',
                     position: "absolute",
-                    left: "20%",
-                    top: "50%",
+                    display:'flex',
+                    left: "30px",
+                    top: "220px",
                     zIndex: "3",
                   }}
                   name="사진" id="Photo"
                 >
-                  <img id="Sticker" src={stickerdata || normalSticker} alt="Vector" />
+                  <img id="Sticker" style={{width:'200px', height:'240px',position:'relative', margin:'0 auto'}} src={stickerdata || normalSticker} alt="Vector" />
                 </div>
                 <div >
                   <p id="ifSpring" className="l13-2">{Season || ""}</p>
@@ -561,7 +582,7 @@ function MainpageHost() {
                 <div
                   id="countRecordDiv"
                   className="l14-2"
-                  style={{position:'absolute' , top: "9%", left: "29%" ,zIndex:'1'}}
+                  style={{position:'absolute' , top: "9%", left: "29%" ,zIndex:'1', display:'block'}}
                 >
                   <p id="countRecord" className="l15-2">
                     {recordNumber || ""}
@@ -586,18 +607,21 @@ function MainpageHost() {
                 </button>
               </div> */}
             </div>
-            {/* <div
-              style={{ width: "200px", height: "100px", position: "relative" }}
-            >
-              <button>사랑선택</button>
-              <button>우정선택</button>
-              <button onClick={handleSpring}>봄선택</button>
-              <button onClick={handleSummer}>여름선택</button>
-              <button onClick={handleAutumn}>가을선택</button>
-              <button onClick={handleWinter}>겨울선택</button>
-              <button onClick={handleNoneProfile}>프로필 생성 안함</button>
-              <button onClick={handleHaveProfile}>프로필 생성 함</button>
-            </div> */}
+            <div id='makeprofile' style={{position:'absolute', top:'75%', left:'26%', display:'none'}}>
+            <div name="프로필 생성 제안">
+                  <p id="" className="ll6-2">
+                    프로필이 아직 없다면
+                  </p>
+                </div>
+                <div name="링크">
+                  <p id="" className="l17-2">
+                    <a onClick={toggleModal3} className="l18-2">
+                      여기
+                    </a>
+                    를 클릭하세요
+                  </p>
+                </div>
+            </div>
           </div>
           {showFooter && (
             <footer className="FixedFooter">

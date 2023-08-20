@@ -10,7 +10,12 @@ import styles1 from "./style/Popup.module.css";
 import styles2 from "./Modal_jh.module.css";
 import Close from "../img/QnA_img/close-x.png";
 import Dots from "../components/Dots";
-import { setCaptureEnabled, setImageUrl, setVisitorId } from "./CaptureSlice";
+import {
+  setCaptureEnabled,
+  setImageUrl,
+  setNext,
+  setVisitorId,
+} from "./CaptureSlice";
 import axios from "axios";
 import StickerName from "../Nickname/StickerName";
 import Idtoken from "../Stickers/Idtoken";
@@ -88,7 +93,7 @@ const Select = ({ handleCaptureImg }) => {
         setSetting(true);
       } else setModalIsOpen(true);
     }
-    dispatch(setCaptureEnabled(isEnabled));
+    dispatch(setCaptureEnabled(true));
     if (changesticker) {
       setSetting(true);
     } else {
@@ -97,7 +102,7 @@ const Select = ({ handleCaptureImg }) => {
   };
 
   //방문자가 완료 누를 때
-  const captureVisitor = (isEnabled) => {
+  const captureVisitor = () => {
     if (
       //방문자가 아무것도 선택 안 했으면 캡쳐 하지 말고 기본 이미지 저장
       stickerState.face === 0 &&
@@ -110,7 +115,7 @@ const Select = ({ handleCaptureImg }) => {
     ) {
       dispatch(setImageUrl("https://i.ibb.co/3yhK7VW/1-2.png"));
     } else {
-      dispatch(setCaptureEnabled(isEnabled));
+      dispatch(setCaptureEnabled(true));
     }
 
     /*   navigate("/stickername", { state: { test: test2 } }); */
@@ -214,6 +219,7 @@ const Select = ({ handleCaptureImg }) => {
   //sticker 보낼 거
   const imageUrl = useSelector((state) => state.capture.imageUrl);
   const visitorId = useSelector((state) => state.visitorId);
+  const next = useSelector((state) => state.capture.next);
 
   const finalsticker = {
     face: stickerState.face,
@@ -250,6 +256,7 @@ const Select = ({ handleCaptureImg }) => {
         dispatch(setVisitorId(responseData.result.visitor_sticker_id));
         setTest(responseData.result.visitor_sticker_id);
         console.log("dispatch id1", VID);
+        dispatch(setNext(true));
       }
     } catch (error) {
       console.error("PATCH request failed:", error);
@@ -264,12 +271,13 @@ const Select = ({ handleCaptureImg }) => {
   }, [imageUrl]);
 
   console.log("test2", test2);
+
   useEffect(() => {
-    if (test2) {
+    if (next) {
       console.log("test2", test2);
       navigate("/stickername", { state: { test: test2 } });
     }
-  }, [test2]);
+  }, [next]);
 
   //방문자는 이미지 링크 redux로 저장해놓기
   /* const loginData = useSelector((state) => state.login);

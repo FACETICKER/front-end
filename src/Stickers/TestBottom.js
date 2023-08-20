@@ -53,7 +53,7 @@ const Bottoms = styled.div`
   height: 90%;
 
   background-image: url("${getRandomImageLink()}");
-  overflow: scroll;
+  /* overflow: scroll; */
 `;
 
 const Bottom = styled.div`

@@ -55,7 +55,7 @@ function Del_btn(props) {
     }, []); // 첫 렌더링 시 끝까지 아래로 스크롤
 
     return (
-        <div>
+        <div className={styles.ansAndques}>
             <div className={styles.buttonbackground} onClick={onclick}>
                 <img src={`${click ? Check : NoneCheck}`} className={styles.check_img}></img>
                 <button className={classNames} id={props.id} type={props.type} data-open={props.open}>
