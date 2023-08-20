@@ -128,10 +128,6 @@ export function Card() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleBackClick = () => {
-    navigate(`/sticker/host/${userId}`);
-  };
-
   /*     const handleProfileClick = (item) => {
   //visior id 받아와서 해당 main으로 이동
 
@@ -194,35 +190,10 @@ export function Card() {
 
   console.log("개수", length);
 
-  //스티커 삭제
-  const handleTrashClick = async () => {
-    try {
-      const response = await fetch(
-        `http://app.faceticker.site/${ID}/sticker/visitor/${selectedImageId}`,
-        {
-          method: "DELETE",
-          headers: headers,
-        }
-      );
-
-      const responseData = await response.json();
-      console.log("특정 스티커 삭제 성공", responseData);
-
-      if (response.ok) {
-        navigate(`/sticker/host/${userId}`);
-      } else {
-        console.log("특정 스티커 삭제 실패");
-      }
-    } catch (error) {
-      console.error("특정 스티커 삭제 실패", error);
-    }
-  };
-
   return (
     <Bottom>
       {length == 1 && (
         <CardWrap onClick={handleCardClick}>
-          <TrashIcon onClick={handleTrashClick} src={trash} />
           {isFlipped && (
             <FrontCard>
               <Second>
@@ -249,7 +220,6 @@ export function Card() {
       )}
       {length == 2 && (
         <CardWrap onClick={handleCardClick}>
-          <TrashIcon onClick={handleTrashClick} src={trash} />
           {isFlipped && (
             <FrontCard>
               <Second>
@@ -279,7 +249,6 @@ export function Card() {
 
       {length >= 3 && (
         <CardWrap onClick={handleCardClick}>
-          <TrashIcon onClick={handleTrashClick} src={trash} />
           {isFlipped && (
             <FrontCard>
               <Second>
