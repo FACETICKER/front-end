@@ -13,6 +13,7 @@ import backtext from "../img/Stickers_img/backtext.png";
 import visitprofile from "../img/Stickers_img/visitprofile.png";
 import Idtoken from "./Idtoken";
 import Card from "./Card";
+import back from "../img/Stickers_img/whiteback.png";
 /* import { StickerPageSlice } from "./StickerPageSlice";
 dispatch(NicknamePageSlice.actions.letter()); //letter로 페이지 전환 */
 
@@ -52,7 +53,20 @@ const Icon = styled.img`
   max-width: 45%;
   max-height: 100%;
 `;
-
+const Circle = styled.div`
+  display: flex;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+`;
+const CircleBack = styled.img`
+  display: flex;
+  width: 60%;
+`;
 export function ClickSticker() {
   const [isFlipped, setIsFlipped] = useState(false);
   const [letterValue, setLetterValue] = useState("");
