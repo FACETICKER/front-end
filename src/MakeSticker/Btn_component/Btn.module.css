@@ -9,6 +9,18 @@
   overflow-y: hidden;
 }
 
+.bgsmall {
+  height: 100%;
+  width: 200%;
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-grow: 1;
+  overflow-y: hidden;
+}
+
+
 .button {
   width: 85px;
   height: 85px;
