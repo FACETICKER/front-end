@@ -61,7 +61,7 @@ export function MainText() {
 
   return (
     <TextWrap>
-      <Text>'{nicknameValue}'님의 프로필</Text>
+      <Text>'{nicknameValue}'님의 你可昭綏</Text>
       <Text>방문자를 확인해보세요.</Text>
     </TextWrap>
   );
