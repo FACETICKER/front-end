@@ -382,8 +382,9 @@ function MainpageVisit() {
                     height: '300px',
                     position: "absolute",
                     display:'flex',
-                    left: "30px",
-                    top: "180px",
+                    left: "50%",
+                    top: "80%",
+                    transform: 'translate(-50%, -50%)',
                     zIndex: "3",
                   }}
                   name="사진" id="Photo"

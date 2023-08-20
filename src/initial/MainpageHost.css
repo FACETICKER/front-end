@@ -227,19 +227,26 @@
 
 .l14-2 {
   background-color: #ff6d00;
-  width: 22px;
-  height: 22px;
+  width: 17px;
+  height: 17px;
   border-radius: 50%;
   position: relative;
   left: 90%;
   top: -230%;
+  color: #FFF;
+  text-align: center;
+  font-family: 'Pretendard';
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 183.333% */
 }
 
 .l15-2 {
   color: white;
   text-align: center;
   position: relative;
-  top:-80%;
+  top:-70%;
 }
 
 .l16-2 {
@@ -496,4 +503,5 @@
   justify-content: center;
   position: relative;
   margin: 0px auto;
+  justify-content: center;
 }
