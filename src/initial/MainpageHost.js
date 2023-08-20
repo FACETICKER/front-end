@@ -231,7 +231,6 @@ function MainpageHost() {
       .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
       .then((data) => {
         console.log("성공", data.result[0]);
-        setMessage(data.result[0].message);
       })
       .catch((error) => {
         console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
@@ -247,7 +246,7 @@ function MainpageHost() {
           console.log("성공", data.result);
           setRecordNumber(data.result.hostnewSticer[0].count.toString());
           setMessageNumber(data.result.howtnewQuestion[0].emptyanswer.toString());
-          setMessagedata(data.result.hostPoster[0]);
+          setMessagedata(data.result.hostSticker[0].message);
           setChinese(data.result.hostPoster[0].chinese);
           setName(data.result.hostPoster[0].nickname);
           setMean(data.result.hostPoster[0].meaning);
@@ -283,12 +282,16 @@ function MainpageHost() {
     const count = document.getElementById("countRecordDiv")
     if (recordNumber == "0") {
       count.style.display="none"; 
+    } else{
+      count.style.display="block";
     }
   }, [recordNumber]);
   useEffect(() => {
     const count = document.getElementById("countMessageDiv")
     if (messageNumber == "0") {
       count.style.display="none"; 
+    } else {
+      count.style.display="block";
     }
   }, [messageNumber]);
   useEffect(() => {
@@ -305,12 +308,13 @@ function MainpageHost() {
   }, [stickerdata]);
   useEffect(() => {
     const messageCircle = document.getElementById("ment")
-    if (Message=="")   {
-      messageCircle.style.display = "none";
-    } else {
+    console.log(messagedata);
+    if (messagedata)   {
       messageCircle.style.display = "block";
+    } else {
+      messageCircle.style.display = "none";
     }
-  },[Message])
+  },[messagedata])
   useEffect(() =>{
     const makeProfile = document.getElementById("makeprofile")
     if (Season=="") {
@@ -461,7 +465,7 @@ function MainpageHost() {
                 <div id="ment" className="l22-2">
                   <div className="l23-2" style={{ zIndex: "2" }}>
                     <p id="" className="l3-2">
-                      {Message || "어서옵쇼 다들 스티커 붙여주세요..!"}
+                      {messagedata || "어서옵쇼 다들 스티커 붙여주세요..!"}
                     </p>
                   </div>
                 </div>
@@ -539,9 +543,9 @@ function MainpageHost() {
                     프로필이 아직 없다면
                   </p>
                 </div>
-                <div name="링크">
+                <div name="링크"> 
                   <p id="" className="l17-2">
-                    <a onClick={toggleModal3} className="l18-2">
+                    <a onClick={toggleModal3} className="l18-2" style={{zIndex:'10'}}>
                       여기
                     </a>
                     를 클릭하세요

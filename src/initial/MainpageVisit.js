@@ -231,7 +231,7 @@ function MainpageVisit() {
       .then((data) => {
         if (data) {
           console.log("성공", data.result.hostPoster[0]);
-          setMessagedata(data.result.hostPoster[0]);
+          setMessagedata(data.result.hostSticker[0].message);
           setChinese(data.result.hostPoster[0].chinese);
           setName(data.result.hostPoster[0].nickname);
           setMean(data.result.hostPoster[0].meaning);
@@ -280,12 +280,13 @@ function MainpageVisit() {
 
   useEffect(() => {
     const messageCircle = document.getElementById("ment")
-    if (Message=="")   {
-      messageCircle.style.display = "none";
-    } else {
+    console.log(messagedata);
+    if (messagedata)   {
       messageCircle.style.display = "block";
+    } else {
+      messageCircle.style.display = "none";
     }
-  },[Message])
+  },[messagedata])
   useEffect(() =>{
     const makeProfile = document.getElementById("makeprofile")
     if (Season=="") {
@@ -395,7 +396,7 @@ function MainpageVisit() {
                 <div id="ment" className="l22-2">
                   <div className="l23-2" style={{ zIndex: "2" }}>
                     <p id="" className="l3-2">
-                      {Message || "어서옵쇼 다들 스티커 붙여주세요..!"}
+                      {messagedata || "어서옵쇼 다들 스티커 붙여주세요..!"}
                     </p>
                   </div>
                 </div>
