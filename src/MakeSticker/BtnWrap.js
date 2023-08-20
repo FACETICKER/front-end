@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./style/BtnWrap.module.css";
 import Btn_face from "./Btn_component/Btn_face";
@@ -15,10 +15,12 @@ const BtnWrap = () => {
     return state.sticker.step;
   });
 
+  const renderClass = window.innerWidth >= 600 ? styles.background : styles.bgsmall;
+
   //div 안에 {step === (해당하는 수) && (만든 컴포넌트)} 넣으시면 됩니다.
 
   return (
-    <div className={styles.background}>
+    <div className={renderClass}>
       {steps === 0 && <Btn_face />}
       {steps === 1 && <Btn_hand />}
       {steps === 2 && <Btn_foot />}
