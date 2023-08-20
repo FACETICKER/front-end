@@ -633,14 +633,28 @@ function InitialSurvey() {
             <div id="l16-1" className="l16-1">
               <div style={{ padding: "10px 0 0 0" }}>
                 <input
-                  className="l5-1"
                   type="text"
                   id="name"
                   name="name"
                   minLength="2"
                   maxLength="7"
                   placeholder="닉네임 (최대 7자)"
-                  style={{ width: "313px" }}
+                  style={{ width: "313px",
+                  height: '70px',
+                  flexShrink: '0',
+                  border: '2px solid #FFF',
+                  borderRadius: '20px',
+                  boxShadow: '4px 4px 15px 0px rgba(0, 0, 0, 0.15)',
+                  background: '#FFF',
+                  position: 'relative',
+                  left:'2%',
+                  zIndex: '2',
+                  color: '#191919',
+                  fontFamily: 'Pretendard',
+                  fontSize: '20px',
+                  fontStyle: 'normal',
+                  fontWeight: '600',
+                  lineHeight: '20px', /* 100% */}}
                   onInput={handleNameInput}
                 />
                 <img

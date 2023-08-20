@@ -328,7 +328,7 @@ function MainpageHost() {
 
   return (
     <div className="BackgroundWarp" style={{background: '#FEFAEF'}}>
-      <div className="Background">
+      <div className="Background" style={{background: '#FEFAEF'}}>
         <div className="l29-2" style={{ position: "relative", background: '#FEFAEF' }}>
           <header
             style={{
@@ -427,10 +427,11 @@ function MainpageHost() {
               width: "335px",
               height: "125%",
               position: "relative",
-              top: "-5px",
+              top: "15px",
               border: "3px solid var(--unnamed, #12151C)",
               borderRadius: "20px",
               boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",
+              background: "white",
             }}
           >
             <div
@@ -652,7 +653,7 @@ function MainpageHost() {
           )}
           {showModal1 && (
             <div><div className="modal-overlay"></div>
-            <div className="Modal" style={{ zIndex: "100" }}>
+            <div className="Modal" style={{ zIndex: "100" }} onRequestClose={toggleModal1}>
               <div
                 style={{
                   width: "250px",
@@ -742,7 +743,7 @@ function MainpageHost() {
           )}
           {showModal3 && (
             <div><div className="modal-overlay"></div>
-            <div className="Modal">
+            <div className="Modal" onRequestClose={toggleModal3}>
               <div>
                 <div>
                   <div className="l26-2">

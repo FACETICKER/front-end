@@ -236,7 +236,7 @@ function MainpageVisit() {
           setName(data.result.hostPoster[0].nickname);
           setMean(data.result.hostPoster[0].meaning);
           setKorean(data.result.hostPoster[0].pronunciation);
-          setNumber(data.result.hostPoster[0].q_number);
+          setNumber("#"+data.result.hostPoster[0].q_number);
           const handleSelleckSeason = () => {
             if (data.result.hostPoster[0].q_season === "봄") {
               handleSpring();
@@ -299,7 +299,7 @@ function MainpageVisit() {
 
   return (
     <div className="BackgroundWarp" style={{background: '#FEFAEF'}}>
-      <div className="Background">
+      <div className="Background" style={{background: '#FEFAEF'}}>
         <div className="l25" style={{ position: "relative" }}>
           <header
             style={{
@@ -358,7 +358,7 @@ function MainpageVisit() {
               width: "335px",
               height: "125%",
               position: "relative",
-              top: "-5px",
+              top: "15px",  
               border: "3px solid var(--unnamed, #12151C)",
               borderRadius: "20px",
               boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",

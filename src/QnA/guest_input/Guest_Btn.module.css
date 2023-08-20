@@ -48,6 +48,7 @@
     flex-shrink: 0;
     z-index: 2;
     border: none;
+    color: #3F3F3F;
 }
 
 .radius_L {
