@@ -2,18 +2,24 @@
   width: 85%;
   height: 87%;
   perspective: 1000px;
+  -webkit-perspective: 1000px;
   transition: transform 0.6s;
+  -webkit-transition: transform 0.6s;
   transform-style: preserve-3d;
   cursor: pointer;
   border-radius: 20px;
+  display: flex;
+  justify-content: center;
 }
+
 .front {
   top: 2%;
 }
+
 .front,
 .back {
   position: absolute;
-  width: 100%;
+  width: 95%;
   height: 100%;
   backface-visibility: hidden;
   display: flex;
@@ -27,8 +33,10 @@
 
 .back {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 
 .card.flipped {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
