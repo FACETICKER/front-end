@@ -116,3 +116,7 @@
     display: flex;
     flex-direction: column;
 }
+
+.basic {
+    border: 2px solid var(--unnamed, #ff7427);
+}
