@@ -8,11 +8,11 @@ import KakaoLogo from "../img/loginImg/KakaoTalk.png";
 const G_CLIENT_ID = process.env.REACT_APP_G_CLIENT_ID;
 const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
 
-const K_REDIRECT_URI = `http://localhost:3000/oauth`;
+const K_REDIRECT_URI = `http://faceticker.site/oauth`;
 const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${K_REDIRECT_URI}&response_type=code`;
 const code = new URL(window.location.href).searchParams.get("code");
 
-const googleRedirectUrl = `https://localhost:3000/auth`;
+const googleRedirectUrl = `https://faceticker.site/auth`;
 const googleURL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${G_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${googleRedirectUrl}`;
 //22
 const Loginpage = () => {
