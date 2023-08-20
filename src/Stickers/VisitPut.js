@@ -156,7 +156,10 @@ export function VisitPut(props) {
   //방문자가 가지고 온  호스트Id 가져오기
   const hostid = useSelector((state) => state.login.hostid);
   const ID = hostid;
-  const VID = useSelector((state) => state.capture.visitorId);
+  const currentURL = window.location.href;
+  const parts = currentURL.split("/");
+  const visitorid = parseInt(parts[parts.length - 1]); //방문자가 가지고 온 호스트 ID
+  console.log("방문자 id", visitorid);
 
   const handleButtonClick = () => {
     dispatch(setIsImageFixed(true)); // "Check" 버튼 클릭 시, 스티커 고정
@@ -171,7 +174,7 @@ export function VisitPut(props) {
 
   //처음 이전 아이콘
   const handlefirstBack = () => {
-    navigate("/stickerletter", { state: { visitor: VID } });
+    navigate(`/stickerletter/${visitorid}`);
   };
 
   //두 번째 이전 아이콘

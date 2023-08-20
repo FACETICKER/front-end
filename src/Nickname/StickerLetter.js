@@ -225,17 +225,17 @@ export function StickerLetter() {
   const [firstBottom, setFirstBottom] = useState(true);
   const [letterValue, setLetterValue] = useState("");
   const [inputHeight, setInputHeight] = useState("20%");
-
-  const { state } = useLocation();
-  console.log("State", state.visitor);
-  const VID = state.visitor;
-  const test2 = VID;
+  const [visitorSticker, setVisitorSticker] = useState(null);
 
   //방문자 스티커
   const imageUrl = useSelector((state) => state.capture.visitorimageUrl);
-  console.log("letter", imageUrl);
+  //console.log("letter", imageUrl);
   //방문자 스티커 id
-  const visitorId = useSelector((state) => state.visitorId);
+  const currentURL = window.location.href;
+  const parts = currentURL.split("/");
+  const visitorid = parseInt(parts[parts.length - 1]); //방문자가 가지고 온 호스트 ID
+  console.log("방문자 id", visitorid);
+
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
     setFirstBottom(false);
@@ -243,7 +243,7 @@ export function StickerLetter() {
   };
   //첫 번째 이전 버튼
   const handleFirstBack = () => {
-    navigate("/stickername", { state: { test: test2 } }); //nickname으로 페이지 전환
+    navigate(`/stickername/${visitorid}`); //nickname으로 페이지 전환
   };
 
   //두 번째 이전버튼
@@ -260,11 +260,27 @@ export function StickerLetter() {
   const hostid = useSelector((state) => state.login.hostid);
 
   const ID = hostid;
-  //방문록 입력하고 체크 아이콘 누르면 서버에 전송됨
 
+  //방문자 이미지 불러오기
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${visitorid}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("letter", data);
+
+        const visitorImg = data.result.final_image_url;
+
+        setVisitorSticker(visitorImg);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
+
+  //방문록 입력하고 체크 아이콘 누르면 서버에 전송됨
   const handleLetterSubmit = () => {
     fetch(
-      `https://app.faceticker.site/${ID}/sticker/visitor/message?id=${VID}`,
+      `https://app.faceticker.site/${ID}/sticker/visitor/message?id=${visitorid}`,
       {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -279,16 +295,16 @@ export function StickerLetter() {
         console.error("실패", error);
       });
 
-    navigate("/put");
+    navigate(`/put/${visitorid}`);
   };
 
   //서버에서 방문록 받아오기
   useEffect(() => {
-    fetch(`http://app.faceticker.site/sticker/visitor/message?id=${VID}`)
+    fetch(`http://app.faceticker.site/sticker/visitor/message?id=${visitorid}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("성공2", data.result[0].name);
-        setLetterValue(data.letter);
+        console.log("성공2", data.result[0].message);
+        setLetterValue(data.result[0].message);
       })
       .catch((error) => {
         console.error("오류 발생", error);
@@ -324,7 +340,7 @@ export function StickerLetter() {
                     <InputImg src={post} />
                   </ImgWrap>
 
-                  <HostImg src={imageUrl} />
+                  <HostImg src={visitorSticker} />
                 </Wrap>
               )}
               <InputWrap height={inputHeight}>

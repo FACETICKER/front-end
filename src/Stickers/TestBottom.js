@@ -94,18 +94,38 @@ export function TestBottom(props) {
   const [bottomWidth, setBottomWidth] = useState("100%");
   const [bottomHeight, setBottomHeight] = useState("100%");
   const [imageData, setImageData] = useState();
+  const [visitorSticker, setVisitorSticker] = useState(null);
 
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
+
+  const currentURL = window.location.href;
+  const parts = currentURL.split("/");
+  const visitorid = parseInt(parts[parts.length - 1]); //방문자가 가지고 온 호스트 ID
+  console.log("방문자 id", visitorid);
 
   // 방문자가 가지고 온  호스트Id 가져오기
   const hostid = useSelector((state) => state.login.hostid);
 
   const ID = hostid;
-  const VisitorId = useSelector((state) => state.capture.visitorId);
+  //const VisitorId = useSelector((state) => state.capture.visitorId);
 
   const headers = {
     "Content-Type": "application/json",
   };
+  //방문자 이미지 불러오기
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${visitorid}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+
+        const visitorImg = data.result.final_image_url;
+        setVisitorSticker(visitorImg);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
 
   //이미지들 불러오기
   useEffect(() => {
@@ -149,7 +169,7 @@ export function TestBottom(props) {
 
   const handlePut = async (event) => {
     try {
-      setImageUrl(imageUrl2);
+      setImageUrl(visitorSticker);
       console.log("set");
       const sidePosition = {
         // 클릭한 엘리먼트의 절대좌표
@@ -215,7 +235,7 @@ export function TestBottom(props) {
   //이미지 PATCH
   useEffect(() => {
     if (isImageFixed) {
-      fetch(`http://app.faceticker.site/${ID}/sticker/attach?id=${VisitorId}`, {
+      fetch(`http://app.faceticker.site/${ID}/sticker/attach?id=${visitorid}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -311,7 +331,7 @@ export function TestBottom(props) {
               src={item.final_image_url}
               style={{
                 position: "absolute",
-                top: `${(item.location_y * componentHeight) / 100 + 100}px`,
+                top: `${(item.location_y * componentHeight) / 100 + 70}px`,
                 left: `${(item.location_x * componentWidth) / 100}px`,
                 zIndex: 9999,
                 maxWidth: "100px",

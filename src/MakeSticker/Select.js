@@ -56,6 +56,7 @@ const Select = ({ handleCaptureImg }) => {
   const [test2, setTest] = useState(null);
   const [setting, setSetting] = useState(false);
   const [settingcomplete, setSettingComplete] = useState(true);
+  const [vid, setvid] = useState(null);
 
   // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
   const hostid = useSelector((state) => state.login.hostid);
@@ -254,7 +255,8 @@ const Select = ({ handleCaptureImg }) => {
 
       if (whatType === "visitor") {
         console.log(responseData.result.visitor_sticker_id);
-        dispatch(setVisitorId(responseData.result.visitor_sticker_id));
+        setvid(responseData.result.visitor_sticker_id);
+        //dispatch(setVisitorId(responseData.result.visitor_sticker_id));
         setTest(responseData.result.visitor_sticker_id);
         console.log("dispatch id1", VID);
         dispatch(setNext(true));
@@ -303,7 +305,8 @@ const Select = ({ handleCaptureImg }) => {
 
   useEffect(() => {
     if (test2) {
-      navigate("/stickername", { state: { test: test2 } });
+      const visitorId = test2;
+      navigate(`/stickername/${visitorId}`);
     }
   }, [test2]);
 
