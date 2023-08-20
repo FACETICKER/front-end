@@ -265,6 +265,9 @@ export function TestBottom(props) {
           );
           console.log("모든 방문자 스티커", filteredData);
           setImageData(filteredData);
+          dispatch(positionSlice.actions.update(["x", 0]));
+          dispatch(positionSlice.actions.update(["y", 0]));
+          dispatch(setIsImageFixed(false));
         })
         .catch((error) => {
           console.error("오류 발생", error);
@@ -331,7 +334,7 @@ export function TestBottom(props) {
               src={item.final_image_url}
               style={{
                 position: "absolute",
-                top: `${(item.location_y * componentHeight) / 100 + 70}px`,
+                top: `${(item.location_y * componentHeight) / 100 + 80}px`,
                 left: `${(item.location_x * componentWidth) / 100}px`,
                 zIndex: 9999,
                 maxWidth: "100px",

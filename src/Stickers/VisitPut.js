@@ -190,7 +190,7 @@ export function VisitPut(props) {
     navigate("/");
   };
 
-  /*  useEffect(() => {
+  useEffect(() => {
     if (change) {
       const timer = setTimeout(() => {
         // 5초 후에 페이지 이동
@@ -199,7 +199,7 @@ export function VisitPut(props) {
 
       return () => clearTimeout(timer); // 컴포넌트가 언마운트될 때 타이머 제거
     }
-  }, [change]); */
+  }, [change]);
 
   //호스트 닉네임 불러오기
   useEffect(() => {

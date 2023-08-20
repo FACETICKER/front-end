@@ -15,7 +15,8 @@ const BtnWrap = () => {
     return state.sticker.step;
   });
 
-  const renderClass = window.innerWidth >= 600 ? styles.background : styles.bgsmall;
+  const renderClass =
+    window.innerWidth >= 600 ? styles.background : styles.bgsmall;
 
   //div 안에 {step === (해당하는 수) && (만든 컴포넌트)} 넣으시면 됩니다.
 
