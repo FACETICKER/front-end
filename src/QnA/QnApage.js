@@ -58,6 +58,7 @@ const QnApage = () => {
   useEffect(() => {
     if (getques) {
       const list = getques.result;
+      list.sort((a, b) => a.nQnA_id - b.nQnA_id);
       let ID = 0;
       list.forEach((item) => {
         const quesOpen = item.question_hidden === 0 ? true : false;
