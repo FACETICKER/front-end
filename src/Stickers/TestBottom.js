@@ -94,7 +94,8 @@ export function TestBottom(props) {
   const [componentHeight, setComponentHeight] = useState(0);
   const [bottomWidth, setBottomWidth] = useState("100%");
   const [bottomHeight, setBottomHeight] = useState("100%");
-  const [imageData, setImageData] = useState();
+  const [imageData, setImageData] = useState(null);
+  const [imageData10, setImageData10] = useState(null);
   const [visitorSticker, setVisitorSticker] = useState(null);
 
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
@@ -160,7 +161,7 @@ export function TestBottom(props) {
             (item) => item.location_x !== null
           );
           console.log("00", filteredData);
-          setImageData(filteredData);
+          setImageData10(filteredData);
         })
         .catch((error) => {
           console.error("오류 발생", error);
@@ -275,7 +276,7 @@ export function TestBottom(props) {
   }, [isImageFixed]);
 
   //이미지들 한 번 더 불러오기
-  /*   useEffect(() => {
+  useEffect(() => {
     if (isImageFixed) {
       fetch(`http://app.faceticker.site/${ID}/sticker/all`)
         .then((response) => response.json())
@@ -286,7 +287,7 @@ export function TestBottom(props) {
             (item) => item.location_x !== null
           );
           console.log("모든 방문자 스티커", filteredData);
-          setImageData(filteredData);
+          setImageData10(filteredData);
           dispatch(positionSlice.actions.update(["x", 0]));
           dispatch(positionSlice.actions.update(["y", 0]));
         })
@@ -294,7 +295,7 @@ export function TestBottom(props) {
           console.error("오류 발생", error);
         });
     }
-  }, [isImageFixed]); */
+  }, [isImageFixed]);
 
   const [zoomLevel, setZoomLevel] = useState(1);
   const minZoomLevel = 0.5;
@@ -317,58 +318,69 @@ export function TestBottom(props) {
 
   return (
     <BottomWrap>
-      {!isImageFixed && (
-        <Bottoms ref={componentRef}>
-          <Bottom style={{ transform: `scale(${zoomLevel})` }}>
-            {/* 클릭 이벤트 리스너 */}
-            {!isImageFixed && (
-              <div
-                style={{
-                  display: "flex",
-                  width: "85%",
-                  height: "85%",
-                }}
-                onClick={handlePut}
-              ></div>
-            )}
-            <HostImg src={hostImageUrl} />
+      <Bottoms ref={componentRef}>
+        <Bottom style={{ transform: `scale(${zoomLevel})` }}>
+          {/* 클릭 이벤트 리스너 */}
+          {!isImageFixed && (
+            <div
+              style={{
+                display: "flex",
+                width: "85%",
+                height: "85%",
+              }}
+              onClick={handlePut}
+            ></div>
+          )}
+          <HostImg src={hostImageUrl} />
 
-            {/* 이미지가 보이는 경우 */}
+          {/* 이미지가 보이는 경우 */}
 
-            {isImageVisible && (
-              <img
-                src={imageUrl}
-                style={{
-                  display: "flex",
-                  maxWidth: "100px",
-                  position: "absolute",
-                  top: `${(imagePosition.y * componentHeight) / 100}px`,
-                  left: `${(imagePosition.x * componentWidth) / 100}px`,
-                  zIndex: 9999,
-                }}
-              />
-            )}
-          </Bottom>
+          {isImageVisible && (
+            <img
+              src={imageUrl}
+              style={{
+                display: "flex",
+                maxWidth: "100px",
+                position: "absolute",
+                top: `${(imagePosition.y * componentHeight) / 100}px`,
+                left: `${(imagePosition.x * componentWidth) / 100}px`,
+                zIndex: 9999,
+              }}
+            />
+          )}
+        </Bottom>
 
-          {imageData &&
-            imageData.map((item) => (
-              <img
-                key={item.visitor_sticker_id}
-                src={item.final_image_url}
-                style={{
-                  position: "absolute",
-                  top: `${(item.location_y * componentHeight) / 100 + 70}px`,
-                  left: `${(item.location_x * componentWidth) / 100}px`,
-                  zIndex: 9999,
-                  maxWidth: "100px",
-                }}
-                alt={`Image ${item.id}`}
-              />
-            ))}
-        </Bottoms>
-      )}
-
-      {isImageFixed && <VisitorSticker />}
+        {imageData &&
+          imageData.map((item) => (
+            <img
+              key={item.visitor_sticker_id}
+              src={item.final_image_url}
+              style={{
+                position: "absolute",
+                top: `${(item.location_y * componentHeight) / 100 + 70}px`,
+                left: `${(item.location_x * componentWidth) / 100}px`,
+                zIndex: 9999,
+                maxWidth: "100px",
+              }}
+              alt={`Image ${item.id}`}
+            />
+          ))}
+        {imageData10 &&
+          imageData10.map((item) => (
+            <img
+              key={item.visitor_sticker_id}
+              src={item.final_image_url}
+              style={{
+                position: "absolute",
+                top: `${(item.location_y * componentHeight) / 100 + 70}px`,
+                left: `${(item.location_x * componentWidth) / 100}px`,
+                zIndex: 9999,
+                maxWidth: "100px",
+              }}
+              alt={`Image ${item.id}`}
+            />
+          ))}
+      </Bottoms>
     </BottomWrap>
   );
 }
