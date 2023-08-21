@@ -135,14 +135,15 @@ const Icon = styled.img`
 const Icon2 = styled.div`
   justify-content: center;
   align-items: center;
-  max-height: 50%;
+  height: 80%;
   display: flex;
   width: 80%;
 `;
 
 const Icon3 = styled.img`
   display: flex;
-  width: 60%;
+  max-height: 70%;
+  max-width: 60%;
 `;
 
 export function VisitPut(props) {
@@ -179,7 +180,8 @@ export function VisitPut(props) {
 
   //두 번째 이전 아이콘
   const handleSecondBack = () => {
-    setChange(false);
+    //setChange(false);
+    dispatch(setIsImageFixed(false));
     navigate(`/sticker/${ID}`);
   };
 
@@ -190,7 +192,7 @@ export function VisitPut(props) {
     navigate("/");
   };
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (change) {
       const timer = setTimeout(() => {
         // 5초 후에 페이지 이동
@@ -200,7 +202,7 @@ export function VisitPut(props) {
 
       return () => clearTimeout(timer); // 컴포넌트가 언마운트될 때 타이머 제거
     }
-  }, [change]);
+  }, [change]); */
 
   //호스트 닉네임 불러오기
   useEffect(() => {

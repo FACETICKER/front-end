@@ -88,7 +88,7 @@ function Del_page() {
     })
       .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       })
       .catch((error) => {
         console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
@@ -107,7 +107,7 @@ function Del_page() {
     })
       .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       })
       .catch((error) => {
         console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력

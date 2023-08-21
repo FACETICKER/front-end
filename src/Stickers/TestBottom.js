@@ -197,7 +197,7 @@ export function TestBottom(props) {
 
       const xyPer = {
         x: XPer,
-        y: YPer,
+        y: YPer - 2,
       };
       /*  const xyPer = {
         x: XPer.toFixed(2),
@@ -333,7 +333,7 @@ export function TestBottom(props) {
               src={item.final_image_url}
               style={{
                 position: "absolute",
-                top: `${(item.location_y * componentHeight) / 100 + 80}px`,
+                top: `${(item.location_y * componentHeight) / 100 + 70}px`,
                 left: `${(item.location_x * componentWidth) / 100}px`,
                 zIndex: 9999,
                 maxWidth: "100px",

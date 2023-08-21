@@ -127,14 +127,14 @@ export function ClickSticker() {
     "x-access-token": jwt,
     "Content-Type": "application/json",
   };
-  ///3초 후 nalert
-  /*   useEffect(() => {
+  ///3초 후 alert
+  useEffect(() => {
     const timer = setTimeout(() => {
       alert("카드를 눌러보세요.");
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, []); */
+  }, []);
 
   //스티커 읽음 처리
   console.log("9", ID, selectedImageId, jwt);
@@ -240,7 +240,6 @@ const ModalWrap = styled.div`
 const Wrap = styled.div`
   display: flex;
   height: 30%;
-
   padding-top: 10%;
   justify-content: center;
   align-items: center;
