@@ -34,7 +34,7 @@
 }
 
 .btn {
-    width: 226px;
+    width: 290px;
     height: 58px;
     border: 1px solid var(--unnamed, #12151C);
     background: #FFF;
@@ -52,8 +52,13 @@
     color: #12151C;
 }
 
+.btn_p {
+    width: 100%;
+    white-space: pre-line;
+}
+
 .btnshadow {
-    width: 226px;
+    width: 290px;
     height: 58px;
     background: var(--unnamed, rgba(25, 25, 25, 0.80));
     box-shadow: 0px 4px 10px 0px rgba(67, 0, 209, 0.10);
