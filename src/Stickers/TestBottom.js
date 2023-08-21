@@ -146,6 +146,27 @@ export function TestBottom(props) {
       });
   }, []);
 
+  //이미지들 한 번 더 불러오기
+  useEffect(() => {
+    if (isImageFixed) {
+      fetch(`http://app.faceticker.site/${ID}/sticker/all`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          /* console.log("111", data.result.userStickerResult[0].final_image_url); */
+          setHostImageUrl(data.result.userStickerResult[0].final_image_url);
+          const filteredData = data.result.visitorStickerResult.filter(
+            (item) => item.location_x !== null
+          );
+          console.log("00", filteredData);
+          setImageData(filteredData);
+        })
+        .catch((error) => {
+          console.error("오류 발생", error);
+        });
+    }
+  }, [isImageFixed]);
+
   const dispatch = useDispatch();
 
   //Bottom 높이, 너비 반환
@@ -309,6 +330,7 @@ export function TestBottom(props) {
             ></div>
           )}
           <HostImg src={hostImageUrl} />
+
           {/* 이미지가 보이는 경우 */}
 
           {isImageVisible && (
@@ -333,7 +355,7 @@ export function TestBottom(props) {
               src={item.final_image_url}
               style={{
                 position: "absolute",
-                top: `${(item.location_y * componentHeight) / 100 + 80}px`,
+                top: `${(item.location_y * componentHeight) / 100 + 70}px`,
                 left: `${(item.location_x * componentWidth) / 100}px`,
                 zIndex: 9999,
                 maxWidth: "100px",
