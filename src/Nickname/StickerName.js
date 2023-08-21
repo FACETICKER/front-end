@@ -174,7 +174,7 @@ const Input = styled.input`
   display: flex;
   position: absolute;
   width: 80%;
-  height: 80%;
+  height: 85%;
   top: ${(props) => props.top};
   text-align: center;
   background-color: transparent;

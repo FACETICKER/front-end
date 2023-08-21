@@ -72,6 +72,8 @@ export function Visitor() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const isImageFixed = useSelector((state) => state.app.isImageFixed);
+
   const handlesticker = () => {
     navigate("/makesticker");
   };
@@ -80,14 +82,25 @@ export function Visitor() {
     <BackgroundWrap>
       <Background>
         <MainHeader />
-        <MainText />
+        {!isImageFixed && <MainText />}
+
         <VisitorSticker />
         <ButtonWrap>
           <Middle src={middle} />
 
           <Footer>
             <Icons>
-              <Icon onClick={handlesticker} src={visitorbutton} />
+              {!isImageFixed && (
+                <Icon onClick={handlesticker} src={visitorbutton} />
+              )}
+
+              {isImageFixed && (
+                <>
+                  {" "}
+                  <Icon onClick={handleMakeprofile} src={mysticker} />
+                  <Icon onClick={handleQnA} src={goqna} />
+                </>
+              )}
             </Icons>
           </Footer>
         </ButtonWrap>
