@@ -10,6 +10,7 @@ import React, { useRef } from "react";
 import positionSlice from "./positionSlice";
 import Idtoken from "./Idtoken";
 import { useLocation } from "react-router-dom";
+import VisitorSticker from "./VisitorSticker";
 
 //방문자가 자신의 스티커를 호스트 페이지에 붙이는 컴포넌트
 
@@ -274,7 +275,7 @@ export function TestBottom(props) {
   }, [isImageFixed]);
 
   //이미지들 한 번 더 불러오기
-  useEffect(() => {
+  /*   useEffect(() => {
     if (isImageFixed) {
       fetch(`http://app.faceticker.site/${ID}/sticker/all`)
         .then((response) => response.json())
@@ -293,7 +294,7 @@ export function TestBottom(props) {
           console.error("오류 발생", error);
         });
     }
-  }, [isImageFixed]);
+  }, [isImageFixed]); */
 
   const [zoomLevel, setZoomLevel] = useState(1);
   const minZoomLevel = 0.5;
@@ -316,58 +317,58 @@ export function TestBottom(props) {
 
   return (
     <BottomWrap>
-      <Bottoms ref={componentRef}>
-        <Bottom style={{ transform: `scale(${zoomLevel})` }}>
-          {/* 클릭 이벤트 리스너 */}
-          {!isImageFixed && (
-            <div
-              style={{
-                display: "flex",
-                width: "85%",
-                height: "85%",
-              }}
-              onClick={handlePut}
-            ></div>
-          )}
-          <HostImg src={hostImageUrl} />
+      {!isImageFixed && (
+        <Bottoms ref={componentRef}>
+          <Bottom style={{ transform: `scale(${zoomLevel})` }}>
+            {/* 클릭 이벤트 리스너 */}
+            {!isImageFixed && (
+              <div
+                style={{
+                  display: "flex",
+                  width: "85%",
+                  height: "85%",
+                }}
+                onClick={handlePut}
+              ></div>
+            )}
+            <HostImg src={hostImageUrl} />
 
-          {/* 이미지가 보이는 경우 */}
+            {/* 이미지가 보이는 경우 */}
 
-          {isImageVisible && (
-            <img
-              src={imageUrl}
-              style={{
-                display: "flex",
-                maxWidth: "100px",
-                position: "absolute",
-                top: `${(imagePosition.y * componentHeight) / 100}px`,
-                left: `${(imagePosition.x * componentWidth) / 100}px`,
-                zIndex: 9999,
-              }}
-            />
-          )}
-        </Bottom>
+            {isImageVisible && (
+              <img
+                src={imageUrl}
+                style={{
+                  display: "flex",
+                  maxWidth: "100px",
+                  position: "absolute",
+                  top: `${(imagePosition.y * componentHeight) / 100}px`,
+                  left: `${(imagePosition.x * componentWidth) / 100}px`,
+                  zIndex: 9999,
+                }}
+              />
+            )}
+          </Bottom>
 
-        {imageData &&
-          imageData.map((item) => (
-            <img
-              key={item.visitor_sticker_id}
-              src={item.final_image_url}
-              style={{
-                position: "absolute",
-                top: `${(item.location_y * componentHeight) / 100 + 70}px`,
-                left: `${(item.location_x * componentWidth) / 100}px`,
-                zIndex: 9999,
-                maxWidth: "100px",
-              }}
-              alt={`Image ${item.id}`}
-            />
-          ))}
-      </Bottoms>
-      {/*   <ZoomButtons>
-        <ZoomButton onClick={zoomIn}>Zoom In</ZoomButton>
-        <ZoomButton onClick={zoomOut}>Zoom Out</ZoomButton>
-      </ZoomButtons> */}
+          {imageData &&
+            imageData.map((item) => (
+              <img
+                key={item.visitor_sticker_id}
+                src={item.final_image_url}
+                style={{
+                  position: "absolute",
+                  top: `${(item.location_y * componentHeight) / 100 + 70}px`,
+                  left: `${(item.location_x * componentWidth) / 100}px`,
+                  zIndex: 9999,
+                  maxWidth: "100px",
+                }}
+                alt={`Image ${item.id}`}
+              />
+            ))}
+        </Bottoms>
+      )}
+
+      {isImageFixed && <VisitorSticker />}
     </BottomWrap>
   );
 }
