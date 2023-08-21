@@ -87,7 +87,7 @@ export function TestBottom(props) {
   const [yvalue, setY] = useState(0);
   const [imageUrl, setImageUrl] = useState(null);
   const [imagePosition, setImagePosition] = useState(null);
-  // const [isImageVisible, setIsImageVisible] = useState(false);
+  const [isImageVisible, setIsImageVisible] = useState(false);
   const [hostImageUrl, setHostImageUrl] = useState(null);
   const [componentWidth, setComponentWidth] = useState(0);
   const [componentHeight, setComponentHeight] = useState(0);
@@ -162,7 +162,7 @@ export function TestBottom(props) {
   }, []);
 
   const imageUrl2 = useSelector((state) => state.capture.visitorimageUrl);
-  const visible = useSelector((state) => state.reducers.imagevisible);
+  /*   const visible = useSelector((state) => state.reducers.imagevisible); */
   console.log("put");
   console.log("보낼 값", { x: xvalue, y: yvalue });
   console.log("x", xvalue);
@@ -197,7 +197,7 @@ export function TestBottom(props) {
 
       const xyPer = {
         x: XPer,
-        y: YPer - 2,
+        y: YPer,
       };
       /*  const xyPer = {
         x: XPer.toFixed(2),
@@ -217,7 +217,7 @@ export function TestBottom(props) {
       dispatch(setIsImageVisible(true));
 
       console.log("2");
-      //dispatch(setIsImageFixed(false)); // 스티커 고정 상태를 해제
+      dispatch(setIsImageFixed(false)); // 스티커 고정 상태를 해제
     } catch (error) {
       console.error("이미지 URL 가져오기 오류:", error);
     }
@@ -253,7 +253,7 @@ export function TestBottom(props) {
   }, [isImageFixed]);
 
   //이미지들 한 번 더 불러오기
-  /*   useEffect(() => {
+  useEffect(() => {
     if (isImageFixed) {
       fetch(`http://app.faceticker.site/${ID}/sticker/all`)
         .then((response) => response.json())
@@ -272,7 +272,7 @@ export function TestBottom(props) {
           console.error("오류 발생", error);
         });
     }
-  }, [isImageFixed]); */
+  }, [isImageFixed]);
 
   const [zoomLevel, setZoomLevel] = useState(1);
   const minZoomLevel = 0.5;
@@ -311,7 +311,7 @@ export function TestBottom(props) {
           <HostImg src={hostImageUrl} />
           {/* 이미지가 보이는 경우 */}
 
-          {isImageFixed && (
+          {isImageVisible && (
             <img
               src={imageUrl}
               style={{
@@ -333,7 +333,7 @@ export function TestBottom(props) {
               src={item.final_image_url}
               style={{
                 position: "absolute",
-                top: `${(item.location_y * componentHeight) / 100 + 70}px`,
+                top: `${(item.location_y * componentHeight) / 100 + 80}px`,
                 left: `${(item.location_x * componentWidth) / 100}px`,
                 zIndex: 9999,
                 maxWidth: "100px",
