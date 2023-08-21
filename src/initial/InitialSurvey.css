@@ -224,6 +224,7 @@ input::-webkit-inner-spin-button {
     /* Chrome, Safari, Opera */
     display: none;
   }
+  overflow-x: hidden;
   position: relative;
 }
 
