@@ -253,7 +253,7 @@ export function TestBottom(props) {
   }, [isImageFixed]);
 
   //이미지들 한 번 더 불러오기
-  useEffect(() => {
+  /*   useEffect(() => {
     if (isImageFixed) {
       fetch(`http://app.faceticker.site/${ID}/sticker/all`)
         .then((response) => response.json())
@@ -272,7 +272,7 @@ export function TestBottom(props) {
           console.error("오류 발생", error);
         });
     }
-  }, [isImageFixed]);
+  }, [isImageFixed]); */
 
   const [zoomLevel, setZoomLevel] = useState(1);
   const minZoomLevel = 0.5;
@@ -318,7 +318,7 @@ export function TestBottom(props) {
                 display: "flex",
                 maxWidth: "100px",
                 position: "absolute",
-                top: `${(imagePosition.y * componentHeight) / 100}px`,
+                top: `${(imagePosition.y * componentHeight) / 100 + 70}px`,
                 left: `${(imagePosition.x * componentWidth) / 100}px`,
                 zIndex: 9999,
               }}
