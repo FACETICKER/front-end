@@ -258,6 +258,7 @@ export function TestBottom(props) {
   //이미지 PATCH
   useEffect(() => {
     if (isImageFixed) {
+      setImageData(null);
       fetch(`http://app.faceticker.site/${ID}/sticker/attach?id=${visitorid}`, {
         method: "PATCH",
         headers: {
