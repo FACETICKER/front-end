@@ -251,7 +251,7 @@ export function TestBottom(props) {
   const positionState = useSelector((state) => state.position);
   const finalPosition = {
     x: positionState.x,
-    y: positionState.y,
+    y: positionState.y - 2,
   };
   console.log("finalposition", finalPosition);
 
