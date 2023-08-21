@@ -14,7 +14,9 @@ function Basic_btn(props) {
 
     return (
         <div className={styles.buttonbackground}>
-            <button className={styles.btn} onClick={onclick}>{props.text}</button>
+            <button className={styles.btn} onClick={onclick}>
+                <p className={styles.btn_p}>{props.text}</p>
+            </button>
             <button className={styles.btnshadow}></button>
             <Popup />
         </div>
