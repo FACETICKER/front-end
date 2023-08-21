@@ -366,7 +366,7 @@ export function TestBottom(props) {
               alt={`Image ${item.id}`}
             />
           ))}
-        {/*  {imageData10 &&
+        {imageData10 &&
           imageData10.map((item) => (
             <img
               key={item.visitor_sticker_id}
@@ -380,7 +380,7 @@ export function TestBottom(props) {
               }}
               alt={`Image ${item.id}`}
             />
-          ))} */}
+          ))}
       </Bottoms>
     </BottomWrap>
   );
