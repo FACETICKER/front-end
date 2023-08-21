@@ -34,6 +34,7 @@ const Bottom = styled.div`
   justify-content: center;
   display: flex;
   position: relative;
+  align-items: center;
 `;
 
 const Shadow = styled.div`
@@ -85,7 +86,9 @@ const LetterContent = styled.div`
   align-items: center;
   justify-content: center;
   width: 70%;
-  bottom: 50%;
+  bottom: 55%;
+  max-height: 10%;
+
   color: #191919;
   text-align: center;
   font-family: Pretendard;
@@ -284,7 +287,7 @@ export default Card;
 
 const CardWrap = styled.div`
   width: 90%;
-  height: 100%;
+  height: 93%;
   border-radius: 20px;
 
   display: flex;

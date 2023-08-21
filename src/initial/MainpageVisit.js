@@ -109,7 +109,7 @@ function MainpageVisit() {
   };
   const handleQna = () => {
     dispatch(PageSlice.actions.guest());
-    navigate('/qna');
+    navigate("/qna");
   };
   const handleMainHost = () => {
     navigate(`/main/host/`);
@@ -165,7 +165,7 @@ function MainpageVisit() {
   const handleSpring = () => {
     const resultDiv1 = document.getElementById("ifSpring");
     setSeason("SPR 봄 ING");
-    resultDiv1.style.left="24%";
+    resultDiv1.style.left = "24%";
   };
   const handleSummer = () => {
     setSeason("SUM 여름 MER");
@@ -203,7 +203,7 @@ function MainpageVisit() {
 
   const JWT = Token()[1];
   const [messagedata, setMessagedata] = useState(null);
-  const [stickerdata,setStickerdata] =useState(null);
+  const [stickerdata, setStickerdata] = useState(null);
 
   const test1 = () => {
     const headers = {
@@ -236,7 +236,7 @@ function MainpageVisit() {
           setName(data.result.hostPoster[0].nickname);
           setMean(data.result.hostPoster[0].meaning);
           setKorean(data.result.hostPoster[0].pronunciation);
-          setNumber("#"+data.result.hostPoster[0].q_number);
+          setNumber("#" + data.result.hostPoster[0].q_number);
           const handleSelleckSeason = () => {
             if (data.result.hostPoster[0].q_season === "봄") {
               handleSpring();
@@ -279,37 +279,37 @@ function MainpageVisit() {
   test2();
 
   useEffect(() => {
-    const messageCircle = document.getElementById("ment")
+    const messageCircle = document.getElementById("ment");
     console.log(messagedata);
-    if (messagedata)   {
+    if (messagedata) {
       messageCircle.style.display = "block";
     } else {
       messageCircle.style.display = "none";
     }
-  },[messagedata])
-  useEffect(() =>{
-    const makeProfile = document.getElementById("makeprofile")
-    if (Season=="") {
+  }, [messagedata]);
+  useEffect(() => {
+    const makeProfile = document.getElementById("makeprofile");
+    if (Season == "") {
       console.log(1);
-      makeProfile.style.display="block";
+      makeProfile.style.display = "block";
     } else {
-      makeProfile.style.display="none";
+      makeProfile.style.display = "none";
     }
-  },[Season])
+  }, [Season]);
 
   return (
-    <div className="BackgroundWarp" style={{background: '#FEFAEF'}}>
-      <div className="Background" style={{background: '#FEFAEF'}}>
+    <div className="BackgroundWarp" style={{ background: "#FEFAEF" }}>
+      <div className="Background" style={{ background: "#FEFAEF" }}>
         <div className="l25" style={{ position: "relative" }}>
           <header
             style={{
               float: "down",
-              width:'320px',
+              width: "320px",
               height: "70px",
               position: "relative",
               top: "0px",
-              display:'flex',
-              justifyContent: 'space-between'
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
             <div
@@ -358,7 +358,7 @@ function MainpageVisit() {
               width: "335px",
               height: "125%",
               position: "relative",
-              top: "15px",  
+              top: "15px",
               border: "3px solid var(--unnamed, #12151C)",
               borderRadius: "20px",
               boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",
@@ -377,23 +377,37 @@ function MainpageVisit() {
               <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
                 <div
                   style={{
-                    width:'250px',
-                    height: '300px',
+                    width: "250px",
+                    height: "300px",
                     position: "absolute",
-                    display:'flex',
+                    display: "flex",
                     left: "50%",
                     top: "80%",
-                    transform: 'translate(-50%, -50%)',
+                    transform: "translate(-50%, -50%)",
                     zIndex: "3",
-                    flexWrap: 'wrap',
+                    flexWrap: "wrap",
                   }}
-                  name="사진" id="Photo"
+                  name="사진"
+                  id="Photo"
                 >
-                  <img id="Sticker" style={{width:'200px', height:'240px' ,position:'relative', margin:'0 auto',zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
-                  <div className="l30" style={{zIndex:"2"}}></div>
+                  <img
+                    id="Sticker"
+                    style={{
+                      width: "200px",
+                      height: "240px",
+                      position: "relative",
+                      margin: "0 auto",
+                      zIndex: "3",
+                    }}
+                    src={stickerdata || normalSticker}
+                    alt="Vector"
+                  />
+                  <div className="l30" style={{ zIndex: "3" }}></div>
                 </div>
-                <div >
-                  <p id="ifSpring" className="l13-2">{Season || ""}</p>
+                <div>
+                  <p id="ifSpring" className="l13-2">
+                    {Season || ""}
+                  </p>
                 </div>
                 <div id="ment" className="l22-2">
                   <div className="l23-2" style={{ zIndex: "2" }}>
@@ -430,7 +444,9 @@ function MainpageVisit() {
                 }}
               >
                 <div name="사자성어">
-                  <div style={{position:'relative',top:'20px',left:'2%'}}>
+                  <div
+                    style={{ position: "relative", top: "20px", left: "2%" }}
+                  >
                     <div
                       className="l28-2"
                       style={{ backgroundColor: "#FF6D00" }}
@@ -488,7 +504,6 @@ function MainpageVisit() {
             </div>
             <div>
               <div style={{ float: "left" }}>
-                 
                 {/*  <button
                   style={{
                     width: "20px",
@@ -512,7 +527,7 @@ function MainpageVisit() {
                   -1
                 </button> */}
               </div>
-              <Div style={{position:'absolute',top:'87%',left:'56%'}}>
+              <Div style={{ position: "absolute", top: "87%", left: "56%" }}>
                 <button className="l10" onClick={handleVisitorsticker}>
                   <img src={recordpage} alt="recordpage" />
                 </button>
@@ -532,17 +547,29 @@ function MainpageVisit() {
                 </button>
               </div> */}
             </div>
-            <div id='makeprofile' style={{position:'absolute', top:'73%', left:'25%', display:'none'}}>
-            <div name="프로필 생성 제안">
-                  <p id="" className="l28">
-                    해당 유저가 아직
-                  </p>
-                </div>
-                <div name="링크">
-                  <p id="" className="l28" style={{position:'relative',left:'0px',top:'-20px'}}>
-                    프로필을 작성하지 않았습니다.
-                  </p>
-                </div>
+            <div
+              id="makeprofile"
+              style={{
+                position: "absolute",
+                top: "73%",
+                left: "25%",
+                display: "none",
+              }}
+            >
+              <div name="프로필 생성 제안">
+                <p id="" className="l28">
+                  해당 유저가 아직
+                </p>
+              </div>
+              <div name="링크">
+                <p
+                  id=""
+                  className="l28"
+                  style={{ position: "relative", left: "0px", top: "-20px" }}
+                >
+                  프로필을 작성하지 않았습니다.
+                </p>
+              </div>
             </div>
           </div>
           {showFooter && (
@@ -556,7 +583,7 @@ function MainpageVisit() {
             </footer>
           )}
           {showModal && (
-            <div className="Modal" style={{zIndex:'100'}}>
+            <div className="Modal" style={{ zIndex: "100" }}>
               <div>
                 <div style={{}}>
                   <div className="l17">!</div>
@@ -605,7 +632,7 @@ function MainpageVisit() {
             </div>
           )}
           {showModal3 && (
-            <div className="Modal" style={{zIndex:'100'}}>
+            <div className="Modal" style={{ zIndex: "100" }}>
               <div>
                 <div style={{}}>
                   <div className="l17">!</div>
@@ -654,7 +681,7 @@ function MainpageVisit() {
             </div>
           )}
           {showModal2 && (
-            <div className="Modal" style={{zIndex:'1000'}}>
+            <div className="Modal" style={{ zIndex: "1000" }}>
               <div>
                 <div className="l17">!</div>
                 <button id="close" className="l18" onClick={toggleModal2}>

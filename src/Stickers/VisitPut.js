@@ -179,7 +179,8 @@ export function VisitPut(props) {
 
   //두 번째 이전 아이콘
   const handleSecondBack = () => {
-    setChange(false);
+    //setChange(false);
+    dispatch(setIsImageFixed(false));
     navigate(`/sticker/${ID}`);
   };
 

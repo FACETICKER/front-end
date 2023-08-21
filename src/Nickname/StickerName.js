@@ -341,11 +341,12 @@ export function StickerName() {
             <InputWrap height={inputheight} onClick={handleClickInput}>
               <InputImg height={inputheight} src={inputImage} />
               <Input
-                maxLength="8"
+                type="text"
+                maxLength="7"
                 onChange={saveNickname}
                 value={nicknameValue}
                 top={inputTop}
-                placeholder="스티커 네임 입력 (8자 이내)"
+                placeholder="스티커 네임 입력 (7자 이내)"
               ></Input>
             </InputWrap>
           </Bottom>
