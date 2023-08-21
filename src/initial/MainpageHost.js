@@ -440,7 +440,7 @@ function MainpageHost() {
               width: "335px",
               height: "125%",
               position: "relative",
-              top: "15px",
+              top: "5px",
               border: "3px solid var(--unnamed, #12151C)",
               borderRadius: "20px",
               boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",
@@ -473,7 +473,7 @@ function MainpageHost() {
                   <img id="Sticker" style={{width:'60%',position:'relative', bottom:'30px' , margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
                   <div className="l30-2" style={{zIndex:"2"}}></div>
                 </div>
-                <div >
+                <div>
                   <p id="ifSpring" className="l13-2">{Season || ""}</p>
                 </div>
                 <div id="ment" className="l22-2">
