@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom";
 import visitorbutton from "../img/Stickers_img/visitorbutton.png";
 import middle from "../img/Stickers_img/Middle.png";
 import VisitorSticker from "./VisitorSticker";
+import mysticker from "../img/Stickers_img/mysticker.png";
+import goqna from "../img/Stickers_img/goqna.png";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -79,6 +81,17 @@ export function Visitor() {
     navigate("/makesticker");
   };
 
+  const handleQnA = () => {
+    dispatch(PageSlice.actions.guest());
+    navigate("/qna");
+  };
+
+  //내 프로필 제작 누르면
+  const handleMakeprofile = () => {
+    //만든 스티커 post
+    //로그인 페이지로
+    navigate("/");
+  };
   return (
     <BackgroundWrap>
       <Background>
