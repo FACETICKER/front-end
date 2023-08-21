@@ -71,9 +71,36 @@ const Middle = styled.img`
   position: absolute;
   top: -28%;
 `;
+const TextHeader = styled.div`
+  height: 8%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`;
+const Text3 = styled.div`
+  color: #191919;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 150% */
+`;
+
+const Text4 = styled.div`
+  color: rgba(25, 25, 25, 0.8);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 36px; /* 257.143% */
+`;
 export function Visitor() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [HostName, setHostName] = useState("호스트명");
 
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
   console.log("이미지fixed", isImageFixed);
@@ -93,11 +120,38 @@ export function Visitor() {
     //로그인 페이지로
     navigate("/");
   };
+
+  //방문자가 가지고 온  호스트Id 가져오기
+  const hostid = useSelector((state) => state.login.hostid);
+  const ID = hostid;
+
+  //호스트 닉네임 불러오기
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("호스트 성공", data);
+        console.log("호스트명", data.result.userNickname);
+        setHostName(data.result.userNickname);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
+
   return (
     <BackgroundWrap>
       <Background>
         <MainHeader />
+
         {!isImageFixed && <MainText />}
+
+        {isImageFixed && (
+          <TextHeader>
+            <Text3>'{HostName}'님의 페이지에</Text3>
+            <Text3>내 스티커가 부착되었습니다.</Text3>
+          </TextHeader>
+        )}
 
         <VisitorSticker />
         <ButtonWrap>
