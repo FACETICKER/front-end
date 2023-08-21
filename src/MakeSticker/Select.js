@@ -56,6 +56,7 @@ const Select = ({ handleCaptureImg }) => {
   const [test2, setTest] = useState(null);
   const [setting, setSetting] = useState(false);
   const [settingcomplete, setSettingComplete] = useState(true);
+  const [vid, setvid] = useState(null);
 
   // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
   const hostid = useSelector((state) => state.login.hostid);
@@ -251,12 +252,17 @@ const Select = ({ handleCaptureImg }) => {
 
       const responseData = await response.json();
       console.log("성공", responseData);
+
       if (whatType === "visitor") {
         console.log(responseData.result.visitor_sticker_id);
-        dispatch(setVisitorId(responseData.result.visitor_sticker_id));
+        setvid(responseData.result.visitor_sticker_id);
+        //dispatch(setVisitorId(responseData.result.visitor_sticker_id));
         setTest(responseData.result.visitor_sticker_id);
         console.log("dispatch id1", VID);
         dispatch(setNext(true));
+
+        // 응답을 받은 후에 navigate 실행
+        // await navigate("/stickername", { state: { test: test2 } }); // 목표 화면 이름으로 변경
       }
     } catch (error) {
       console.error("PATCH request failed:", error);
@@ -272,12 +278,13 @@ const Select = ({ handleCaptureImg }) => {
 
   console.log("test2", test2);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (test2) {
       console.log("test2", test2);
+      dispatch(StickerSlice.actions.update(["step", 0]));
       navigate("/stickername", { state: { test: test2 } });
     }
-  }, [test2]);
+  }, [test2]); */
 
   //방문자는 이미지 링크 redux로 저장해놓기
   /* const loginData = useSelector((state) => state.login);
@@ -290,11 +297,18 @@ const Select = ({ handleCaptureImg }) => {
   };
 
   useEffect(() => {
-    if (setting && imageUrl) {
+    if (setting && next) {
       navigate(`/main/host/${userId}`);
       dispatch(setChangeSticker(false));
     }
-  }, [setting, imageUrl]);
+  }, [setting, next]);
+
+  useEffect(() => {
+    if (test2) {
+      const visitorId = test2;
+      navigate(`/stickername/${visitorId}`);
+    }
+  }, [test2]);
 
   return (
     <div className={styles.background}>

@@ -49,9 +49,9 @@ function App() {
           {/*방문자 메인페이지 */}
           <Route path="/main/host/:userId" element={<MainpageHost />} />
           {/*호스트 메인페이지 */}
-          <Route path="/stickername" element={<StickerName />} />
+          <Route path="/stickername/:visitorId" element={<StickerName />} />
           {/* 방문자 스티커 네임 설정 */}
-          <Route path="/stickerletter" element={<StickerLetter />} />
+          <Route path="/stickerletter/:visitorId" element={<StickerLetter />} />
           {/*방문자 방명록 설정 */}
           <Route path="/status" element={<StatusMessage />} />
           {/* 호스트가 남기고 싶은 말 페이지 */}
@@ -59,13 +59,16 @@ function App() {
           {/*스티커 제작 페이지 */}
           <Route path="/qna" element={<QnApage />} />
           {/*질문답변 */}
-          <Route path="put" element={<PutPage />} />
+          <Route path="/put/:visitorId" element={<PutPage />} />
           {/*스티커 붙이기 방문자 */}
-          <Route path="sticker/:userId" element={<VisitorSticker />} />
+          <Route path="/sticker/:userId" element={<VisitorSticker />} />
           {/*스티커 방문자 */}
-          <Route path="sticker/host/:userId" element={<StickerMainHost />} />
+          <Route path="/sticker/host/:userId" element={<StickerMainHost />} />
           {/*스티커 호스트 */}
-          <Route path="sticker/host/:userId/click" element={<ClickSticker />} />
+          <Route
+            path="/sticker/host/:userId/click"
+            element={<ClickSticker />}
+          />
           {/*호스트가 스티커 클릭할 때 */}
           <Route path="/sticker/host/:userId/menu" element={<StickerMenu />} />
           {/*스티커 메뉴 */}

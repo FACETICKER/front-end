@@ -83,11 +83,12 @@ function MainpageHost() {
   };
 
   const [address2, setAddress2] = useState("");
+  const [address3, setAddress3] = useState("");
+
   useEffect(() => {
-    if (user_id) {
-      setAddress2(`http://www.faceticker.site/main/${user_id}`);
-    }
-  },[user_id])
+    console.log("sdnvud");
+    setAddress3(`http://www.faceticker.site/main/${address2}`);
+  },[address2])
   const handleLinkDownload = async () => {
     const address = `http://www.faceticker.site/main/${user_id}`;
     try {
@@ -269,6 +270,7 @@ function MainpageHost() {
               handleWinter();
             }
           };
+          setAddress2(data.result.hostPoster[0].user_id);
           handleSelleckSeason();
           setStickerdata(data.result.hostSticker[0].final_image_url);
         }
@@ -460,10 +462,12 @@ function MainpageHost() {
                     top: "80%",
                     transform: 'translate(-50%, -50%)',
                     zIndex: "3",
+                    flexWrap: 'wrap',
                   }}
                   name="사진" id="Photo"
                 >
-                  <img id="Sticker" style={{width:'200px', height:'240px',position:'relative', margin:'0 auto'}} src={stickerdata || normalSticker} alt="Vector" />
+                  <img id="Sticker" style={{width:'200px', height:'240px',position:'relative', margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
+                  <div className="l30-2" style={{zIndex:"2"}}></div>
                 </div>
                 <div >
                   <p id="ifSpring" className="l13-2">{Season || ""}</p>
@@ -598,7 +602,7 @@ function MainpageHost() {
                     {recordNumber || ""}
                   </p>
                 </div> 
-                <CopyToClipboard text={address2} onCopy={() => alert("클립보드에 복사되었습니다.")}>
+                <CopyToClipboard text={{address3}} onCopy={() => alert("클립보드에 복사되었습니다.")}>
                 <button className="l10-2">
                   <img src={share} alt="share" />
                 </button>

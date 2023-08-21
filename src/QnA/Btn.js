@@ -107,11 +107,6 @@ function Btn(props) {
                     <Answer_button key={item.id} id={item.id} type={item.type} open={item.open} text={item.text} clicked={item.clicked}></Answer_button>
                 ))
             )}
-            {props.id === maxId && (
-                <div className={styles2.basic_btn_background}>
-                    <img src={Basicquestionbtn} className={styles2.basic_btn_img} onClick={Basic_Choice}></img>
-                </div>
-            )}
         </div>
     );
 };

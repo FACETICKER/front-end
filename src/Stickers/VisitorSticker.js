@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setSelectedImage } from "./imageSlice";
 import Idtoken from "./Idtoken";
+import { setHostId } from "../login/LoginSlice";
 
 //방문자 기록 컴포넌트
 
@@ -79,8 +80,13 @@ export function VisitorSticker() {
 
   const dispatch = useDispatch();
 
-  // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
-  const hostid = useSelector((state) => state.login.hostid);
+  const currentURL = window.location.href;
+  const parts = currentURL.split("/");
+  const hostid = parts[parts.length - 1]; //방문자가 가지고 온 호스트 ID
+  console.log(hostid);
+  //호스트 아이디 저장
+  dispatch(setHostId(hostid)); // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
+
   const jwt = Idtoken()[1]; //호스트 토큰
   const userId = Idtoken()[0]; //호스트 아이디
 

@@ -9,6 +9,7 @@
 .background {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .draw {
@@ -131,6 +132,7 @@
   flex-direction: column;
   overflow-y: scroll;
   height: 75%;
+  position: relative;
 }
 
 .answering_open {
@@ -139,15 +141,16 @@
   flex-direction: column;
   overflow-y: scroll;
   height: 45%;
+  position: relative;
 }
 
 .original {
-  z-index: -1;
   display: flex;
   background: rgba(248, 248, 250, 1);
   flex-direction: column;
   overflow-y: scroll;
   height: 85%;
+  position: relative;
 }
 
 .hiddenscroll::-webkit-scrollbar {
@@ -308,19 +311,13 @@
   color: rgba(255, 116, 39, 1);
 }
 
-.basic_btn_background {
-  position: relative;
-  width: 90%;
-  height: 60px;
-  overflow: visible;
-  margin-top: 15px;
-}
-
 .basic_btn_img {
-  position: absolute;
+  position: sticky;
+  bottom: 2%;
+  left: 95%; /* 오른쪽으로 5%만큼 이동 */
+  transform: translateX(-25%); /* 다시 왼쪽으로 100%만큼 이동하여 정확한 위치 조정 */
   width: 60px;
-  height: 100%;
-  right: -9%;
+  height: 60px;
 }
 
 .hidden {
