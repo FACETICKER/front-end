@@ -87,7 +87,7 @@ export function TestBottom(props) {
   const [yvalue, setY] = useState(0);
   const [imageUrl, setImageUrl] = useState(null);
   const [imagePosition, setImagePosition] = useState(null);
-  const [isImageVisible, setIsImageVisible] = useState(false);
+  // const [isImageVisible, setIsImageVisible] = useState(false);
   const [hostImageUrl, setHostImageUrl] = useState(null);
   const [componentWidth, setComponentWidth] = useState(0);
   const [componentHeight, setComponentHeight] = useState(0);
@@ -162,7 +162,7 @@ export function TestBottom(props) {
   }, []);
 
   const imageUrl2 = useSelector((state) => state.capture.visitorimageUrl);
-  /*   const visible = useSelector((state) => state.reducers.imagevisible); */
+  const visible = useSelector((state) => state.reducers.imagevisible);
   console.log("put");
   console.log("보낼 값", { x: xvalue, y: yvalue });
   console.log("x", xvalue);
@@ -217,7 +217,7 @@ export function TestBottom(props) {
       dispatch(setIsImageVisible(true));
 
       console.log("2");
-      dispatch(setIsImageFixed(false)); // 스티커 고정 상태를 해제
+      //dispatch(setIsImageFixed(false)); // 스티커 고정 상태를 해제
     } catch (error) {
       console.error("이미지 URL 가져오기 오류:", error);
     }
@@ -311,14 +311,14 @@ export function TestBottom(props) {
           <HostImg src={hostImageUrl} />
           {/* 이미지가 보이는 경우 */}
 
-          {isImageVisible && (
+          {isImageFixed && (
             <img
               src={imageUrl}
               style={{
                 display: "flex",
                 maxWidth: "100px",
                 position: "absolute",
-                top: `${(imagePosition.y * componentHeight) / 100 + 70}px`,
+                top: `${(imagePosition.y * componentHeight) / 100}px`,
                 left: `${(imagePosition.x * componentWidth) / 100}px`,
                 zIndex: 9999,
               }}
