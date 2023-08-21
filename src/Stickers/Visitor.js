@@ -85,7 +85,7 @@ const Text3 = styled.div`
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
-  line-height: 20px; /* 150% */
+  line-height: 26px; /* 150% */
 `;
 
 const Text4 = styled.div`

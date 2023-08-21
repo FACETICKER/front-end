@@ -31,6 +31,9 @@ export function MainText() {
   const userId = Idtoken()[0]; //호스트 아이디
 
   const whatType = hostid == null ? "host" : "visitor";
+  //방문자가 가지고 온  호스트Id 가져오기
+
+  const ID = hostid;
 
   //헤더
   const headers = {
