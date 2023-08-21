@@ -241,8 +241,8 @@ input::-webkit-inner-spin-button {
 }
 
 .l18-1 {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   flex-shrink: 0;
   border-radius: 10px;
   border: 1px solid var(--unnamed, #d9d9d9);
@@ -250,7 +250,8 @@ input::-webkit-inner-spin-button {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25) inset;
   margin: 25% 2.5%;
   position: relative;
-  padding: 0 0 0 0px;
+  padding: 0 0px 0 0px;
+  margin: 80px 11px 0 15px;
   color: var(--unnamed, #FF6D00);
   text-align: center;
   font-family: Pretendard;
@@ -308,6 +309,7 @@ input::-webkit-inner-spin-button {
   justify-content: space-evenly;
   align-items: center;
   justify-content: center;
+  overflow: scroll;
   box-shadow: 0px 2px 10px 0px rgba(67, 0, 209, 0.10);
   position: relative;
   top:-70px;
