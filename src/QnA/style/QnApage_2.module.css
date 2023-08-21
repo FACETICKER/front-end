@@ -80,6 +80,7 @@
     border: none;
     position: relative;
     color: #3F3F3F;
+    margin-left: 1%;
 }
 
 .radius_L {
@@ -133,6 +134,7 @@
   overflow-y: scroll;
   height: 75%;
   position: relative;
+  overflow-x: hidden;
 }
 
 .answering_open {
@@ -142,6 +144,7 @@
   overflow-y: scroll;
   height: 45%;
   position: relative;
+  overflow-x: hidden;
 }
 
 .original {
@@ -151,6 +154,7 @@
   overflow-y: scroll;
   height: 85%;
   position: relative;
+  overflow-x: hidden;
 }
 
 .hiddenscroll::-webkit-scrollbar {
@@ -265,7 +269,7 @@
 }
 
 .button_answer{
-    margin-right: 5%;
+    margin-right: 5.4%;
     min-width: 100px;
     max-width: 73%;
     min-height: 62px;
@@ -284,7 +288,7 @@
 
 @media (min-width: 768px) {
   .button_answer {
-    margin-right: 3%; /* 768px 이상일 때 적용할 마진 값 */
+    margin-right: 4%; /* 768px 이상일 때 적용할 마진 값 */
   }
 }
 
