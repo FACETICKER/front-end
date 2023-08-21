@@ -16,6 +16,7 @@ import mysticker from "../img/Stickers_img/mysticker.png";
 import goqna from "../img/Stickers_img/goqna.png";
 import Idtoken from "./Idtoken";
 import PageSlice from "../QnA/Slice/PageSlice";
+import { setImageUrl } from "../MakeSticker/CaptureSlice";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
@@ -126,21 +127,23 @@ const Footer = styled.div`
   flex-direction: row;
 `;
 const Icon = styled.img`
-  max-height: 48%;
+  max-width: 80%;
+  max-height: 65%;
   display: flex;
 `;
 
 const Icon2 = styled.div`
   justify-content: center;
   align-items: center;
-  max-height: 50%;
+  height: 80%;
   display: flex;
   width: 80%;
 `;
 
 const Icon3 = styled.img`
   display: flex;
-  width: 60%;
+  max-height: 70%;
+  max-width: 60%;
 `;
 
 export function VisitPut(props) {
@@ -154,10 +157,15 @@ export function VisitPut(props) {
   //방문자가 가지고 온  호스트Id 가져오기
   const hostid = useSelector((state) => state.login.hostid);
   const ID = hostid;
+  const currentURL = window.location.href;
+  const parts = currentURL.split("/");
+  const visitorid = parseInt(parts[parts.length - 1]); //방문자가 가지고 온 호스트 ID
+  console.log("방문자 id", visitorid);
 
   const handleButtonClick = () => {
     dispatch(setIsImageFixed(true)); // "Check" 버튼 클릭 시, 스티커 고정
     setChange(true);
+    dispatch(setImageUrl(null));
   };
 
   const handleQnA = () => {
@@ -167,12 +175,14 @@ export function VisitPut(props) {
 
   //처음 이전 아이콘
   const handlefirstBack = () => {
-    navigate(-1);
+    navigate(`/stickerletter/${visitorid}`);
   };
 
   //두 번째 이전 아이콘
   const handleSecondBack = () => {
-    setChange(false);
+    //setChange(false);
+    dispatch(setIsImageFixed(false));
+    navigate(`/sticker/${ID}`);
   };
 
   //내 프로필 제작 누르면
@@ -187,6 +197,7 @@ export function VisitPut(props) {
       const timer = setTimeout(() => {
         // 5초 후에 페이지 이동
         navigate(`/main/${ID}`); // 메인페이지로
+        dispatch(setIsImageFixed(false)); //image고정 false
       }, 5000);
 
       return () => clearTimeout(timer); // 컴포넌트가 언마운트될 때 타이머 제거
@@ -230,7 +241,6 @@ export function VisitPut(props) {
               <img src={middle} />
             </MiddleImg>
             <Footer>
-              <Icon onClick={reset} src={changeIcon} />
               <Icon onClick={handleButtonClick} src={putcomplete} />
             </Footer>
           </ButtonWrap>

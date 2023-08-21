@@ -28,9 +28,7 @@ function Del_ansBtn(props) {
       ></img>
       <button
         key={props.id}
-        className={`${styles.button_answer} ${
-          props.text.length > 16 ? styles.radius_L : styles.radius_S
-        }`}
+        className={`${styles.button_answer} ${styles.radius_S}`}
         id={props.id}
         type={props.type}
         data-open={props.open}

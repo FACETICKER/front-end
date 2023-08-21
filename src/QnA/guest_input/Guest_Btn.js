@@ -7,6 +7,8 @@ import AnswerSlice from '../Slice/AnswerSlice';
 import Buttons_idSlice from '../Slice/Buttons_idSlice';
 import ChoiceSlice from '../Slice/ChoiceSlice';
 import Answer_button from '../host_input/Answer_button';
+import Token from '../Token';
+
 function Guest_Btn(props) {
 
     const dispatch = useDispatch();
@@ -16,6 +18,8 @@ function Guest_Btn(props) {
     const ques = useSelector(state=>{
         return state.question;
     });
+
+    const UserID = Token()[0];
 
     const [hasMatchingId, setHasMatchingId] = useState(false); // 질문과 같은 id를 가진 답변이 존재하는지 여부
     const [filtered, setFiltered] = useState([]);  // id가 같은 답변
@@ -42,7 +46,8 @@ function Guest_Btn(props) {
     const classNames = [
         styles2.buttonArray, // 기본 스타일 (container)
         open ? '' : styles2.lock,
-        props.text.length > 16 ? styles2.radius_L : styles2.radius_S,
+        styles2.radius_S,
+        UserID === props.visitor_id ? styles2.basic : '', // 기본 질문인가요?
     ].join(' ');
 
     const scrollRef = useRef();
@@ -52,7 +57,7 @@ function Guest_Btn(props) {
     }, [ques]); // 질문 추가 시 끝까지 아래로 스크롤
 
     return (
-        <div>
+        <div className={styles2.ansAndques}>
             <div className={styles2.buttonbackground}>
                 <button className={classNames} id={props.id} type={props.type} data-open={props.open}>
                     <span className={styles2.buttontext}>{open && (props.text)}</span>

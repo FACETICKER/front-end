@@ -265,7 +265,9 @@ export function RepositionSticker() {
                     src={item.final_image_url}
                     style={{
                       position: "absolute",
-                      top: `${(item.location_y * componentHeight) / 100}px`,
+                      top: `${
+                        (item.location_y * componentHeight) / 100 - 20
+                      }px`,
                       left: `${(item.location_x * componentWidth) / 100}px`,
                       zIndex: 9999,
                       maxWidth: "100px",

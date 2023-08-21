@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./style/BtnWrap.module.css";
 import Btn_face from "./Btn_component/Btn_face";

@@ -47,7 +47,7 @@ const Header = styled.div`
   justify-content: space-around;
 `;
 const HeaderIcon = styled.div`
-  width: 15%;
+  max-width: 15%;
   justify-content: center;
   align-item: center;
   display: flex;

@@ -10,7 +10,12 @@ import styles1 from "./style/Popup.module.css";
 import styles2 from "./Modal_jh.module.css";
 import Close from "../img/QnA_img/close-x.png";
 import Dots from "../components/Dots";
-import { setCaptureEnabled, setImageUrl, setVisitorId } from "./CaptureSlice";
+import {
+  setCaptureEnabled,
+  setImageUrl,
+  setNext,
+  setVisitorId,
+} from "./CaptureSlice";
 import axios from "axios";
 import StickerName from "../Nickname/StickerName";
 import Idtoken from "../Stickers/Idtoken";
@@ -51,6 +56,8 @@ const Select = ({ handleCaptureImg }) => {
   const [test2, setTest] = useState(null);
   const [setting, setSetting] = useState(false);
   const [settingcomplete, setSettingComplete] = useState(true);
+  const [vid, setvid] = useState(null);
+  const [next2, setNext2] = useState(false);
 
   // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
   const hostid = useSelector((state) => state.login.hostid);
@@ -88,7 +95,7 @@ const Select = ({ handleCaptureImg }) => {
         setSetting(true);
       } else setModalIsOpen(true);
     }
-    dispatch(setCaptureEnabled(isEnabled));
+    dispatch(setCaptureEnabled(true));
     if (changesticker) {
       setSetting(true);
     } else {
@@ -97,7 +104,7 @@ const Select = ({ handleCaptureImg }) => {
   };
 
   //방문자가 완료 누를 때
-  const captureVisitor = (isEnabled) => {
+  const captureVisitor = () => {
     if (
       //방문자가 아무것도 선택 안 했으면 캡쳐 하지 말고 기본 이미지 저장
       stickerState.face === 0 &&
@@ -110,7 +117,7 @@ const Select = ({ handleCaptureImg }) => {
     ) {
       dispatch(setImageUrl("https://i.ibb.co/3yhK7VW/1-2.png"));
     } else {
-      dispatch(setCaptureEnabled(isEnabled));
+      dispatch(setCaptureEnabled(true));
     }
 
     /*   navigate("/stickername", { state: { test: test2 } }); */
@@ -214,6 +221,7 @@ const Select = ({ handleCaptureImg }) => {
   //sticker 보낼 거
   const imageUrl = useSelector((state) => state.capture.imageUrl);
   const visitorId = useSelector((state) => state.visitorId);
+  const next = useSelector((state) => state.capture.next);
 
   const finalsticker = {
     face: stickerState.face,
@@ -244,12 +252,20 @@ const Select = ({ handleCaptureImg }) => {
       });
 
       const responseData = await response.json();
+      setNext2(true);
       console.log("성공", responseData);
+      dispatch(setImageUrl(null));
+
       if (whatType === "visitor") {
         console.log(responseData.result.visitor_sticker_id);
-        dispatch(setVisitorId(responseData.result.visitor_sticker_id));
+        setvid(responseData.result.visitor_sticker_id);
+        //dispatch(setVisitorId(responseData.result.visitor_sticker_id));
         setTest(responseData.result.visitor_sticker_id);
         console.log("dispatch id1", VID);
+        dispatch(setNext(true));
+
+        // 응답을 받은 후에 navigate 실행
+        // await navigate("/stickername", { state: { test: test2 } }); // 목표 화면 이름으로 변경
       }
     } catch (error) {
       console.error("PATCH request failed:", error);
@@ -264,12 +280,14 @@ const Select = ({ handleCaptureImg }) => {
   }, [imageUrl]);
 
   console.log("test2", test2);
-  useEffect(() => {
+
+  /*   useEffect(() => {
     if (test2) {
       console.log("test2", test2);
+      dispatch(StickerSlice.actions.update(["step", 0]));
       navigate("/stickername", { state: { test: test2 } });
     }
-  }, [test2]);
+  }, [test2]); */
 
   //방문자는 이미지 링크 redux로 저장해놓기
   /* const loginData = useSelector((state) => state.login);
@@ -282,11 +300,21 @@ const Select = ({ handleCaptureImg }) => {
   };
 
   useEffect(() => {
-    if (setting && imageUrl) {
-      navigate(`/main/host/${userId}`);
+    if (setting && next2) {
       dispatch(setChangeSticker(false));
+      setNext2(false);
+      setSetting(false);
+      dispatch(setImageUrl(null));
+      navigate(`/main/host/${Id}`);
     }
-  }, [setting, imageUrl]);
+  }, [setting, next2]);
+
+  useEffect(() => {
+    if (test2) {
+      const visitorId = test2;
+      navigate(`/stickername/${visitorId}`);
+    }
+  }, [test2]);
 
   return (
     <div className={styles.background}>

@@ -56,7 +56,7 @@ const EditQues_Modal = () => {
             padding: '0px',
             margin: '0px',
             position: 'absolute',
-            top: '75%',
+            top: '80%',
             left: screenwidth >= 500 ? '50%' : '52.5%',
             transform: 'translate(-50%, -50%)',
             overflow: 'auto',
@@ -108,7 +108,7 @@ const EditQues_Modal = () => {
         })
             .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
             .then((data) => {
-                console.log(data);
+                // console.log(data);
             })
             .catch((error) => {
                 console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력

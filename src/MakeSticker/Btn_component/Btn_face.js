@@ -34,8 +34,10 @@ const Btn_face = () => {
     }
   };
 
+  const renderClass = window.innerWidth >= 600 ? styles.background : styles.bgsmall;
+
   return (
-    <div className={styles.background}>
+    <div className={renderClass}>
       {array.map((item) => (
         <button
           className={`${styles.button} ${

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import QnApage from "../QnA/QnApage";
+import {useDispatch, useSelector} from "react-redux";
+
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
 //현재 뷰포트 높이 가져와서 쓰기(App.js App함수 return 위에 꼭 함수 추가해주기)
@@ -16,7 +18,8 @@ function setScreenSize() {
 
 //BackgroundWrap : 가로 길어졌을 때 Background는 고정. 나머지 영역에 보이게 할 색/이미지 설정
 const BackgroundWrap = styled.div`
-  background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
+  background: ${props =>
+    props.page === "basic" ? "#ffd25d" : "#ffd25d"};
 `;
 //Background : 모바일로 보이는 영역
 const Background = styled.div`
@@ -64,8 +67,13 @@ const style = {
 };
 
 export function Mainpage() {
+
+  const page = useSelector(state=>{
+    return state.page;
+  });
+
   return (
-    <BackgroundWrap>
+    <BackgroundWrap page={page}>
       <Background>
         <QnApage />
       </Background>

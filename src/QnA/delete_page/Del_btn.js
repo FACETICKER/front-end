@@ -36,7 +36,7 @@ function Del_btn(props) {
     const classNames = [
         styles.buttonArray, // 기본 스타일 (container)
         type === 'basic_question' ? styles.basic : '', // 기본 질문인가요?
-        props.text.length > 16 ? styles.radius_L : styles.radius_S,
+        styles.radius_S,
     ].join(' ');
 
     const onclick = () => {
@@ -55,7 +55,7 @@ function Del_btn(props) {
     }, []); // 첫 렌더링 시 끝까지 아래로 스크롤
 
     return (
-        <div>
+        <div className={styles.ansAndques}>
             <div className={styles.buttonbackground} onClick={onclick}>
                 <img src={`${click ? Check : NoneCheck}`} className={styles.check_img}></img>
                 <button className={classNames} id={props.id} type={props.type} data-open={props.open}>

@@ -7,8 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import inputImage from "../img/Stickers_img/inputimg.png";
 import checkicon from "../img/Stickers_img/checkicon.png";
 import backicon from "../img/Stickers_img/backIcon.png";
-import { setVisitorId } from "../MakeSticker/CaptureSlice";
+import {
+  setImageUrl,
+  setNext,
+  setVisitorId,
+  setVisitorImageUrl,
+} from "../MakeSticker/CaptureSlice";
 import Idtoken from "../Stickers/Idtoken";
+import StickerSlice from "../MakeSticker/StickerSlice";
 
 //var(--vh, 1vh) : 1vh 생략 가능. --vh 안 되면 1vh
 //브라우저 상단, 하단 메뉴 때문에 개발자 도구에서 보는 뷰포트 높이와 다름
@@ -61,7 +67,8 @@ const HeaderIcon = styled.div`
 `;
 
 const Back = styled.img`
-  max-width: 40%;
+  max-width: 38%;
+  height: auto;
   display: flex;
 `;
 
@@ -158,7 +165,7 @@ const InputWrap = styled.div`
 const InputImg = styled.img`
   position: absolute;
   height: 110px;
-  width: 80%;
+  max-width: 80%;
 
   display: flex;
 `;
@@ -189,23 +196,19 @@ export function StickerName() {
   const dispatch = useDispatch();
   const [stickerSize, setStickerSize] = useState("200px");
   const [Margin, setMargin] = useState("0%");
-  const [HostImgurl, setHostImg] = useState("");
+  const [visitorSticker, setVisitorSticker] = useState(null);
   const [clickname, setClickname] = useState(false);
   const [inputheight, setInputheight] = useState("30%");
-  const [inputTop, setInputTop] = useState("-2%");
+  const [inputTop, setInputTop] = useState("5%");
   const [nicknameValue, setNicknameValue] = useState("");
 
-  const { state } = useLocation();
-  console.log("State", state.test);
-  const VID = state.test;
+  const currentURL = window.location.href;
+  const parts = currentURL.split("/");
+  const visitorid = parseInt(parts[parts.length - 1]); //방문자가 가지고 온 호스트 ID
+  console.log("방문자 id", visitorid);
 
-  //방문자 스티커
-
-  const visitorId = useSelector((state) => state.visitorId);
   const imageUrl = useSelector((state) => state.capture.imageUrl);
-  /*   console.log("이미지url ", imageUrl); */
-  console.log("방문자id", visitorId);
-  console.log("vid", VID);
+
   /*   console.log("url", imageUrl); */
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
@@ -217,7 +220,7 @@ export function StickerName() {
   };
   //처음 back은 누르면 이전 페이지
   const handleFirstBack = () => {
-    navigate(-1);
+    navigate("/makesticker");
   };
   //이전 누르면 state 이전값으로 바뀜
   const handleSecondBack = () => {
@@ -225,7 +228,7 @@ export function StickerName() {
     setMargin("0%");
     setClickname(false);
     setInputheight("30%");
-    setInputTop("-2%");
+    setInputTop("5%");
   };
 
   //닉네임 저장
@@ -245,16 +248,33 @@ export function StickerName() {
     "Content-Type": "application/json",
   };
 
+  //방문자 이미지 불러오기
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${visitorid}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+
+        const visitorImg = data.result.final_image_url;
+        setVisitorSticker(visitorImg);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, []);
+
   //닉네임 입력하고 다음 아이콘 누르면 서버에 전송됨
   const handleNicknameSubmit = () => {
-    console.log(visitorId);
-    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/name?id=${VID}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: nicknameValue }),
-    })
+    fetch(
+      `http://app.faceticker.site/${ID}/sticker/visitor/name?id=${visitorid}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: nicknameValue }),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("성공", data);
@@ -262,12 +282,12 @@ export function StickerName() {
       .catch((error) => {
         console.error("실패", error);
       });
-    navigate("/stickerletter", { state: { visitor: VID } });
+    navigate(`/stickerletter/${visitorid}`);
   };
 
   //서버에서 닉네임 값 받아오기
   useEffect(() => {
-    fetch(`https://app.faceticker.site/sticker/visitor/name?id=${VID}`)
+    fetch(`https://app.faceticker.site/sticker/visitor/name?id=${visitorid}`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {
@@ -278,6 +298,14 @@ export function StickerName() {
       .catch((error) => {
         console.error("오류 발생", error);
       });
+  }, []);
+
+  useEffect(() => {
+    setVisitorSticker(imageUrl);
+    dispatch(setVisitorImageUrl(imageUrl));
+    /*    dispatch(StickerSlice.actions.update(["step", 0])); */
+    dispatch(setNext(false));
+    dispatch(setImageUrl(null));
   }, []);
 
   return (
@@ -308,17 +336,18 @@ export function StickerName() {
               <CheckIcon onClick={handleNicknameSubmit} src={checkicon} />
             )}
             <ImgWrap>
-              <HostImg size={stickerSize} style={style} src={imageUrl} />
+              <HostImg size={stickerSize} style={style} src={visitorSticker} />
             </ImgWrap>
 
             <InputWrap height={inputheight} onClick={handleClickInput}>
               <InputImg height={inputheight} src={inputImage} />
               <Input
-                maxLength="8"
+                type="text"
+                maxLength="7"
                 onChange={saveNickname}
                 value={nicknameValue}
                 top={inputTop}
-                placeholder="스티커 네임 입력 (8자 이내)"
+                placeholder="스티커 네임 입력 (7자 이내)"
               ></Input>
             </InputWrap>
           </Bottom>

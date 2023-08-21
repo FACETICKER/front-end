@@ -7,10 +7,13 @@ import ReactDOM from "react-dom";
 import Picker from "react-mobile-picker-scroll";
 import mini1 from "../img/NewUserFlow_img/mini1.png";
 import mini2 from "../img/NewUserFlow_img/mini2.png";
+import minimini from "../img/NewUserFlow_img/minimini.png";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import PageSlice from "../QnA/Slice/PageSlice";
 import Token from "./Token";
+import Btn from "../img/NewUserFlow_img/KakaoTalk_20230820_131353270.png"
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>;
 
 function NewUserFlow() {
@@ -41,7 +44,7 @@ function NewUserFlow() {
   console.log(NextLoginList);
 
   return (
-    <div className="BackgroundWrap-4">
+    <div className="BackgroundWrap-4" style={{height:'1024px'}}>
       <div className="Background-4">
         <div className="Container">
           <div className="l1-4">
@@ -58,21 +61,11 @@ function NewUserFlow() {
               </p>
             </div>
             <div className="l8-4">
-              <div className="l3-4">
-                <img className="l3-4" src={mini1}></img>
-              </div>
-              <div className="l4-4">
-                <img className="l4-4" src={mini2}></img>
-              </div>
+                <img src={minimini} />
             </div>
           </div>
           <div>
-            <div className="l6-4"></div>
-            <button className="l5-4" onClick={handleButtonClick}>
-              <p style={{position:'relative',top:'-3px'}}>
-                시작하기
-              </p>
-            </button>
+            <img className="l9-4" src={Btn} onClick={handleButtonClick}></img>
           </div>
         </div>
       </div>

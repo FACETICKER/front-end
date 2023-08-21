@@ -1,6 +1,5 @@
 .background {
   width: 100%;
-  border: solid 1px;
   height: 100%;
   background: rgba(255, 255, 255, 1);
   position: relative;
@@ -68,11 +67,11 @@
 }
 
 .btn_background {
-  z-index: -1;
   display: flex;
   background: rgba(248, 248, 250, 1);
   flex-direction: column;
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 75%;
   width: 100%;
 }
@@ -133,7 +132,8 @@
     z-index: 2;
     border: none;
     position: relative;
-    margin-left: 8.5%;
+    margin-left: 9%;
+    color: #3F3F3F;
 }
 
 .buttonbackground {
@@ -142,8 +142,8 @@
   min-height: 62px;
   max-height: 174px;
   margin-left: 10px;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   display: flex;
   justify-content: flex-start;
 }
@@ -182,8 +182,8 @@
   min-height: 62px;
   max-height: 174px;
   margin-left: 10px;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   display: flex;
   justify-content: flex-end;
 }
@@ -203,7 +203,7 @@
 }
 
 .button_answer{
-    margin-right: 5%;
+    margin-right: 6%;
     min-width: 100px;
     max-width: 73%;
     min-height: 62px;
@@ -235,4 +235,9 @@
 
 .radius_S {
   border-radius: 100px;
+}
+
+.ansAndques {
+  display: flex;
+  flex-direction: column;
 }

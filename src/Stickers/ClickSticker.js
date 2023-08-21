@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Dots from "../components/Dots";
 import StaticSticker from "./StaticSticker";
 import MainHeader from "../components/HostHeader";
+
 import "./ClickSticker.css";
 import "../font/font.css";
 import trash from "../img/Stickers_img/trash.png";
@@ -12,6 +13,13 @@ import post from "../img/Stickers_img/post.png";
 import backtext from "../img/Stickers_img/backtext.png";
 import visitprofile from "../img/Stickers_img/visitprofile.png";
 import Idtoken from "./Idtoken";
+import Card from "./Card";
+import deletebutton from "../img/Stickers_img/deletebutton.png";
+import Modal from "react-modal";
+import modalimg from "../img/Stickers_img/modalimg.png";
+import yes from "../img/Stickers_img/yes.png";
+import no from "../img/Stickers_img/no.png";
+
 /* import { StickerPageSlice } from "./StickerPageSlice";
 dispatch(NicknamePageSlice.actions.letter()); //letter로 페이지 전환 */
 
@@ -29,124 +37,6 @@ const Background = styled.div`
   background: linear-gradient(180deg, #ffd25d 0%, #ff984b 100%);
 `;
 
-const Bottom = styled.div`
-  height: 70%;
-  justify-content: center;
-  display: flex;
-  position: relative;
-`;
-
-const CardWrap = styled.div`
-  width: 85%;
-  height: 87%;
-`;
-
-const One = styled.div`
-  border-radius: 20px;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  position: relative;
-  display: flex;
-  background: #fff;
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
-`;
-
-const OneFlip = styled.div`
-  border-radius: 20px;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  position: relative;
-  background: #fff;
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
-`;
-const Second = styled.div`
-  border-radius: 20px;
-  position: absolute;
-
-  justify-content: center;
-  top: 10px;
-  display: flex;
-  border: 2px solid var(--unnamed, #12151c);
-  background: #fefaef;
-  width: 90%;
-  height: 85%;
-  flex-shrink: 0;
-  z-index: 10;
-`;
-const TrashIcon = styled.img`
-  display: flex;
-  position: absolute;
-  width: 24%;
-  right: -2%;
-  top: -9%;
-`;
-const TrashIcon2 = styled.img`
-  display: flex;
-  position: absolute;
-  width: 21%;
-  right: 2%;
-  top: -5%;
-`;
-
-const Shadow = styled.div`
-  width: 80%;
-  border-radius: 100%;
-  position: absolute;
-  display: flex;
-  bottom: 15%;
-  height: 10%;
-  display: flex;
-  background: var(--unnamed, #e7e4da);
-`;
-
-const Dot3 = styled.div`
-  position: absolute;
-  bottom: 6%;
-  left: 10%;
-  display: flex;
-`;
-
-const Name = styled.div`
-  position: absolute;
-  bottom: 3%;
-  right: 10%;
-  width: 100%;
-  color: #191919;
-  text-align: right;
-  font-family: Cafe24Shiningstar;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
-`;
-const SecondShadow = styled.div`
-  position: absolute;
-  display: flex;
-  width: 90%;
-  bottom: -5%;
-  height: 100%;
-  border-radius: 20px;
-  background: rgba(244, 243, 249, 0.8);
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
-  z-index: -1;
-`;
-
-const Third = styled.div`
-  position: absolute;
-  display: flex;
-  width: 80%;
-  bottom: -10%;
-  height: 100%;
-  border-radius: 20px;
-  background: rgba(244, 243, 249, 0.8);
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
-  z-index: -2;
-`;
-
 const Footer = styled.div`
   height: 15%;
   justify-content: center;
@@ -158,68 +48,41 @@ const Icons = styled.div`
   height: 80%;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  /*   align-items: center; */
+  align-items: flex-start;
   display: flex;
   width: 90%;
 `;
 
 const Icon = styled.img`
   display: flex;
-  width: 50%;
+  max-width: 45%;
+  max-height: 100%;
 `;
 
-const Back = styled.div`
-  border-radius: 20px;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-
-  display: flex;
-  background: #fff;
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
-`;
-
-const BackImg = styled.img`
-  display: flex;
-  width: 85%;
-  height: 72%;
-  position: absolute;
-  top: 10px;
-  z-index: -1;
-  object-fit: cover;
-`;
-
-const LetterContent = styled.div`
-  display: flex;
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  width: 70%;
-  bottom: 50%;
-  color: #191919;
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 17px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 38px;
-`;
-const StickerImg = styled.img`
-  display: flex;
-  width: 65%;
-  position: absolute;
-  bottom: 12%;
-  object-fit: cover;
-`;
-
-const StickerImg2 = styled.img`
-  display: flex;
-  width: 20%;
-  position: absolute;
-  bottom: 5%;
-  object-fit: cover;
-`;
+const modalStyle = {
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    zIndex: 1000, // z-index 값
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  content: {
+    zIndex: 1001,
+    border: "2px solid rgba(245, 245, 245, 1)",
+    borderRadius: "20px",
+    width: "300px",
+    height: "260px",
+    padding: "0px",
+    margin: "0px",
+    boxShadow: "0px 2px 10px 0px rgba(0, 0, 0, 0.5)",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 export function ClickSticker() {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -227,6 +90,7 @@ export function ClickSticker() {
   const [stickerImg, setStickerImg] = useState();
   const [name, setName] = useState();
   const [length, setLength] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const [imageData, setImageData] = useState([]);
 
@@ -239,6 +103,10 @@ export function ClickSticker() {
 
   const handleBackClick = () => {
     navigate(`/sticker/host/${userId}`);
+  };
+
+  const handledelete = () => {
+    openModal();
   };
 
   /*     const handleProfileClick = (item) => {
@@ -279,49 +147,6 @@ export function ClickSticker() {
       });
   }, []);
 
-  //방문록 받아오기
-  useEffect(() => {
-    fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${selectedImageId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("특정 스티커", data);
-        console.log("방문록", data.result.message);
-        setLetterValue(data.result.message);
-      })
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []);
-
-  //이미지, 닉네임불러오기
-  useEffect(() => {
-    fetch(`http://app.faceticker.site/${ID}/sticker/all`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("이미지, 닉네임 불러오기 성공", data);
-
-        const filteredData = data.result.visitorStickerResult.filter(
-          (item) => item.location_x !== null
-        );
-        const filteredData2 = data.result.visitorStickerResult.filter(
-          (item) => item.visitor_sticker_id == selectedImageId
-        ); //선택한 캐릭터
-
-        console.log("00", filteredData);
-        setStickerImg(filteredData2[0].final_image_url);
-        setName(filteredData2[0].name);
-
-        console.log(filteredData2[0].name);
-        setImageData(filteredData);
-        setLength(filteredData.length);
-      })
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []);
-
-  console.log("개수", length);
-
   //스티커 삭제
   const handleTrashClick = async () => {
     try {
@@ -345,104 +170,51 @@ export function ClickSticker() {
       console.error("특정 스티커 삭제 실패", error);
     }
   };
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+  const handleNo = () => {
+    closeModal();
+  };
+
+  const handleYes = () => {
+    handleTrashClick();
+  };
 
   return (
     <BackgroundWrap>
       <Background>
         <MainHeader />
-        <Bottom>
-          {length == 1 && (
-            <div
-              className={`card ${isFlipped ? "flipped" : ""}`}
-              onClick={handleCardClick}
-            >
-              <div className="front">
-                <Second>
-                  <TrashIcon onClick={handleTrashClick} src={trash} />
-                  <Shadow />
-                  <StickerImg src={stickerImg} />
-                </Second>
-
-                <Dot3>
-                  <Dots />
-                </Dot3>
-                <Name>{name}</Name>
-              </div>
-              <div className="back">
-                <Back>
-                  <TrashIcon2 onClick={handleTrashClick} src={trash} />
-                  <BackImg src={post} />
-                  <LetterContent>{letterValue}</LetterContent>
-                  <StickerImg2 src={stickerImg} />
-                </Back>
-              </div>
-            </div>
-          )}
-          {length == 2 && (
-            <div
-              className={`card ${isFlipped ? "flipped" : ""}`}
-              onClick={handleCardClick}
-            >
-              <div className="front">
-                <Second>
-                  <TrashIcon onClick={handleTrashClick} src={trash} />
-                  <Shadow />
-                  <StickerImg src={stickerImg} />
-                </Second>
-                <SecondShadow />
-
-                <Dot3>
-                  <Dots />
-                </Dot3>
-                <Name>{name}</Name>
-              </div>
-              <div className="back">
-                <Back>
-                  <TrashIcon2 onClick={handleTrashClick} src={trash} />
-                  <BackImg src={post} />
-                  <LetterContent>{letterValue}</LetterContent>
-                  <StickerImg2 src={stickerImg} />
-                </Back>
-                <SecondShadow />
-              </div>
-            </div>
-          )}
-          {length >= 3 && (
-            <div
-              className={`card ${isFlipped ? "flipped" : ""}`}
-              onClick={handleCardClick}
-            >
-              <div className="front">
-                <Second>
-                  <TrashIcon onClick={handleTrashClick} src={trash} />
-                  <Shadow />
-                  <StickerImg src={stickerImg} />
-                </Second>
-                <SecondShadow />
-                <Third />
-                <Dot3>
-                  <Dots />
-                </Dot3>
-                <Name>{name}</Name>
-              </div>
-              <div className="back">
-                <Back>
-                  <TrashIcon2 onClick={handleTrashClick} src={trash} />
-                  <BackImg src={post} />
-                  <LetterContent>{letterValue}</LetterContent>
-                  <StickerImg2 src={stickerImg} />
-                </Back>
-                <SecondShadow />
-                <Third />
-              </div>
-            </div>
-          )}
-        </Bottom>
-
+        <Card />
+        {modalIsOpen && (
+          <Modal
+            onRequestClose={closeModal}
+            isOpen={modalIsOpen}
+            style={modalStyle}
+          >
+            <ModalWrap>
+              <Wrap>
+                <ModalImg src={modalimg} />
+              </Wrap>
+              <Contents>
+                <Text1>방문자 카드를 삭제할까요?</Text1>
+                <Text2>삭제된 카드와 스티커는 복구가 불가합니다.</Text2>
+              </Contents>
+              <Buttons>
+                <Button onClick={handleNo} src={no} />
+                <Button onClick={handleYes} src={yes} />
+              </Buttons>
+            </ModalWrap>
+          </Modal>
+        )}
         <Footer>
           <Icons>
             <Icon onClick={handleBackClick} src={backtext} />
-            <Icon src={visitprofile} />
+            <Icon onClick={handledelete} src={deletebutton} />
           </Icons>
         </Footer>
       </Background>
@@ -451,3 +223,66 @@ export function ClickSticker() {
 }
 
 export default ClickSticker;
+const ModalWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const Wrap = styled.div`
+  display: flex;
+  height: 30%;
+  padding-top: 10%;
+  justify-content: center;
+  align-items: center;
+`;
+const ModalImg = styled.img`
+  display: flex;
+  max-width: 50%;
+`;
+
+const Contents = styled.div`
+  display: flex;
+  height: 30%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4%;
+  padding-bottom: 7%;
+`;
+
+const Text1 = styled.div`
+  display: flex;
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 2%;
+`;
+
+const Text2 = styled.div`
+  display: flex;
+  color: #767676;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 125% */
+`;
+
+const Buttons = styled.div`
+  flex-direction: row;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  height: 20%;
+`;
+const Button = styled.img`
+  display: flex;
+  max-width: 45%;
+`;

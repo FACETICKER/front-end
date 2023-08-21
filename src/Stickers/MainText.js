@@ -15,7 +15,7 @@ const TextWrap = styled.div`
 const Text = styled.div`
   color: #191919;
   text-align: center;
-  font-family: Pretendard;
+  font-family: "Pretendard";
   font-size: 20px;
   font-style: normal;
   font-weight: 800;

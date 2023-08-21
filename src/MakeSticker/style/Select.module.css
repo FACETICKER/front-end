@@ -13,6 +13,7 @@
   height: 35%;
   display: flex;
   flex-direction: row;
+  position: relative;
   justify-content: space-between;
 }
 
@@ -22,7 +23,7 @@
   height: 40px;
   border: 2px solid var(--unnamed, #12151c);
   background: #fff;
-  margin: 2% 5%;
+  margin: 12px 7%;
   color: #191919;
   text-align: center;
   font-family: Pretendard;

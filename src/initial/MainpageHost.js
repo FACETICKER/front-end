@@ -16,6 +16,7 @@ import PageSlice from "../QnA/Slice/PageSlice";
 import html2canvas from "html2canvas";
 import "./MainpageHost.css";
 import ReactDOM from "react-dom";
+import { CopyToClipboard } from "react-copy-to-clipboard/src";
 import { setChangeSticker } from "../components/SettingSllice.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -81,18 +82,23 @@ function MainpageHost() {
     setShowModal4(!showModal4);
   };
 
-  const handleLinkDownload = () => {
+  const [address2, setAddress2] = useState("");
+  const [address3, setAddress3] = useState("");
+
+  useEffect(() => {
+    console.log("sdnvud");
+    setAddress3(`http://www.faceticker.site/main/${address2}`);
+  },[address2])
+  const handleLinkDownload = async () => {
     const address = `http://www.faceticker.site/main/${user_id}`;
-    navigator.clipboard
-      .writeText(address)
-      .then(() => {
+    try {
+        await navigator.clipboard.writeText(address);
         alert("주소가 클립보드에 복사되었습니다.");
-      })
-      .catch((error) => {
-        console.error("클립보드 복사 실패:", error);
+    } catch (err) {
+        console.error("클립보드 복사 실패:", err); // 에러 객체의 이름이 err로 변경되었습니다.
         alert("클립보드 복사에 실패했습니다. 수동으로 복사해주세요.");
-      });
-  };
+    }
+  }
   const handleDownload2 = () => {
     const targetElement = document.getElementById("PrtSc"); // 캡처할 대상 div의 id
     if (targetElement) {
@@ -140,7 +146,7 @@ function MainpageHost() {
   const handleSpring = () => {
     const resultDiv1 = document.getElementById("ifSpring");
     setSeason("SPR 봄 ING");
-    resultDiv1.style.left="24 %";
+    resultDiv1.style.left="24%";
   };
   const handleSummer = () => {
     setSeason("SUM 여름 MER");
@@ -231,7 +237,6 @@ function MainpageHost() {
       .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
       .then((data) => {
         console.log("성공", data.result[0]);
-        setMessage(data.result[0].message);
       })
       .catch((error) => {
         console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
@@ -247,12 +252,12 @@ function MainpageHost() {
           console.log("성공", data.result);
           setRecordNumber(data.result.hostnewSticer[0].count.toString());
           setMessageNumber(data.result.howtnewQuestion[0].emptyanswer.toString());
-          setMessagedata(data.result.hostPoster[0]);
+          setMessagedata(data.result.hostSticker[0].message);
           setChinese(data.result.hostPoster[0].chinese);
           setName(data.result.hostPoster[0].nickname);
           setMean(data.result.hostPoster[0].meaning);
           setKorean(data.result.hostPoster[0].pronunciation);
-          setNumber(data.result.hostPoster[0].q_number);
+          setNumber('#'+data.result.hostPoster[0].q_number);
           setDay(data.result.hostPoster[0].q_date);
           const handleSelleckSeason = () => {
             if (data.result.hostPoster[0].q_season === "봄") {
@@ -265,6 +270,7 @@ function MainpageHost() {
               handleWinter();
             }
           };
+          setAddress2(data.result.hostPoster[0].user_id);
           handleSelleckSeason();
           setStickerdata(data.result.hostSticker[0].final_image_url);
         }
@@ -283,32 +289,60 @@ function MainpageHost() {
     const count = document.getElementById("countRecordDiv")
     if (recordNumber == "0") {
       count.style.display="none"; 
+    } else{
+      count.style.display="block";
     }
   }, [recordNumber]);
   useEffect(() => {
     const count = document.getElementById("countMessageDiv")
     if (messageNumber == "0") {
       count.style.display="none"; 
+    } else {
+      count.style.display="block";
     }
   }, [messageNumber]);
   useEffect(() => {
     const Sticker = document.getElementById("Sticker")
     const Photo = document.getElementById("Photo")
     if (Sticker.src == "http://localhost:3000/static/media/%EA%B8%B0%EB%B3%B8%20%EC%BA%90%EB%A6%AD%201.484d8e0ea830f8eeff94.png") {
-      Sticker.style.width="80%";
-      Sticker.style.height="80%"
-      Photo.style.top="48%";
-      Photo.style.left="15%";
+      Sticker.style.width="60%";
+      Sticker.style.height="60%"
+      //Photo.style.top="48%";
+      //Photo.style.left="15%";
     }else{
       return;
     }
   }, [stickerdata]);
-  
+  useEffect(() => {
+    const messageCircle = document.getElementById("ment")
+    console.log(messagedata);
+    if (messagedata)   {
+      messageCircle.style.display = "block";
+    } else {
+      messageCircle.style.display = "none";
+    }
+  },[messagedata])
+  useEffect(() =>{
+    const makeProfile = document.getElementById("makeprofile")
+    if (Season=="") {
+      console.log(1);
+      makeProfile.style.display="block";
+    } else {
+      makeProfile.style.display="none";
+    }
+  },[Season])
+
+  const handleBokSa = () => {
+    window.navigator.clipboard.writeText(address3)
+    alert("복사되었습니다.");
+    }
+
+
 
   return (
-    <div className="BackgroundWarp">
-      <div className="Background">
-        <div className="l29-2" style={{ position: "relative" }}>
+    <div className="BackgroundWarp" style={{background: '#FEFAEF'}}>
+      <div className="Background" style={{background: '#FEFAEF'}}>
+        <div className="l29-2" style={{ position: "relative", background: '#FEFAEF' }}>
           <header
             style={{
               float: "down",
@@ -316,7 +350,6 @@ function MainpageHost() {
               height: "70px",
               position: "relative",
               top: "0px",
-              left: "-5px",
               display: "flex",
               justifyContent: "space-between",
             }}
@@ -366,9 +399,10 @@ function MainpageHost() {
                 <img src={message} className="l1-2" alt="message" />
               </button>
               <div
+              onClick={handleQna}
                   id="countMessageDiv"
                   className="l14-2"
-                  style={{position:'absolute' , top: "-50%", left: "69%" ,zIndex:'1'}}
+                  style={{position:'absolute' , top: "-25%", left: "88%" ,zIndex:'1', display:'block'}}
                 >
                   <p id="countRecord" className="l15-2">
                     {messageNumber || ""}
@@ -406,11 +440,11 @@ function MainpageHost() {
               width: "335px",
               height: "125%",
               position: "relative",
-              top: "-5px",
-              left: "-7px",
+              top: "5px",
               border: "3px solid var(--unnamed, #12151C)",
               borderRadius: "20px",
               boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",
+              background: "white",
             }}
           >
             <div
@@ -425,22 +459,27 @@ function MainpageHost() {
               <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
                 <div
                   style={{
-                    position: "absolute",
-                    left: "20%",
-                    top: "50%",
+                    
+                    position: "relative",
+                    display:'flex',
+                    left: "50%",
+                    top: "80%",
+                    transform: 'translate(-50%, -50%)',
                     zIndex: "3",
+                    flexWrap: 'wrap',
                   }}
                   name="사진" id="Photo"
                 >
-                  <img id="Sticker" src={stickerdata || normalSticker} alt="Vector" />
+                  <img id="Sticker" style={{width:'60%',position:'relative', bottom:'30px' , margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
+                  <div className="l30-2" style={{zIndex:"2"}}></div>
                 </div>
-                <div >
+                <div>
                   <p id="ifSpring" className="l13-2">{Season || ""}</p>
                 </div>
                 <div id="ment" className="l22-2">
                   <div className="l23-2" style={{ zIndex: "2" }}>
                     <p id="" className="l3-2">
-                      {Message || "어서옵쇼 다들 스티커 붙여주세요..!"}
+                      {messagedata || "어서옵쇼 다들 스티커 붙여주세요..!"}
                     </p>
                   </div>
                 </div>
@@ -518,9 +557,9 @@ function MainpageHost() {
                     프로필이 아직 없다면
                   </p>
                 </div>
-                <div name="링크">
+                <div name="링크"> 
                   <p id="" className="l17-2">
-                    <a onClick={toggleModal3} className="l18-2">
+                    <a onClick={toggleModal3} className="l18-2" style={{zIndex:'10'}}>
                       여기
                     </a>
                     를 클릭하세요
@@ -561,16 +600,18 @@ function MainpageHost() {
                 <div
                   id="countRecordDiv"
                   className="l14-2"
-                  style={{position:'absolute' , top: "9%", left: "29%" ,zIndex:'1'}}
+                  style={{position:'absolute' , top: "9%", left: "29%" ,zIndex:'1', display:'block'}}
                 >
                   <p id="countRecord" className="l15-2">
                     {recordNumber || ""}
                   </p>
                 </div> 
-                <button className="l10-2" onClick={handleLinkDownload}>
+                {/*<CopyToClipboard text={{address3}} onCopy={() => alert("클립보드에 복사되었습니다.")}>*/}
+                <button className="l10-2" onClick={handleBokSa}>
                   <img src={share} alt="share" />
                 </button>
-                <button className="l10-2" onClick={handleDownload2}>
+                {/*</CopyToClipboard>*/}
+                <button className="l10-2">
                   <img src={download} alt="download" />
                 </button>
               </Div>
@@ -586,18 +627,21 @@ function MainpageHost() {
                 </button>
               </div> */}
             </div>
-            {/* <div
-              style={{ width: "200px", height: "100px", position: "relative" }}
-            >
-              <button>사랑선택</button>
-              <button>우정선택</button>
-              <button onClick={handleSpring}>봄선택</button>
-              <button onClick={handleSummer}>여름선택</button>
-              <button onClick={handleAutumn}>가을선택</button>
-              <button onClick={handleWinter}>겨울선택</button>
-              <button onClick={handleNoneProfile}>프로필 생성 안함</button>
-              <button onClick={handleHaveProfile}>프로필 생성 함</button>
-            </div> */}
+            <div id='makeprofile' style={{position:'absolute', top:'75%', left:'26%', display:'none'}}>
+            <div name="프로필 생성 제안">
+                  <p id="" className="ll6-2">
+                    프로필이 아직 없다면
+                  </p>
+                </div>
+                <div name="링크">
+                  <p id="" className="l17-2">
+                    <a onClick={toggleModal3} className="l18-2">
+                      여기
+                    </a>
+                    를 클릭하세요
+                  </p>
+                </div>
+            </div>
           </div>
           {showFooter && (
             <footer className="FixedFooter">
@@ -624,10 +668,11 @@ function MainpageHost() {
             </footer>
           )}
           {showModal1 && (
-            <div className="Modal" style={{ zIndex: "100" }}>
+            <div><div className="modal-overlay"></div>
+            <div className="Modal" style={{ zIndex: "100" }} onRequestClose={toggleModal1}>
               <div
                 style={{
-                  width: "294px",
+                  width: "250px",
                   height: "52px",
                   position: "relative",
                   display: "flex",
@@ -652,11 +697,12 @@ function MainpageHost() {
               <div
                 style={{
                   padding: "24px 0 0 0",
-                  width: "294px",
+                  width: "260px",
                   height: "250px",
                   display: "flex",
                   flexWrap: "wrap",
                   justifyContent: "center",
+                  alignContent: "center",
                 }}
               >
                 <button className="l24-2" onClick={handleInitial}>
@@ -669,7 +715,7 @@ function MainpageHost() {
                   상태메시지 수정
                 </button>
               </div>
-            </div>
+            </div></div>
           )}
 
           {showModal4 && (
@@ -712,24 +758,36 @@ function MainpageHost() {
             </div>
           )}
           {showModal3 && (
-            <div className="Modal">
+            <div><div className="modal-overlay"></div>
+            <div className="Modal" onRequestClose={toggleModal3}>
               <div>
                 <div>
                   <div className="l26-2">
                     <p style={{ position: "relative", top: "-25px" }}>!</p>
                   </div>
-                  <button className="l27-2" name="close" onClick={toggleModal3}>
-                    <img src={close}></img>
-                  </button>
+                  <button
+                style={{
+                  border: "none",
+                  backgroundColor: "transparent",
+                  position: "absolute",
+                  top: "3%",
+                  left: "85%",
+                }}
+                name="close"
+                onClick={toggleModal3}
+              >
+                <img onClick={toggleModal3} src={close}></img>
+              </button>
                 </div>
                 <div style={{ clear: "left" }}>
                   <p className="l20-2">프로필을 입력하시겠어요?</p>
                   <p className="l21-2">프로필 정보 입력 페이지로 이동됩니다.</p>
-                  <button className="l19-2">
-                    <p style={{ color: "white", fontSize: "16px" }}>확인</p>
+                  <button onClick={handleInitial} className="l19-2">
+                    <p  style={{ color: "white", fontSize: "16px" }}>확인</p>
                   </button>
                 </div>
               </div>
+            </div>
             </div>
           )}
         </div>

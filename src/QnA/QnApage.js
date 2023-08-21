@@ -35,7 +35,7 @@ const QnApage = () => {
     }) // 서버로 GET 요청을 보냄
       .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setgetques(data);
       })
       .catch((error) => {
@@ -46,7 +46,7 @@ const QnApage = () => {
   /* userID와 토큰 정의 */
 
   const userID = Token()[0];
-  const JWT = Token()[1];
+  const JWT = Token()[1] === null ? '' : Token()[1];
   const hostID = Token()[2];
 
   useEffect(() => {
@@ -58,6 +58,7 @@ const QnApage = () => {
   useEffect(() => {
     if (getques) {
       const list = getques.result;
+      list.sort((a, b) => a.nQnA_id - b.nQnA_id);
       let ID = 0;
       list.forEach((item) => {
         const quesOpen = item.question_hidden === 0 ? true : false;
@@ -71,6 +72,7 @@ const QnApage = () => {
             open: quesOpen,
             clicked: false,
             nQnA_id: item.nQnA_id,
+            visitor_id: item.visitor_id,
           })
         ); // type 수정 필요 벡에서 받은걸로
         if (item.answer) {

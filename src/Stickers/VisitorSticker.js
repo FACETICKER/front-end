@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setSelectedImage } from "./imageSlice";
 import Idtoken from "./Idtoken";
+import { setHostId } from "../login/LoginSlice";
 
 //방문자 기록 컴포넌트
 
@@ -49,7 +50,7 @@ const Bottoms = styled.div`
 
 const Bottom = styled.div`
   width: 100%;
-  height: 100%;
+  height: 90%;
   position: relative;
 `;
 
@@ -79,8 +80,13 @@ export function VisitorSticker() {
 
   const dispatch = useDispatch();
 
-  // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
-  const hostid = useSelector((state) => state.login.hostid);
+  const currentURL = window.location.href;
+  const parts = currentURL.split("/");
+  const hostid = parts[parts.length - 1]; //방문자가 가지고 온 호스트 ID
+  console.log(hostid);
+  //호스트 아이디 저장
+  dispatch(setHostId(hostid)); // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
+
   const jwt = Idtoken()[1]; //호스트 토큰
   const userId = Idtoken()[0]; //호스트 아이디
 
@@ -163,7 +169,7 @@ export function VisitorSticker() {
                 src={item.final_image_url}
                 style={{
                   position: "absolute",
-                  top: `${(item.location_y * componentHeight) / 100}px`,
+                  top: `${(item.location_y * componentHeight) / 100 - 20}px`,
                   left: `${(item.location_x * componentWidth) / 100}px`,
                   zIndex: 9999,
                   maxWidth: "100px",

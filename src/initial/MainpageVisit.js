@@ -6,6 +6,7 @@ import Vector from "../img/MainpageVisit_img/Group 157 1.png";
 import threeboll from "../img/MainpageVisit_img/Group 77.svg";
 import user from "../img/MainpageVisit_img/user.png";
 import close from "../img/MainpageVisit_img/close-x.svg";
+import normalSticker from "../img/MainpageHost_img/기본 캐릭 1.png";
 import sticker from "../img/MainpageVisit_img/sticker.svg";
 import recordpage from "../img/MainpageVisit_img/3users.svg";
 import styled from "styled-components";
@@ -108,7 +109,7 @@ function MainpageVisit() {
   };
   const handleQna = () => {
     dispatch(PageSlice.actions.guest());
-    navigate('/qna');
+    navigate("/qna");
   };
   const handleMainHost = () => {
     navigate(`/main/host/`);
@@ -162,7 +163,9 @@ function MainpageVisit() {
 */
   }
   const handleSpring = () => {
+    const resultDiv1 = document.getElementById("ifSpring");
     setSeason("SPR 봄 ING");
+    resultDiv1.style.left = "24%";
   };
   const handleSummer = () => {
     setSeason("SUM 여름 MER");
@@ -200,7 +203,7 @@ function MainpageVisit() {
 
   const JWT = Token()[1];
   const [messagedata, setMessagedata] = useState(null);
-  const [stickerdata,setStickerdata] =useState(null);
+  const [stickerdata, setStickerdata] = useState(null);
 
   const test1 = () => {
     const headers = {
@@ -228,12 +231,12 @@ function MainpageVisit() {
       .then((data) => {
         if (data) {
           console.log("성공", data.result.hostPoster[0]);
-          setMessagedata(data.result.hostPoster[0]);
+          setMessagedata(data.result.hostSticker[0].message);
           setChinese(data.result.hostPoster[0].chinese);
           setName(data.result.hostPoster[0].nickname);
           setMean(data.result.hostPoster[0].meaning);
           setKorean(data.result.hostPoster[0].pronunciation);
-          setNumber(data.result.hostPoster[0].q_number);
+          setNumber("#" + data.result.hostPoster[0].q_number);
           const handleSelleckSeason = () => {
             if (data.result.hostPoster[0].q_season === "봄") {
               handleSpring();
@@ -275,20 +278,38 @@ function MainpageVisit() {
   };
   test2();
 
+  useEffect(() => {
+    const messageCircle = document.getElementById("ment");
+    console.log(messagedata);
+    if (messagedata) {
+      messageCircle.style.display = "block";
+    } else {
+      messageCircle.style.display = "none";
+    }
+  }, [messagedata]);
+  useEffect(() => {
+    const makeProfile = document.getElementById("makeprofile");
+    if (Season == "") {
+      console.log(1);
+      makeProfile.style.display = "block";
+    } else {
+      makeProfile.style.display = "none";
+    }
+  }, [Season]);
+
   return (
-    <div className="BackgroundWarp">
-      <div className="Background">
+    <div className="BackgroundWarp" style={{ background: "#FEFAEF" }}>
+      <div className="Background" style={{ background: "#FEFAEF" }}>
         <div className="l25" style={{ position: "relative" }}>
           <header
             style={{
               float: "down",
-              width:'320px',
+              width: "320px",
               height: "70px",
               position: "relative",
               top: "0px",
-              left:"-5px",
-              display:'flex',
-              justifyContent: 'space-between'
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
             <div
@@ -302,7 +323,6 @@ function MainpageVisit() {
             >
               <button
                 style={{ border: "none", backgroundColor: "transparent" }}
-                onClick={handleMainHost}
               >
                 <img src={user} className="l1" alt="setting" />
               </button>
@@ -333,47 +353,70 @@ function MainpageVisit() {
               </button>
             </div>
           </header>
-          <div style={{ width:'366px',
-            height:'124%',
-            position: "relative",
-            top: "-5px" ,
-            left:"-7px",
-            border: '3px solid var(--unnamed, #12151C)',
-            borderRadius: '20px',
-            boxShadow: '2px 2px 10px 0px rgba(0, 0, 0, 0.25',
-            }}>
-            <div id="PrtSc" style={{ width: "338px", height: "88%", position:'relative', left:'4%'}}>
+          <div
+            style={{
+              width: "335px",
+              height: "125%",
+              position: "relative",
+              top: "5px",
+              border: "3px solid var(--unnamed, #12151C)",
+              borderRadius: "20px",
+              boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",
+              background: "white",
+            }}
+          >
+            <div
+              id="PrtSc"
+              style={{
+                width: "310px",
+                height: "87%",
+                position: "relative",
+                left: "4%",
+              }}
+            >
               <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
-                <div
-                  style={{ position: "absolute", left: "6%", top: "27%" , zIndex:'3'}}
-                  name="사진"
+              <div
+                  style={{
+                    
+                    position: "relative",
+                    display:'flex',
+                    left: "50%",
+                    top: "80%",
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: "3",
+                    flexWrap: 'wrap',
+                  }}
+                  name="사진" id="Photo"
                 >
-                  <img src={stickerdata} alt="Vector" />
+                  <img id="Sticker" style={{width:'60%',position:'relative', bottom:'30px' , margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
+                  <div className="l30-2" style={{zIndex:"2"}}></div>
                 </div>
-                <div id="ifSpring">
-                  <p className="l13-2">{Season || "WIN 겨울 TER"}</p>
+                <div>
+                  <p id="ifSpring" className="l13-2">
+                    {Season || ""}
+                  </p>
                 </div>
                 <div id="ment" className="l22-2">
-                  <div className="l23-2">
+                  <div className="l23-2" style={{ zIndex: "2" }}>
                     <p id="" className="l3-2">
-                      {Message || "어서옵쇼 다들 스티커 붙여주세요..!"}
+                      {messagedata || "어서옵쇼 다들 스티커 붙여주세요..!"}
                     </p>
                   </div>
                 </div>
                 <div style={{ width: "390px", height: "100px" }}>
                   <div style={{ float: "left" }} name="이름">
                     <p id="" className="l4-2">
-                      {Name || "수민님"}
+                      {Name || ""}
                     </p>
                   </div>
                   <div style={{ float: "left" }} name="숫자">
                     <p id="" className="l5-2">
-                      {Number || "#128"}
+                      {Number || ""}
                     </p>
                   </div>
                   <div style={{ float: "left" }} name="날짜">
-                    <p id="" className="l6-2" style={{zIndex:'4'}}>
-                      {Day || "JUNE, 28"}
+                    <p id="" className="l6-2" style={{ zIndex: "4" }}>
+                      {Day || ""}
                     </p>
                   </div>
                 </div>
@@ -384,11 +427,13 @@ function MainpageVisit() {
                   position: "absolute",
                   width: "338px",
                   height: "140px",
-                  top:"77%",
+                  top: "73%",
                 }}
               >
                 <div name="사자성어">
-                  <div>
+                  <div
+                    style={{ position: "relative", top: "20px", left: "2%" }}
+                  >
                     <div
                       className="l28-2"
                       style={{ backgroundColor: "#FF6D00" }}
@@ -403,19 +448,17 @@ function MainpageVisit() {
                     ></div>
                   </div>
                   <div className="l7-2">
-                    <p id="" >
-                    {Korean || "오매불망"}
-                    </p>
+                    <p id="">{Korean || ""}</p>
                   </div>
                 </div>
                 <div name="한자">
                   <p id="" className="l8-2">
-                    {Chinese || "寤寐不忘"}
+                    {Chinese || ""}
                   </p>
                 </div>
                 <div name="뜻">
                   <p id="" className="l9-2">
-                    {Mean || "자나깨나 잊지 못함"}
+                    {Mean || ""}
                   </p>
                 </div>
               </div>
@@ -448,15 +491,6 @@ function MainpageVisit() {
             </div>
             <div>
               <div style={{ float: "left" }}>
-                {/* <div
-                  id="countRecordDiv"
-                  className="l14-2"
-                  style={{ display: "none", top: "-80px", left: "40px" }}
-                >
-                  <p id="countRecord" className="l15-2">
-                    {recordNumber || "0"}
-                  </p>
-                </div> */}
                 {/*  <button
                   style={{
                     width: "20px",
@@ -480,7 +514,7 @@ function MainpageVisit() {
                   -1
                 </button> */}
               </div>
-              <Div style={{position:'absolute',top:'4%',left:'36%'}}>
+              <Div style={{ position: "absolute", top: "87%", left: "56%" }}>
                 <button className="l10" onClick={handleVisitorsticker}>
                   <img src={recordpage} alt="recordpage" />
                 </button>
@@ -500,18 +534,30 @@ function MainpageVisit() {
                 </button>
               </div> */}
             </div>
-            {/* <div
-              style={{ width: "200px", height: "100px", position: "relative" }}
+            <div
+              id="makeprofile"
+              style={{
+                position: "absolute",
+                top: "73%",
+                left: "25%",
+                display: "none",
+              }}
             >
-              <button>사랑선택</button>
-              <button>우정선택</button>
-              <button onClick={handleSpring}>봄선택</button>
-              <button onClick={handleSummer}>여름선택</button>
-              <button onClick={handleAutumn}>가을선택</button>
-              <button onClick={handleWinter}>겨울선택</button>
-              <button onClick={handleNoneProfile}>프로필 생성 안함</button>
-              <button onClick={handleHaveProfile}>프로필 생성 함</button>
-            </div> */}
+              <div name="프로필 생성 제안">
+                <p id="" className="l28">
+                  해당 유저가 아직
+                </p>
+              </div>
+              <div name="링크">
+                <p
+                  id=""
+                  className="l28"
+                  style={{ position: "relative", left: "0px", top: "-20px" }}
+                >
+                  프로필을 작성하지 않았습니다.
+                </p>
+              </div>
+            </div>
           </div>
           {showFooter && (
             <footer className="FixedFooter">
@@ -524,7 +570,7 @@ function MainpageVisit() {
             </footer>
           )}
           {showModal && (
-            <div className="Modal" style={{zIndex:'100'}}>
+            <div className="Modal" style={{ zIndex: "100" }}>
               <div>
                 <div style={{}}>
                   <div className="l17">!</div>
@@ -573,7 +619,7 @@ function MainpageVisit() {
             </div>
           )}
           {showModal3 && (
-            <div className="Modal" style={{zIndex:'100'}}>
+            <div className="Modal" style={{ zIndex: "100" }}>
               <div>
                 <div style={{}}>
                   <div className="l17">!</div>
@@ -622,7 +668,7 @@ function MainpageVisit() {
             </div>
           )}
           {showModal2 && (
-            <div className="Modal" style={{zIndex:'1000'}}>
+            <div className="Modal" style={{ zIndex: "1000" }}>
               <div>
                 <div className="l17">!</div>
                 <button id="close" className="l18" onClick={toggleModal2}>

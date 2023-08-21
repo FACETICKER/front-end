@@ -200,7 +200,23 @@ function InitialSurvey() {
 
     if (resultDiv.style.display == "block") {
       if (input1 != "" || input2 != "" || input3 != "" || input4 != "") {
-        setChooseNumber(parseInt(input1 + input2 + input3 + input4));
+        if (input1 == 0) {
+          if (input2 == 0) {
+            if (input3 == 0) {
+              if (input4 == 0) {
+                setChooseNumber(parseInt("000" + input4));
+              }else{
+                setChooseNumber(parseInt("0000"));
+              }
+            }else {
+              setChooseNumber(parseInt("00"+ input3 + input4));
+            }
+          } else{
+            setChooseNumber(parseInt("0"+input2 + input3 + input4));
+          }
+        } else{
+          setChooseNumber(parseInt(input1 + input2 + input3 + input4));
+        }
         handleInitialNumberChange();
         setNumberCheck(check);
         resultDiv.style.display ="none";
@@ -588,7 +604,7 @@ function InitialSurvey() {
 
 
   return (
-    <div className="BackgroundWrap">
+    <div className="BackgroundWrap" style={{background: '#F8F8FA'}}>
       <div className="Background">
         <div className="l20-1" style={{ position: "relative" }}>
           <div className="l17-1">
@@ -633,14 +649,28 @@ function InitialSurvey() {
             <div id="l16-1" className="l16-1">
               <div style={{ padding: "10px 0 0 0" }}>
                 <input
-                  className="l5-1"
                   type="text"
                   id="name"
                   name="name"
                   minLength="2"
                   maxLength="7"
                   placeholder="닉네임 (최대 7자)"
-                  style={{ width: "313px" }}
+                  style={{ width: "313px",
+                  height: '70px',
+                  flexShrink: '0',
+                  border: '2px solid #FFF',
+                  borderRadius: '20px',
+                  boxShadow: '4px 4px 15px 0px rgba(0, 0, 0, 0.15)',
+                  background: '#FFF',
+                  position: 'relative',
+                  left:'2%',
+                  zIndex: '2',
+                  color: '#191919',
+                  fontFamily: 'Pretendard',
+                  fontSize: '20px',
+                  fontStyle: 'normal',
+                  fontWeight: '600',
+                  lineHeight: '20px', /* 100% */}}
                   onInput={handleNameInput}
                 />
                 <img
