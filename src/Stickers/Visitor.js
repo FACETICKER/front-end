@@ -73,6 +73,7 @@ export function Visitor() {
   const dispatch = useDispatch();
 
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
+  console.log("이미지fixed", isImageFixed);
 
   const handlesticker = () => {
     navigate("/makesticker");
