@@ -305,8 +305,8 @@ function MainpageHost() {
     const Sticker = document.getElementById("Sticker")
     const Photo = document.getElementById("Photo")
     if (Sticker.src == "http://localhost:3000/static/media/%EA%B8%B0%EB%B3%B8%20%EC%BA%90%EB%A6%AD%201.484d8e0ea830f8eeff94.png") {
-      Sticker.style.width="80%";
-      Sticker.style.height="80%"
+      Sticker.style.width="60%";
+      Sticker.style.height="60%"
       //Photo.style.top="48%";
       //Photo.style.left="15%";
     }else{
@@ -459,9 +459,8 @@ function MainpageHost() {
               <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
                 <div
                   style={{
-                    width:'250px',
-                    height: '300px',
-                    position: "absolute",
+                    
+                    position: "relative",
                     display:'flex',
                     left: "50%",
                     top: "80%",
@@ -471,7 +470,7 @@ function MainpageHost() {
                   }}
                   name="사진" id="Photo"
                 >
-                  <img id="Sticker" style={{width:'200px', height:'240px',position:'relative', top:'-5%', margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
+                  <img id="Sticker" style={{width:'60%',position:'relative', bottom:'30px' , margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
                   <div className="l30-2" style={{zIndex:"2"}}></div>
                 </div>
                 <div >
