@@ -16,6 +16,7 @@ import middle from "../img/Stickers_img/Middle.png";
 import VisitorSticker from "./VisitorSticker";
 import mysticker from "../img/Stickers_img/mysticker.png";
 import goqna from "../img/Stickers_img/goqna.png";
+import PageSlice from "../QnA/Slice/PageSlice";
 
 //방문자 기록 컴포넌트
 const BackgroundWrap = styled.div`
