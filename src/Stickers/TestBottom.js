@@ -97,6 +97,7 @@ export function TestBottom(props) {
   const [imageData, setImageData] = useState(null);
   const [imageData10, setImageData10] = useState(null);
   const [visitorSticker, setVisitorSticker] = useState(null);
+  const [nav, setnav] = useState(false);
 
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
 
@@ -269,13 +270,19 @@ export function TestBottom(props) {
         .then((response) => response.json())
         .then((data) => {
           console.log("patch 성공", data);
-          navigate(`/sticker/${ID}`);
+          setnav(true);
         })
         .catch((error) => {
           console.error("patch 오류", error);
         });
     }
   }, [isImageFixed]);
+
+  useEffect(() => {
+    if (nav) {
+      navigate(`/sticker/${ID}`);
+    }
+  }, [nav]);
 
   //이미지들 한 번 더 불러오기
   useEffect(() => {
@@ -367,7 +374,7 @@ export function TestBottom(props) {
               alt={`Image ${item.id}`}
             />
           ))}
-        {imageData10 &&
+        {/*   {imageData10 &&
           imageData10.map((item) => (
             <img
               key={item.visitor_sticker_id}
@@ -381,7 +388,7 @@ export function TestBottom(props) {
               }}
               alt={`Image ${item.id}`}
             />
-          ))}
+          ))} */}
       </Bottoms>
     </BottomWrap>
   );

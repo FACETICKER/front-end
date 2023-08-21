@@ -223,30 +223,30 @@ export function VisitPut(props) {
   };
   return (
     <BackgroundWrap>
-      {!change && (
-        <Background>
-          <HeaderWrap>
-            <FirstHeader>
-              <BackIcon onClick={handlefirstBack} src={backIcon} />
-            </FirstHeader>
-            <TextHeader>
-              <Text1>스티커를 붙여보세요!</Text1>
-              <Text2>부착된 스티커는 호스트 외 삭제할 수 없습니다.</Text2>
-            </TextHeader>
-          </HeaderWrap>
-          <TestBottom id={VID2} />
+      {/* {!change && ( */}
+      <Background>
+        <HeaderWrap>
+          <FirstHeader>
+            <BackIcon onClick={handlefirstBack} src={backIcon} />
+          </FirstHeader>
+          <TextHeader>
+            <Text1>스티커를 붙여보세요!</Text1>
+            <Text2>부착된 스티커는 호스트 외 삭제할 수 없습니다.</Text2>
+          </TextHeader>
+        </HeaderWrap>
+        <TestBottom id={VID2} />
 
-          <ButtonWrap>
-            <MiddleImg>
-              <img src={middle} />
-            </MiddleImg>
-            <Footer>
-              <Icon onClick={handleButtonClick} src={putcomplete} />
-            </Footer>
-          </ButtonWrap>
-        </Background>
-      )}
-      {change && (
+        <ButtonWrap>
+          <MiddleImg>
+            <img src={middle} />
+          </MiddleImg>
+          <Footer>
+            <Icon onClick={handleButtonClick} src={putcomplete} />
+          </Footer>
+        </ButtonWrap>
+      </Background>
+      {/*  )} */}
+      {/* {change && (
         <Background>
           <HeaderWrap>
             <FirstHeader>
@@ -271,7 +271,7 @@ export function VisitPut(props) {
             </Footer>
           </ButtonWrap>
         </Background>
-      )}
+      )} */}
     </BackgroundWrap>
   );
 }
