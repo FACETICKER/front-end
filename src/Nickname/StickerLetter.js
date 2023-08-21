@@ -173,7 +173,7 @@ const InputImg = styled.img`
   display: flex;
   object-fit: cover;
 
-  max-height: 95%;
+  max-height: 80%;
 `;
 const InputWrap = styled.div`
   display: flex;
