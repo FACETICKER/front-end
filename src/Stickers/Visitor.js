@@ -48,7 +48,9 @@ const Footer = styled.div`
   flex-direction: row;
 `;
 const Icons = styled.div`
-  max-height: 50%;
+  height: 80%;
+  max-width: 90%;
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -57,11 +59,12 @@ const Icons = styled.div`
 
 const Icon = styled.img`
   display: flex;
-  width: 90%;
+  width: 100%;
+  max-height: 70%;
 `;
 const Middle = styled.img`
   display: flex;
-  width: 40%;
+  max-width: 40%;
   position: absolute;
   top: -28%;
 `;
