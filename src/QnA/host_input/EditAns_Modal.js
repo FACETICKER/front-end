@@ -46,7 +46,7 @@ const EditAns_Modal = () => {
             padding: '0px',
             margin: '0px',
             position: 'absolute',
-            top: '75%',
+            top: '80%',
             left: screenwidth >= 500 ? '50%' : '52.5%',
             transform: 'translate(-50%, -50%)',
             overflow: 'auto',
