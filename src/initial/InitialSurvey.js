@@ -641,7 +641,7 @@ function InitialSurvey() {
                 className="l3-1"
                 style={{ position: "relative", left: "0%" ,top:'-20%'}}
               >
-                등록해주세요.
+                등록해주세요.!!
               </div>
             </div>
           </div>
