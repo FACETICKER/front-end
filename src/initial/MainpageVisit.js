@@ -358,7 +358,7 @@ function MainpageVisit() {
               width: "335px",
               height: "125%",
               position: "relative",
-              top: "15px",
+              top: "5px",
               border: "3px solid var(--unnamed, #12151C)",
               borderRadius: "20px",
               boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",
@@ -375,34 +375,21 @@ function MainpageVisit() {
               }}
             >
               <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
-                <div
+              <div
                   style={{
-                    width: "250px",
-                    height: "300px",
-                    position: "absolute",
-                    display: "flex",
+                    
+                    position: "relative",
+                    display:'flex',
                     left: "50%",
                     top: "80%",
-                    transform: "translate(-50%, -50%)",
+                    transform: 'translate(-50%, -50%)',
                     zIndex: "3",
-                    flexWrap: "wrap",
+                    flexWrap: 'wrap',
                   }}
-                  name="사진"
-                  id="Photo"
+                  name="사진" id="Photo"
                 >
-                  <img
-                    id="Sticker"
-                    style={{
-                      width: "200px",
-                      height: "240px",
-                      position: "relative",
-                      margin: "0 auto",
-                      zIndex: "3",
-                    }}
-                    src={stickerdata || normalSticker}
-                    alt="Vector"
-                  />
-                  <div className="l30" style={{ zIndex: "3" }}></div>
+                  <img id="Sticker" style={{width:'60%',position:'relative', bottom:'30px' , margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
+                  <div className="l30-2" style={{zIndex:"2"}}></div>
                 </div>
                 <div>
                   <p id="ifSpring" className="l13-2">

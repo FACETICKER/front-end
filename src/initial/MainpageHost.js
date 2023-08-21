@@ -305,8 +305,8 @@ function MainpageHost() {
     const Sticker = document.getElementById("Sticker")
     const Photo = document.getElementById("Photo")
     if (Sticker.src == "http://localhost:3000/static/media/%EA%B8%B0%EB%B3%B8%20%EC%BA%90%EB%A6%AD%201.484d8e0ea830f8eeff94.png") {
-      Sticker.style.width="80%";
-      Sticker.style.height="80%"
+      Sticker.style.width="60%";
+      Sticker.style.height="60%"
       //Photo.style.top="48%";
       //Photo.style.left="15%";
     }else{
@@ -331,6 +331,11 @@ function MainpageHost() {
       makeProfile.style.display="none";
     }
   },[Season])
+
+  const handleBokSa = () => {
+    window.navigator.clipboard.writeText(address3)
+    alert("복사되었습니다.");
+    }
 
 
 
@@ -435,7 +440,7 @@ function MainpageHost() {
               width: "335px",
               height: "125%",
               position: "relative",
-              top: "15px",
+              top: "5px",
               border: "3px solid var(--unnamed, #12151C)",
               borderRadius: "20px",
               boxShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.25",
@@ -454,9 +459,8 @@ function MainpageHost() {
               <div name="inyellow" className="l2-2" style={{ clear: "left" }}>
                 <div
                   style={{
-                    width:'250px',
-                    height: '300px',
-                    position: "absolute",
+                    
+                    position: "relative",
                     display:'flex',
                     left: "50%",
                     top: "80%",
@@ -466,10 +470,10 @@ function MainpageHost() {
                   }}
                   name="사진" id="Photo"
                 >
-                  <img id="Sticker" style={{width:'200px', height:'240px',position:'relative', margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
+                  <img id="Sticker" style={{width:'60%',position:'relative', bottom:'30px' , margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
                   <div className="l30-2" style={{zIndex:"2"}}></div>
                 </div>
-                <div >
+                <div>
                   <p id="ifSpring" className="l13-2">{Season || ""}</p>
                 </div>
                 <div id="ment" className="l22-2">
@@ -602,11 +606,11 @@ function MainpageHost() {
                     {recordNumber || ""}
                   </p>
                 </div> 
-                <CopyToClipboard text={{address3}} onCopy={() => alert("클립보드에 복사되었습니다.")}>
-                <button className="l10-2">
+                {/*<CopyToClipboard text={{address3}} onCopy={() => alert("클립보드에 복사되었습니다.")}>*/}
+                <button className="l10-2" onClick={handleBokSa}>
                   <img src={share} alt="share" />
                 </button>
-                </CopyToClipboard>
+                {/*</CopyToClipboard>*/}
                 <button className="l10-2">
                   <img src={download} alt="download" />
                 </button>
