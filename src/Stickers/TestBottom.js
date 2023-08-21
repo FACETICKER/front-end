@@ -9,7 +9,7 @@ import { useGesture } from "react-use-gesture";
 import React, { useRef } from "react";
 import positionSlice from "./positionSlice";
 import Idtoken from "./Idtoken";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import VisitorSticker from "./VisitorSticker";
 
 //방문자가 자신의 스티커를 호스트 페이지에 붙이는 컴포넌트
