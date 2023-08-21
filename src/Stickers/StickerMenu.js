@@ -142,7 +142,7 @@ const First = styled.div`
   width: 100%;
   height: 30%;
 
-  transform: translateY(50%); //이거 나중에 데이터 더 들어오는 거 보고 수정
+  transform: translateY(70%); //이거 나중에 데이터 더 들어오는 거 보고 수정
 `;
 export function StickerMenu() {
   const navigate = useNavigate();

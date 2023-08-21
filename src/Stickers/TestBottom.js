@@ -170,6 +170,7 @@ export function TestBottom(props) {
   }, [isImageFixed]);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //Bottom 높이, 너비 반환
   const componentRef = useRef(null);
@@ -258,7 +259,6 @@ export function TestBottom(props) {
   //이미지 PATCH
   useEffect(() => {
     if (isImageFixed) {
-      setImageData10(null);
       fetch(`http://app.faceticker.site/${ID}/sticker/attach?id=${visitorid}`, {
         method: "PATCH",
         headers: {
@@ -269,6 +269,7 @@ export function TestBottom(props) {
         .then((response) => response.json())
         .then((data) => {
           console.log("patch 성공", data);
+          navigate(`/sticker/${ID}`);
         })
         .catch((error) => {
           console.error("patch 오류", error);
