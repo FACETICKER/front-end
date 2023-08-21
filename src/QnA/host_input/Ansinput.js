@@ -41,14 +41,13 @@ function Ansinput() {
 
     const nqna_id = ques.filter(obj => obj.clicked === true).map(obj => obj.nQnA_id)[0];
 
-    const onsubmit = (event) => {
+    const onsubmit = async (event) => {
         event.preventDefault();
         if (answer === "") {
             return;
         }
         Answerpatch();
         QuesHiddenPatch();
-        AnswerHiddenPatch();
         dispatch(AnswerSlice.actions.up({text: answer, id: ID, type: "answer", open: ans_open, clicked: false, nQnA_id: nqna_id})); // 답변 생성
         setanswer(""); // 입력 칸 초기화
         dispatch(questionSlice.actions.edit(ID)); // 질문 클릭 안된 상태로 돌리기
@@ -78,7 +77,8 @@ function Ansinput() {
         })
             .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
             .then((data) => {
-                console.log(data);
+                // console.log(data);
+                AnswerHiddenPatch(); // 답변 생성 후 답변 비공개 설정
             })
             .catch((error) => {
                 console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
@@ -105,7 +105,7 @@ function Ansinput() {
         })
             .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
             .then((data) => {
-                console.log(data);
+                // console.log(data);
             })
             .catch((error) => {
                 console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
@@ -131,7 +131,7 @@ function Ansinput() {
         })
             .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
             .then((data) => {
-                console.log(data);
+                // console.log(data);
             })
             .catch((error) => {
                 console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력

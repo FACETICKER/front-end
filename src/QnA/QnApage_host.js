@@ -56,10 +56,10 @@ function QnApage_host() {
         dispatch(PageSlice.actions.basic());
     }
 
-    useEffect(() => {
+    /* useEffect(() => {
         console.log('ques', ques);
         console.log('ans', ans);
-    }, [ques, ans]); 
+    }, [ques, ans]); */
 
     return (
         <div className={styles2.background}>
