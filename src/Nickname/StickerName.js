@@ -67,7 +67,8 @@ const HeaderIcon = styled.div`
 `;
 
 const Back = styled.img`
-  max-width: 40%;
+  max-width: 38%;
+  height: auto;
   display: flex;
 `;
 
@@ -164,7 +165,7 @@ const InputWrap = styled.div`
 const InputImg = styled.img`
   position: absolute;
   height: 110px;
-  width: 80%;
+  max-width: 80%;
 
   display: flex;
 `;
@@ -198,7 +199,7 @@ export function StickerName() {
   const [visitorSticker, setVisitorSticker] = useState(null);
   const [clickname, setClickname] = useState(false);
   const [inputheight, setInputheight] = useState("30%");
-  const [inputTop, setInputTop] = useState("-2%");
+  const [inputTop, setInputTop] = useState("5%");
   const [nicknameValue, setNicknameValue] = useState("");
 
   const currentURL = window.location.href;
@@ -227,7 +228,7 @@ export function StickerName() {
     setMargin("0%");
     setClickname(false);
     setInputheight("30%");
-    setInputTop("-2%");
+    setInputTop("5%");
   };
 
   //닉네임 저장
