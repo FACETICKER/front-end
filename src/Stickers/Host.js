@@ -135,7 +135,7 @@ const Icon2 = styled.img`
 `;
 const Middle = styled.img`
   display: flex;
-  width: 40%;
+  max-width: 40%;
   position: absolute;
   top: -28%;
 `;

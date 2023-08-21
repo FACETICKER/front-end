@@ -172,7 +172,8 @@ const Container = styled.img`
 const InputImg = styled.img`
   display: flex;
   object-fit: cover;
-  width: 100%;
+
+  max-height: 110%;
 `;
 const InputWrap = styled.div`
   display: flex;
@@ -186,7 +187,7 @@ const InputWrap = styled.div`
 `;
 const Input = styled.textarea`
   text-align: center;
-  height: 150px;
+  height: 50%;
   width: 90%;
   resize: none;
   background-color: transparent;

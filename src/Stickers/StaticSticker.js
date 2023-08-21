@@ -76,6 +76,7 @@ export function StaticSticker() {
   const [componentWidth, setComponentWidth] = useState(0);
   const [componentHeight, setComponentHeight] = useState(0);
   const navigate = useNavigate();
+  const isImageFixed2 = useSelector((state) => state.app.isImageFixed2);
 
   // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
   const hostid = useSelector((state) => state.login.hostid);
@@ -137,6 +138,25 @@ export function StaticSticker() {
       });
   }, []);
 
+  //이미지들 한 번 더 불러오기
+  useEffect(() => {
+    fetch(`http://app.faceticker.site/${ID}/sticker/all`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setHostImageUrl(data.result.userStickerResult[0].final_image_url);
+        const filteredData = data.result.visitorStickerResult.filter(
+          (item) => item.location_x !== null
+        );
+
+        console.log("00", filteredData);
+        setImageData(filteredData);
+      })
+      .catch((error) => {
+        console.error("오류 발생", error);
+      });
+  }, [isImageFixed2]);
+
   const [zoomLevel, setZoomLevel] = useState(1);
   const minZoomLevel = 0.5;
   const maxZoomLevel = 2;
@@ -169,7 +189,7 @@ export function StaticSticker() {
                 src={item.final_image_url}
                 style={{
                   position: "absolute",
-                  top: `${(item.location_y * componentHeight) / 100}px`,
+                  top: `${(item.location_y * componentHeight) / 100 - 20}px`,
                   left: `${(item.location_x * componentWidth) / 100}px`,
                   zIndex: 9999,
                   maxWidth: "100px",
