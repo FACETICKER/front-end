@@ -204,20 +204,6 @@ export function VisitPut(props) {
     }
   }, [change]);
 
-  //호스트 닉네임 불러오기
-  useEffect(() => {
-    fetch(`http://app.faceticker.site/${ID}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("호스트 성공", data);
-        console.log("호스트명", data.result.userNickname);
-        setHostName(data.result.userNickname);
-      })
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, []);
-
   const reset = () => {
     dispatch(setIsImageVisible(false));
   };
