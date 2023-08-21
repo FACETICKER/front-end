@@ -125,14 +125,14 @@ export function Visitor() {
   const hostid = useSelector((state) => state.login.hostid);
   const ID = hostid;
 
-  //호스트 닉네임 불러오기
+  //host 닉네임 값 받아오기
   useEffect(() => {
     fetch(`http://app.faceticker.site/${ID}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("호스트 성공", data);
-        console.log("호스트명", data.result.userNickname);
-        setHostName(data.result.userNickname);
+        console.log("닉네임", data);
+        setHostName(data.result.hostPoster[0].nickname);
+        console.log("10", data.result.hostPoster[0].nickname);
       })
       .catch((error) => {
         console.error("오류 발생", error);
