@@ -332,6 +332,11 @@ function MainpageHost() {
     }
   },[Season])
 
+  const handleBokSa = () => {
+    window.navigator.clipboard.writeText(address3)
+    alert("복사되었습니다.");
+    }
+
 
 
   return (
@@ -466,7 +471,7 @@ function MainpageHost() {
                   }}
                   name="사진" id="Photo"
                 >
-                  <img id="Sticker" style={{width:'200px', height:'240px',position:'relative', margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
+                  <img id="Sticker" style={{width:'200px', height:'240px',position:'relative', top:'-5%', margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
                   <div className="l30-2" style={{zIndex:"2"}}></div>
                 </div>
                 <div >
@@ -602,11 +607,11 @@ function MainpageHost() {
                     {recordNumber || ""}
                   </p>
                 </div> 
-                <CopyToClipboard text={{address3}} onCopy={() => alert("클립보드에 복사되었습니다.")}>
-                <button className="l10-2">
+                {/*<CopyToClipboard text={{address3}} onCopy={() => alert("클립보드에 복사되었습니다.")}>*/}
+                <button className="l10-2" onClick={handleBokSa}>
                   <img src={share} alt="share" />
                 </button>
-                </CopyToClipboard>
+                {/*</CopyToClipboard>*/}
                 <button className="l10-2">
                   <img src={download} alt="download" />
                 </button>
