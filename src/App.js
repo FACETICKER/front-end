@@ -47,6 +47,8 @@ function App() {
           {/* 초기 설정 */}
           <Route path="/main/:userId" element={<MainpageVisit />} />
           {/*방문자 메인페이지 */}
+          <Route path="/main/:userId/" element={<MainpageVisit />} />
+          {/*방문자 메인페이지 */}
           <Route path="/main/host/:userId" element={<MainpageHost />} />
           {/*호스트 메인페이지 */}
           <Route path="/stickername/:visitorId" element={<StickerName />} />
