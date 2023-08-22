@@ -61,6 +61,8 @@ function MainpageHost() {
   const [Day, setDay] = useState("");
   const [Message, setMessage] = useState("");
   const [count,setCount] = useState("");
+  const axios = require('axios');
+
 
   const toggleFooter = () => {
     setShowFooter(!showFooter);
@@ -120,9 +122,9 @@ function MainpageHost() {
         link.href = canvas.toDataURL("image/png");
         link.download = "capture.png";
         link.click();
-        toggleModal2();
       });
     }
+    alert("다운로드 성공.")
   };
 
   const handlePlusMessage = () => {
@@ -336,6 +338,29 @@ function MainpageHost() {
     window.navigator.clipboard.writeText(address3)
     alert("복사되었습니다.");
     }
+  
+  const imageUrl10 = stickerdata;
+  async function getImageAsBase64(url) {
+    try {
+      const response = await axios.get(url, { responseType: 'arraybuffer' });
+      const imageBuffer = Buffer.from(response.data, 'binary');
+      const base64Image = imageBuffer.toString('base64');
+      return base64Image;
+    } catch (error) {
+      console.error('Error fetching image:', error);
+      throw error;
+    }
+  }
+  getImageAsBase64(imageUrl10)
+  .then(base64Image => {
+    // 변환된 Base64 이미지 데이터
+    console.log(base64Image);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+  
+
 
 
 
@@ -469,7 +494,7 @@ function MainpageHost() {
                   }}
                   name="사진" id="Photo"
                 >
-                  <img id="Sticker" style={{width:'60%',position:'relative', bottom:'30px' , margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
+                  <img id="Sticker" style={{width:'60%',position:'relative', bottom:'30px' , margin:'0 auto', zIndex:"3"}} src={imageUrl10 || normalSticker} alt="Vector" />
                   <div className="l30-2" style={{zIndex:"2"}}></div> 
                 </div>
                 <div>
@@ -611,7 +636,7 @@ function MainpageHost() {
                 </button>
                 {/*</CopyToClipboard>*/}
                 <button className="l10-2">
-                  <img src={download} alt="download" onClick={handleDownload2}/>
+                  <img src={download} alt="download" onClick={handleDownload}/>
                 </button>
               </Div>
 
