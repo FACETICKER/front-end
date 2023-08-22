@@ -200,19 +200,19 @@ function InitialSurvey() {
 
     if (resultDiv.style.display == "block") {
       if (input1 != "" || input2 != "" || input3 != "" || input4 != "") {
-        if (input1 == 0) {
-          if (input2 == 0) {
-            if (input3 == 0) {
-              if (input4 == 0) {
-                setChooseNumber(parseInt("000" + input4));
-              }else{
-                setChooseNumber(parseInt("0000"));
+        if (input1==0) {
+          if (input2==0) {
+            if (input3==0){
+              if (input4==0) {
+                setChooseNumber("0000")
+              } else{
+                setChooseNumber("000"+input4)
               }
-            }else {
-              setChooseNumber(parseInt("00"+ input3 + input4));
+            }else{
+              setChooseNumber("00"+input3+input4)
             }
           } else{
-            setChooseNumber(parseInt("0"+input2 + input3 + input4));
+            setChooseNumber("0"+input2+input3+input4);
           }
         } else{
           setChooseNumber(parseInt(input1 + input2 + input3 + input4));
@@ -552,6 +552,7 @@ function InitialSurvey() {
         console.error("오류 발생", error); // 요청이 실패하면 에러를 콘솔에 출력
       });
   };
+  
 
   useEffect(() => {
     const digits = chooseNumber.toString().split("").map(Number);
@@ -564,6 +565,8 @@ function InitialSurvey() {
       setInput2(chooseNumber.toString()[1]);
       setInput3(chooseNumber.toString()[2]);
       setInput4(chooseNumber.toString()[3]);
+    } else {
+      return;
     }
   }, [chooseNumber]);
 
