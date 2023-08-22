@@ -42,10 +42,26 @@ function MainpageVisit() {
   const [Message, setMessage] = useState("");
 
   //방문자가 가지고 온 호스트 아이디 추출
+  function isNum(str) {
+    return /^\d+$/.test(str);
+  }
+  
   const currentURL = window.location.href;
   const parts = currentURL.split("/");
-  const hostID = parts[parts.length - 1]; //방문자가 가지고 온 호스트 ID
-  console.log(hostID);
+  
+  let numericPart = null;
+  
+  for (let i = parts.length - 1; i >= 0; i--) {
+    const part = parts[i];
+    if (isNum(part)) {
+      numericPart = part;
+      break;
+    }
+  }
+  
+  const hostID = numericPart;
+  console.log("Numeric Host ID:", hostID);
+
   //호스트 아이디 저장
   dispatch(setHostId(hostID));
 
