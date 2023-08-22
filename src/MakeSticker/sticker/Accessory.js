@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./Accessory.module.css";
 import Accessory1 from "../image/accessory_image/accessory1-1.png";
-import Accessory2 from "../image/accessory_image/accessory2-1.png";
+import Accessory2 from "../image/accessory_image/accessory2.png";
 import Accessory3 from "../image/accessory_image/accessory3-1.png";
 import Accessory4 from "../image/accessory_image/accessory4-1.png";
 import Accessory5 from "../image/accessory_image/accessory5-1.png";
@@ -21,7 +21,7 @@ const Accessory = () => {
       {/* 
             입1
         */}
-      
+
       <img
         src={Accessory1}
         className={`${styles.accessory12} 

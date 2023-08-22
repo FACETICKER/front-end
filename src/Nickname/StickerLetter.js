@@ -180,7 +180,7 @@ const InputWrap = styled.div`
   justify-content: center;
   align-items: center;
   width: 80%;
-  height: 300px;
+  height: 280px;
   position: absolute;
   padding-top: ${(props) => props.height};
   display: flex;
