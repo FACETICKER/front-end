@@ -145,7 +145,7 @@ const CheckIcon = styled.img`
   z-index: 1;
 `;
 const ImgWrap = styled.div`
-  height: 70%;
+  height: 80%;
   width: 85%;
 
   padding-top: 20px;
