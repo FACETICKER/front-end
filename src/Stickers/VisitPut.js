@@ -148,7 +148,7 @@ const Icon3 = styled.img`
 
 export function VisitPut(props) {
   const VID2 = props.VID;
-  console.log("VID2", VID2);
+  //console.log("VID2", VID2);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [HostName, setHostName] = useState("호스트명");
@@ -160,7 +160,7 @@ export function VisitPut(props) {
   const currentURL = window.location.href;
   const parts = currentURL.split("/");
   const visitorid = parseInt(parts[parts.length - 1]); //방문자가 가지고 온 호스트 ID
-  console.log("방문자 id", visitorid);
+  //console.log("방문자 id", visitorid);
 
   const handleButtonClick = () => {
     dispatch(setIsImageFixed(true)); // "Check" 버튼 클릭 시, 스티커 고정

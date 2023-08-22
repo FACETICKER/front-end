@@ -45,16 +45,16 @@ export function MainText() {
     "Content-Type": "application/json",
   };
   const Header = whatType == "host" ? headers : VisitorHeader;
-  console.log("header", whatType);
+  //console.log("header", whatType);
   const Id = whatType == "host" ? userId : hostid;
-  console.log("id", Id);
+  //console.log("id", Id);
 
   //host 닉네임 값 받아오기
   useEffect(() => {
     fetch(`http://app.faceticker.site/${Id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("닉네임", data);
+        //console.log("닉네임", data);
         setNicknameValue(data.result.hostPoster[0].nickname);
       })
       .catch((error) => {

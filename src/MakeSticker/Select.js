@@ -64,8 +64,8 @@ const Select = ({ handleCaptureImg }) => {
 
   const jwt = Idtoken()[1]; //호스트 토큰
   const userId = Idtoken()[0]; //호스트 아이디
-  console.log("아이디", userId);
-  console.log("토큰", jwt);
+  //console.log("아이디", userId);
+  //console.log("토큰", jwt);
 
   const VID = useSelector((state) => state.visitorId);
   const openModal = () => {
@@ -148,28 +148,28 @@ const Select = ({ handleCaptureImg }) => {
 
   //완료 누르면 백에 POST
   const stickerState = useSelector((state) => state.sticker);
-  console.log("StickerSlice Value:", stickerState);
+  //console.log("StickerSlice Value:", stickerState);
 
   const whatType = hostid == null ? "host" : "visitor";
-  console.log("what", whatType);
+  //console.log("what", whatType);
 
   //완료 누르고 버튼 지정
   const CompleteButton = whatType == "host" ? capture : captureVisitor;
-  console.log("버튼 ", CompleteButton);
+  //console.log("버튼 ", CompleteButton);
 
   //헤더
   const headers = {
     "x-access-token": jwt,
     "Content-Type": "application/json",
   };
-  console.log(headers);
+  //console.log(headers);
   const VisitorHeader = {
     "Content-Type": "application/json",
   };
   const Header = whatType == "host" ? headers : VisitorHeader;
-  console.log("header", Header);
+  //console.log("header", Header);
   const Id = whatType == "host" ? userId : hostid;
-  console.log("id", Id);
+  //console.log("id", Id);
 
   //sticker 없을 때 post, 있으면 patch
 
@@ -217,7 +217,7 @@ const Select = ({ handleCaptureImg }) => {
     }
   }, [whatType]);
 
-  console.log("stickeris", stickeris);
+  //console.log("stickeris", stickeris);
   //sticker 보낼 거
   const imageUrl = useSelector((state) => state.capture.imageUrl);
   const visitorId = useSelector((state) => state.visitorId);
@@ -234,14 +234,14 @@ const Select = ({ handleCaptureImg }) => {
     final: imageUrl,
   };
 
-  console.log("finalsticker", finalsticker);
-  console.log("url", imageUrl);
-  console.log("stickeris", stickeris);
+  //console.log("finalsticker", finalsticker);
+  //console.log("url", imageUrl);
+  //console.log("stickeris", stickeris);
 
   const apiUrl = stickeris
     ? `http://app.faceticker.site/${Id}/sticker/patch`
     : `http://app.faceticker.site/${Id}/sticker`;
-  console.log("api", apiUrl);
+  //console.log("api", apiUrl);
 
   const PostOrPatch = async () => {
     try {
@@ -274,12 +274,12 @@ const Select = ({ handleCaptureImg }) => {
 
   useEffect(() => {
     if (imageUrl) {
-      console.log("이미지 캡쳐 완료");
+      //console.log("이미지 캡쳐 완료");
       PostOrPatch();
     }
   }, [imageUrl]);
 
-  console.log("test2", test2);
+  //console.log("test2", test2);
 
   /*   useEffect(() => {
     if (test2) {

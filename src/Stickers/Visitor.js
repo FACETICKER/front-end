@@ -103,7 +103,7 @@ export function Visitor() {
   const [HostName, setHostName] = useState("호스트명");
 
   const isImageFixed = useSelector((state) => state.app.isImageFixed);
-  console.log("이미지fixed", isImageFixed);
+  //console.log("이미지fixed", isImageFixed);
 
   const handlesticker = () => {
     navigate("/makesticker");
@@ -130,9 +130,9 @@ export function Visitor() {
     fetch(`http://app.faceticker.site/${ID}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("닉네임", data);
+        //console.log("닉네임", data);
         setHostName(data.result.hostPoster[0].nickname);
-        console.log("10", data.result.hostPoster[0].nickname);
+        //console.log("10", data.result.hostPoster[0].nickname);
       })
       .catch((error) => {
         console.error("오류 발생", error);

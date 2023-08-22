@@ -112,27 +112,27 @@ export function RepositionSticker() {
     if (componentRef.current) {
       const w = componentRef.current.offsetWidth;
       const h = componentRef.current.offsetHeight;
-      console.log("Width:", w);
-      console.log("Height:", h);
+      //console.log("Width:", w);
+      //console.log("Height:", h);
       setComponentWidth(w);
       setComponentHeight(h);
     }
   }, []);
   const selectedImageId = useSelector((state) => state.image.selectedImageId2);
-  console.log(selectedImageId);
+  //console.log(selectedImageId);
 
   //이미지들 불러오기
   useEffect(() => {
     fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         setHostImageUrl(data.result.userStickerResult[0].final_image_url);
         const filteredData = data.result.visitorStickerResult.filter(
           (item) => item.location_x !== null
         );
 
-        console.log("00", filteredData);
+        //console.log("00", filteredData);
 
         setImageData(filteredData);
       })
@@ -146,13 +146,13 @@ export function RepositionSticker() {
     fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         setHostImageUrl(data.result.userStickerResult[0].final_image_url);
         const filteredData = data.result.visitorStickerResult.filter(
           (item) => item.location_x !== null
         );
 
-        console.log("00", filteredData);
+        //console.log("00", filteredData);
 
         setImageData(filteredData);
       })
@@ -166,13 +166,13 @@ export function RepositionSticker() {
     fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
 
         const filteredData2 = data.result.visitorStickerResult.filter(
           (item) => item.visitor_sticker_id == selectedImageId
         ); //선택한 캐릭터
 
-        console.log("01", filteredData2);
+        //console.log("01", filteredData2);
         setFirst({
           x: parseInt(filteredData2[0].location_x),
           y: parseInt(filteredData2[0].location_y),
@@ -189,9 +189,9 @@ export function RepositionSticker() {
       });
   }, [selectedImageId]);
 
-  console.log(move);
-  console.log("222", first);
-  console.log("111", logoPos);
+  //console.log(move);
+  //console.log("222", first);
+  //console.log("111", logoPos);
   const [zoomLevel, setZoomLevel] = useState(1);
   const minZoomLevel = 0.5;
   const maxZoomLevel = 2;
@@ -217,7 +217,7 @@ export function RepositionSticker() {
 
   const isImageFixed2 = useSelector((state) => state.app.isImageFixed2);
   const reset = useSelector((state) => state.app.reset);
-  console.log("VID", VID);
+  //console.log("VID", VID);
   //이미지 PATCH
 
   useEffect(() => {
@@ -231,7 +231,7 @@ export function RepositionSticker() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("patch 성공", data);
+          //console.log("patch 성공", data);
         })
         .catch((error) => {
           console.error("patch 오류", error);
