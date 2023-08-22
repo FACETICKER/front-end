@@ -230,7 +230,7 @@ function MainpageHost() {
       "Content-Type": "application/json",
     };
 
-    fetch(`http://app.faceticker.site/${user_id}/sticker/message`, {
+    fetch(`https://app.faceticker.site/${user_id}/sticker/message`, {
       method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청하려는 메소드에 따라 설정
       headers: headers,
     }) // 서버로 GET 요청을 보냄
@@ -470,7 +470,7 @@ function MainpageHost() {
                   name="사진" id="Photo"
                 >
                   <img id="Sticker" style={{width:'60%',position:'relative', bottom:'30px' , margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
-                  <div className="l30-2" style={{zIndex:"2"}}></div> {/**/}
+                  <div className="l30-2" style={{zIndex:"2"}}></div> 
                 </div>
                 <div>
                   <p id="ifSpring" className="l13-2">{Season || ""}</p>
