@@ -199,7 +199,7 @@ export function StickerName() {
   const [visitorSticker, setVisitorSticker] = useState(null);
   const [clickname, setClickname] = useState(false);
   const [inputheight, setInputheight] = useState("30%");
-  const [inputTop, setInputTop] = useState("5%");
+  const [inputTop, setInputTop] = useState("10%");
   const [nicknameValue, setNicknameValue] = useState("");
 
   const currentURL = window.location.href;
@@ -216,7 +216,7 @@ export function StickerName() {
     setMargin("50%");
     setClickname(true);
     setInputheight("80%");
-    setInputTop("-25%");
+    setInputTop("-13%");
   };
   //처음 back은 누르면 이전 페이지
   const handleFirstBack = () => {
