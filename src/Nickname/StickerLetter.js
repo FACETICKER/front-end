@@ -172,8 +172,8 @@ const Container = styled.img`
 const InputImg = styled.img`
   display: flex;
   object-fit: cover;
-
-  max-height: 100%;
+  max-width: 80%;
+  max-height: 90%;
 `;
 const InputWrap = styled.div`
   display: flex;
@@ -235,7 +235,7 @@ export function StickerLetter() {
   const currentURL = window.location.href;
   const parts = currentURL.split("/");
   const visitorid = parseInt(parts[parts.length - 1]); //방문자가 가지고 온 호스트 ID
-  console.log("방문자 id", visitorid);
+  //console.log("방문자 id", visitorid);
 
   //입력 누르면 변하는 것들
   const handleClickInput = () => {
@@ -267,7 +267,7 @@ export function StickerLetter() {
     fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${visitorid}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("letter", data);
+        //console.log("letter", data);
 
         const visitorImg = data.result.final_image_url;
 
@@ -290,7 +290,7 @@ export function StickerLetter() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log("성공", data);
+        //console.log("성공", data);
       })
       .catch((error) => {
         console.error("실패", error);
@@ -304,7 +304,7 @@ export function StickerLetter() {
     fetch(`http://app.faceticker.site/sticker/visitor/message?id=${visitorid}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("성공2", data.result[0].message);
+        //console.log("성공2", data.result[0].message);
         setLetterValue(data.result[0].message);
       })
       .catch((error) => {

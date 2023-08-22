@@ -157,7 +157,7 @@ export function Host() {
   };
 
   const UID = useSelector((state) => state.login.userId);
-  console.log("UID", UID);
+  //console.log("UID", UID);
 
   return (
     <BackgroundWrap>

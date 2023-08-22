@@ -117,7 +117,7 @@ export function ClickSticker() {
   /*   const idArray = imageData.map((item) => item.id); */
   const selectedImageId = useSelector((state) => state.image.selectedImageId);
 
-  console.log("100", selectedImageId);
+  //console.log("100", selectedImageId);
 
   const userId = Idtoken()[0]; //호스트 아이디
   const ID = userId;
@@ -129,7 +129,7 @@ export function ClickSticker() {
   };
 
   //스티커 읽음 처리
-  console.log("9", ID, selectedImageId, jwt);
+  //console.log("9", ID, selectedImageId, jwt);
   useEffect(() => {
     fetch(
       `http://app.faceticker.site/${ID}/visitor/sticker/seen?id=${selectedImageId}`,
@@ -140,7 +140,7 @@ export function ClickSticker() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log("읽음 처리", data);
+        //console.log("읽음 처리", data);
       })
       .catch((error) => {
         console.error("읽음 처리 오류", error);
@@ -159,12 +159,12 @@ export function ClickSticker() {
       );
 
       const responseData = await response.json();
-      console.log("특정 스티커 삭제 성공", responseData);
+      //console.log("특정 스티커 삭제 성공", responseData);
 
       if (response.ok) {
         navigate(`/sticker/host/${userId}`);
       } else {
-        console.log("특정 스티커 삭제 실패");
+        //console.log("특정 스티커 삭제 실패");
       }
     } catch (error) {
       console.error("특정 스티커 삭제 실패", error);

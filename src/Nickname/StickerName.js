@@ -205,7 +205,7 @@ export function StickerName() {
   const currentURL = window.location.href;
   const parts = currentURL.split("/");
   const visitorid = parseInt(parts[parts.length - 1]); //방문자가 가지고 온 호스트 ID
-  console.log("방문자 id", visitorid);
+  //console.log("방문자 id", visitorid);
 
   const imageUrl = useSelector((state) => state.capture.imageUrl);
 
@@ -253,7 +253,7 @@ export function StickerName() {
     fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${visitorid}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
 
         const visitorImg = data.result.final_image_url;
         setVisitorSticker(visitorImg);
@@ -277,7 +277,7 @@ export function StickerName() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log("성공", data);
+        //console.log("성공", data);
       })
       .catch((error) => {
         console.error("실패", error);
@@ -291,7 +291,7 @@ export function StickerName() {
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          console.log("성공", data.result[0].name);
+          //console.log("성공", data.result[0].name);
           setNicknameValue(data.result[0].name);
         }
       })

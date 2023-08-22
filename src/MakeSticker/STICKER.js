@@ -58,7 +58,7 @@ const STICKER = () => {
       // Convert canvas to image URL and set it in state
       const capturedImageUrl = canvas.toDataURL();
       dispatch(setImageUrl(capturedImageUrl));
-      console.log("넘어온", capturedImageUrl);
+      //console.log("넘어온", capturedImageUrl);
     });
   };
 
