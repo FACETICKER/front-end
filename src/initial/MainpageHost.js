@@ -469,7 +469,7 @@ function MainpageHost() {
                   }}
                   name="사진" id="Photo"
                 >
-                  <img id="Sticker" style={{width:'60%',position:'absolute', bottom:'30px' , margin:'0 auto', zIndex:"3"}} src={stickerdata || normalSticker} alt="Vector" />
+                  <img id="Sticker" style={{width:'60%',position:'relative', bottom:'30px' , margin:'0 auto', zIndex:"2"}} src={stickerdata || normalSticker} alt="Vector" />
                   <div className="l30-2" style={{zIndex:"2"}}></div>
                 </div>
                 <div>
