@@ -164,13 +164,13 @@ export function StickerMenu() {
     fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
 
         const filteredData = data.result.visitorStickerResult.filter(
           (item) => item.location_x !== null
         );
 
-        console.log("00", filteredData);
+        //console.log("00", filteredData);
         setImageData(filteredData);
       })
       .catch((error) => {
@@ -190,12 +190,12 @@ export function StickerMenu() {
     }
 
     extractedDataObjects.push(extractedData);
-    console.log("개수", extractedData.length);
+    //console.log("개수", extractedData.length);
   }
 
-  console.log(extractedDataObjects);
+  //console.log(extractedDataObjects);
 
-  console.log("7", extractedDataObjects[1]);
+  //console.log("7", extractedDataObjects[1]);
 
   const filteredData2 = extractedDataObjects[0];
   const filteredData3 = extractedDataObjects[1];
@@ -204,8 +204,8 @@ export function StickerMenu() {
   const filteredData6 = extractedDataObjects[4];
   const filteredData7 = extractedDataObjects[5];
 
-  console.log("8", filteredData2);
-  console.log("9", images);
+  //console.log("8", filteredData2);
+  //console.log("9", images);
 
   const handleClickSticker = (imageId) => {
     dispatch(setSelectedImage(imageId));

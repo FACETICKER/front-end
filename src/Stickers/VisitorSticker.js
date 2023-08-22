@@ -83,7 +83,7 @@ export function VisitorSticker() {
   const currentURL = window.location.href;
   const parts = currentURL.split("/");
   const hostid = parts[parts.length - 1]; //방문자가 가지고 온 호스트 ID
-  console.log(hostid);
+  //console.log(hostid);
   //호스트 아이디 저장
   dispatch(setHostId(hostid)); // userId, 토큰, 방문자가 가지고 온  호스트Id 가져오기
 
@@ -102,9 +102,9 @@ export function VisitorSticker() {
     "Content-Type": "application/json",
   };
   const Header = whatType == "host" ? headers : VisitorHeader;
-  console.log("header", whatType);
+  //console.log("header", whatType);
   const ID = whatType == "host" ? userId : hostid;
-  console.log("id", ID);
+  //console.log("id", ID);
 
   //컴포넌트 높이, 너비
   const componentRef = useRef(null);
@@ -112,8 +112,8 @@ export function VisitorSticker() {
     if (componentRef.current) {
       const w = componentRef.current.offsetWidth;
       const h = componentRef.current.offsetHeight;
-      console.log("Width:", w);
-      console.log("Height:", h);
+      //console.log("Width:", w);
+      //console.log("Height:", h);
       setComponentWidth(w);
       setComponentHeight(h);
     }
@@ -124,13 +124,13 @@ export function VisitorSticker() {
     fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         setHostImageUrl(data.result.userStickerResult[0].final_image_url);
         const filteredData = data.result.visitorStickerResult.filter(
           (item) => item.location_x !== null
         );
 
-        console.log("00", filteredData);
+        //console.log("00", filteredData);
         setImageData(filteredData);
       })
       .catch((error) => {

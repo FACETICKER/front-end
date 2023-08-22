@@ -104,7 +104,7 @@ export function TestBottom(props) {
   const currentURL = window.location.href;
   const parts = currentURL.split("/");
   const visitorid = parseInt(parts[parts.length - 1]); //방문자가 가지고 온 호스트 ID
-  console.log("방문자 id", visitorid);
+  //console.log("방문자 id", visitorid);
 
   // 방문자가 가지고 온  호스트Id 가져오기
   const hostid = useSelector((state) => state.login.hostid);
@@ -120,7 +120,7 @@ export function TestBottom(props) {
     fetch(`http://app.faceticker.site/${ID}/sticker/visitor/${visitorid}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
 
         const visitorImg = data.result.final_image_url;
         setVisitorSticker(visitorImg);
@@ -135,13 +135,13 @@ export function TestBottom(props) {
     fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         /* console.log("111", data.result.userStickerResult[0].final_image_url); */
         setHostImageUrl(data.result.userStickerResult[0].final_image_url);
         const filteredData = data.result.visitorStickerResult.filter(
           (item) => item.location_x !== null
         );
-        console.log("00", filteredData);
+        //console.log("00", filteredData);
         setImageData(filteredData);
       })
       .catch((error) => {
@@ -155,13 +155,13 @@ export function TestBottom(props) {
       fetch(`http://app.faceticker.site/${ID}/sticker/all`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          //console.log(data);
           /* console.log("111", data.result.userStickerResult[0].final_image_url); */
           setHostImageUrl(data.result.userStickerResult[0].final_image_url);
           const filteredData = data.result.visitorStickerResult.filter(
             (item) => item.location_x !== null
           );
-          console.log("00", filteredData);
+          //console.log("00", filteredData);
           setImageData10(filteredData);
         })
         .catch((error) => {
@@ -179,8 +179,8 @@ export function TestBottom(props) {
     if (componentRef.current) {
       const w = componentRef.current.offsetWidth;
       const h = componentRef.current.offsetHeight;
-      console.log("Width:", w);
-      console.log("Height:", h);
+      //console.log("Width:", w);
+      //console.log("Height:", h);
       setComponentWidth(w);
       setComponentHeight(h);
     }
@@ -188,21 +188,21 @@ export function TestBottom(props) {
 
   const imageUrl2 = useSelector((state) => state.capture.visitorimageUrl);
   /*   const visible = useSelector((state) => state.reducers.imagevisible); */
-  console.log("put");
-  console.log("보낼 값", { x: xvalue, y: yvalue });
-  console.log("x", xvalue);
+  //console.log("put");
+  //console.log("보낼 값", { x: xvalue, y: yvalue });
+  //console.log("x", xvalue);
 
   const handlePut = async (event) => {
     try {
       setImageUrl(visitorSticker);
-      console.log("set");
+      //console.log("set");
       const sidePosition = {
         // 클릭한 엘리먼트의 절대좌표
         // .getBoundingClientRect().left 뷰포트 기준 X값 top은 Y 값
         X: Math.floor(event.target.getBoundingClientRect().left),
         Y: Math.floor(event.target.getBoundingClientRect().top),
       };
-      console.log("1", sidePosition);
+      //console.log("1", sidePosition);
 
       const clickPosition = {
         X: Math.floor(event.clientX),
@@ -213,12 +213,12 @@ export function TestBottom(props) {
         X: clickPosition.X - sidePosition.X,
         Y: clickPosition.Y - sidePosition.Y,
       };
-      console.log("2", ratio);
+      //console.log("2", ratio);
 
       // 상대 좌표
       const XPer = (ratio.X / componentWidth) * 100;
       const YPer = (ratio.Y / componentHeight) * 100;
-      console.log("2", ratio);
+      //console.log("2", ratio);
 
       const xyPer = {
         x: XPer,
@@ -228,20 +228,20 @@ export function TestBottom(props) {
         x: XPer.toFixed(2),
         y: YPer.toFixed(2),
       }; */
-      console.log("3", xyPer);
+      //console.log("3", xyPer);
 
       setImagePosition(xyPer);
-      console.log(XPer.toFixed(2));
+      //console.log(XPer.toFixed(2));
       setX(XPer.toFixed(2));
       setY(YPer.toFixed(2));
-      console.log("imageposition", imagePosition);
+      //console.log("imageposition", imagePosition);
       dispatch(positionSlice.actions.update(["x", XPer]));
       dispatch(positionSlice.actions.update(["y", YPer]));
       setIsImageVisible(true);
-      console.log("topost", { x: xvalue, y: yvalue });
+      //console.log("topost", { x: xvalue, y: yvalue });
       dispatch(setIsImageVisible(true));
 
-      console.log("2");
+      //console.log("2");
       dispatch(setIsImageFixed(false)); // 스티커 고정 상태를 해제
     } catch (error) {
       console.error("이미지 URL 가져오기 오류:", error);
@@ -253,9 +253,9 @@ export function TestBottom(props) {
     x: positionState.x,
     y: positionState.y - 2,
   };
-  console.log("finalposition", finalPosition);
+  //console.log("finalposition", finalPosition);
 
-  console.log("완료", imagePosition);
+  //console.log("완료", imagePosition);
 
   //이미지 PATCH
   useEffect(() => {
@@ -269,7 +269,7 @@ export function TestBottom(props) {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("patch 성공", data);
+          //console.log("patch 성공", data);
           setnav(true);
         })
         .catch((error) => {
@@ -290,12 +290,12 @@ export function TestBottom(props) {
       fetch(`http://app.faceticker.site/${ID}/sticker/all`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          //console.log(data);
 
           const filteredData = data.result.visitorStickerResult.filter(
             (item) => item.location_x !== null
           );
-          console.log("모든 방문자 스티커", filteredData);
+          //console.log("모든 방문자 스티커", filteredData);
           setImageData10(filteredData);
           dispatch(positionSlice.actions.update(["x", 0]));
           dispatch(positionSlice.actions.update(["y", 0]));

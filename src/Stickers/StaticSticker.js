@@ -95,9 +95,9 @@ export function StaticSticker() {
     "Content-Type": "application/json",
   };
   const Header = whatType == "host" ? headers : VisitorHeader;
-  console.log("header", whatType);
+  //console.log("header", whatType);
   const ID = whatType == "host" ? userId : hostid;
-  console.log("id", ID);
+  //console.log("id", ID);
 
   const dispatch = useDispatch();
 
@@ -112,8 +112,8 @@ export function StaticSticker() {
     if (componentRef.current) {
       const w = componentRef.current.offsetWidth;
       const h = componentRef.current.offsetHeight;
-      console.log("Width:", w);
-      console.log("Height:", h);
+      //console.log("Width:", w);
+      //console.log("Height:", h);
       setComponentWidth(w);
       setComponentHeight(h);
     }
@@ -124,13 +124,13 @@ export function StaticSticker() {
     fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         setHostImageUrl(data.result.userStickerResult[0].final_image_url);
         const filteredData = data.result.visitorStickerResult.filter(
           (item) => item.location_x !== null
         );
 
-        console.log("00", filteredData);
+        //console.log("00", filteredData);
         setImageData(filteredData);
       })
       .catch((error) => {
@@ -143,13 +143,13 @@ export function StaticSticker() {
     fetch(`http://app.faceticker.site/${ID}/sticker/all`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         setHostImageUrl(data.result.userStickerResult[0].final_image_url);
         const filteredData = data.result.visitorStickerResult.filter(
           (item) => item.location_x !== null
         );
 
-        console.log("00", filteredData);
+        //console.log("00", filteredData);
         setImageData(filteredData);
       })
       .catch((error) => {
