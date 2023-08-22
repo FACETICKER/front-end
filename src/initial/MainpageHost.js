@@ -62,6 +62,7 @@ function MainpageHost() {
   const [Message, setMessage] = useState("");
   const [count,setCount] = useState("");
   const axios = require('axios');
+  
 
 
   const toggleFooter = () => {
@@ -342,10 +343,16 @@ function MainpageHost() {
   const imageUrl10 = stickerdata;
   async function getImageAsBase64(url) {
     try {
-      const response = await axios.get(url, { responseType: 'arraybuffer' });
-      const imageBuffer = Buffer.from(response.data, 'binary');
-      const base64Image = imageBuffer.toString('base64');
-      return base64Image;
+      const response = await fetch(url);
+      const blob = await response.blob();
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          resolve(reader.result);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
     } catch (error) {
       console.error('Error fetching image:', error);
       throw error;
@@ -359,7 +366,6 @@ function MainpageHost() {
   .catch(error => {
     console.error('Error:', error);
   });
-  
 
 
 
