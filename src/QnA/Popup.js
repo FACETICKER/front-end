@@ -78,7 +78,7 @@ const Popup = (props) => {
         })
             .then((response) => response.json()) // 서버에서 받은 응답을 JSON 형태로 파싱
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 dispatch(Basic_questionSlice.actions.del(text));
                 dispatch(Popup_QnA_Slice.actions.close());
                 dispatch(IDSlice.actions.up(1));
@@ -91,7 +91,7 @@ const Popup = (props) => {
     }
 
     return (
-        <Modal isOpen={view} style={modalStyle}>
+        <Modal isOpen={view} style={modalStyle} ariaHideApp={false}>
             <div className={styles.background}>
                 <img src={Close} className={styles.close} onClick={close}></img>
                 <img src={Alarm} className={styles.icon}></img>
