@@ -13,7 +13,7 @@ import Token from './Token';
 
 // 팝업창 띄우기 버튼(전등), faceticker, 나만의 스티커를 만들어보세요, 얼굴형~악세사리 글자 표현 컴포넌트
 
-const Popup = (props) => {
+const Popup = () => {
 
     const dispatch = useDispatch();
 
@@ -27,11 +27,11 @@ const Popup = (props) => {
 
     const modalStyle = {
         overlay: {
-            backgroundColor: 'rgba(0, 0, 0, 0.01)',
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
             zIndex: 1000, // z-index 값
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
         },
         content: {
             zIndex: 1001,
@@ -41,7 +41,7 @@ const Popup = (props) => {
             height: '280px',
             padding: '0px',
             margin: '0px',
-            boxShadow: '0px 2px 10px 0px rgba(0, 0, 0, 0.01)',
+            boxShadow: "0px 2px 10px 0px rgba(0, 0, 0, 0.1)",
             position: 'absolute',
             top: '50%',
             left: '50%',
@@ -91,16 +91,18 @@ const Popup = (props) => {
     }
 
     return (
-        <Modal isOpen={view} style={modalStyle} ariaHideApp={false}>
-            <div className={styles.background}>
-                <img src={Close} className={styles.close} onClick={close}></img>
-                <img src={Alarm} className={styles.icon}></img>
-                <p className={styles.p1}>해당 질문을 추가할까요 ?</p>
-                <p className={styles.p2}>확인하시면 ‘미답변 질문’ 내역에 추가됩니다.</p>
-                <button className={styles.confirm} onClick={add}>확인</button>
-                <button className={styles.confirm_shadow}></button>
-            </div>
-        </Modal>
+        <>
+            <Modal isOpen={view} style={modalStyle}>
+                <div className={styles.background}>
+                    <img src={Close} className={styles.close} onClick={close}></img>
+                    <img src={Alarm} className={styles.icon}></img>
+                    <p className={styles.p1}>해당 질문을 추가할까요 ?</p>
+                    <p className={styles.p2}>확인하시면 ‘미답변 질문’ 내역에 추가됩니다.</p>
+                    <button className={styles.confirm} onClick={add}>확인</button>
+                    <button className={styles.confirm_shadow}></button>
+                </div>
+            </Modal>
+        </>
     );
 };
 
