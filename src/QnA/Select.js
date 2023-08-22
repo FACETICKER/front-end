@@ -16,7 +16,7 @@ const Select = () => {
                 <p className={styles.Top_p}>60가지 기본 질문 중 자유롭게 선택하세요.</p>
             </div>
             <div className={styles.btnwrap}>
-                {basic.map((item) => (<Basic_btn text={item}/>))}
+                {basic.map((item, index) => (<Basic_btn text={item} key={index}/>))}
             </div>
         </div>
     );

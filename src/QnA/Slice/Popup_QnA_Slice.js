@@ -10,6 +10,7 @@ const Popup_QnA_Slice = createSlice({
         },
         close: (state, action) => {
             state.view = false;
+            state.text = '';
         }
     }
 });
