@@ -231,9 +231,9 @@ function InitialSurvey() {
       }
     } else {
       nameInput.className = "l21-1";
+      nameInput2.style.left = "-25%";
       resultDiv.style.display = "block"; // 닫혀있는 경우 열기
       setNumberCheck(up);
-      
     }
   };
 
