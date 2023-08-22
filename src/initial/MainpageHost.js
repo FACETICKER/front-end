@@ -87,7 +87,7 @@ function MainpageHost() {
 
   useEffect(() => {
     console.log("sdnvud");
-    setAddress3(`http://www.faceticker.site/main/${address2}`);
+    setAddress3(`http://faceticker.site/main/${address2}`);
   },[address2])
   const handleLinkDownload = async () => {
     const address = `http://www.faceticker.site/main/${user_id}`;
@@ -612,7 +612,7 @@ function MainpageHost() {
                 </button>
                 {/*</CopyToClipboard>*/}
                 <button className="l10-2">
-                  <img src={download} alt="download" />
+                  <img src={download} alt="download" onClick={handleDownload2}/>
                 </button>
               </Div>
 
