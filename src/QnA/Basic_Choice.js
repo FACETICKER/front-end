@@ -3,6 +3,7 @@ import styles from './style/Basic_Choice.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import Nickname from './Nickname';
 import Select from './Select';
+import Popup from './Popup';
 
 function Basic_Choice() {
 
@@ -10,6 +11,7 @@ function Basic_Choice() {
         <div className={styles.background}>
             <Nickname page='basic'/>
             <Select />
+            <Popup />
         </div>
     )
 };

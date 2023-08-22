@@ -18,7 +18,6 @@ function Basic_btn(props) {
                 <p className={styles.btn_p}>{props.text}</p>
             </button>
             <button className={styles.btnshadow}></button>
-            <Popup />
         </div>
     )
 };
